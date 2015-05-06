@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>APE Malaysia</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/sweetstyle.min.css" rel="stylesheet" />
+    <link href="css/uniform.default.css" rel="stylesheet" />
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background: url(img/bgLogin.jpg) no-repeat center center;
+            background-size: cover;
+        }
+
+        .login-form {
+            /*background: #fff;*/
+        }
+
+        .form-control {
+            background: rgba(255,255,255,.9);
+        }
+
+        .panel {
+            border-radius: 0;
+            background: url(img/bgLogin-Form.jpg) no-repeat center center;
+            background-size: cover;
+            margin: 0;
+            border: 1px solid rgba(170, 170, 170, 1);
+        }
+
+        .panel-heading {
+            background: rgba(255,255,255,0.67);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.67);
+            box-shadow: inset 0px -3px 15px rgba(255, 255, 255, 0.49);
+            color: #000;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 0;
+        }
+
+        label {
+            color: #fff;
+        }
+
+        .btn {
+            border-radius: 0;
+        }
+
+        .forgotpassword {
+            color: #fff;
+            float: right;
+        }
+
+            .forgotpassword:hover {
+                color: #fff;
+            }
+
+        .panel-footer {
+            background: url(img/shadown-form-login.png) no-repeat bottom center;
+            background-size: 100%;
+            height: 70px;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="middle">
+            <div class="row">
+                <div class="col-sm-12">
+                    <img src="img/fulllogo.png" class="center-block img-responsive" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="panel panel-login">
+                        <div class="panel-heading">USER LOGIN</div>
+                        <div class="panel-body">
+                            <div class="login-form">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    <span class="pull-left">Username</span>
+                                                </label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" value="admin" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    <span class="pull-left">Password</span></label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" value="123456789" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-9 col-sm-offset-3">
+                                                    <label style="font-weight: normal" class="pull-right">
+                                                        Remember me
+                                                    <input type="checkbox" value="" class="uniform" />
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="form-group">
+                                                <div class="col-sm-4">
+                                                    <button class="btn btn-default btn-block" id="btnLogin">
+                                                        <span class="fa fa-unlock fa-1x"></span>
+                                                        Login</button>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <label class="control-label pull-right" style="font-weight: 300">
+                                                        <a href="#" class="forgotpassword">Forgot your password?</a>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <img src="img/keys-icon.png" class="img-responsive" style="margin-top: -50px" />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/core/jquery.min.js"></script>
+    <script src="js/plugins/migrate.js"></script>
+    <script src="js/plugins/uniform/jquery.uniform.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $.fn.uniform && $(':radio.uniform, :checkbox.uniform').uniform();
+
+            var height = $(window).height() - $('.middle').height();
+            $('.middle').animate({ 'margin-top': +(height / 2) - 70 + 'px' }, 1000);
+
+            $('#btnLogin').click(function() {
+                $('body').fadeOut(300);
+                setTimeout(function () {
+                    window.location.replace("main.htm");
+                }, 1000);
+            })
+        })
+    </script>
+</body>
+</html>

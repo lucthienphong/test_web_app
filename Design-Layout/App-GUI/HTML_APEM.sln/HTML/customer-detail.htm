@@ -1,0 +1,405 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Customer details</title>
+    <link href="css/normalize.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/sweetstyle.min.css" rel="stylesheet" />
+    <link href="css/flaticon.css" rel="stylesheet" />
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" />
+    <!--<link href="css/theme.min.css" rel="stylesheet" />-->
+    <link href="css/uniform.default.css" rel="stylesheet" />
+    <link href="css/icons.css" rel="stylesheet" />
+    <link href="css/table.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="prepare_window_loading"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="button-control col-md-12 col-sm-12 affix">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-new10"></span>
+                                    New</button>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-transparent" id="btnSaveDemo">
+                                    <span class="flaticon-floppy1"></span>
+                                    Save</button>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-transparent" id="btnDeleteDemo">
+                                    <span class="flaticon-delete41"></span>
+                                    Delete</button>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-back57"></span>
+                                    Cancel</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-inline">
+                            <div class="form-group pull-right">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-printer60"></span>
+                                    Print</button>
+                            </div>
+                            <div class="form-group pull-right">
+                                <button class="btn btn-transparent" disabled>
+                                    <span class="flaticon-xlsx"></span>
+                                    Excel</button>
+                            </div>
+                            <div class="form-group pull-right">
+                                <button class="btn btn-transparent" disabled>
+                                    <span class="flaticon-pdf19"></span>
+                                    PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Customer name</label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-horizontal">
+                                <div class="form-group" style="margin-bottom: 0">
+                                    <div class="col-sm-1">
+                                        <input type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <input type="text" value="" id="customername" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#detail" role="tab" data-toggle="tab">Detail</a></li>
+                    <li><a href="#shipping" role="tab" data-toggle="tab">Shipping</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="detail">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form">
+                                <div class="form-group">
+                                    <label class="control-label">Address</label>
+                                    <textarea class="form-control" cols="" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">City</label>
+                                    <input type="text" value="" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Tel</label>
+                                    <input type="text" value="" class="mask-phone form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Fax</label>
+                                    <input type="text" value="" class="mask-phone form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Post code</label>
+                                    <input type="text" value="" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Country</label>
+                                    <input type="text" value="" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-horizontal">
+                                        <div class="row">
+                                            <div class="col-md-8 col-sm-8">
+                                                <div class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3">
+                                                            <span class="pull-left">Sales Rep</span>
+                                                        </label>
+                                                        <div class="col-sm-9">
+                                                            <select class="selectpicker" data-live-search="true" data-style="btn btn-default btn-block" data-width="100%">
+                                                                <option>Cum diffundi concordi tempora recessit</option>
+                                                                <option>Mundo undis regat madescit cum</option>
+                                                                <option>Legebantur egens auroram habitabilis agitabilis </option>
+                                                                <option>Declivia iunctarum legebantur ne mollia </option>
+                                                                <option>Erant rapidisque possedit </option>
+                                                                <option>Solidumque effigiem aethera lanient </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-4">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" class="uniform" />
+                                                        Obsolete
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form">
+                                <div class="form-group">
+                                    <label class="control-label">Delivery</label>
+                                    <input type="text" value="" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Payment</label>
+                                    <input type="text" value="" class="form-control" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label DTTT_button_save">Contacts</label>
+                                    <table id="demo-dtable-03" class="table table-striped table-bordered table-checkable">
+                                        <thead>
+                                            <tr>
+                                                <th>Contact name</th>
+                                                <th>title</th>
+                                                <th>Designation</th>
+                                                <th class="checkbox-column">
+                                                    <input type="checkbox" value="" class="uniform" /></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>Willy Tan</td>
+                                                <td>Mr.</td>
+                                                <td>Sales management</td>
+                                                <td class="checkbox-column">
+                                                    <input type="checkbox" value="" class="uniform" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Wee</td>
+                                                <td>Ms.</td>
+                                                <td>Marketing director</td>
+                                                <td class="checkbox-column">
+                                                    <input type="checkbox" value="" class="uniform" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Simone Lee</td>
+                                                <td>Ms.</td>
+                                                <td>Sales Executing</td>
+                                                <td class="checkbox-column">
+                                                    <input type="checkbox" value="" class="uniform" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Zubaidi</td>
+                                                <td>Mr.</td>
+                                                <td>Store</td>
+                                                <td class="checkbox-column">
+                                                    <input type="checkbox" value="" class="uniform" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jack Soh</td>
+                                                <td>Mr.</td>
+                                                <td>Sales Executing</td>
+                                                <td class="checkbox-column">
+                                                    <input type="checkbox" value="" class="uniform" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Daniel Chong</td>
+                                                <td>Mr.</td>
+                                                <td>Sales Executing</td>
+                                                <td class="checkbox-column">
+                                                    <input type="checkbox" value="" class="uniform" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="shipping">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form">
+                                <div class="form-group">
+                                    <label class="control-label">Sales Records</label>
+                                    <textarea name cols="" rows="10" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Packaging Requirements</label>
+                                    <textarea name cols="" rows="8" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form">
+                                <div class="form-group">
+                                    <label class="control-label">Tech Data</label>
+                                    <textarea name cols="" rows="5" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Forwarder Name</label>
+                                    <textarea name cols="" rows="5" class="form-control"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label">Forwarder Address</label>
+                                    <textarea name cols="" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--form-dialog-->
+    <div id="dialog-form-confirmed" title="Comfirm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Data is saved
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div id="dialog-form-isDeleted" title="Comfirm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Item is deleted
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dialog-form-deleted" title="Warning">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Do you want to delete item?
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/core/jquery.min.js"></script>
+    <script src="js/core/bootstrap.min.js"></script>
+    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!------------------>
+    <script src="js/plugins/migrate.js"></script>
+    <!--bootstrap plugins-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-select.min.js"></script>
+    <!--autocomplete-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-typeahead.min.js"></script>
+    <!--Checkbox - radio-->
+    <script src="js/plugins/uniform/jquery.uniform.js"></script>
+    <!--input mask-->
+    <script src="js/plugins/mask/jquery.mask.js"></script>
+    <!--datepicker-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-datepicker.js"></script>
+    <!--dialog-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-dialog.min.js"></script>
+    <!--datatable, chi dung khi co table va sort-->
+    <script src="js/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="js/plugins/datatables/TableTools/js/TableTools.js"></script>
+    <script src="js/plugins/datatables/dataTables.bootstrap.js"></script>
+    <script src="js/plugins/datatables/jquery.dataTables.columnFilter.js"></script>
+    <script src="js/plugins/datatables/TableTools/js/ZeroClipboard.js"></script>
+    <!--script chỉ chạy demo-->
+    <script src="demo_javascript/demo.js"></script>
+    <script src="demo_javascript/dataTables.js"></script>
+    <!------------------!>
+    <!--run script-->
+    <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.demo').click(function () {
+                console.log(parent.$('a[data-href="customer-detail.htm"]'))
+                parent.$('a[data-href="customer-detail.htm"]').click();
+                return false;
+            });
+
+
+
+            $("#dialog-form-confirmed,#dialog-form-isDeleted").dialog({
+                modal: true,
+                autoOpen: false,
+                height: 'auto',
+                width: '350',
+                modal: true,
+                resizable: false,
+                draggable: false,
+                open: function (event, ui) {
+                    var _this = $(this);
+                    setTimeout(function () {
+                        _this.dialog('close');
+                    }, 1000)
+                }
+            });
+
+            $('#btnSaveDemo').click(function () {
+                $("#dialog-form-confirmed").dialog('open')
+            })
+
+
+            $("#dialog-form-deleted").dialog({
+                modal: true,
+                autoOpen: false,
+                height: 'auto',
+                width: '350',
+                modal: true,
+                resizable: false,
+                draggable: false,
+                buttons: {
+                    "Yes": function () {
+                        $(this).dialog("close");
+                        $("#dialog-form-isDeleted").dialog("open");
+
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $('#btnDeleteDemo').click(function () {
+                $("#dialog-form-deleted").dialog('open')
+            })
+        })
+    </script>
+</body>
+</html>

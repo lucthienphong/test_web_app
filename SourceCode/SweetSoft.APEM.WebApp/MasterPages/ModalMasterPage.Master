@@ -1,0 +1,134 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ModalMasterPage.master.cs" Inherits="SweetSoft.APEM.WebApp.MasterPages.ModalMasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>System settings</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="/css/normalize.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/sweetstyle.min.css" rel="stylesheet" />
+    <link href="/css/flaticon.css" rel="stylesheet" />
+    <link href="/css/datepicker.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" />
+    <%--<link href="/css/theme.min.css" rel="stylesheet" />--%>
+    <link href="/css/uniform.default.css" rel="stylesheet" />
+    <link href="/css/icons.css" rel="stylesheet" />
+    <link href="/css/table.css" rel="stylesheet" />
+    <link href="/css/customui.css" rel="stylesheet" />
+    <link href="/css/column-width.css" rel="stylesheet" />
+
+    <!--Core script-->
+    <script src="/js/core/jquery.min.js"></script>
+
+    <style>
+        .red
+        {
+            color: #d9534f!important;
+        }
+
+        .blue
+        {
+            color: #478fca!important;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <input type="hidden" id="hdIsChanged" name="hdIsChanged" />
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager" runat="server"></asp:ScriptManager>
+        <div id="prepare_window_loading"></div>
+        <div class="container-fluid">
+            <asp:UpdateProgress AssociatedUpdatePanelID="MainUpdatePanel" ID="UpdateProgress" runat="server" DisplayAfter="1">
+                <ProgressTemplate>
+                    <div style="position: absolute; top: 50%; left: 50%; margin-top: -110px; margin-left: -150px; width: 300px; height: 220px; z-index: 9999; background: #fcfcfc; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;">
+                        <img src="../img/loading.gif" alt="Loading" style="position: relative; top: 10px; left: 50px;" />
+                    </div>
+                </ProgressTemplate>
+            </asp:UpdateProgress>
+            <asp:UpdatePanel ID="MainUpdatePanel" runat="server">
+                <ContentTemplate>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+        <asp:UpdatePanel ID="update1" runat="server" UpdateMode="Always">
+            <ContentTemplate>
+                <!-- Comfirm Modal Starts here-->
+                <div class="modal fade" id="MessageModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div id="MessageHeader" runat="server" class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    <asp:Label ID="lbTitle" runat="server"></asp:Label>
+                                </h4>
+                            </div>
+                            <div class="modal-body" style="text-align: center;">
+                                <asp:Label ID="lbMessage" runat="server"></asp:Label>
+                            </div>
+                            <div class="modal-footer">
+                                <asp:Button runat="server"
+                                    ID="btnAccept" OnClick="btnAccept_Click" />
+                                <asp:Button runat="server" ID="btnCloseMessage"
+                                    CssClass="btn btn-default"
+                                    OnClientClick=" closeMessageBox('#MessageModel'); return false;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Comfirm Modal Ends here -->
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
+        <!--Core script-->
+        <script src="/js/core/bootstrap.min.js"></script>
+        <script src="/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+        <!------------------>
+        <script src="/js/plugins/migrate.js"></script>
+        <!--bootstrap plugins-->
+        <script src="/js/plugins/bootstrap-plugins/bootstrap-select.min.js"></script>
+        <!--autocomplete-->
+        <script src="/js/plugins/bootstrap-plugins/bootstrap-typeahead.min.js"></script>
+        <!--Checkbox - radio-->
+        <script src="/js/plugins/uniform/jquery.uniform.js"></script>
+        <!--input mask-->
+        <script src="/js/plugins/mask/jquery.mask.js"></script>
+        <!--datepicker-->
+        <script src="/js/plugins/bootstrap-plugins/bootstrap-datepicker.js"></script>
+        <!--dialog-->
+        <script src="/js/plugins/bootstrap-plugins/bootstrap-dialog.min.js"></script>
+        <!--datatable, chi dung khi co table va sort-->
+        <%--<script src="/js/plugins/datatables/jquery.dataTables.js"></script>
+        <script src="/js/plugins/datatables/TableTools/js/TableTools.js"></script>
+        <script src="/js/plugins/datatables/dataTables.bootstrap.js"></script>
+        <script src="/js/plugins/datatables/jquery.dataTables.columnFilter.js"></script>
+        <script src="/js/plugins/datatables/TableTools/js/ZeroClipboard.js"></script>--%>
+        <!--Message box-->
+        <script src="/js/messagebox.js"></script>
+        <!--validation-->
+        <script src="/js/validationEngine/jquery.validationEngine.js" type="text/javascript"></script>
+        <script src="/js/validationEngine/jquery.validationEngine-vi.js" type="text/javascript"></script>
+        <script src="/js/validationEngine/ValidationScript.js" type="text/javascript"></script>
+        <%--<!--script chỉ chạy demo-->
+            <script src="/demo_javascript/demo.js"></script>
+            <script src="/demo_javascript/dataTables.js"></script>--%>
+        <!------------------!>
+        <!--run script-->
+        <script src="/js/main.js"></script>
+        <script src="/js/UIScript.js"></script>
+        <%--<script src="/js/confirmUnsaved.js"></script>--%>
+
+        <%--ModalPlaceholders--%>
+        <asp:ContentPlaceHolder ID="ModalPlaceHolder" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+    <asp:ContentPlaceHolder ID="ScriptPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+</html>

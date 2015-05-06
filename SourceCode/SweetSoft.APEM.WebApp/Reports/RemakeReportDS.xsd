@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RemakeReportDS" targetNamespace="http://tempuri.org/RemakeReportDS.xsd" xmlns:mstns="http://tempuri.org/RemakeReportDS.xsd" xmlns="http://tempuri.org/RemakeReportDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="RemakeReportDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="RemakeReportDS" msprop:Generator_UserDSName="RemakeReportDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RemakeReport" msprop:Generator_TableClassName="RemakeReportDataTable" msprop:Generator_TableVarName="tableRemakeReport" msprop:Generator_TablePropName="RemakeReport" msprop:Generator_RowDeletingName="RemakeReportRowDeleting" msprop:Generator_RowChangingName="RemakeReportRowChanging" msprop:Generator_RowEvHandlerName="RemakeReportRowChangeEventHandler" msprop:Generator_RowDeletedName="RemakeReportRowDeleted" msprop:Generator_UserTableName="RemakeReport" msprop:Generator_RowChangedName="RemakeReportRowChanged" msprop:Generator_RowEvArgName="RemakeReportRowChangeEvent" msprop:Generator_RowClassName="RemakeReportRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RowNumber" msprop:Generator_ColumnVarNameInTable="columnRowNumber" msprop:Generator_ColumnPropNameInRow="RowNumber" msprop:Generator_ColumnPropNameInTable="RowNumberColumn" msprop:Generator_UserColumnName="RowNumber" type="xs:int" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:string" minOccurs="0" />
+              <xs:element name="S" msprop:Generator_ColumnVarNameInTable="columnS" msprop:Generator_ColumnPropNameInRow="S" msprop:Generator_ColumnPropNameInTable="SColumn" msprop:Generator_UserColumnName="S" type="xs:string" minOccurs="0" />
+              <xs:element name="C" msprop:Generator_ColumnVarNameInTable="columnC" msprop:Generator_ColumnPropNameInRow="C" msprop:Generator_ColumnPropNameInTable="CColumn" msprop:Generator_UserColumnName="C" type="xs:string" minOccurs="0" />
+              <xs:element name="JobNumber" msprop:Generator_ColumnVarNameInTable="columnJobNumber" msprop:Generator_ColumnPropNameInRow="JobNumber" msprop:Generator_ColumnPropNameInTable="JobNumberColumn" msprop:Generator_UserColumnName="JobNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="Code" type="xs:string" minOccurs="0" />
+              <xs:element name="JobName" msprop:Generator_ColumnVarNameInTable="columnJobName" msprop:Generator_ColumnPropNameInRow="JobName" msprop:Generator_ColumnPropNameInTable="JobNameColumn" msprop:Generator_UserColumnName="JobName" type="xs:string" minOccurs="0" />
+              <xs:element name="Design" msprop:Generator_ColumnVarNameInTable="columnDesign" msprop:Generator_ColumnPropNameInRow="Design" msprop:Generator_ColumnPropNameInTable="DesignColumn" msprop:Generator_UserColumnName="Design" type="xs:string" minOccurs="0" />
+              <xs:element name="CByS" msprop:Generator_ColumnVarNameInTable="columnCByS" msprop:Generator_ColumnPropNameInRow="CByS" msprop:Generator_ColumnPropNameInTable="CBySColumn" msprop:Generator_UserColumnName="CByS" type="xs:int" minOccurs="0" />
+              <xs:element name="CByR" msprop:Generator_ColumnVarNameInTable="columnCByR" msprop:Generator_ColumnPropNameInRow="CByR" msprop:Generator_ColumnPropNameInTable="CByRColumn" msprop:Generator_UserColumnName="CByR" type="xs:int" minOccurs="0" />
+              <xs:element name="CByP" msprop:Generator_ColumnVarNameInTable="columnCByP" msprop:Generator_ColumnPropNameInRow="CByP" msprop:Generator_ColumnPropNameInTable="CByPColumn" msprop:Generator_UserColumnName="CByP" type="xs:int" minOccurs="0" />
+              <xs:element name="CByO" msprop:Generator_ColumnVarNameInTable="columnCByO" msprop:Generator_ColumnPropNameInRow="CByO" msprop:Generator_ColumnPropNameInTable="CByOColumn" msprop:Generator_UserColumnName="CByO" type="xs:int" minOccurs="0" />
+              <xs:element name="IE" msprop:Generator_ColumnVarNameInTable="columnIE" msprop:Generator_ColumnPropNameInRow="IE" msprop:Generator_ColumnPropNameInTable="IEColumn" msprop:Generator_UserColumnName="IE" type="xs:string" minOccurs="0" />
+              <xs:element name="RevisionDetail" msprop:Generator_ColumnVarNameInTable="columnRevisionDetail" msprop:Generator_ColumnPropNameInRow="RevisionDetail" msprop:Generator_ColumnPropNameInTable="RevisionDetailColumn" msprop:Generator_UserColumnName="RevisionDetail" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

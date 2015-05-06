@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{51EDD796-4ABB-4E92-9304-39A5EC90ADEF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SweetSoft.APEM.DataAccess</RootNamespace>
+    <AssemblyName>SweetSoft.APEM.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SubSonic">
+      <HintPath>..\SweetSoft.APEM.WebApp\DLL\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllStructs.cs" />
+    <Compile Include="TblCredit.cs" />
+    <Compile Include="TblCreditController.cs" />
+    <Compile Include="TblCreditDetail.cs" />
+    <Compile Include="TblCreditDetailController.cs" />
+    <Compile Include="TblCustomerQuotationAdditionalService.cs" />
+    <Compile Include="TblCustomerQuotationAdditionalServiceController.cs" />
+    <Compile Include="TblCustomerQuotationOtherCharge.cs" />
+    <Compile Include="TblCustomerQuotationOtherChargeController.cs" />
+    <Compile Include="TblCylinderProcessing.cs" />
+    <Compile Include="TblCylinderProcessingController.cs" />
+    <Compile Include="TblDebit.cs" />
+    <Compile Include="TblDebitController.cs" />
+    <Compile Include="TblDebitDetail.cs" />
+    <Compile Include="TblDebitDetailController.cs" />
+    <Compile Include="TblEngravingEtching.cs" />
+    <Compile Include="TblEngravingEtchingController.cs" />
+    <Compile Include="TblEngravingTobacco.cs" />
+    <Compile Include="TblEngravingTobaccoController.cs" />
+    <Compile Include="TblJobProcess.cs" />
+    <Compile Include="TblJobProcessController.cs" />
+    <Compile Include="JobInvoice.cs" />
+    <Compile Include="TblCustomerQuotationDetail.cs" />
+    <Compile Include="TblCustomerQuotationDetailController.cs" />
+    <Compile Include="TblCylinderStatus.cs" />
+    <Compile Include="TblDeliveryOrderPackingDimension.cs" />
+    <Compile Include="TblDeliveryOrderPackingDimensionController.cs" />
+    <Compile Include="TblInvoice.cs" />
+    <Compile Include="TblInvoiceController.cs" />
+    <Compile Include="TblInvoiceDetail.cs" />
+    <Compile Include="TblInvoiceDetailController.cs" />
+    <Compile Include="TblMachine.cs" />
+    <Compile Include="TblMachineController.cs" />
+    <Compile Include="TblNotificationSetting.cs" />
+    <Compile Include="TblNotificationSettingController.cs" />
+    <Compile Include="TblCurrencyChangedLog.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblCurrencyChangedLogController.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblCylinderCollectionModel.cs" />
+    <Compile Include="TblDeliveryOrder.cs" />
+    <Compile Include="TblDeliveryOrderController.cs" />
+    <Compile Include="TblEngravingScreenAngle.cs" />
+    <Compile Include="TblEngravingScreenAngleController.cs" />
+    <Compile Include="TblEngravingStylu.cs" />
+    <Compile Include="TblEngravingStyluController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoredProcedures.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblBacking.cs" />
+    <Compile Include="TblBackingController.cs" />
+    <Compile Include="TblContact.cs" />
+    <Compile Include="TblContactController.cs" />
+    <Compile Include="TblCurrency.cs" />
+    <Compile Include="TblCurrencyController.cs" />
+    <Compile Include="TblCustomer.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblCustomerController.cs" />
+    <Compile Include="TblCustomerQuotation.cs" />
+    <Compile Include="TblCustomerQuotationController.cs" />
+    <Compile Include="TblCustomerQuotationPricing.cs" />
+    <Compile Include="TblCustomerQuotationPricingController.cs" />
+    <Compile Include="TblCylinder.cs" />
+    <Compile Include="TblCylinderController.cs" />
+    <Compile Include="TblCylinderStatusController.cs" />
+    <Compile Include="TblDepartment.cs" />
+    <Compile Include="TblDepartmentController.cs" />
+    <Compile Include="TblEngraving.cs" />
+    <Compile Include="TblEngravingController.cs" />
+    <Compile Include="TblEngravingDetail.cs" />
+    <Compile Include="TblEngravingDetailController.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblFunction.cs" />
+    <Compile Include="TblFunctionController.cs" />
+    <Compile Include="TblJob.cs" />
+    <Compile Include="TblJobController.cs" />
+    <Compile Include="TblJobQuotation.cs" />
+    <Compile Include="TblJobQuotationController.cs" />
+    <Compile Include="TblJobQuotationPricing.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblJobQuotationPricingController.cs" />
+    <Compile Include="TblJobSheet.cs" />
+    <Compile Include="TblJobSheetController.cs" />
+    <Compile Include="TblLogging.cs" />
+    <Compile Include="TblLoggingController.cs" />
+    <Compile Include="TblMachinaryProduceType.cs" />
+    <Compile Include="TblMachinaryProduceTypeController.cs" />
+    <Compile Include="TblNotification.cs" />
+    <Compile Include="TblNotificationController.cs" />
+    <Compile Include="TblObjectLocking.cs" />
+    <Compile Include="TblObjectLockingController.cs" />
+    <Compile Include="TblOrderConfirmation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TblOrderConfirmationController.cs" />
+    <Compile Include="TblOrderLocking.cs" />
+    <Compile Include="TblOrderLockingController.cs" />
+    <Compile Include="TblOtherCharge.cs" />
+    <Compile Include="TblOtherChargeController.cs" />
+    <Compile Include="TblPricing.cs" />
+    <Compile Include="TblPricingController.cs" />
+    <Compile Include="TblProgress.cs" />
+    <Compile Include="TblProgressController.cs" />
+    <Compile Include="TblProgressCylinderStatus.cs" />
+    <Compile Include="TblProgressCylinderStatusController.cs" />
+    <Compile Include="TblProgressReproStatus.cs" />
+    <Compile Include="TblProgressReproStatusController.cs" />
+    <Compile Include="TblPurchaseOrder.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblPurchaseOrderController.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblPurchaseOrderCylinder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TblPurchaseOrderCylinderController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TblReference.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblReferenceController.cs" />
+    <Compile Include="TblRole.cs" />
+    <Compile Include="TblRoleController.cs" />
+    <Compile Include="TblRolePermission.cs" />
+    <Compile Include="TblRolePermissionController.cs" />
+    <Compile Include="TblServiceJobDetail.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TblServiceJobDetailController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TblStaff.cs" />
+    <Compile Include="TblStaffController.cs" />
+    <Compile Include="TblSupplier.cs" />
+    <Compile Include="TblSupplierController.cs" />
+    <Compile Include="TblSupply.cs" />
+    <Compile Include="TblSupplyController.cs" />
+    <Compile Include="TblSystemSetting.cs" />
+    <Compile Include="TblSystemSettingController.cs" />
+    <Compile Include="TblTax.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="TblTaxController.cs" />
+    <Compile Include="TblUser.cs" />
+    <Compile Include="TblUserController.cs" />
+    <Compile Include="TblUserRole.cs" />
+    <Compile Include="TblUserRoleController.cs" />
+    <Compile Include="TblWorkFlow.cs" />
+    <Compile Include="TblWorkFlowController.cs" />
+    <Compile Include="TblWorkFlowLine.cs" />
+    <Compile Include="TblWorkFlowLineController.cs" />
+    <Compile Include="TblWorkFlowNode.cs" />
+    <Compile Include="TblWorkFlowNodeController.cs" />
+    <Compile Include="TblWorkTask.cs" />
+    <Compile Include="TblWorkTaskController.cs" />
+    <Compile Include="TblWorkTaskInNode.cs" />
+    <Compile Include="TblWorkTaskInNodeController.cs" />
+    <Compile Include="VwAspnetApplication.cs" />
+    <Compile Include="VwAspnetMembershipUser.cs" />
+    <Compile Include="VwAspnetProfile.cs" />
+    <Compile Include="VwAspnetRole.cs" />
+    <Compile Include="VwAspnetUser.cs" />
+    <Compile Include="VwAspnetUsersInRole.cs" />
+    <Compile Include="VwAspnetWebPartStatePath.cs" />
+    <Compile Include="VwAspnetWebPartStateShared.cs" />
+    <Compile Include="VwAspnetWebPartStateUser.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

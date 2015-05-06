@@ -1,0 +1,1264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Job details</title>
+    <link href="css/normalize.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--<link href="css/jquery-ui.css" rel="stylesheet" />-->
+    <link href="css/sweetstyle.min.css" rel="stylesheet" />
+    <link href="css/flaticon.css" rel="stylesheet" />
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" />
+
+    <link href="css/datepicker.min.css" rel="stylesheet" />
+    <!--<link href="css/theme.min.css" rel="stylesheet" />-->
+    <link href="css/uniform.default.css" rel="stylesheet" />
+    <link href="css/icons.css" rel="stylesheet" />
+    <link href="css/table.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="prepare_window_loading"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="button-control col-md-12 col-sm-12 affix">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-new10"></span>
+                                    New</button>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-transparent" id="btnSaveDemo">
+                                    <span class="flaticon-floppy1"></span>
+                                    Save</button>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-transparent" id="btnDeleteDemo">
+                                    <span class="flaticon-delete41"></span>
+                                    Delete</button>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-back57"></span>
+                                    Cancel</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-inline">
+                            <div class="form-group pull-right">
+                                <button class="btn btn-transparent" id="btn-printer">
+                                    <span class="flaticon-printer60"></span>
+                                    Print</button>
+                            </div>
+                            <div class="form-group pull-right">
+                                <button disabled class="btn btn-transparent">
+                                    <span class="flaticon-search29"></span>
+                                    Search</button>
+                            </div>
+                            <div class="form-group pull-right">
+                                <button disabled class="btn btn-transparent">
+                                    <span class="flaticon-files6"></span>
+                                    Get copy</button>
+                            </div>
+
+                            <div class="form-group pull-right">
+                                <button disabled class="btn btn-transparent">
+                                    <span class="flaticon-duplicate3"></span>
+                                    Save Revision</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-md-9 col-sm-9">
+                <div class="form-group">
+                    <label class="control-label">Customer name</label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-horizontal">
+                                <div class="form-group" style="margin-bottom: 0">
+                                    <div class="col-sm-1">
+                                        <input type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <input type="text" value="" id="customername" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group" style="margin-bottom: 0">
+                            <label class="control-label">Job Nr</label>
+
+                            <select data-width="100%" class="selectpicker" data-style="btn btn-default">
+                                <option>0703/23232</option>
+                                <option>0508/20001</option>
+                                <option>1258/52468</option>
+                                <option>3254/25256</option>
+                                <option>2358/00145</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label class="control-label">Rev</label>
+                            <input type="text" value="0" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Job name</label>
+                    <input type="text" value="" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label class="control-label">Design</label>
+                    <input type="text" value="" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#oc" role="tab" data-toggle="tab">OC</a></li>
+                    <li><a href="#do" role="tab" data-toggle="tab">DO</a></li>
+                    <li class=""><a href="#Invoice" role="tab" data-toggle="tab">Invoice</a></li>
+                    <li class=""><a href="#CylOrder" role="tab" data-toggle="tab">Cyl Order</a></li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="oc">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <label class="control-label">Customer P/O</label>
+                                                    <input type="text" value="" class="form-control" />
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <label class="control-label">&nbsp;</label>
+                                                    <input type="text" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <label class="control-label">
+                                                Contact Person
+                                            </label>
+                                            <select class="selectpicker" data-width="100%" data-style="btn btn-info">
+                                                <option>Daniel Chong</option>
+                                                <option>Pugnabant</option>
+                                                <option>Pugnabant</option>
+                                                <option>Peregrinum</option>
+                                                <option>Seductaque</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <label class="control-label">
+                                                Order Date
+                                            </label>
+                                            <input type="text" value="" data-provide="datepicker" class="date-picker mask-date form-control" />
+                                            <span class="glyphicon glyphicon-calendar in-mask-date"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">IRIS Proof</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">Qty</label>
+                                                    <input type="text" value="0" class="form-control" />
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label class="control-label">Price</label>
+                                                    <input type="text" value="0" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Other Changes</div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <label class="control-label">&nbsp;</label>
+                                                    <input type="text" value="0" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="well">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label class="checkbox" style="font-weight: 300">
+                                                    <input type="checkbox" class="uniform" />
+                                                    Invoice Currency
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button class="btn btn-primary pull-right" id="prices-lookup">Prices Lookup</button></div>
+                                        </div>
+                                        <div class="form-horizontal">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-5">
+                                                            <span class="pull-left">Currency</span></label>
+                                                        <div class="col-sm-7">
+                                                            <input type="text" class="form-control" value="" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-3">
+                                                            <span class="pull-left">RM</span>
+                                                        </label>
+                                                        <div class="col-sm-9">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" value="1" />
+                                                                <span class="input-group-addon">=</span>
+                                                                <input type="text" class="form-control" value="" />
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <label class="control-label">Items</label>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Steel Base</th>
+                                        <th>Cyl No</th>
+                                        <th>Description</th>
+                                        <th>LW/CT</th>
+                                        <th>Circumfere</th>
+                                        <th>Face width</th>
+                                        <th>Unit Price</th>
+                                        <th>Qty</th>
+                                        <th>Total Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Magenta engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Cygan engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Green 376C engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Purple 2645C engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">
+                                        Total
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input type="text" value="0" class="form-control" />
+                                    </div>
+                                    <label class="control-label col-sm-2">
+                                        Discount %
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input type="text" value="0" class="form-control" />
+                                    </div>
+                                    <label class="control-label col-sm-2">
+                                        Net Total
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input type="text" value="0" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Remark</label>
+                                    <div class="col-sm-4">
+                                        <textarea name cols="" rows="2" class="form-control"></textarea>
+                                    </div>
+                                    <label class="control-label col-sm-2">Remark (Screen)</label>
+                                    <div class="col-sm-4">
+                                        <textarea name cols="" rows="2" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-horizontal">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Payment Terms</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="30 days upon delivery" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-horizontal">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Delivery Terms</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="2 tweek upon order confirmation" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="do">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <label class="control-label">Customer P/O</label>
+                                                    <input type="text" value="" class="form-control" />
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <label class="control-label">&nbsp;</label>
+                                                    <input type="text" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <label class="control-label">
+                                                Contact Person
+                                            </label>
+                                            <select class="selectpicker" data-width="100%" data-style="btn btn-info">
+                                                <option>Daniel Chong</option>
+                                                <option>Pugnabant</option>
+                                                <option>Pugnabant</option>
+                                                <option>Peregrinum</option>
+                                                <option>Seductaque</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <label class="control-label">
+                                                DO Date
+                                            </label>
+                                            <input type="text" value="" data-provide="datepicker" class="date-picker mask-date form-control" />
+                                            <span class="glyphicon glyphicon-calendar in-mask-date"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">IRIS Proof</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <label class="control-label">Qty</label>
+                                                            <input type="text" value="0" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">Other Changes</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <label class="control-label">&nbsp;</label>
+                                                            <input type="text" value="0" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Items</label>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Steel Base</th>
+                                        <th>Cyl No</th>
+                                        <th>Description</th>
+                                        <th>LW/CT</th>
+                                        <th>Circumfere</th>
+                                        <th>Face width</th>
+                                        <th>Unit Price</th>
+                                        <th>Qty</th>
+                                        <th>Total Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Magenta engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Cygan engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Green 376C engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Purple 2645C engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="form-group">
+                                <label class="control-label">
+                                    Other Items
+                                </label>
+                                <textarea type="text" value="" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <label class="control-label">&nbsp;</label>
+                            <button class="btn btn-default btn-block">
+                                <span class="glyphicon glyphicon-refresh"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane" id="Invoice">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <label class="control-label">Customer P/O</label>
+                                                    <input type="text" value="" class="form-control" />
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <label class="control-label">&nbsp;</label>
+                                                    <input type="text" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <label class="control-label">
+                                                Contact Person
+                                            </label>
+                                            <select class="selectpicker" data-width="100%" data-style="btn btn-info">
+                                                <option>Daniel Chong</option>
+                                                <option>Pugnabant</option>
+                                                <option>Pugnabant</option>
+                                                <option>Peregrinum</option>
+                                                <option>Seductaque</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <label class="control-label">
+                                                Invoice Date
+                                            </label>
+                                            <input type="text" value="" data-provide="datepicker" class="date-picker mask-date form-control" />
+                                            <span class="glyphicon glyphicon-calendar in-mask-date"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">IRIS Proof</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">Qty</label>
+                                                            <input type="text" value="0" class="form-control" />
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <label class="control-label">Price</label>
+                                                            <input type="text" value="0" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">Other Changes</div>
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <label class="control-label">&nbsp;</label>
+                                                            <input type="text" value="0" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Items</label>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Steel Base</th>
+                                        <th>Cyl No</th>
+                                        <th>Description</th>
+                                        <th>LW/CT</th>
+                                        <th>Circumfere</th>
+                                        <th>Face width</th>
+                                        <th>Unit Price</th>
+                                        <th>Qty</th>
+                                        <th>Total Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Magenta engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Cygan engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Green 376C engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>New</td>
+                                        <td></td>
+                                        <td>Purple 2645C engraving</td>
+                                        <td>CT</td>
+                                        <td>768.00</td>
+                                        <td>1280.00</td>
+                                        <td>00.17</td>
+                                        <td>1</td>
+                                        <td>RM 1671.17</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">
+                                        Total
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input type="text" value="0" class="form-control" />
+                                    </div>
+                                    <label class="control-label col-sm-2">
+                                        Discount %
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input type="text" value="0" class="form-control" />
+                                    </div>
+                                    <label class="control-label col-sm-2">
+                                        Net Total
+                                    </label>
+                                    <div class="col-sm-2">
+                                        <input type="text" value="0" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Remark</label>
+                                    <div class="col-sm-4">
+                                        <textarea name cols="" rows="2" class="form-control"></textarea>
+                                    </div>
+                                    <label class="control-label col-sm-2">Remark (Screen)</label>
+                                    <div class="col-sm-4">
+                                        <textarea name cols="" rows="2" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-horizontal">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Payment Terms</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="90 days" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="CylOrder">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-9">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <label class="control-label">To</label>
+                                                    <select class="selectpicker" data-width="100%" data-style="btn btn-info">
+                                                        <option>Mundo</option>
+                                                        <option>Legebantur</option>
+                                                        <option>Declivia </option>
+                                                        <option>Erant </option>
+                                                        <option>Peregrinum </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <label class="control-label">Date</label>
+                                                    <input type="text" value="" class="datepicker form-control mask-date" />
+                                                    <span class="glyphicon glyphicon-calendar in-mask-date"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <label class="control-label">
+                                                Order Number
+                                            </label>
+                                            <input type="text" value="" class="form-control" />
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <label class="control-label">
+                                                Required Delivery Date
+                                            </label>
+                                            <input type="text" value="" data-provide="datepicker" class="date-picker mask-date form-control" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="control-label">Cylinder type</label>
+                            <input type="text" value="" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="control-label">Items</label>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Cylinder Nr</th>
+                                        <th>Face width</th>
+                                        <th>Circumference</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>128.00</td>
+                                        <td>768.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>128.00</td>
+                                        <td>768.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>128.00</td>
+                                        <td>768.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>128.00</td>
+                                        <td>768.00</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Remark</label>
+                                    <div class="col-sm-10">
+                                        <textarea name cols="" rows="2" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-horizontal">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">Total No of Cylinder</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" value="90 days" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label class="checkbox">
+                                    <input type="checkbox" value="" class="uniform" />
+                                    Urgent
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="Quotation">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">Date of Quotation</label>
+                                                    <input type="text" value="" class="datepicker form-control mask-date" />
+                                                    <span class="glyphicon glyphicon-calendar in-mask-date"></span>
+
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">Customer Contact</label>
+                                                    <select class="selectpicker" data-width="100%" data-style="btn btn-info">
+                                                        <option>Mundo</option>
+                                                        <option>Legebantur</option>
+                                                        <option>Declivia </option>
+                                                        <option>Erant </option>
+                                                        <option>Peregrinum </option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">
+                                                        Contact Designation
+                                                    </label>
+                                                    <input type="text" value="" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Quoted Prices (RM/Unit)
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6">Iris Proof</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6">&nbsp;</label>
+                                            <div class="col-sm-6">
+                                                <div style="height: 34px"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Quoted Prices (RM/sqcm)
+                                </div>
+                                <div class="panel-body">
+                                    <div class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6">CT Old Steel Base</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6">CT New Steel Base</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6">LW Old Steel Base</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6">LW New Steel Base</label>
+                                            <div class="col-sm-6">
+                                                <input type="" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-6">De/Re Chrome</label>
+                                            <div class="col-sm-6">
+                                                <input type="" value="" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group">
+                                <label class="control-label">Quotation Text</label>
+                                <textarea name cols="" rows="5" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--form dialog-->
+    <div id="dialog-form-quotes-prices" title="Quoted Prices">
+        <div class="container-fluid">
+            <div class="row" style="margin-top: 15px;">
+                
+                <div class="col-md-12">
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-6">Iris Proof</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-6">CT Old Steel Base</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-6">CT New Steel Base</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-6">LW Old Steel Base</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-6">LW New Steel Base</label>
+                                    <div class="col-sm-6">
+                                        <input type="" value="" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-6">De/Re Chrome</label>
+                                    <div class="col-sm-6">
+                                        <input type="" value="" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <div class="form-group">
+                        <button class="btn btn-default btn-close-form-prices"><span class="glyphicon glyphicon-refresh"></span> Reset</button>
+                        <button class="btn btn-default btn-close-form-prices"><span class="glyphicon glyphicon-floppy-saved"></span> Fix Price</button>
+                        <button class="btn btn-default btn-close-form-prices"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+                        <button class="btn btn-default btn-close-form-prices"><span class="glyphicon glyphicon-remove" ></span>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <div id="dialog-form-saved" title="Comfirm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Data is saved
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div id="dialog-form-isDeleted" title="Comfirm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Item is deleted
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dialog-form-deleted" title="Warning">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Do you want to delete item?
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Core script-->
+    <script src="js/core/jquery.min.js"></script>
+    <script src="js/core/bootstrap.min.js"></script>
+    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!------------------>
+    <script src="js/plugins/migrate.js"></script>
+    <!--bootstrap plugins-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-select.min.js"></script>
+    <!--autocomplete-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-typeahead.min.js"></script>
+    <!--Checkbox - radio-->
+    <script src="js/plugins/uniform/jquery.uniform.js"></script>
+    <!--input mask-->
+    <script src="js/plugins/mask/jquery.mask.js"></script>
+    <!--datepicker-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-datepicker.js"></script>
+    <!--dialog-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-dialog.min.js"></script>
+    <!--datatable, chi dung khi co table va sort-->
+    <script src="js/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="js/plugins/datatables/TableTools/js/TableTools.js"></script>
+    <script src="js/plugins/datatables/dataTables.bootstrap.js"></script>
+    <script src="js/plugins/datatables/jquery.dataTables.columnFilter.js"></script>
+    <script src="js/plugins/datatables/TableTools/js/ZeroClipboard.js"></script>
+    <!--script chỉ chạy demo-->
+    <script src="demo_javascript/demo.js"></script>
+    <script src="demo_javascript/dataTables.js"></script>
+    <!------------------!>
+    <!--run script-->
+    <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.demo').click(function () {
+                console.log(parent.$('a[data-href="customer-detail.htm"]'))
+                parent.$('a[data-href="customer-detail.htm"]').click();
+                return false;
+            });
+
+            $("#dialog-form-eye-mark,#dialog-form-get-copy,#dialog-form-revision,#dialog-form-quotes-prices").dialog({
+                autoOpen: false,
+                height: 'auto',
+                width: '70%',
+                modal: true,
+                resizable: false,
+                open: function () {
+
+                }
+            })
+
+            $("#dialog-form-quotes-prices").dialog({
+                autoOpen: false,
+                height: 'auto',
+                width: '450',
+                modal: true,
+                resizable: false
+                //buttons: {
+                //    "Yes": function () {
+                //        $(this).dialog("close");
+                //        $("#dialog-form-revision").dialog("open");
+
+                //    },
+                //    "Cancel": function () {
+                //        $(this).dialog("close");
+                //    }
+                //}
+            });
+
+            $("#prices-lookup").on("click", function () {
+                $("#dialog-form-quotes-prices").dialog("open")
+            });
+
+            $('.btn-close-form-prices').click(function () {
+                $("#dialog-form-quotes-prices").dialog("close")
+            });
+
+            $("#dialog-form-saved,#dialog-form-isDeleted").dialog({
+                modal: true,
+                autoOpen: false,
+                height: 'auto',
+                width: '350',
+                modal: true,
+                resizable: false,
+                draggable: false,
+                open: function (event, ui) {
+                    var _this = $(this);
+                    setTimeout(function () {
+                        _this.dialog('close');
+                    }, 1000)
+                }
+            });
+
+            $('#btnSaveDemo').click(function () {
+                $("#dialog-form-saved").dialog('open')
+            })
+
+
+            $("#dialog-form-deleted").dialog({
+                modal: true,
+                autoOpen: false,
+                height: 'auto',
+                width: '350',
+                modal: true,
+                resizable: false,
+                draggable: false,
+                buttons: {
+                    "Yes": function () {
+                        $(this).dialog("close");
+                        $("#dialog-form-isDeleted").dialog("open");
+
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $('#btnDeleteDemo').click(function () {
+                $("#dialog-form-deleted").dialog('open')
+            })
+        })
+    </script>
+</body>
+</html>

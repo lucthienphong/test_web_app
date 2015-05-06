@@ -1,0 +1,10 @@
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\obj\Debug\SweetSoft.APEM.Core.csprojResolveAssemblyReference.cache
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\bin\Debug\SweetSoft.APEM.Core.dll
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\bin\Debug\SweetSoft.APEM.Core.pdb
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\bin\Debug\HtmlAgilityPack.dll
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\bin\Debug\Newtonsoft.Json.dll
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\bin\Debug\SubSonic.dll
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\bin\Debug\SweetSoft.APEM.DataAccess.dll
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\bin\Debug\SweetSoft.APEM.DataAccess.pdb
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\obj\Debug\SweetSoft.APEM.Core.dll
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.Core\obj\Debug\SweetSoft.APEM.Core.pdb
