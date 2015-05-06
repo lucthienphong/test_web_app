@@ -6,91 +6,111 @@
     <title></title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        body {
+        body
+        {
             margin-top: 20px;
         }
 
         table,
-        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td
+        {
             border-color: #000 !important;
             padding-top: 5px;
             padding-bottom: 5px;
         }
 
-        small {
+        small
+        {
             color: #000!important;
         }
 
-        @media all {
-            h3, h4, h5 {
+        @media all
+        {
+            h3, h4, h5
+            {
                 font-size: 12px;
                 margin-top: 2px;
                 margin-bottom: 2px;
             }
 
-                h4 small, h3 small, h5 small {
+                h4 small, h3 small, h5 small
+                {
                     font-size: 12px;
                 }
 
-            .cylinderTable tr td:first-child, .cylinderTable tr th:first-child {
+            .cylinderTable tr td:first-child, .cylinderTable tr th:first-child
+            {
                 border-left-width: 0;
             }
 
             .cylinderTable tr th:last-child,
-            .cylinderTable tr td:last-child {
+            .cylinderTable tr td:last-child
+            {
                 border-right-width: 0;
             }
 
-            .cylinderTable tr:last-child td {
+            .cylinderTable tr:last-child td
+            {
                 border-bottom-width: 0;
             }
 
-            body {
+            body
+            {
                 font-size: 12px;
             }
         }
 
-        @page {
+        @page
+        {
             size: A5;
             margin: 3mm 0mm 3mm 0mm;
             size: landscape;
         }
 
-        @media print {
-            body {
+        @media print
+        {
+            body
+            {
                 margin: 0;
                 font-size: 10px;
             }
 
-            .no-border-left {
+            .no-border-left
+            {
                 border-left-color: #fff !important;
                 border-left-color: transparent !important;
             }
 
-            .no-border-right {
+            .no-border-right
+            {
                 border-right-color: #fff !important;
                 border-right-color: transparent !important;
             }
 
-            label {
+            label
+            {
                 margin-top: 7px;
             }
 
-            table {
+            table
+            {
                 margin-bottom: 5px !important;
             }
 
-            .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+            .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td
+            {
                 padding-top: 1px !important;
                 padding-bottom: 1px !important;
                 background: #fff !important;
             }
 
-            h4 small, h3 small, h5 small {
+            h4 small, h3 small, h5 small
+            {
                 font-size: 9px !important;
             }
 
-            h3, h4, h5 {
+            h3, h4, h5
+            {
                 font-size: 10px !important;
                 margin-top: 2px;
                 margin-bottom: 2px;
@@ -193,14 +213,14 @@
                                                 <h4>
                                                     <small>Circumference:</small>
                                                     <br />
-                                                    <strong style="font-size:15px">
+                                                    <strong style="font-size: 15px">
                                                         <asp:Literal Text="text" ID="ltrCircumference" runat="server" EnableViewState="false" />
                                                         mm</strong>
                                                 </h4>
                                                 <h4>
                                                     <small>Facewidth:</small>
                                                     <br />
-                                                    <strong style="font-size:15px;">
+                                                    <strong style="font-size: 15px;">
                                                         <asp:Literal Text="text" ID="ltrFacewidt" runat="server" EnableViewState="false" />
                                                         mm</strong>
                                                 </h4>
@@ -257,20 +277,20 @@
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th style="background:#ccc !important;">
+                                                            <th style="background: #ccc !important;">
                                                                 <h4>
                                                                     <small>Cyl Seq</small>
                                                                     <br />
-                                                                    <strong style="font-size:15px;">
+                                                                    <strong style="font-size: 15px;">
                                                                         <asp:Literal Text="text" ID="ltrHeaderCylSeq" runat="server" EnableViewState="false" />
                                                                     </strong>
                                                                 </h4>
                                                             </th>
-                                                            <th style="background:#ccc !important;">
+                                                            <th style="background: #ccc !important;">
                                                                 <h4>
                                                                     <small>Cyl Barcode</small>
                                                                     <br />
-                                                                    <strong style="font-size:15px;">
+                                                                    <strong style="font-size: 15px;">
                                                                         <asp:Literal Text="text" ID="ltrHeaderCylBarcode" runat="server" EnableViewState="false" />
                                                                     </strong>
                                                                 </h4>
@@ -284,48 +304,56 @@
                                                                     </strong>
                                                                 </h4>
                                                             </th>--%>
-                                                             <th style="background:#ccc !important;">
+                                                            <th style="background: #ccc !important;">
                                                                 <h4>
                                                                     <small>Cus Cyl No</small>
                                                                     <br />
-                                                                    <strong style="font-size:15px;">
+                                                                    <strong style="font-size: 15px;">
                                                                         <asp:Literal Text="text" ID="ltrHeaderCylCus" runat="server" EnableViewState="false" />
                                                                     </strong>
                                                                 </h4>
                                                             </th>
-                                                            <th style="background:#ccc !important;">
+                                                            <th style="background: #ccc !important;">
                                                                 <h4>
                                                                     <small>Cus SteelBase ID</small>
                                                                     <br />
-                                                                    <strong style="font-size:15px;">
+                                                                    <strong style="font-size: 15px;">
                                                                         <asp:Literal Text="text" ID="ltrHeaderCustSteelBase" runat="server" EnableViewState="false" />
                                                                     </strong>
                                                                 </h4>
                                                             </th>
-                                                            <th style="background:#ccc !important;">
+                                                            <th style="background: #ccc !important;">
                                                                 <h4>
                                                                     <small>Color Separation</small>
                                                                     <br />
-                                                                    <strong style="font-size:15px;">
+                                                                    <strong style="font-size: 15px;">
                                                                         <asp:Literal Text="text" ID="ltrHeaderColor" runat="server" EnableViewState="false" />
                                                                     </strong>
                                                                 </h4>
                                                             </th>
-
-                                                            <th style="background:#ccc !important;">
+                                                            <th style="background: #ccc !important;">
                                                                 <h4>
                                                                     <small>Status</small>
                                                                     <br />
-                                                                    <strong style="font-size:15px;">
+                                                                    <strong style="font-size: 15px;">
                                                                         <asp:Literal Text="text" ID="ltrHeaderStatus" runat="server" EnableViewState="false" />
                                                                     </strong>
                                                                 </h4>
                                                             </th>
-                                                            <th style="background:#ccc !important;">
+                                                            <th style="background: #ccc !important;">
+                                                                <h4>
+                                                                    <small>Process Type</small>
+                                                                    <br />
+                                                                    <strong style="font-size: 15px;">
+                                                                        <asp:Literal Text="text" ID="ltrHeaderProcessType" runat="server" EnableViewState="false" />
+                                                                    </strong>
+                                                                </h4>
+                                                            </th>
+                                                            <th style="background: #ccc !important;">
                                                                 <h4>
                                                                     <small>Diameter</small>
                                                                     <br />
-                                                                    <strong style="font-size:15px;">
+                                                                    <strong style="font-size: 15px;">
                                                                         <asp:Literal Text="text" ID="ltrHeaderDiameter" runat="server" EnableViewState="false" />
                                                                     </strong>
                                                                 </h4>
@@ -345,7 +373,7 @@
                                                                     <%--<td>
                                                                         <asp:Literal Text="text" ID="ltrCylNr" runat="server" EnableViewState="false" />
                                                                     </td>--%>
-                                                                     <td>
+                                                                    <td>
                                                                         <asp:Literal Text="text" ID="ltrCylID" runat="server" EnableViewState="false" />
                                                                     </td>
                                                                     <td>
@@ -356,6 +384,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <asp:Literal Text="text" ID="ltrStatus" runat="server" EnableViewState="false" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <asp:Literal Text="text" ID="ltrProcessType" runat="server" EnableViewState="false" />
                                                                     </td>
                                                                     <td>
                                                                         <asp:Literal Text="text" ID="ltrDiameter" runat="server" EnableViewState="false" />

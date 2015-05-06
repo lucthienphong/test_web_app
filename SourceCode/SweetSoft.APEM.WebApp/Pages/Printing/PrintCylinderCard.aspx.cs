@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace SweetSoft.APEM.WebApp.Pages.Printing
 {
@@ -53,6 +54,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             Literal ltrCylBarcode = e.Item.FindControl("ltrCylBarcode") as Literal;
             Literal ltrCylID = e.Item.FindControl("ltrCylID") as Literal;
             Literal ltrCustSteelBase = e.Item.FindControl("ltrCustSteelBase") as Literal;
+            Literal ltrProcessType = e.Item.FindControl("ltrProcessType") as Literal;
 
             TblCylinderCollectionModel c = e.Item.DataItem as TblCylinderCollectionModel;
             ltrCylSeq.Text = c.objCylinder.Sequence.ToString();
@@ -61,10 +63,9 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             ltrStatus.Text = c.Status;
             ltrDiameter.Text = c.objCylinder.Dirameter.ToString("N2");
             ltrCylID.Text = c.objCylinder.CusCylinderID;
-            ltrCylID.Text = c.objCylinder.CusCylinderID;
             ltrCylBarcode.Text = c.objCylinder.CylinderBarcode;
             ltrCustSteelBase.Text = c.objCylinder.CusSteelBaseID;
-
+            ltrProcessType.Text = c.ProcessType;
         }
 
         protected void rptPrintCylinderCard_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -130,6 +131,8 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 Literal ltrHeaderCylCus = e.Item.FindControl("ltrHeaderCylCus") as Literal;
                 Literal ltrHeaderCustSteelBase = e.Item.FindControl("ltrHeaderCustSteelBase") as Literal;
 
+                Literal ltrHeaderProcessType = e.Item.FindControl("ltrHeaderProcessType") as Literal;
+
                 ltrHeaderCylSeq.Text = cy.objCylinder.Sequence.ToString();
                 //ltrHeaderCylNr.Text = cy.objCylinder.CylinderNo;
                 ltrHeaderColor.Text = cy.objCylinder.Color;
@@ -139,6 +142,8 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 ltrHeaderCylBarcode.Text = cy.objCylinder.CylinderBarcode;
                 ltrHeaderCylCus.Text = cy.objCylinder.CusCylinderID;
                 ltrHeaderCustSteelBase.Text = cy.objCylinder.CusSteelBaseID;
+                ltrHeaderProcessType.Text = cy.ProcessType;
+
                 string Image64Base = Common.Code128Rendering.MakeBarcode64BaseImage(cy.objCylinder.CylinderBarcode, 1.3, false, false);
                 barcodeImage.ImageUrl = Image64Base;
                 if (Session["Cylinders"] != null)
@@ -157,6 +162,8 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
         {
             string[] idList = ListCylinderID.Split(',');
             TblJob j = JobManager.SelectByID(JobID);
+            DataTable dt = CylinderManager.SelectAll(JobID);
+
             if (j != null)
             {
                 Session["JobPrinting"] = j;
@@ -184,11 +191,15 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     {
                         TblCylinder cTemp = ccol.Where(q => q.CylinderID == a).FirstOrDefault();
                         if (cTemp != null)
-                        {
+                        {                        
                             TblCylinderCollectionModel temp = new TblCylinderCollectionModel();
                             temp.objCylinder = cTemp;
                             TblCylinderStatus cs = CylinderStatusManager.SelectCylinderStatusByID((short)cTemp.CylinderStatusID);
                             temp.Status = cs.CylinderStatusName;
+
+                            DataRow result = dt.Select("CylinderID = " + a.ToString()).Single<DataRow>();
+                            temp.ProcessType = result["CylType"].ToString();
+
                             ccolTemp.Add(temp);
                         }
                     }
@@ -200,6 +211,10 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     temp.objCylinder = item;
                     TblCylinderStatus cs = CylinderStatusManager.SelectCylinderStatusByID((short)item.CylinderStatusID);
                     temp.Status = cs.CylinderStatusName;
+
+                    DataRow result = dt.Select("CylinderID = " + item.CylinderID.ToString()).Single<DataRow>();
+                    temp.ProcessType = result["CylType"].ToString();
+
                     ccolForEachPageTemp.Add(temp);
                 }
 
