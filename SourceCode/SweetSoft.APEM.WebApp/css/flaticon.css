@@ -1,0 +1,173 @@
+@font-face
+{
+    font-family: "Flaticon";
+    src: url("/fonts/flaticon.eot");
+    src: url("/fonts/flaticon.eot#iefix") format("embedded-opentype"), url("/fonts/flaticon.woff") format("woff"), url("/fonts/flaticon.ttf") format("truetype"), url("/fonts/flaticon.svg") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after
+{
+    font-family: Flaticon;
+    font-size: 20px;
+    font-style: normal;
+    margin-left: 0px;
+    vertical-align: -2px;
+}
+
+.flaticon-duplicate3:before
+{
+    content: "\e000";
+}
+
+.flaticon-back57:before
+{
+    content: "\e001";
+}
+
+.flaticon-brand2:before
+{
+    content: "\e002";
+}
+
+.flaticon-briefcase38:before
+{
+    content: "\e003";
+}
+
+.flaticon-business133:before
+{
+    content: "\e004";
+}
+
+.flaticon-data55:before
+{
+    content: "\e005";
+}
+
+.flaticon-delete41:before
+{
+    content: "\e006";
+}
+
+.flaticon-download105:before
+{
+    content: "\e007";
+}
+
+.flaticon-email11:before
+{
+    content: "\e008";
+}
+
+.flaticon-new10:before
+{
+    content: "\e009";
+}
+
+.flaticon-files6:before
+{
+    content: "\e00a";
+}
+
+.flaticon-flow5:before
+{
+    content: "\e00b";
+}
+
+.flaticon-development:before
+{
+    content: "\e00c";
+}
+
+.flaticon-job9:before
+{
+    content: "\e00d";
+}
+
+.flaticon-medical50:before
+{
+    content: "\e00e";
+}
+
+.flaticon-new100:before
+{
+    content: "\e00f";
+}
+
+.flaticon-notebook21:before
+{
+    content: "\e010";
+}
+
+.flaticon-padlock19:before
+{
+    content: "\e011";
+}
+
+.flaticon-padlock21:before
+{
+    content: "\e012";
+}
+
+.flaticon-paper101:before
+{
+    content: "\e013";
+}
+
+.flaticon-pdf19:before
+{
+    content: "\e014";
+}
+
+.flaticon-simple1:before
+{
+    content: "\e015";
+}
+
+.flaticon-printer60:before
+{
+    content: "\e016";
+}
+
+.flaticon-order:before
+{
+    content: "\e017";
+}
+
+.flaticon-question48:before
+{
+    content: "\e018";
+}
+
+.flaticon-floppy1:before
+{
+    content: "\e019";
+}
+
+.flaticon-search29:before
+{
+    content: "\e01a";
+}
+
+.flaticon-settings39:before
+{
+    content: "\e01b";
+}
+
+.flaticon-supermarket10:before
+{
+    content: "\e01c";
+}
+
+.flaticon-guest:before
+{
+    content: "\e01d";
+}
+
+.flaticon-xlsx:before
+{
+    content: "\e01e";
+}

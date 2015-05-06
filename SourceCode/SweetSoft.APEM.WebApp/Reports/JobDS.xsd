@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="JobDS" targetNamespace="http://tempuri.org/JobDS.xsd" xmlns:mstns="http://tempuri.org/JobDS.xsd" xmlns="http://tempuri.org/JobDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="JobDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="JobDS" msprop:Generator_UserDSName="JobDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="JobList" msprop:Generator_TableClassName="JobListDataTable" msprop:Generator_TableVarName="tableJobList" msprop:Generator_TablePropName="JobList" msprop:Generator_RowDeletingName="JobListRowDeleting" msprop:Generator_RowChangingName="JobListRowChanging" msprop:Generator_RowEvHandlerName="JobListRowChangeEventHandler" msprop:Generator_RowDeletedName="JobListRowDeleted" msprop:Generator_UserTableName="JobList" msprop:Generator_RowChangedName="JobListRowChanged" msprop:Generator_RowEvArgName="JobListRowChangeEvent" msprop:Generator_RowClassName="JobListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RowIndex" msprop:Generator_ColumnVarNameInTable="columnRowIndex" msprop:Generator_ColumnPropNameInRow="RowIndex" msprop:Generator_ColumnPropNameInTable="RowIndexColumn" msprop:Generator_UserColumnName="RowIndex" type="xs:int" minOccurs="0" />
+              <xs:element name="JobID" msprop:Generator_ColumnVarNameInTable="columnJobID" msprop:Generator_ColumnPropNameInRow="JobID" msprop:Generator_ColumnPropNameInTable="JobIDColumn" msprop:Generator_UserColumnName="JobID" type="xs:int" minOccurs="0" />
+              <xs:element name="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="Code" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="JobBarcode" msprop:Generator_ColumnVarNameInTable="columnJobBarcode" msprop:Generator_ColumnPropNameInRow="JobBarcode" msprop:Generator_ColumnPropNameInTable="JobBarcodeColumn" msprop:Generator_UserColumnName="JobBarcode" type="xs:string" minOccurs="0" />
+              <xs:element name="JobBarcodeImage" msprop:Generator_ColumnVarNameInTable="columnJobBarcodeImage" msprop:Generator_ColumnPropNameInRow="JobBarcodeImage" msprop:Generator_ColumnPropNameInTable="JobBarcodeImageColumn" msprop:Generator_UserColumnName="JobBarcodeImage" type="xs:string" minOccurs="0" />
+              <xs:element name="JobNumber" msprop:Generator_ColumnVarNameInTable="columnJobNumber" msprop:Generator_ColumnPropNameInRow="JobNumber" msprop:Generator_ColumnPropNameInTable="JobNumberColumn" msprop:Generator_UserColumnName="JobNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="RevNumber" msprop:Generator_ColumnVarNameInTable="columnRevNumber" msprop:Generator_ColumnPropNameInRow="RevNumber" msprop:Generator_ColumnPropNameInTable="RevNumberColumn" msprop:Generator_UserColumnName="RevNumber" type="xs:int" minOccurs="0" />
+              <xs:element name="JobName" msprop:Generator_ColumnVarNameInTable="columnJobName" msprop:Generator_ColumnPropNameInRow="JobName" msprop:Generator_ColumnPropNameInTable="JobNameColumn" msprop:Generator_UserColumnName="JobName" type="xs:string" minOccurs="0" />
+              <xs:element name="Design" msprop:Generator_ColumnVarNameInTable="columnDesign" msprop:Generator_ColumnPropNameInRow="Design" msprop:Generator_ColumnPropNameInTable="DesignColumn" msprop:Generator_UserColumnName="Design" type="xs:string" minOccurs="0" />
+              <xs:element name="SaleDep" msprop:Generator_ColumnVarNameInTable="columnSaleDep" msprop:Generator_ColumnPropNameInRow="SaleDep" msprop:Generator_ColumnPropNameInTable="SaleDepColumn" msprop:Generator_UserColumnName="SaleDep" type="xs:string" minOccurs="0" />
+              <xs:element name="CreateOn" msprop:Generator_ColumnVarNameInTable="columnCreateOn" msprop:Generator_ColumnPropNameInRow="CreateOn" msprop:Generator_ColumnPropNameInTable="CreateOnColumn" msprop:Generator_UserColumnName="CreateOn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

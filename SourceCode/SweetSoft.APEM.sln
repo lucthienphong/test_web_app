@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SweetSoft.APEM.DataAccess", "SweetSoft.APEM.DataAccess\SweetSoft.APEM.DataAccess.csproj", "{51EDD796-4ABB-4E92-9304-39A5EC90ADEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SweetSoft.APEM.Core", "SweetSoft.APEM.Core\SweetSoft.APEM.Core.csproj", "{3BDB46A3-9039-4B43-ADC4-30A13371D376}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SweetSoft.APEM.WebApp", "SweetSoft.APEM.WebApp\SweetSoft.APEM.WebApp.csproj", "{7D87CA49-535E-4BFB-B749-FD0EA38158B2}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs.sweetsoft.vn:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SweetSoft.APEM.DataAccess\\SweetSoft.APEM.DataAccess.csproj
+		SccProjectName1 = SweetSoft.APEM.DataAccess
+		SccLocalPath1 = SweetSoft.APEM.DataAccess
+		SccProjectUniqueName2 = SweetSoft.APEM.Core\\SweetSoft.APEM.Core.csproj
+		SccProjectName2 = SweetSoft.APEM.Core
+		SccLocalPath2 = SweetSoft.APEM.Core
+		SccProjectUniqueName3 = SweetSoft.APEM.WebApp\\SweetSoft.APEM.WebApp.csproj
+		SccProjectName3 = SweetSoft.APEM.WebApp
+		SccLocalPath3 = SweetSoft.APEM.WebApp
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51EDD796-4ABB-4E92-9304-39A5EC90ADEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51EDD796-4ABB-4E92-9304-39A5EC90ADEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51EDD796-4ABB-4E92-9304-39A5EC90ADEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51EDD796-4ABB-4E92-9304-39A5EC90ADEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BDB46A3-9039-4B43-ADC4-30A13371D376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BDB46A3-9039-4B43-ADC4-30A13371D376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BDB46A3-9039-4B43-ADC4-30A13371D376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BDB46A3-9039-4B43-ADC4-30A13371D376}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D87CA49-535E-4BFB-B749-FD0EA38158B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D87CA49-535E-4BFB-B749-FD0EA38158B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D87CA49-535E-4BFB-B749-FD0EA38158B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D87CA49-535E-4BFB-B749-FD0EA38158B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3BDB46A3-9039-4B43-ADC4-30A13371D376}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SweetSoft.APEM.Core</RootNamespace>
+    <AssemblyName>SweetSoft.APEM.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\SweetSoft.APEM.WebApp\DLL\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\SweetSoft.APEM.WebApp\DLL\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SubSonic">
+      <HintPath>..\SweetSoft.APEM.WebApp\DLL\SubSonic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationCache\AppCache.cs" />
+    <Compile Include="ApplicationCache\AppContext.cs" />
+    <Compile Include="ApplicationCache\CacheEntry.cs" />
+    <Compile Include="ApplicationCache\CacheLockbox.cs" />
+    <Compile Include="ApplicationCache\TCache.cs" />
+    <Compile Include="Helper\ActivityLoggingHelper.cs" />
+    <Compile Include="Helper\ApplicationContext.cs" />
+    <Compile Include="Helper\CommonHelper.cs" />
+    <Compile Include="Helper\CultureHelper.cs" />
+    <Compile Include="Helper\DateTimeHelper.cs" />
+    <Compile Include="Helper\ExcelConvertor.cs" />
+    <Compile Include="Helper\ExcelHelper.cs" />
+    <Compile Include="Helper\ExtensionHelper.cs" />
+    <Compile Include="Helper\GridViewAdapter.cs" />
+    <Compile Include="Helper\Helpers.cs" />
+    <Compile Include="Helper\KeyboardHelper.cs" />
+    <Compile Include="Helper\LanguageHelper.cs" />
+    <Compile Include="Helper\MyDataTable.cs" />
+    <Compile Include="Helper\NumberHelper.cs" />
+    <Compile Include="Helper\OrderTypeHelper.cs" />
+    <Compile Include="Helper\ParseHelper.cs" />
+    <Compile Include="Helper\ReferenceTypeHelper.cs" />
+    <Compile Include="Helper\SecurityHelper.cs" />
+    <Compile Include="Helper\SessionHelper.cs" />
+    <Compile Include="Helper\WebControlAdapterExtender.cs" />
+    <Compile Include="LoggingManager\ActivityLogging.cs" />
+    <Compile Include="LoggingManager\LoggingManager.cs" />
+    <Compile Include="Manager\ContactManager.cs" />
+    <Compile Include="Manager\DeditManager.cs" />
+    <Compile Include="Manager\CreditManager.cs" />
+    <Compile Include="Manager\CylinderProcessingManager.cs" />
+    <Compile Include="Manager\DeliveryOrderManager.cs" />
+    <Compile Include="Manager\JobProcessManager.cs" />
+    <Compile Include="Manager\InvoiceManager.cs" />
+    <Compile Include="Manager\JobEngravingManager.cs" />
+    <Compile Include="Helper\HtmlHelper.cs" />
+    <Compile Include="Manager\JobQuotationManager.cs" />
+    <Compile Include="Manager\MachineManager.cs" />
+    <Compile Include="Manager\ObjectLockingManager.cs" />
+    <Compile Include="Manager\OrderConfirmationManager.cs" />
+    <Compile Include="Manager\CustomerManager.cs" />
+    <Compile Include="Manager\CustomerQuotationManager.cs" />
+    <Compile Include="Manager\CylinderManager.cs" />
+    <Compile Include="Manager\DepartmentManager.cs" />
+    <Compile Include="Manager\JobManager.cs" />
+    <Compile Include="Manager\OrderLockingManager.cs" />
+    <Compile Include="Manager\ProgressManager.cs" />
+    <Compile Include="Manager\PurchaseOrderManager.cs" />
+    <Compile Include="Manager\RealtimeNotificationManager.cs" />
+    <Compile Include="Manager\ReferenceManager.cs" />
+    <Compile Include="Manager\ReferenceTableManager.cs" />
+    <Compile Include="Manager\ReportManager.cs" />
+    <Compile Include="Manager\RoleManager.cs" />
+    <Compile Include="Manager\SettingManager.cs" />
+    <Compile Include="Manager\StaffManager.cs" />
+    <Compile Include="Manager\TimelineManager.cs" />
+    <Compile Include="Manager\UserManager.cs" />
+    <Compile Include="Manager\WorkflowHelper.cs" />
+    <Compile Include="Manager\WorkFlowLineManager.cs" />
+    <Compile Include="Manager\WorkFlowManager.cs" />
+    <Compile Include="Manager\WorkFlowNodeManager.cs" />
+    <Compile Include="Manager\WorkTaskManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceTexts\ResourceTextIDs.cs" />
+    <Compile Include="ResourceTexts\ResourceTextManager.cs" />
+    <Compile Include="ResourceTexts\TextCarrier.cs" />
+    <Compile Include="Security\FunctionPermission.cs" />
+    <Compile Include="UI\ButtonExtension.cs" />
+    <Compile Include="UI\CheckBoxExtension.cs" />
+    <Compile Include="UI\DateTimeExtension.cs" />
+    <Compile Include="UI\GridviewExtension.cs" />
+    <Compile Include="UI\SaveButton.cs" />
+    <Compile Include="UI\TextBoxExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SweetSoft.APEM.DataAccess\SweetSoft.APEM.DataAccess.csproj">
+      <Project>{51edd796-4abb-4e92-9304-39a5ec90adef}</Project>
+      <Name>SweetSoft.APEM.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Helper\JavaScript\AdapterUtils.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

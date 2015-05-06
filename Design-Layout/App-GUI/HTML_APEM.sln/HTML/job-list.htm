@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Customer details</title>
+    <link href="css/normalize.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/sweetstyle.min.css" rel="stylesheet" />
+    <link href="css/flaticon.css" rel="stylesheet" />
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" />
+    <!--<link href="css/theme.min.css" rel="stylesheet" />-->
+    <link href="css/uniform.default.css" rel="stylesheet" />
+    <link href="css/icons.css" rel="stylesheet" />
+    <link href="css/table.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="prepare_window_loading"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="button-control col-md-12 col-sm-12 affix">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <button class="btn btn-transparent new">
+                                    <span class="flaticon-new10"></span>
+                                    New</button>
+                            </div>
+                            <!--<div class="form-group">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-floppy1"></span>
+                                    Save</button>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-delete41"></span>
+                                    Delete</button>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-back57"></span>
+                                    Cancel</button>
+                            </div>-->
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-inline">
+                            <div class="form-group pull-right">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-printer60"></span>
+                                    Print</button>
+                            </div>
+                            <div class="form-group pull-right">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-xlsx"></span>
+                                    Excel</button>
+                            </div>
+                            <div class="form-group pull-right">
+                                <button class="btn btn-transparent">
+                                    <span class="flaticon-pdf19"></span>
+                                    PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label">Customer name</label>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-horizontal">
+                                <div class="form-group" style="margin-bottom: 0">
+                                    <div class="col-sm-1">
+                                        <input type="text" value="" id="searchBoxCodeName" placeholder="CODE" class="form-control" />
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <input type="text" value="" id="searchBoxName" placeholder="enter some keyword..." class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped table-bordered table-checkable" id="demo-dtable-cust-list">
+                    <thead>
+                        <tr>
+                            <th>Code name</th>
+                            <th>Cust name</th>
+                            <th>Country</th>
+                            <th>Obsolete</th>
+                            <th class="checkbox-column">
+                                <input type="checkbox" class="uniform" value="" />
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">AC</a>
+                            </td>
+                            <td>
+                                <a href="#" data-window="window" data-href="customer-detail.htm">
+                                Cum diffundi concordi tempora recessit</td>
+                            <td>Germany</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">WC</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Mundo undis regat madescit cum</a></td>
+                            <td>France</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">GR</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Legebantur egens auroram habitabilis agitabilis</a></td>
+                            <td>Sweeden</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">AV</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Declivia iunctarum legebantur ne mollia</a></td>
+                            <td>Holland</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">RR</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Totidemque sua semine semine semine caelo exemit</a></td>
+                            <td>Scotland</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">JJ</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Galeae nec ambitae lumina totidem</a></td>
+                            <td>Germany</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">AS</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Semine secrevit </a></td>
+                            <td>Singapore</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">T5</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Orbis rerum caecoque regio</a></td>
+                            <td>Malaysia</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">H6</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Habitandae obsistitur</a></td>
+                            <td>Sweeden</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">W1</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Aer aequalis inter militis iners</a></td>
+                            <td>Germany</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                          <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">AC</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Cum diffundi concordi tempora recessit</a></td>
+                            <td>Germany</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">WC</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Mundo undis regat madescit cum</a></td>
+                            <td>France</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">GR</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Legebantur egens auroram habitabilis agitabilis</a></td>
+                            <td>Sweeden</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">AV</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Declivia iunctarum legebantur ne mollia</a></td>
+                            <td>Holland</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">RR</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Totidemque sua semine semine semine caelo exemit</a></td>
+                            <td>Scotland</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">JJ</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Galeae nec ambitae lumina totidem</a></td>
+                            <td>Germany</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">AS</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Semine secrevit </a></td>
+                            <td>Singapore</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">T5</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Orbis rerum caecoque regio</a></td>
+                            <td>Malaysia</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">H6</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Habitandae obsistitur</a></td>
+                            <td>Sweeden</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                        <tr>
+                            <td class="code-cust-name">
+                                <a href="#" data-window="window" data-href="customer-detail.htm">W1</a>
+                            </td>
+                            <td><a href="#" data-window="window" data-href="customer-detail.htm">Aer aequalis inter militis iners</a></td>
+                            <td>Germany</td>
+                            <td>
+                                <input type="checkbox" value="" class="uniform" /></td>
+                            <td class="checkbox-column">
+                                <input type="checkbox" value="" class="uniform" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!--Core script-->
+    <script src="js/core/jquery.min.js"></script>
+    <script src="js/core/bootstrap.min.js"></script>
+    <!------------------>
+    <script src="js/plugins/migrate.js"></script>
+    <!--bootstrap plugins-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-select.min.js"></script>
+    <!--autocomplete-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-typeahead.min.js"></script>
+    <!--Checkbox - radio-->
+    <script src="js/plugins/uniform/jquery.uniform.js"></script>
+    <!--input mask-->
+    <script src="js/plugins/mask/jquery.mask.js"></script>
+
+    <!--datatable, chi dung khi co table va sort-->
+    <script src="js/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="js/plugins/datatables/TableTools/js/TableTools.js"></script>
+    <script src="js/plugins/datatables/dataTables.bootstrap.js"></script>
+    <script src="js/plugins/datatables/jquery.dataTables.columnFilter.js"></script>
+    <script src="js/plugins/datatables/TableTools/js/ZeroClipboard.js"></script>
+    <!--script chỉ chạy demo-->
+    <script src="demo_javascript/demo.js"></script>
+    <script src="demo_javascript/dataTables.js"></script>
+    <!------------------!>
+    <!--run script-->
+    <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.new,a[data-window="window"]').click(function () {
+                parent.$('a[data-href="customer-detail.htm"]').click();
+                return false;
+            })
+        })
+    </script>
+</body>
+</html>

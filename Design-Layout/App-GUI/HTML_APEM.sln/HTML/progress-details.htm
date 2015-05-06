@@ -1,0 +1,790 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Job details</title>
+    <link href="css/normalize.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--<link href="css/jquery-ui.css" rel="stylesheet" />-->
+    <link href="css/sweetstyle.min.css" rel="stylesheet" />
+    <link href="css/flaticon.css" rel="stylesheet" />
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" />
+
+    <link href="css/datepicker.min.css" rel="stylesheet" />
+    <!--<link href="css/theme.min.css" rel="stylesheet" />-->
+    <link href="css/uniform.default.css" rel="stylesheet" />
+    <link href="css/icons.css" rel="stylesheet" />
+    <link href="css/table.css" rel="stylesheet" />
+    <link href="css/dataTables.responsive.css" rel="stylesheet" />
+    <link href="js/plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="prepare_window_loading"></div>
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 15px">
+            <div class="col-md-12">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#Repro" role="tab" data-toggle="tab">Repro</a></li>
+                    <!--<li class=""><a href="#Engraving" role="tab" data-toggle="tab">Engraving</a></li>
+                    <li class=""><a href="#DERE" role="tab" data-toggle="tab">De/Re</a></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="Repro">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="example" class="table-hover table table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td>Cust Code</td>
+                                        <td>Job Nr</td>
+                                        <td>Rev</td>
+                                        <td>Job Name</td>
+                                        <td>Design</td>
+                                        <td>Qty</td>
+                                        <td>Order Received</td>
+                                        <td>Proof</td>
+                                        <td>Repro Date</td>
+                                        <td>Repro Status</td>
+                                        <td>Cylynder Date</td>
+                                        <td>Cylinder Status</td>
+                                        <td>Notes</td>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>AC</td>
+                                        <td>0001/4589</td>
+                                        <td>0</td>
+                                        <td>reparabat</td>
+                                        <td>diversa</td>
+                                        <td>5</td>
+                                        <td>28/11/2011</td>
+                                        <td></td>
+                                        <td>28/11/2011</td>
+                                        <td></td>
+                                        <td>28/11/2011</td>
+                                        <td></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>BC</td>
+                                        <td>0001/4567</td>
+                                        <td>0</td>
+                                        <td>supplex</td>
+                                        <td>illi</td>
+                                        <td>9</td>
+                                        <td>10/10/2011</td>
+                                        <td></td>
+                                        <td>10/10/2011</td>
+                                        <td></td>
+                                        <td>10/10/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>ED</td>
+                                        <td>0001/1234</td>
+                                        <td>0</td>
+                                        <td>alto</td>
+                                        <td>moderantum</td>
+                                        <td>6</td>
+                                        <td>12/02/2011</td>
+                                        <td></td>
+                                        <td>12/02/2011</td>
+                                        <td></td>
+                                        <td>12/02/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>UF</td>
+                                        <td>0001/9875</td>
+                                        <td>0</td>
+                                        <td>recepta</td>
+                                        <td>amphitrite</td>
+                                        <td>5</td>
+                                        <td>22/10/2011</td>
+                                        <td></td>
+                                        <td>22/10/2011</td>
+                                        <td></td>
+                                        <td>22/10/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>GH</td>
+                                        <td>4528/2121</td>
+                                        <td>0</td>
+                                        <td>Rapidisque</td>
+                                        <td>Modo</td>
+                                        <td>7</td>
+                                        <td>05/05/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Modo</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>IK</td>
+                                        <td>4125/2121</td>
+                                        <td>0</td>
+                                        <td>sinistra</td>
+                                        <td>verba</td>
+                                        <td>8</td>
+                                        <td>06/08/2011</td>
+                                        <td>06/08/2011</td>
+                                        <td>06/08/2011</td>
+                                        <td>verba</td>
+                                        <td>06/08/2011</td>
+                                        <td>New Job</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>LM</td>
+                                        <td>4589/2121</td>
+                                        <td>0</td>
+                                        <td>Valles</td>
+                                        <td>premuntur</td>
+                                        <td>4</td>
+                                        <td>07/08/2011</td>
+                                        <td>07/08/2011</td>
+                                        <td>07/08/2011</td>
+                                        <td></td>
+                                        <td>07/08/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>OP</td>
+                                        <td>3524/2121</td>
+                                        <td>0</td>
+                                        <td>Terrarum</td>
+                                        <td>bracchia</td>
+                                        <td>3</td>
+                                        <td>10/12/2011</td>
+                                        <td></td>
+                                        <td>10/12/2011</td>
+                                        <td></td>
+                                        <td>10/12/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>WE</td>
+                                        <td>1259/2121</td>
+                                        <td>0</td>
+                                        <td>Minantia</td>
+                                        <td>Terram</td>
+                                        <td>3</td>
+                                        <td>03/05/2011</td>
+                                        <td></td>
+                                        <td>03/05/2011</td>
+                                        <td></td>
+                                        <td>03/05/2011</td>
+                                        <td>New Job</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>QW</td>
+                                        <td>4539/2121</td>
+                                        <td>0</td>
+                                        <td>eodem</td>
+                                        <td>sinistra</td>
+                                        <td>3</td>
+                                        <td>04/09/2011</td>
+                                        <td></td>
+                                        <td>04/09/2011</td>
+                                        <td>sinistra</td>
+                                        <td>04/09/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>XS</td>
+                                        <td>4215/2121</td>
+                                        <td>0</td>
+                                        <td>Diu</td>
+                                        <td>campos</td>
+                                        <td>8</td>
+                                        <td>08/10/2011</td>
+                                        <td></td>
+                                        <td>08/10/2011</td>
+                                        <td></td>
+                                        <td>08/10/2011</td>
+                                        <td>New Job</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>ZA</td>
+                                        <td>7592/2121</td>
+                                        <td>0</td>
+                                        <td>Praecipites</td>
+                                        <td>dominari</td>
+                                        <td>7</td>
+                                        <td>05/09/2011</td>
+                                        <td></td>
+                                        <td>05/09/2011</td>
+                                        <td></td>
+                                        <td>05/09/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>CS</td>
+                                        <td>7843/2121</td>
+                                        <td>0</td>
+                                        <td>reparabat</td>
+                                        <td>quanto</td>
+                                        <td>6</td>
+                                        <td>11/11/2011</td>
+                                        <td></td>
+                                        <td>11/11/2011</td>
+                                        <td></td>
+                                        <td>11/11/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>XE</td>
+                                        <td>7954/2121</td>
+                                        <td>0</td>
+                                        <td>Animus</td>
+                                        <td>liquidas</td>
+                                        <td>2</td>
+                                        <td>10/11/2011</td>
+                                        <td></td>
+                                        <td>10/11/2011</td>
+                                        <td></td>
+                                        <td>10/11/2011</td>
+                                        <td>New Job</td>
+                                        <td></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>AC</td>
+                                        <td>0001/4589</td>
+                                        <td>0</td>
+                                        <td>reparabat</td>
+                                        <td>diversa</td>
+                                        <td>5</td>
+                                        <td>28/11/2011</td>
+                                        <td></td>
+                                        <td>28/11/2011</td>
+                                        <td></td>
+                                        <td>28/11/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>BC</td>
+                                        <td>0001/4567</td>
+                                        <td>0</td>
+                                        <td>supplex</td>
+                                        <td>illi</td>
+                                        <td>9</td>
+                                        <td>10/10/2011</td>
+                                        <td></td>
+                                        <td>10/10/2011</td>
+                                        <td></td>
+                                        <td>10/10/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>ED</td>
+                                        <td>0001/1234</td>
+                                        <td>0</td>
+                                        <td>alto</td>
+                                        <td>moderantum</td>
+                                        <td>6</td>
+                                        <td>12/02/2011</td>
+                                        <td></td>
+                                        <td>12/02/2011</td>
+                                        <td></td>
+                                        <td>12/02/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>UF</td>
+                                        <td>0001/9875</td>
+                                        <td>0</td>
+                                        <td>recepta</td>
+                                        <td>amphitrite</td>
+                                        <td>5</td>
+                                        <td>22/10/2011</td>
+                                        <td></td>
+                                        <td>22/10/2011</td>
+                                        <td></td>
+                                        <td>22/10/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>GH</td>
+                                        <td>4528/2121</td>
+                                        <td>0</td>
+                                        <td>Rapidisque</td>
+                                        <td>Modo</td>
+                                        <td>7</td>
+                                        <td>05/05/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Modo</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>IK</td>
+                                        <td>4125/2121</td>
+                                        <td>0</td>
+                                        <td>sinistra</td>
+                                        <td>verba</td>
+                                        <td>8</td>
+                                        <td>06/08/2011</td>
+                                        <td>06/08/2011</td>
+                                        <td>06/08/2011</td>
+                                        <td>verba</td>
+                                        <td>06/08/2011</td>
+                                        <td>New Job</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>LM</td>
+                                        <td>4589/2121</td>
+                                        <td>0</td>
+                                        <td>Valles</td>
+                                        <td>premuntur</td>
+                                        <td>4</td>
+                                        <td>07/08/2011</td>
+                                        <td>07/08/2011</td>
+                                        <td>07/08/2011</td>
+                                        <td></td>
+                                        <td>07/08/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>OP</td>
+                                        <td>3524/2121</td>
+                                        <td>0</td>
+                                        <td>Terrarum</td>
+                                        <td>bracchia</td>
+                                        <td>3</td>
+                                        <td>10/12/2011</td>
+                                        <td></td>
+                                        <td>10/12/2011</td>
+                                        <td></td>
+                                        <td>10/12/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>WE</td>
+                                        <td>1259/2121</td>
+                                        <td>0</td>
+                                        <td>Minantia</td>
+                                        <td>Terram</td>
+                                        <td>3</td>
+                                        <td>03/05/2011</td>
+                                        <td></td>
+                                        <td>03/05/2011</td>
+                                        <td></td>
+                                        <td>03/05/2011</td>
+                                        <td>New Job</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>QW</td>
+                                        <td>4539/2121</td>
+                                        <td>0</td>
+                                        <td>eodem</td>
+                                        <td>sinistra</td>
+                                        <td>3</td>
+                                        <td>04/09/2011</td>
+                                        <td></td>
+                                        <td>04/09/2011</td>
+                                        <td>sinistra</td>
+                                        <td>04/09/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>XS</td>
+                                        <td>4215/2121</td>
+                                        <td>0</td>
+                                        <td>Diu</td>
+                                        <td>campos</td>
+                                        <td>8</td>
+                                        <td>08/10/2011</td>
+                                        <td></td>
+                                        <td>08/10/2011</td>
+                                        <td></td>
+                                        <td>08/10/2011</td>
+                                        <td>New Job</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>ZA</td>
+                                        <td>7592/2121</td>
+                                        <td>0</td>
+                                        <td>Praecipites</td>
+                                        <td>dominari</td>
+                                        <td>7</td>
+                                        <td>05/09/2011</td>
+                                        <td></td>
+                                        <td>05/09/2011</td>
+                                        <td></td>
+                                        <td>05/09/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>CS</td>
+                                        <td>7843/2121</td>
+                                        <td>0</td>
+                                        <td>reparabat</td>
+                                        <td>quanto</td>
+                                        <td>6</td>
+                                        <td>11/11/2011</td>
+                                        <td></td>
+                                        <td>11/11/2011</td>
+                                        <td></td>
+                                        <td>11/11/2011</td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-primary btnEdit">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </button>
+                                        </td>
+                                        <td>XE</td>
+                                        <td>7954/2121</td>
+                                        <td>0</td>
+                                        <td>Animus</td>
+                                        <td>liquidas</td>
+                                        <td>2</td>
+                                        <td>10/11/2011</td>
+                                        <td></td>
+                                        <td>10/11/2011</td>
+                                        <td></td>
+                                        <td>10/11/2011</td>
+                                        <td>New Job</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--dialog-->
+    <div id="dialog-form-edit-repro" title="Edit Approval pending">
+        <div class="container-fluid" style="margin-top: 15px;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Repro</label>
+                            <div class="col-sm-5">
+                                <input type="text" value="" class="form-control datepicker mask-date" />
+                                <span class="glyphicon glyphicon-calendar in-mask-date"></span>
+                            </div>
+                            <div class="col-sm-5">
+                                <select class="selectpicker" data-style="btn btn-info" data-width="100%">
+                                    <option>Approved</option>
+                                    <option>Unaproved</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 col-sm-offset-4">Status Desc</label>
+                            <div class="col-sm-5">
+                                <select class="selectpicker" data-style="btn btn-info" disabled data-width="100%">
+                                    <option>Approved</option>
+                                    <option>Unaproved</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Cylinder</label>
+                            <div class="col-sm-5">
+                                <input type="text" value="" class="form-control datepicker mask-date" />
+                                <span class="glyphicon glyphicon-calendar in-mask-date"></span>
+                            </div>
+                            <div class="col-sm-5">
+                                <select class="selectpicker" data-style="btn btn-info" data-width="100%">
+                                    <option>New Job</option>
+                                    <option>Job</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3 col-sm-offset-4">Status Desc</label>
+                            <div class="col-sm-5">
+                                <select class="selectpicker" data-style="btn btn-info" disabled data-width="100%">
+                                    <option>New Job</option>
+                                    <option>Job</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group text-center">
+                        <button class="btn btn-default" id="btnSave">
+                            <span class="glyphicon glyphicon-floppy-disk"></span>Save
+                        </button>
+                        <button class="btn btn-default" id="btnCancel">
+                            <span class="glyphicon glyphicon-remove"></span>Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="dialog-form-submit" title="Warning">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>Repro date had change. Do you want to overwrite ?
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-default" id="Button1">
+                        <span class="glyphicon glyphicon-ok"></span>Yes
+                    </button>
+                    <button class="btn btn-default" id="Button2">
+                        <span class="glyphicon glyphicon-remove"></span>No
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Core script-->
+    <script src="js/core/jquery.min.js"></script>
+    <script src="js/core/bootstrap.min.js"></script>
+    <script src="js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!------------------>
+    <script src="js/plugins/migrate.js"></script>
+    <!--bootstrap plugins-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-select.min.js"></script>
+    <!--autocomplete-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-typeahead.min.js"></script>
+    <!--Checkbox - radio-->
+    <script src="js/plugins/uniform/jquery.uniform.js"></script>
+    <!--input mask-->
+    <script src="js/plugins/mask/jquery.mask.js"></script>
+    <!--datepicker-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-datepicker.js"></script>
+    <!--dialog-->
+    <script src="js/plugins/bootstrap-plugins/bootstrap-dialog.min.js"></script>
+    <!--datatable, chi dung khi co table va sort-->
+
+    <script src="js/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="js/plugins/datatables/dataTables.responsive.js"></script>
+    <!--<script src="js/plugins/datatables/TableTools/js/TableTools.js"></script>-->
+    <script src="js/plugins/datatables/dataTables.bootstrap.js"></script>
+    <script src="js/plugins/datatables/jquery.dataTables.columnFilter.js"></script>
+    <!--<script src="js/plugins/datatables/TableTools/js/ZeroClipboard.js"></script>-->
+    <!--script chỉ chạy demo-->
+    <script src="demo_javascript/demo.js"></script>
+    <script src="demo_javascript/dataTables.js"></script>
+    <script src="js/plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"></script>
+
+    <!------------------!>
+    <!--run script-->
+    <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $("#dialog-form-submit,#dialog-form-edit-repro").dialog({
+                autoOpen: false,
+                height: 'auto',
+                width: '450px',
+                modal: true,
+                resizable: false,
+                open: function () {
+
+                }
+            });
+            $('.btnEdit').on("click", function () {
+                $("#dialog-form-edit-repro").dialog('open')
+            });
+
+            $('#btnCancel').click(function () {
+                $("#dialog-form-edit-repro").dialog('close')
+            })
+
+            $('#btnSave').click(function () {
+                $("#dialog-form-edit-repro").dialog('close');
+                $("#dialog-form-submit").dialog('open');
+            });
+
+            $('#Button1,#Button2').on("click", function () {
+                $("#dialog-form-submit").dialog('close');
+            });
+
+
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Graphic editor html</title>
+    <link href="css/grapheditor.css" rel="stylesheet" />    
+    <link href="css/custom.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id='page_spinner' class='page_spinner'>
+        <span></span>
+    </div>
+    <script type="text/javascript">
+
+        // Public global variables
+        var MAX_REQUEST_SIZE = 10485760;
+        var MAX_AREA = 10000 * 10000;
+        var baseUrl = location.protocol + '//' + location.host + '/html/demo-workflow/GraphicEditorHtml/';
+        // URLs for save and export
+        var EXPORT_URL = baseUrl + 'export.ashx';
+        var SAVE_URL = baseUrl + 'savefinal.ashx';
+        var RESOURCES_PATH = 'resources';
+        var RESOURCE_BASE = RESOURCES_PATH + '/grapheditor';
+        var STENCIL_PATH = 'stencils';
+        var IMAGE_PATH = 'images';
+        var STYLE_PATH = 'css';
+        var CSS_PATH = 'css';
+        var OPEN_FORM = 'open.html';
+
+        // Specifies connection mode for touch devices (at least one should be true)
+        var tapAndHoldStartsConnection = false;
+        var showConnectorImg = true;
+
+        // Sets the base path, the UI language via URL param and configures the
+        // supported languages to avoid 404s. The loading of all core language
+        // resources is disabled as all required resources are in grapheditor.
+        // properties. Note that in this example the loading of two resource
+        // files (the special bundle and the default bundle) is disabled to
+        // save a GET request. This requires that all resources be present in
+        // each properties file since only one file is loaded.
+        //mxLoadResources = false;
+        mxBasePath = '';
+        //mxLanguage = urlParams['lang'];
+        mxLanguages = ['vi'];
+    </script>
+
+
+
+
+
+    <script type="text/javascript" src="js/mxClient-2.5.0.2-full.js"></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/Editor-2.4.1.0.js"></script>
+    <script type="text/javascript" src="js/Graph-2.4.1.0.js"></script>
+
+    <script type="text/javascript" src="js/EditorUi-2.4.1.0.js"></script>
+    <script type="text/javascript" src="js/Actions-2.4.1.0.js"></script>
+    <script type="text/javascript" src="js/Menus-2.4.1.0.js"></script>
+    <script type="text/javascript" src="js/Sidebar-2.4.1.0.js"></script>
+    <script type="text/javascript" src="js/Toolbar-2.4.1.0.js"></script>
+    <script type="text/javascript" src="js/Dialogs-2.4.1.0.js"></script>
+    <script type="text/javascript" src="js/json2.js"></script>
+    <script type="text/javascript" src="js/SweetSoftScript.js"></script>
+    
+
+    <script type='text/javascript'>var dataTruc = [{ Id: '5', Name: 'Trục đầu cốt tái bản	' }, { Id: '4', Name: 'Trục lỗ côn tái bản' },
+    { Id: '3', Name: 'Trục đầu cốt' }, { Id: '2', Name: 'Trục phôi đúc lỗ côn' }, { Id: '1', Name: 'Trục cuốn lỗ côn' }]</script>
+    <script type='text/javascript'>var dataDepts = [{ Id: '79', Code: 'XIN', Name: ' Xưởng In' }, { Id: '81', Code: 'TGH', Name: 'Giao hàng' },
+    { Id: '80', Code: 'KCS_KM', Name: 'KCS Kiểm mẫu' }, { Id: '1', Code: 'KD', Name: 'Kinh doanh' }, { Id: '77', Code: 'XCK', Name: 'Xưởng cơ khí' },
+    { Id: '85', Code: 'XKH', Name: 'Xưởng Khắc' },
+    { Id: '65', Code: 'XLS', Name: 'Xưởng Laser' }, { Id: '76', Code: 'XOD_CR', Name: 'Xưởng Ống Chrome' },
+    { Id: '75', Code: 'XOD_CU', Name: 'Xưởng Ống Đồng' }, { Id: '64', Code: 'DHCK', Name: 'Đồ hoạ chép khắc' },
+    { Id: '63', Code: 'DHLM', Name: 'Đồ hoạ làm mẫu' }]</script>
+    <script type='text/javascript'>var dataGraphictype = [{ Id: '9', Name: 'Thiết kế' }, { Id: '8', Name: 'Có file khách theo mẫu' },
+    { Id: '7', Name: 'Có file khách' }, { Id: '6', Name: 'Scan vẽ' }]</script>
+    <script type="text/javascript">
+        SweetSoftScript.Setting.agreeBtnId = 'WorkFlowMain_radWindowConfirm_C_btnConfirmSubmit';
+        SweetSoftScript.Setting.closeBtnId = 'WorkFlowMain_radWindowConfirm_C_btnConfirmClose';
+        SweetSoftScript.Setting.saveBtnId = 'WorkFlowMain_radWindowConfirm_C_btnSaveAndContinue';
+        SweetSoftScript.Setting.wdId = 'WorkFlowMain_radWindowConfirm';
+        SweetSoftScript.Setting.labelMessage = 'lbConfirmTitle';
+    </script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

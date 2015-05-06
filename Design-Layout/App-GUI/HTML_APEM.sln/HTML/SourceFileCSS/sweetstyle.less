@@ -1,0 +1,292 @@
+﻿html, body {
+    height: 100%;
+    width: 100%;
+}
+
+@import url('variable.less');
+@import url('bootstrap/variables.less');
+@import url('bootstrap/mixins.less');
+/*@import url('bootstrap/theme.less');*/
+/*#region header */
+#header {
+    height: 30px;
+    background: @background-primary;
+    border-bottom: 2px solid @border-bg-primary;
+}
+
+.user-loged {
+    background: url(../img/custom-arrow.png) no-repeat right center !important;
+    padding-left: 5px !important;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    vertical-align: -5px;
+}
+
+.logoAPE {
+    height: 17px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-top: 6px;
+}
+
+.asia {
+    color: #fff;
+}
+
+.nav.component {
+    margin-top: 0;
+
+    >li {
+        border: 0 !important;
+        display: inline-block;
+
+        >a {
+            padding: 4px 10px;
+            color: #fff;
+            
+            &:hover {
+                background: transparent !important;
+            }
+
+            [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+                font-size: 15px;
+            }
+        }
+
+        .dropdown-menu {
+            left: auto;
+            right: 8px;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0,0,0,.15);
+        }
+    }
+
+    .open {
+        >a {
+            background: transparent;
+        }
+    }
+}
+/*#endregion */
+/*#region footer */
+#footer {
+    background: #1670AC;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+
+    #dockwindowpanel {
+        height: 100%;
+        background: url(../img/dockpanelWindow.png) no-repeat left center;
+        height: 30px;
+        padding-left: -10px;
+    }
+}
+/*#endregion */
+/*#region main menu */
+#main-menu {
+    background: #aeaeae;
+    border-bottom: 1px solid #959494;
+    height: 30px;
+    position:relative;
+    z-index:99;
+}
+
+/*#endregion */
+/*#region window container */
+#relative {
+    background: #fff;
+    position: absolute;
+    top: 82px;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+
+    #desktop {
+        height: 100%;
+        width: 100%;
+    }
+}
+/*#endregion */
+
+/*#region trang con */
+.button-control {
+    background: @brand-info;
+    z-index: 99;
+}
+
+.nav-tabs > li {
+    border: 0;
+}
+
+.dataTable {
+    margin-bottom: 0;
+}
+
+.tab-content {
+    border-width: 0 1px 1px 1px;
+    border-color: #ddd;
+    border-style: solid;
+    padding-top: 15px;
+    margin-bottom: 61px;
+}
+
+#prepare_window_loading {
+    position: absolute;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: url(../img/loading.gif) no-repeat center center, #fff;
+}
+
+.in-mask-date {
+    position: absolute;
+    right: 25px;
+    bottom: 7px;
+    top: auto;
+    font-weight: 300;
+    font-size: 17px;
+    color: #797979;
+}
+
+/*#endregion */
+
+/*#region form-dialog */
+.ui-dialog {
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #D3D3D3;
+    box-shadow: 2px 3px 7px rgba(0,0,0,0.3);
+    z-index: 9999;
+    position:absolute;
+}
+
+.ui-dialog-titlebar {
+    border-bottom: 1px solid #eee;
+    #gradient > .vertical(@brand-info, darken(@brand-info,10%));
+    border-color: #2b669a;
+    color: #fff;
+    cursor: move;
+    padding: 5px;
+}
+
+.ui-dialog-title { height: 30px; line-height: 20px; }
+
+.ui-dialog-titlebar-close .ui-button-text {
+    display: none;
+}
+
+.ui-widget-overlay {
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.ui-dialog-titlebar-close {
+    outline: none;
+    background: none;
+    border: none;
+    color: #fff;
+    border-radius: 2px;
+    radius: 2px;
+    float: right;
+
+    &:before {
+        font-family: 'Glyphicons Halflings';
+        font-size: 10px;
+        content: "\e014";
+    }
+}
+
+.ui-button {
+    display: inline-block;
+    margin-bottom: 0; // For input.btn
+    font-weight: @btn-font-weight;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent;
+    white-space: nowrap;
+    .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-base);
+    .user-select(none);
+
+    &,
+    &:active,
+    &.active {
+        &:focus {
+            .tab-focus();
+        }
+    }
+
+        &:hover,
+        &:focus {
+            color: @btn-default-color;
+            text-decoration: none;
+        }
+
+        &:active,
+        &.active {
+            outline: 0;
+            background-image: none;
+            .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+        }
+
+        &.disabled,
+        &[disabled],
+        fieldset[disabled] & {
+            cursor: not-allowed;
+            pointer-events: none; // Future-proof disabling of clicks
+            .opacity(.65);
+            .box-shadow(none);
+        }
+
+    .button-variant(@btn-default-color;@btn-default-bg;@btn-default-border);
+    /*.btn-styles(@btn-default-bg);*/
+
+    &.ui-dialog-titlebar-close {
+        background: none;
+        border: 0;
+        color: #fff;
+        &:before{
+            font-size:15px;
+        }
+        .button-size(0; @padding-base-horizontal; @font-size-base; @line-height-base; @border-radius-base);
+    }
+}
+
+/*#endregion */
+.ui-dialog-buttonset{
+    padding:0 15px 15px;
+    button + button{
+        margin-left:15px;
+    }
+}
+
+
+.sweetsoft{
+    color:#fff;
+    line-height:30px;
+    float:right;
+    padding-right:30px;
+    display:inline-block;
+    background:url(../img/sweetsoft-logo.png) no-repeat center right;
+    background-size:21px;
+    font-size: 11px;
+    font-weight: 700;
+    &:hover{
+        color:#fff;
+    }
+}

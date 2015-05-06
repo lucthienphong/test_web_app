@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "HTML", "..\..\..\..\SweetSoft-Pilot-Project\APEM\HTML", "{D178E3DF-05B5-4781-83D1-7243110D4345}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/HTML"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\SweetSoft-Pilot-Project\APEM\HTML\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\HTML\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/HTML"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\SweetSoft-Pilot-Project\APEM\HTML\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\HTML\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1139"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://sweet-tfs:8080/
+		SccWebProject0 = true
+		SccProjectUniqueName0 = ..\\..\\..\\..\\SweetSoft-Pilot-Project\\APEM\\HTML
+		SccProjectName0 = HTML
+		SccLocalPath0 = ..\\..\\..\\..\\SweetSoft-Pilot-Project\\APEM\\HTML
+		SccProjectEnlistmentChoice0 = 2
+		SccLocalPath1 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D178E3DF-05B5-4781-83D1-7243110D4345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D178E3DF-05B5-4781-83D1-7243110D4345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

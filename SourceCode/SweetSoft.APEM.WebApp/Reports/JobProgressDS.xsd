@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="JobProgressDS" targetNamespace="http://tempuri.org/JobProgressDS.xsd" xmlns:mstns="http://tempuri.org/JobProgressDS.xsd" xmlns="http://tempuri.org/JobProgressDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="JobProgressDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="JobProgressDS" msprop:Generator_UserDSName="JobProgressDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProgressRepro" msprop:Generator_TableClassName="ProgressReproDataTable" msprop:Generator_TableVarName="tableProgressRepro" msprop:Generator_TablePropName="ProgressRepro" msprop:Generator_RowDeletingName="ProgressReproRowDeleting" msprop:Generator_RowChangingName="ProgressReproRowChanging" msprop:Generator_RowEvHandlerName="ProgressReproRowChangeEventHandler" msprop:Generator_RowDeletedName="ProgressReproRowDeleted" msprop:Generator_UserTableName="ProgressRepro" msprop:Generator_RowChangedName="ProgressReproRowChanged" msprop:Generator_RowEvArgName="ProgressReproRowChangeEvent" msprop:Generator_RowClassName="ProgressReproRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="Code" type="xs:string" minOccurs="0" />
+              <xs:element name="JobNumber" msprop:Generator_ColumnVarNameInTable="columnJobNumber" msprop:Generator_ColumnPropNameInRow="JobNumber" msprop:Generator_ColumnPropNameInTable="JobNumberColumn" msprop:Generator_UserColumnName="JobNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="RevNumber" msprop:Generator_ColumnVarNameInTable="columnRevNumber" msprop:Generator_ColumnPropNameInRow="RevNumber" msprop:Generator_ColumnPropNameInTable="RevNumberColumn" msprop:Generator_UserColumnName="RevNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="JobName" msprop:Generator_ColumnVarNameInTable="columnJobName" msprop:Generator_ColumnPropNameInRow="JobName" msprop:Generator_ColumnPropNameInTable="JobNameColumn" msprop:Generator_UserColumnName="JobName" type="xs:string" minOccurs="0" />
+              <xs:element name="Design" msprop:Generator_ColumnVarNameInTable="columnDesign" msprop:Generator_ColumnPropNameInRow="Design" msprop:Generator_ColumnPropNameInTable="DesignColumn" msprop:Generator_UserColumnName="Design" type="xs:string" minOccurs="0" />
+              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:string" minOccurs="0" />
+              <xs:element name="CreatedOn" msprop:Generator_ColumnVarNameInTable="columnCreatedOn" msprop:Generator_ColumnPropNameInRow="CreatedOn" msprop:Generator_ColumnPropNameInTable="CreatedOnColumn" msprop:Generator_UserColumnName="CreatedOn" type="xs:string" minOccurs="0" />
+              <xs:element name="ProofDate" msprop:Generator_ColumnVarNameInTable="columnProofDate" msprop:Generator_ColumnPropNameInRow="ProofDate" msprop:Generator_ColumnPropNameInTable="ProofDateColumn" msprop:Generator_UserColumnName="ProofDate" type="xs:string" minOccurs="0" />
+              <xs:element name="ReproDate" msprop:Generator_ColumnVarNameInTable="columnReproDate" msprop:Generator_ColumnPropNameInRow="ReproDate" msprop:Generator_ColumnPropNameInTable="ReproDateColumn" msprop:Generator_UserColumnName="ReproDate" type="xs:string" minOccurs="0" />
+              <xs:element name="ReproStatusName" msprop:Generator_ColumnVarNameInTable="columnReproStatusName" msprop:Generator_ColumnPropNameInRow="ReproStatusName" msprop:Generator_ColumnPropNameInTable="ReproStatusNameColumn" msprop:Generator_UserColumnName="ReproStatusName" type="xs:string" minOccurs="0" />
+              <xs:element name="CylinderDate" msprop:Generator_ColumnVarNameInTable="columnCylinderDate" msprop:Generator_ColumnPropNameInRow="CylinderDate" msprop:Generator_ColumnPropNameInTable="CylinderDateColumn" msprop:Generator_UserColumnName="CylinderDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CylinderStatusName" msprop:Generator_ColumnVarNameInTable="columnCylinderStatusName" msprop:Generator_ColumnPropNameInRow="CylinderStatusName" msprop:Generator_ColumnPropNameInTable="CylinderStatusNameColumn" msprop:Generator_UserColumnName="CylinderStatusName" type="xs:string" minOccurs="0" />
+              <xs:element name="Note" msprop:Generator_ColumnVarNameInTable="columnNote" msprop:Generator_ColumnPropNameInRow="Note" msprop:Generator_ColumnPropNameInTable="NoteColumn" msprop:Generator_UserColumnName="Note" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProgressEngraving" msprop:Generator_TableClassName="ProgressEngravingDataTable" msprop:Generator_TableVarName="tableProgressEngraving" msprop:Generator_TablePropName="ProgressEngraving" msprop:Generator_RowDeletingName="ProgressEngravingRowDeleting" msprop:Generator_RowChangingName="ProgressEngravingRowChanging" msprop:Generator_RowEvHandlerName="ProgressEngravingRowChangeEventHandler" msprop:Generator_RowDeletedName="ProgressEngravingRowDeleted" msprop:Generator_UserTableName="ProgressEngraving" msprop:Generator_RowChangedName="ProgressEngravingRowChanged" msprop:Generator_RowEvArgName="ProgressEngravingRowChangeEvent" msprop:Generator_RowClassName="ProgressEngravingRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="Code" type="xs:string" minOccurs="0" />
+              <xs:element name="JobNumber" msprop:Generator_ColumnVarNameInTable="columnJobNumber" msprop:Generator_ColumnPropNameInRow="JobNumber" msprop:Generator_ColumnPropNameInTable="JobNumberColumn" msprop:Generator_UserColumnName="JobNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="RevNumber" msprop:Generator_ColumnVarNameInTable="columnRevNumber" msprop:Generator_ColumnPropNameInRow="RevNumber" msprop:Generator_ColumnPropNameInTable="RevNumberColumn" msprop:Generator_UserColumnName="RevNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="JobName" msprop:Generator_ColumnVarNameInTable="columnJobName" msprop:Generator_ColumnPropNameInRow="JobName" msprop:Generator_ColumnPropNameInTable="JobNameColumn" msprop:Generator_UserColumnName="JobName" type="xs:string" minOccurs="0" />
+              <xs:element name="Design" msprop:Generator_ColumnVarNameInTable="columnDesign" msprop:Generator_ColumnPropNameInRow="Design" msprop:Generator_ColumnPropNameInTable="DesignColumn" msprop:Generator_UserColumnName="Design" type="xs:string" minOccurs="0" />
+              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:string" minOccurs="0" />
+              <xs:element name="DeliveryDate" msdata:Caption="CreatedOn" msprop:Generator_ColumnVarNameInTable="columnDeliveryDate" msprop:Generator_ColumnPropNameInRow="DeliveryDate" msprop:Generator_ColumnPropNameInTable="DeliveryDateColumn" msprop:Generator_UserColumnName="DeliveryDate" type="xs:string" minOccurs="0" />
+              <xs:element name="EngravingDate" msdata:Caption="ProofDate" msprop:Generator_ColumnVarNameInTable="columnEngravingDate" msprop:Generator_ColumnPropNameInRow="EngravingDate" msprop:Generator_ColumnPropNameInTable="EngravingDateColumn" msprop:Generator_UserColumnName="EngravingDate" type="xs:string" minOccurs="0" />
+              <xs:element name="ReproDate" msprop:Generator_ColumnVarNameInTable="columnReproDate" msprop:Generator_ColumnPropNameInRow="ReproDate" msprop:Generator_ColumnPropNameInTable="ReproDateColumn" msprop:Generator_UserColumnName="ReproDate" type="xs:string" minOccurs="0" />
+              <xs:element name="ReproStatusName" msprop:Generator_ColumnVarNameInTable="columnReproStatusName" msprop:Generator_ColumnPropNameInRow="ReproStatusName" msprop:Generator_ColumnPropNameInTable="ReproStatusNameColumn" msprop:Generator_UserColumnName="ReproStatusName" type="xs:string" minOccurs="0" />
+              <xs:element name="CylinderDate" msprop:Generator_ColumnVarNameInTable="columnCylinderDate" msprop:Generator_ColumnPropNameInRow="CylinderDate" msprop:Generator_ColumnPropNameInTable="CylinderDateColumn" msprop:Generator_UserColumnName="CylinderDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CylinderStatusName" msprop:Generator_ColumnVarNameInTable="columnCylinderStatusName" msprop:Generator_ColumnPropNameInRow="CylinderStatusName" msprop:Generator_ColumnPropNameInTable="CylinderStatusNameColumn" msprop:Generator_UserColumnName="CylinderStatusName" type="xs:string" minOccurs="0" />
+              <xs:element name="Note" msprop:Generator_ColumnVarNameInTable="columnNote" msprop:Generator_ColumnPropNameInRow="Note" msprop:Generator_ColumnPropNameInTable="NoteColumn" msprop:Generator_UserColumnName="Note" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProgressReDeChrome" msprop:Generator_TableClassName="ProgressReDeChromeDataTable" msprop:Generator_TableVarName="tableProgressReDeChrome" msprop:Generator_TablePropName="ProgressReDeChrome" msprop:Generator_RowDeletingName="ProgressReDeChromeRowDeleting" msprop:Generator_RowChangingName="ProgressReDeChromeRowChanging" msprop:Generator_RowEvHandlerName="ProgressReDeChromeRowChangeEventHandler" msprop:Generator_RowDeletedName="ProgressReDeChromeRowDeleted" msprop:Generator_UserTableName="ProgressReDeChrome" msprop:Generator_RowChangedName="ProgressReDeChromeRowChanged" msprop:Generator_RowEvArgName="ProgressReDeChromeRowChangeEvent" msprop:Generator_RowClassName="ProgressReDeChromeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="Code" type="xs:string" minOccurs="0" />
+              <xs:element name="JobNumber" msprop:Generator_ColumnVarNameInTable="columnJobNumber" msprop:Generator_ColumnPropNameInRow="JobNumber" msprop:Generator_ColumnPropNameInTable="JobNumberColumn" msprop:Generator_UserColumnName="JobNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="RevNumber" msprop:Generator_ColumnVarNameInTable="columnRevNumber" msprop:Generator_ColumnPropNameInRow="RevNumber" msprop:Generator_ColumnPropNameInTable="RevNumberColumn" msprop:Generator_UserColumnName="RevNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="JobName" msprop:Generator_ColumnVarNameInTable="columnJobName" msprop:Generator_ColumnPropNameInRow="JobName" msprop:Generator_ColumnPropNameInTable="JobNameColumn" msprop:Generator_UserColumnName="JobName" type="xs:string" minOccurs="0" />
+              <xs:element name="Design" msprop:Generator_ColumnVarNameInTable="columnDesign" msprop:Generator_ColumnPropNameInRow="Design" msprop:Generator_ColumnPropNameInTable="DesignColumn" msprop:Generator_UserColumnName="Design" type="xs:string" minOccurs="0" />
+              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:string" minOccurs="0" />
+              <xs:element name="DeliveryDate" msdata:Caption="CreatedOn" msprop:Generator_ColumnVarNameInTable="columnDeliveryDate" msprop:Generator_ColumnPropNameInRow="DeliveryDate" msprop:Generator_ColumnPropNameInTable="DeliveryDateColumn" msprop:Generator_UserColumnName="DeliveryDate" type="xs:string" minOccurs="0" />
+              <xs:element name="DeReChromeDate" msdata:Caption="ProofDate" msprop:Generator_ColumnVarNameInTable="columnDeReChromeDate" msprop:Generator_ColumnPropNameInRow="DeReChromeDate" msprop:Generator_ColumnPropNameInTable="DeReChromeDateColumn" msprop:Generator_UserColumnName="DeReChromeDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CylinderDate" msprop:Generator_ColumnVarNameInTable="columnCylinderDate" msprop:Generator_ColumnPropNameInRow="CylinderDate" msprop:Generator_ColumnPropNameInTable="CylinderDateColumn" msprop:Generator_UserColumnName="CylinderDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CylinderStatusName" msprop:Generator_ColumnVarNameInTable="columnCylinderStatusName" msprop:Generator_ColumnPropNameInRow="CylinderStatusName" msprop:Generator_ColumnPropNameInTable="CylinderStatusNameColumn" msprop:Generator_UserColumnName="CylinderStatusName" type="xs:string" minOccurs="0" />
+              <xs:element name="Note" msprop:Generator_ColumnVarNameInTable="columnNote" msprop:Generator_ColumnPropNameInRow="Note" msprop:Generator_ColumnPropNameInTable="NoteColumn" msprop:Generator_UserColumnName="Note" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
