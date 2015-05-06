@@ -94,7 +94,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 //ltrRemark.Text = j.Remark.Replace("\n","<br/>");
 
                 TblCustomer cu = CustomerManager.SelectByID(j.CustomerID);
-                if (cu!=null)
+                if (cu != null)
                 {
                     ltrClient.Text = cu.Name;
                 }
@@ -191,7 +191,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     {
                         TblCylinder cTemp = ccol.Where(q => q.CylinderID == a).FirstOrDefault();
                         if (cTemp != null)
-                        {                        
+                        {
                             TblCylinderCollectionModel temp = new TblCylinderCollectionModel();
                             temp.objCylinder = cTemp;
                             TblCylinderStatus cs = CylinderStatusManager.SelectCylinderStatusByID((short)cTemp.CylinderStatusID);
