@@ -359,7 +359,10 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             if (string.IsNullOrEmpty(Request.QueryString["ID"]))
             {
-                TblCustomer cust = CustomerManager.SelectByKeyword(txtName.Text.Trim()).SingleOrDefault();
+                int CustomerID = 0;
+                int.TryParse(hCustomerID.Value, out CustomerID);
+
+                TblCustomer cust = CustomerManager.SelectByID(CustomerID);
                 if (cust != null)
                 {
                     hCustomerID.Value = cust.CustomerID.ToString();

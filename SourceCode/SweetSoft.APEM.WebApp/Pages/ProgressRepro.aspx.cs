@@ -96,6 +96,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             try
             {
+                string pJobNumber = null;
                 int totalRows = 0;
                 DateTime? OrderDateB = (DateTime?)null, OrderDateE = (DateTime?)null, ProofDateB = (DateTime?)null, ProofDateE = (DateTime?)null, ReProDateB = (DateTime?)null, ReProDateE = (DateTime?)null, CylinderDateB = (DateTime?)null, CylinderDateE = (DateTime?)null;
                 DateTime _OrderDateB = new DateTime(), _OrderDateE =  new DateTime(), _ProofDateB = new DateTime(), _ProofDateE = new DateTime(), _ReProDateB = new DateTime(), _ReProDateE = new DateTime(), _CylinderDateB = new DateTime(), _CylinderDateE = new DateTime();
@@ -111,9 +112,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     CylinderDateB = _CylinderDateB;
                 if (DateTime.TryParseExact(txtCylDateB.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _CylinderDateE))
                     CylinderDateE = _CylinderDateE;
+                if (!string.IsNullOrEmpty(txtJobNumber.Text.Trim())) 
+                {
+                    pJobNumber = txtJobNumber.Text.Trim();
+                }
 
                 int ReproStatusID = Convert.ToInt32(ddlReProStatus.SelectedValue);
-                DataTable dt = ProgressManager.SelectProgressRepro(OrderDateB, OrderDateE, ProofDateB, ProofDateE, ReProDateB, ReProDateE, CylinderDateB, CylinderDateE, ReproStatusID, CurrentPageIndex, grvProgressRepro.PageSize, SortColumn, SortType);
+                DataTable dt = ProgressManager.SelectProgressRepro(OrderDateB, OrderDateE, ProofDateB, ProofDateE, ReProDateB, ReProDateE, CylinderDateB, CylinderDateE, ReproStatusID, CurrentPageIndex, grvProgressRepro.PageSize, SortColumn, SortType, pJobNumber);
                 if (dt.Rows.Count == 0 && CurrentPageIndex != 0)
                 {
                     CurrentPageIndex -= 1;
@@ -334,8 +339,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                 CylinderDateE = _CylinderDateE;
 
             int ReproStatusID = Convert.ToInt32(ddlReProStatus.SelectedValue);
-            
 
+            string JobNumber = null;
+            if (!string.IsNullOrEmpty(txtJobNumber.Text.Trim()))
+            {
+                JobNumber = txtJobNumber.Text.Trim();
+            }
+            
             //Parameters
 
             ReportParameter[] parameters = new ReportParameter[1];
@@ -358,7 +368,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
-            DataTable dt = ProgressManager.SelectProgressRepro(OrderDateB, OrderDateE, ProofDateB, ProofDateE, ReProDateB, ReProDateE, CylinderDateB, CylinderDateE, ReproStatusID, 0, 0, SortColumn, SortType);
+            DataTable dt = ProgressManager.SelectProgressRepro(OrderDateB, OrderDateE, ProofDateB, ProofDateE, ReProDateB, ReProDateE, CylinderDateB, CylinderDateE, ReproStatusID, 0, 0, SortColumn, SortType, JobNumber);
             DataTable dtSource = dt;
 
             viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/JobProgressRepro_rpt.rdlc");

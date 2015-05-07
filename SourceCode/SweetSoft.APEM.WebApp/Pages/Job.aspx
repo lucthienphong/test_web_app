@@ -611,7 +611,7 @@
                                         <div class="table-responsive">
                                             <asp:GridView ID="grvCylinders" runat="server" AutoGenerateColumns="false"
                                                 CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
-                                                AllowPaging="false" AllowSorting="false" DataKeyNames="CylinderID, SteelBase, PricingID, Protocol, CylinderStatusID"
+                                                AllowPaging="false" AllowSorting="false" DataKeyNames="CylinderID, SteelBase, PricingID, Protocol, CylinderStatusID, Dept"
                                                 OnRowCommand="grvCylinders_RowCommand" OnRowDataBound="grvCylinders_RowDataBound"
                                                 OnRowDeleting="grvCylinders_RowDeleting"
                                                 OnRowEditing="grvCylinders_RowEditing"
@@ -758,9 +758,17 @@
                                                             <asp:Label ID="lbDiameter" runat="server"
                                                                 Text='<%# ((double)Eval("Dirameter")).ToString("N2") %>'></asp:Label>
                                                         </ItemTemplate>
+                                                        <EditItemTemplate>
+                                                            <div style="position: relative;">
+                                                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtDirameter"
+                                                                    Text='<%#Eval("Dirameter")%>' Width="100%"
+                                                                    CssClass="form-control" runat="server">
+                                                                </SweetSoft:CustomExtraTextbox>
+                                                            </div>
+                                                        </EditItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Dept" HeaderStyle-CssClass="column-80" ItemStyle-CssClass="column-80">
-                                                        <ItemTemplate>
+                                                    <asp:TemplateField HeaderText="Dept" HeaderStyle-CssClass="column-150" ItemStyle-CssClass="column-150">
+                                                        <%--<ItemTemplate>
                                                             <asp:Label ID="lbDept" runat="server"
                                                                 Text='<%#Eval("Dept")%>'></asp:Label>
                                                         </ItemTemplate>
@@ -770,6 +778,19 @@
                                                                     Text='<%#Eval("Dept")%>' Width="100%"
                                                                     CssClass="form-control" runat="server">
                                                                 </SweetSoft:CustomExtraTextbox>
+                                                            </div>
+                                                        </EditItemTemplate>--%>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbDept" runat="server"
+                                                                Text='<%#Eval("Dept")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <EditItemTemplate>
+                                                            <div style="position: relative;">
+                                                                <asp:DropDownList ID="ddlDept" runat="server"
+                                                                    data-style="btn btn-info" data-width="100%" 
+                                                                    data-container="body" 
+                                                                    data-toggle="dropdown" CssClass="form-control">
+                                                                </asp:DropDownList>
                                                             </div>
                                                         </EditItemTemplate>
                                                     </asp:TemplateField>

@@ -88,7 +88,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                     CylinderDateB = _CylinderDateB;
                 if (DateTime.TryParseExact(txtCylDateB.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _CylinderDateE))
                     CylinderDateE = _CylinderDateE;
-                DataTable dt = ProgressManager.SelectProgresseDeReChrome(DeliveryB, DeliveryE, DeReDateB, DeReDateE, CylinderDateB, CylinderDateE, CurrentPageIndex, grvProgressDeReChrome.PageSize, SortColumn, SortType);
+
+                string JobNumber = null;
+                if (!string.IsNullOrEmpty(txtJobNumber.Text.Trim()))
+                {
+                    JobNumber = txtJobNumber.Text.Trim();
+                }
+
+                DataTable dt = ProgressManager.SelectProgresseDeReChrome(DeliveryB, DeliveryE, DeReDateB, DeReDateE, CylinderDateB, CylinderDateE, CurrentPageIndex, grvProgressDeReChrome.PageSize, SortColumn, SortType, JobNumber);
+
                 if (dt.Rows.Count == 0 && CurrentPageIndex != 0)
                 {
                     CurrentPageIndex -= 1;
@@ -263,6 +271,11 @@ namespace SweetSoft.APEM.WebApp.Pages
             if (DateTime.TryParseExact(txtCylDateB.Text.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _CylinderDateE))
                 CylinderDateE = _CylinderDateE;
 
+            string JobNumber = null;
+            if (!string.IsNullOrEmpty(txtJobNumber.Text.Trim()))
+            {
+                JobNumber = txtJobNumber.Text.Trim();
+            }
 
             //Parameters
 
@@ -286,7 +299,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
-            DataTable dt = ProgressManager.SelectProgresseDeReChrome(DeliveryB, DeliveryE, DeReDateB, DeReDateE, CylinderDateB, CylinderDateE, 0, 0, SortColumn, SortType);
+            DataTable dt = ProgressManager.SelectProgresseDeReChrome(DeliveryB, DeliveryE, DeReDateB, DeReDateE, CylinderDateB, CylinderDateE, 0, 0, SortColumn, SortType, JobNumber);
             DataTable dtSource = dt;
 
             viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/JobProgressDeReChrome_rpt.rdlc");

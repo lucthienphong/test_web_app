@@ -2780,5 +2780,11 @@
   </Text>
 
   <!--End-->
+
+  <Text>
+    <id>CANNOT_SAVE_REVISION</id>
+    <txt>Công việc này đã được dùng để tạo hoá đơn. Không thể lưu thêm phiên bản.</txt>
+  </Text>
+  
 </Texts>
 

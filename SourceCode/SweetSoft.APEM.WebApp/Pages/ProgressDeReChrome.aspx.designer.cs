@@ -94,6 +94,15 @@ namespace SweetSoft.APEM.WebApp.Pages {
         protected global::SweetSoftCMS.ExtraControls.Controls.CustomExtraTextbox txtCylDateE;
         
         /// <summary>
+        /// txtJobNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtJobNumber;
+        
+        /// <summary>
         /// btnSearch control.
         /// </summary>
         /// <remarks>

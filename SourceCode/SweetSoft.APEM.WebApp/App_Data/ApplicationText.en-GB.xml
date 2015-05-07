@@ -2890,5 +2890,10 @@
   </Text>
 
   <!--End-->
+
+  <Text>
+    <id>CANNOT_SAVE_REVISION</id>
+    <txt>This job has been used to create invoice. Cannot save more revision</txt>
+  </Text>
   
 </Texts>

@@ -943,5 +943,16 @@ namespace SweetSoft.APEM.Core.Manager
         }
 
         #endregion
+
+        // Trung add 06-05-2015
+
+        public static bool IsExistInvoiceCreatedByJobID(int JobID)
+        {
+            return new SubSonic.Select().From(TblInvoiceDetail.Schema)
+                                        .Where(TblInvoiceDetail.JobIDColumn).IsEqualTo(JobID)
+                                        .GetRecordCount() > 0 ? true : false;
+        }
+
+        // End 06-05-2015
     }
 }

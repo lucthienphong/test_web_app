@@ -227,7 +227,10 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             if (string.IsNullOrEmpty(Request.QueryString["ID"]))
             {
-                TblCustomer cust = CustomerManager.SelectByKeyword(txtName.Text.Trim()).FirstOrDefault();
+                int CustomerID = 0;
+                int.TryParse(hCustomerID.Value, out CustomerID);
+
+                TblCustomer cust = CustomerManager.SelectByID(CustomerID);
                 if (cust != null)
                 {
                     LoadJobNumber(cust.CustomerID);

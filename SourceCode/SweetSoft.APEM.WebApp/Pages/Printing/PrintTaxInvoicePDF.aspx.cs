@@ -62,9 +62,18 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             int.TryParse(e.Parameters.Where(x => x.Name == "JobID").Select(x => x.Values[0]).FirstOrDefault(), out JobID);
             DataTable sourceSummary = InvoiceManager.SelectJobSummaryForPrint(JobID);
             DataTable sourceCylinder = CylinderManager.SelectCylinderSelectForOrderConfirmation(JobID);
+
+            DataTable fillSourceCylinder = sourceCylinder.Clone();
+            DataRow[]  dataRow = sourceCylinder.Select("Quantity > 0");
+
+            foreach (DataRow r in dataRow)
+            {
+                fillSourceCylinder.ImportRow(r);
+            }
+
             DataTable sourceOtherCharges = InvoiceManager.SelectOtherChargesForPrint(JobID);
             e.DataSources.Add(new ReportDataSource("JobSummarySource", sourceSummary));
-            e.DataSources.Add(new ReportDataSource("JobCylinderSource", sourceCylinder));
+            e.DataSources.Add(new ReportDataSource("JobCylinderSource", fillSourceCylinder));
             e.DataSources.Add(new ReportDataSource("JobOtherChargeSouce", sourceOtherCharges));
         }
 

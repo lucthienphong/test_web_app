@@ -159,19 +159,18 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3">
-                    <label class="control-label">&nbsp;</label>
+                    <label class="control-label">Job Number:</label>
                     <div class="form-group">
-                        <p class="form-control-static">&nbsp;</p>
+                        <asp:TextBox ID="txtJobNumber" runat="server" class="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
-                        <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary"
+                        <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary pull-right"
                             OnClick="btnSearch_Click">
                                 <span class="glyphicon glyphicon-search"></span>&nbsp;
                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.SEARCH)%>
                         </asp:LinkButton>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     <div class="row" style="margin-top: 15px;">

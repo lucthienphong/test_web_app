@@ -468,7 +468,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 grvServiceJobDetail.Columns[i].Visible = yesno;
             }
 
-            for (int i = grvOtherCharges.Columns.Count - 1; i < grvOtherCharges.Rows.Count; i++)
+            for (int i = grvOtherCharges.Columns.Count - 1; i < grvOtherCharges.Columns.Count; i++)
             {
                 grvOtherCharges.Columns[i].Visible = yesno;
             }
@@ -645,7 +645,10 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             if (string.IsNullOrEmpty(Request.QueryString["ID"]))
             {
-                TblCustomer cust = CustomerManager.SelectByKeyword(txtName.Text.Trim()).FirstOrDefault();
+                int CustomerID = 0;
+                int.TryParse(hCustomerID.Value, out CustomerID);
+
+                TblCustomer cust = CustomerManager.SelectByID(CustomerID);
                 if (cust != null)
                 {
                     ResetFiled(true);

@@ -967,6 +967,21 @@ namespace SweetSoft.APEM.WebApp.Pages
         //Create a Revision
         protected void btnSaveRevision_Click(object sender, EventArgs e)
         {
+            #region Trunglc Add - 06-05-2015
+
+            // Check exist Invoice has created by Job
+
+            bool IsExistInvoiceByJobID = JobManager.IsExistInvoiceCreatedByJobID(JobID);
+
+            if (IsExistInvoiceByJobID)
+            {
+                MessageBox msgRole = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.CANNOT_SAVE_REVISION), MSGButton.OK, MSGIcon.Error);
+                OpenMessageBox(msgRole, null, false, false);
+                return;
+            }
+
+            #endregion
+
             //Gọi message box
             ModalConfirmResult result = new ModalConfirmResult();
             result.Value = "Job_Revision_Create_More";
@@ -1029,6 +1044,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 obj.InternalExternal = string.Empty;
                                 obj.IsClosed = 0;
                                 obj.JobID = 0;
+
+                                obj.Status = Enum.GetName(typeof(JobStatus), JobStatus.Actived);
 
                                 obj.RevNumber = JobManager.JobRevisionNumber(oldJob.JobNumber);
                                 obj.JobBarcode = string.Format("{0}-{1}", oldJob.JobBarcode.Substring(0, 10), obj.RevNumber);
@@ -1103,6 +1120,11 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 obj.RootJobID = oldJob.JobID;
                                 obj.RootJobNo = oldJob.JobNumber;
                                 obj.RootJobRevNumber = oldJob.RevNumber.ToString();//JobManager.JobRootRevNumber(oldJob.JobID).ToString();
+
+                                // Trunglc edit - 20150506
+
+                                obj.CustomerPO1 = null;
+                                obj.CustomerPO2 = null;
 
                                 obj.JobBarcode = string.Format("{0}-0", JobNumber.Replace("/", "-"));
                                 string Image64Base = Common.Code128Rendering.MakeBarcode64BaseImage(obj.JobBarcode, 1.5, false, true);
@@ -1301,7 +1323,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         }
 
         //Cập nhật dòng dữ liệu
-        private void updateRow(int RowIndex, int CylinderID, int Sequence, string CusSteelBaseID, string CusCylinderID, bool SteelBase, string Color, short CylinderStatusID, string CylinderStatusName, string Protocol, int PricingID, string PricingName, string Dept)
+        private void updateRow(int RowIndex, int CylinderID, int Sequence, string CusSteelBaseID, string CusCylinderID, bool SteelBase, string Color, short CylinderStatusID, string CylinderStatusName, string Protocol, int PricingID, string PricingName, string Dept, double Dirameter)
         {
             DataTable source = (DataTable)Session[ViewState["PageID"] + "tableSource"];
 
@@ -1347,6 +1369,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 r["CylType"] = (obj == null) ? string.Empty : string.Format("{0}-{1}", productType != null ? productType.Code : string.Empty, processType != null ? processType.Code : string.Empty);
                 r["Dept"] = Dept;
                 r["UnitPrice"] = UnitPrice;
+                r["Dirameter"] = Dirameter;
                 r.AcceptChanges();
             }
             Session[ViewState["PageID"] + "tableSource"] = source;
@@ -1528,7 +1551,8 @@ namespace SweetSoft.APEM.WebApp.Pages
             DropDownList ddlStatus = grvCylinders.Rows[e.RowIndex].FindControl("ddlStatus") as DropDownList;
             DropDownList ddlProtocol = grvCylinders.Rows[e.RowIndex].FindControl("ddlProtocol") as DropDownList;
             DropDownList ddlPricing = grvCylinders.Rows[e.RowIndex].FindControl("ddlPricing") as DropDownList;
-            CustomExtraTextbox txtDept = grvCylinders.Rows[e.RowIndex].FindControl("txtDept") as CustomExtraTextbox;
+            DropDownList ddlDept = grvCylinders.Rows[e.RowIndex].FindControl("ddlDept") as DropDownList;
+            CustomExtraTextbox txtDirameter = grvCylinders.Rows[e.RowIndex].FindControl("txtDirameter") as CustomExtraTextbox;
 
             short CylinderStatusID = 0;
             string CylinderStatusName = string.Empty;
@@ -1569,8 +1593,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                 string Protocol = ddlProtocol.SelectedValue;
                 int PricingID = int.Parse(ddlPricing.SelectedValue);
                 string PricingName = PricingID != 0 ? ddlPricing.SelectedItem.Text : string.Empty;
-                string Dept = txtDept.Text.Trim();
-                updateRow(e.RowIndex, ID, Sequence, CusSteelBaseID, CusCylinderID, SteelBase, Color, CylinderStatusID, CylinderStatusName, Protocol, PricingID, PricingName, Dept);
+                string Dept = ddlDept.SelectedItem.Value.Trim();
+                double Dirameter = Convert.ToDouble(txtDirameter.Text);
+
+                updateRow(e.RowIndex, ID, Sequence, CusSteelBaseID, CusCylinderID, SteelBase, Color, CylinderStatusID, CylinderStatusName, Protocol, PricingID, PricingName, Dept, Dirameter);
                 grvCylinders.EditIndex = -1;
                 BindGrid();
 
@@ -1635,6 +1661,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 short? PricingID = (short?)grvCylinders.DataKeys[e.Row.RowIndex].Values[2];
                 string Protocol = grvCylinders.DataKeys[e.Row.RowIndex].Values[3].ToString();
                 short? CylinderStatusID = (short?)grvCylinders.DataKeys[e.Row.RowIndex].Values[4];
+                string Dept = grvCylinders.DataKeys[e.Row.RowIndex].Values[5].ToString();
 
                 //Status
                 DropDownList ddlStatus = e.Row.FindControl("ddlStatus") as DropDownList;
@@ -1675,7 +1702,7 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                 //Protocol
                 DropDownList ddlProtocol = e.Row.FindControl("ddlProtocol") as DropDownList;
-                if (ddlPricing != null)
+                if (ddlProtocol != null)
                 {
                     List<EngravingProtocol> colls = JobManager.SelectEngravingProtocolForDDL();
                     ddlProtocol.DataSource = colls.Select(x => new { ID = x.ToString(), Name = x.ToString() });
@@ -1684,6 +1711,25 @@ namespace SweetSoft.APEM.WebApp.Pages
                     ddlProtocol.DataBind();
                     if (!string.IsNullOrEmpty(Protocol))
                         ddlProtocol.SelectedValue = Protocol;
+                }
+
+                //Dept
+                DropDownList ddlDept = e.Row.FindControl("ddlDept") as DropDownList;
+                if (ddlDept != null)
+                {
+                    Dictionary<string, string> data = new Dictionary<string, string>();
+                    data.Add("", "");
+                    data.Add("S", "Sales");
+                    data.Add("R", "Repro");
+                    data.Add("P", "Production");
+                    data.Add("O", "Other");
+
+                    ddlDept.DataSource = data;
+                    ddlDept.DataTextField = "Value";
+                    ddlDept.DataValueField = "Key";
+                    ddlDept.DataBind();
+                    if (!string.IsNullOrEmpty(Dept))
+                        ddlProtocol.SelectedValue = Dept;
                 }
             }
         }

@@ -57,6 +57,14 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             DataTable sourcePackingDimension = DeliveryOrderManager.SelectPackingDimensionDetail(JobID).ToDataTable();
             DataTable sourceCylinder = CylinderManager.SelectCylinderSelectForDeliveryOrder(JobID);
 
+            DataTable fillSourceCylinder = sourceCylinder.Clone();
+            DataRow[] dataRow = sourceCylinder.Select("Quantity > 0");
+
+            foreach (DataRow r in dataRow)
+            {
+                fillSourceCylinder.ImportRow(r);
+            }
+
             int baseCountryID = 0;
             int.TryParse(SettingManager.GetSettingValue(SettingNames.BaseCountrySetting), out baseCountryID);
             TblReference country = ReferenceTableManager.SelectByID(baseCountryID);
@@ -68,7 +76,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
 
             viewer.LocalReport.DataSources.Add(new ReportDataSource("JobSource", sourceSummary));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("PackingDimensionSource", sourcePackingDimension));
-            viewer.LocalReport.DataSources.Add(new ReportDataSource("CylinderSource", sourceCylinder));
+            viewer.LocalReport.DataSources.Add(new ReportDataSource("CylinderSource", fillSourceCylinder));
 
             viewer.LocalReport.SetParameters(new ReportParameter[] { BaseCountry });
             //Chuyển sang Excel

@@ -4,7 +4,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .GridSrc td {
+        .GridSrc td
+        {
             /*background-color: #A1DCF2;
             color: black;
             font-size: 10pt;
@@ -80,18 +81,24 @@
                         </div>
                     </div>
                 </div>--%>
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-3 col-sm-3">
+                    <label class="control-label">Job Number:</label>
+                    <div class="form-group">
+                        <asp:TextBox ID="txtJobNumber" runat="server" class="form-control"></asp:TextBox>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
                     <label class="control-label">Repro Date:</label>
                     <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-xs-4">
                             <div class="form-group">
-                                <p class="form-control-static">From Date</p>
+                                <p class="form-control-static">From</p>
                             </div>
                             <div class="form-group">
-                                <p class="form-control-static">To Date</p>
+                                <p class="form-control-static">To</p>
                             </div>
                         </div>
-                        <div class="col-xs-9">
+                        <div class="col-xs-8">
                             <div class="form-group">
                                 <div class="wrap-datepicker">
                                     <SweetSoft:CustomExtraTextbox ID="txtReProDateB" runat="server"
@@ -113,18 +120,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-3 col-sm-3">
                     <label class="control-label">Cylinder Date:</label>
                     <div class="row">
-                        <div class="col-xs-3">
+                        <div class="col-xs-4">
                             <div class="form-group">
-                                <p class="form-control-static">From Date</p>
+                                <p class="form-control-static">From</p>
                             </div>
                             <div class="form-group">
-                                <p class="form-control-static">To Date</p>
+                                <p class="form-control-static">To</p>
                             </div>
                         </div>
-                        <div class="col-xs-9">
+                        <div class="col-xs-8">
                             <div class="form-group">
                                 <div class="wrap-datepicker">
                                     <SweetSoft:CustomExtraTextbox ID="txtCylDateB" runat="server"
@@ -147,7 +154,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-3 col-sm-3">
                     <label class="control-label">RePro Status:</label>
                     <div class="form-group">
                         <asp:DropDownList ID="ddlReProStatus" runat="server"
@@ -238,19 +245,19 @@
                                     Text='<%#Eval("ReproStatusName")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="CylinderDate" SortExpression="9"  HeaderStyle-CssClass="sorting column-120" ItemStyle-CssClass="column-120">
+                        <asp:TemplateField HeaderText="CylinderDate" SortExpression="9" HeaderStyle-CssClass="sorting column-120" ItemStyle-CssClass="column-120">
                             <ItemTemplate>
                                 <asp:Label ID="lbCylinderDate" runat="server"
                                     Text='<%#Eval("CylinderDate")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="CylinderStatusName" SortExpression="10"  HeaderStyle-CssClass="sorting column-180" ItemStyle-CssClass="column-180">
+                        <asp:TemplateField HeaderText="CylinderStatusName" SortExpression="10" HeaderStyle-CssClass="sorting column-180" ItemStyle-CssClass="column-180">
                             <ItemTemplate>
                                 <asp:Label ID="lbCylinderStatusName" runat="server"
                                     Text='<%#Eval("CylinderStatusName")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Note" SortExpression="11"  HeaderStyle-CssClass="sorting column-150" ItemStyle-CssClass="column-150">
+                        <asp:TemplateField HeaderText="Note" SortExpression="11" HeaderStyle-CssClass="sorting column-150" ItemStyle-CssClass="column-150">
                             <ItemTemplate>
                                 <asp:Label ID="lbNote" runat="server"
                                     Text='<%#Eval("Note")%>'></asp:Label>
@@ -349,7 +356,7 @@
                                                 data-toggle="dropdown" CssClass="form-control"
                                                 OnSelectedIndexChanged="ddlProgressReproStatus_SelectedIndexChanged" AutoPostBack="true">
                                             </asp:DropDownList>
-                                            <label class="control-label" style="display:none;">Status Desc</label>
+                                            <label class="control-label" style="display: none;">Status Desc</label>
                                             <asp:TextBox ID="txtProgressReproStatusDesc" CssClass="form-control" Visible="false"
                                                 runat="server" Enabled="false"></asp:TextBox>
                                         </div>
@@ -369,15 +376,15 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
-                                                <label class="control-label">Status</label>
-                                                <asp:DropDownList ID="ddlProgressCylinderStatus" runat="server"
-                                                    data-style="btn btn-info" data-width="100%" Required="true"
-                                                    data-toggle="dropdown" CssClass="form-control"
-                                                    AutoPostBack="true" OnSelectedIndexChanged="ddlProgressCylinderStatus_SelectedIndexChanged">
-                                                </asp:DropDownList>
-                                                <label class="control-label" style="display:none;">Status Desc</label>
-                                                <asp:TextBox ID="txtProgressCylinderStatusDesc" CssClass="form-control" Visible="false"
-                                                    runat="server" Enabled="false"></asp:TextBox>
+                                            <label class="control-label">Status</label>
+                                            <asp:DropDownList ID="ddlProgressCylinderStatus" runat="server"
+                                                data-style="btn btn-info" data-width="100%" Required="true"
+                                                data-toggle="dropdown" CssClass="form-control"
+                                                AutoPostBack="true" OnSelectedIndexChanged="ddlProgressCylinderStatus_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                            <label class="control-label" style="display: none;">Status Desc</label>
+                                            <asp:TextBox ID="txtProgressCylinderStatusDesc" CssClass="form-control" Visible="false"
+                                                runat="server" Enabled="false"></asp:TextBox>
                                         </div>
                                     </div>
                                 </div>
