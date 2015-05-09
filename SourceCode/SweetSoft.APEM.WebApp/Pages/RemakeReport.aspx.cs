@@ -11,6 +11,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Drawing;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -33,6 +34,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 //ApplyControlText();
                 grvRemakeReport.PageSize = Convert.ToInt32(ApplicationContext.Current.CurrentPageSize);
                 BindData();
+                BindFillterDLL();
             }
         }
 
@@ -66,7 +68,43 @@ namespace SweetSoft.APEM.WebApp.Pages
                     ToDate = _ToDate;
 
                 DataTable dt = ReportManager.RemakeReport(FromDate, ToDate);
-                if (dt.Rows.Count == 0 && CurrentPageIndex != 0)
+
+                DataRow[] dtFillter = null;
+                int fillterIndex = string.IsNullOrEmpty(ddlFillterReport.SelectedValue) ? 1 : Convert.ToInt32(ddlFillterReport.SelectedValue);
+
+                switch (fillterIndex)
+                {
+                    case 1:
+                        dtFillter = dt.Select("1 = 1");
+                        break;
+                    case 2:
+                        dtFillter = dt.Select("CByS > 0 OR CByR > 0 OR CByP > 0 OR CByO > 0");
+                        break;
+                    case 3:
+                        dtFillter = dt.Select("CByS = 0 AND CByR = 0 AND CByP = 0 AND CByO = 0");
+                        break;
+                }
+
+                DataTable newDT = dt.Clone();
+
+                if (dtFillter != null)
+                {
+                    int i = 1;
+                    foreach (DataRow dr in dtFillter)
+                    {
+                        DataRow newR = newDT.NewRow();
+                        newR.ItemArray = dr.ItemArray.Clone() as object[];
+                        newR["RowNumber"] = i;
+                        newDT.Rows.Add(newR);
+                        i++;
+                    }
+                }
+                else
+                {
+                    newDT = dt.Copy();
+                }
+
+                if (newDT.Rows.Count == 0 && CurrentPageIndex != 0)
                 {
                     CurrentPageIndex -= 1;
                     BindData();
@@ -74,7 +112,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 else
                 {
                     grvRemakeReport.VirtualItemCount = totalRows;
-                    grvRemakeReport.DataSource = dt;
+                    grvRemakeReport.DataSource = newDT;
                     grvRemakeReport.DataBind();
                     grvRemakeReport.PageIndex = CurrentPageIndex;
                 }
@@ -142,9 +180,9 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
             else if (FromDate != null)
             {
-                 DateInfo = string.Format("From date: {0}", _FromDate.ToString("dd/MM/yyyy"));
+                DateInfo = string.Format("From date: {0}", _FromDate.ToString("dd/MM/yyyy"));
             }
-            else if(ToDate != null)
+            else if (ToDate != null)
             {
                 DateInfo = string.Format("To date: {0}", _ToDate.ToString("dd/MM/yyyy"));
             }
@@ -163,7 +201,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             parameters[2] = new ReportParameter("CreatedBy", CreatedBy);
             parameters[3] = new ReportParameter("CreatedOnDate", CreatedOnDate);
             parameters[4] = new ReportParameter("CreatedOnTime", CreatedOnTime);
-            
+
 
             // Variables
             Warning[] warnings;
@@ -202,5 +240,39 @@ namespace SweetSoft.APEM.WebApp.Pages
             string fileName = string.Format("RemakeReport_{0}", today);
             CreateExcel(fileName);
         }
+
+        protected void grvRemakeReport_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DataRowView rowView = (DataRowView)e.Row.DataItem;
+                int valCByS = Convert.ToInt32(rowView["CByS"].ToString());
+                int valCByR = Convert.ToInt32(rowView["CByR"].ToString());
+                int valCByP = Convert.ToInt32(rowView["CByP"].ToString());
+                int valCByO = Convert.ToInt32(rowView["CByO"].ToString());
+
+                if (valCByS == 0 && valCByR == 0 && valCByP == 0 && valCByO == 0)
+                {
+                    foreach (TableCell cell in e.Row.Cells)
+                    {
+                        cell.BackColor = Color.FromName("#e3e3e3");
+                    }
+                }
+            }
+        }
+
+        protected void BindFillterDLL()
+        {
+            Dictionary<int, string> dt = new Dictionary<int, string>();
+            dt.Add(1, "All");
+            dt.Add(2, "Dept entered");
+            dt.Add(3, "No dept entered");
+
+            ddlFillterReport.DataSource = dt;
+            ddlFillterReport.DataTextField = "Value";
+            ddlFillterReport.DataValueField = "Key";
+            ddlFillterReport.DataBind();
+        }
+
     }
 }

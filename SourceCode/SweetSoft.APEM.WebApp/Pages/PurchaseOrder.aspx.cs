@@ -347,7 +347,7 @@ namespace SweetSoft.APEM.WebApp.Pages
 
         private void LoadJobRevNumber(string JobNumber)
         {
-            ddlRevNumber.DataSource = JobManager.SelectRevNumberByJobNumber(JobNumber, 0);
+            ddlRevNumber.DataSource = JobManager.SelectRevNumberByJobNumber(JobNumber, 0, true);
             ddlRevNumber.DataTextField = "Value";
             ddlRevNumber.DataValueField = "Key";
             ddlRevNumber.DataBind();
@@ -356,7 +356,7 @@ namespace SweetSoft.APEM.WebApp.Pages
 
         private void LoadJobNumber(int custID)
         {
-            ddlJobNumber.DataSource = JobManager.SelectJobNumberByCustomerID(custID, false, false);
+            ddlJobNumber.DataSource = JobManager.SelectJobNumberByCustomerID(custID, false, false, true);
             ddlJobNumber.DataBind();
             upnlJobRev.Update();
             ddlJobNumber_SelectedIndexChanged(null, null);

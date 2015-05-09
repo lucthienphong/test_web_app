@@ -753,21 +753,20 @@
                                                                 Text='<%#Eval("CylType")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Diameter" HeaderStyle-CssClass="column-80" ItemStyle-CssClass="column-80">
+                                                    <asp:TemplateField HeaderText="Diameter" HeaderStyle-CssClass="column-120" ItemStyle-CssClass="column-120 text-right">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lbDiameter" runat="server"
                                                                 Text='<%# ((double)Eval("Dirameter")).ToString("N2") %>'></asp:Label>
                                                         </ItemTemplate>
                                                         <EditItemTemplate>
                                                             <div style="position: relative;">
-                                                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtDirameter"
-                                                                    Text='<%#Eval("Dirameter")%>' Width="100%"
-                                                                    CssClass="form-control" runat="server">
-                                                                </SweetSoft:CustomExtraTextbox>
+                                                                <SweetSoft:ExtraInputMask ID="txtDirameter" RenderOnlyInput="true" Required="false" 
+                                                                    Width="100%" runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text='<%#Eval("Dirameter")%>' 
+                                                                    Digits="2" AutoGroup="true"></SweetSoft:ExtraInputMask>
                                                             </div>
                                                         </EditItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Dept" HeaderStyle-CssClass="column-150" ItemStyle-CssClass="column-150">
+                                                    <asp:TemplateField HeaderText="Dept" HeaderStyle-CssClass="column-80" ItemStyle-CssClass="column-80 text-center">
                                                         <%--<ItemTemplate>
                                                             <asp:Label ID="lbDept" runat="server"
                                                                 Text='<%#Eval("Dept")%>'></asp:Label>

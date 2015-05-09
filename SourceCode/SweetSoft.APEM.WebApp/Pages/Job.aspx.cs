@@ -1045,13 +1045,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 obj.IsClosed = 0;
                                 obj.JobID = 0;
 
-                                obj.Status = Enum.GetName(typeof(JobStatus), JobStatus.Actived);
-
                                 obj.RevNumber = JobManager.JobRevisionNumber(oldJob.JobNumber);
                                 obj.JobBarcode = string.Format("{0}-{1}", oldJob.JobBarcode.Substring(0, 10), obj.RevNumber);
                                 string Image64Base = Common.Code128Rendering.MakeBarcode64BaseImage(obj.JobBarcode, 1.5, false, true);
                                 obj.JobBarcodeImage = Image64Base;
                                 imgBarcode.ImageUrl = Image64Base;
+
+                                obj.Status = Enum.GetName(typeof(JobStatus), JobStatus.Actived);
 
                                 obj = JobManager.Insert(obj);
                                 if (obj != null)
@@ -1137,6 +1137,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 obj.InternalExternal = string.Empty;
                                 obj.RevisionDetail = string.Empty;
                                 obj.IsClosed = 0;
+
+                                obj.Status = Enum.GetName(typeof(JobStatus), JobStatus.Actived);
 
                                 obj = JobManager.Insert(obj);
                                 if (obj != null)
@@ -1552,7 +1554,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             DropDownList ddlProtocol = grvCylinders.Rows[e.RowIndex].FindControl("ddlProtocol") as DropDownList;
             DropDownList ddlPricing = grvCylinders.Rows[e.RowIndex].FindControl("ddlPricing") as DropDownList;
             DropDownList ddlDept = grvCylinders.Rows[e.RowIndex].FindControl("ddlDept") as DropDownList;
-            CustomExtraTextbox txtDirameter = grvCylinders.Rows[e.RowIndex].FindControl("txtDirameter") as CustomExtraTextbox;
+            ExtraInputMask txtDirameter = grvCylinders.Rows[e.RowIndex].FindControl("txtDirameter") as ExtraInputMask;
 
             short CylinderStatusID = 0;
             string CylinderStatusName = string.Empty;
@@ -1718,11 +1720,11 @@ namespace SweetSoft.APEM.WebApp.Pages
                 if (ddlDept != null)
                 {
                     Dictionary<string, string> data = new Dictionary<string, string>();
-                    data.Add("", "");
-                    data.Add("S", "Sales");
-                    data.Add("R", "Repro");
-                    data.Add("P", "Production");
-                    data.Add("O", "Other");
+                    data.Add(".", "...");
+                    data.Add("S", "S");
+                    data.Add("R", "R");
+                    data.Add("P", "P");
+                    data.Add("O", "O");
 
                     ddlDept.DataSource = data;
                     ddlDept.DataTextField = "Value";

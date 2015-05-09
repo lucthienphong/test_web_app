@@ -13,6 +13,15 @@ namespace SweetSoft.APEM.WebApp.Pages {
     public partial class RemakeReport {
         
         /// <summary>
+        /// ddlFillterReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFillterReport;
+        
+        /// <summary>
         /// txtFromDate control.
         /// </summary>
         /// <remarks>

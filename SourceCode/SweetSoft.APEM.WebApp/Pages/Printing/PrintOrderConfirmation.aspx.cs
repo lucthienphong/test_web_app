@@ -98,7 +98,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     ltrJobDate.Text = string.Format("{0}", date.ToString("dd.MM.yyyy"));
                 }
 
-                ltrJobNumber.Text = j.JobNumber;
+                ltrJobNumber.Text = j.JobNumber + (j.RevNumber > 0 ? string.Format(" (R{0})", j.RevNumber) : string.Empty);
                 ltrReferences.Text = Common.Extensions.CombineString(od.CustomerPO1, od.CustomerPO2, ",");
                 
                 TblCustomer c = CustomerManager.SelectByID(j.CustomerID);

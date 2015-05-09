@@ -5,9 +5,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row" style="margin-top: 20px;">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-10 col-sm-offset-1">
             <div class="row">
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-3 col-sm-3">
+                    <label class="control-label">Search</label>
+                    <div class="form-group">
+                        <asp:DropDownList ID="ddlFillterReport" runat="server"
+                            data-style="btn btn-primary"
+                            data-width="100%" 
+                            data-toggle="dropdown"
+                            CssClass="form-control">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
                     <label class="control-label">Remake date:</label>
                     <div class="row">
                         <div class="col-xs-2">
@@ -28,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-3 col-sm-3">
                     <label class="control-label">&nbsp;</label>
                     <div class="row">
                         <div class="col-xs-2">
@@ -49,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4">
+                <div class="col-md-3 col-sm-3">
                     <label class="control-label">&nbsp;</label>
                     <div class="form-group">
                         <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary"
@@ -72,6 +83,7 @@
                         </asp:UpdatePanel>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -83,6 +95,7 @@
                     AllowPaging="false" AllowSorting="false" DataKeyNames=""
                     OnRowCommand="grvRemakeReport_RowCommand"
                     OnPageIndexChanging="grvRemakeReport_PageIndexChanging"
+                    OnRowDataBound="grvRemakeReport_RowDataBound"
                     OnSorting="grvRemakeReport_Sorting">
                     <Columns>
                         <asp:TemplateField HeaderText="No" SortExpression="0">

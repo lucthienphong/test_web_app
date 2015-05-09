@@ -144,7 +144,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Job number" SortExpression="4" HeaderStyle-CssClass="sorting">
                             <ItemTemplate>
-                                <asp:Label ID="lbJobNumber" Text='<%#Eval("JobNumber")%>' runat="server" />
+                                <asp:Label ID="lbJobNumber" Text='<%#string.Format("{0} (Rev {1})", Eval("JobNumber"), Eval("RevNumber"))%>' runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Job name" SortExpression="5" HeaderStyle-CssClass="sorting">

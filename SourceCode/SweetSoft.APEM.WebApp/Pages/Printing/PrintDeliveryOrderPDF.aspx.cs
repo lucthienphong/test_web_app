@@ -60,8 +60,11 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             DataTable fillSourceCylinder = sourceCylinder.Clone();
             DataRow[] dataRow = sourceCylinder.Select("Quantity > 0");
 
+            int Seq = 0;
             foreach (DataRow r in dataRow)
             {
+                Seq += 1;
+                r["Sequence"] = Seq.ToString();
                 fillSourceCylinder.ImportRow(r);
             }
 

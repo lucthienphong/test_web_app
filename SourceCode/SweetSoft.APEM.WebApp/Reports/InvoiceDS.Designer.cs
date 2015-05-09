@@ -2280,7 +2280,7 @@ namespace SweetSoft.APEM.WebApp.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public JobCylinderRow AddJobCylinderRow(string Sequence, string CylDescription, string CusCylID, string CusSteelBaseID, string FaceWidth, string Circumference, string SteelBaseName, string Quantity, string UnitPrice, string TotalPrice) {
+            public JobCylinderRow AddJobCylinderRow(string Sequence, string CylDescription, string CusCylID, string CusSteelBaseID, string FaceWidth, string Circumference, string SteelBaseName, int Quantity, string UnitPrice, string TotalPrice) {
                 JobCylinderRow rowJobCylinderRow = ((JobCylinderRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Sequence,
@@ -2344,7 +2344,7 @@ namespace SweetSoft.APEM.WebApp.Reports {
                 base.Columns.Add(this.columnCircumference);
                 this.columnSteelBaseName = new global::System.Data.DataColumn("SteelBaseName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSteelBaseName);
-                this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnQuantity = new global::System.Data.DataColumn("Quantity", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQuantity);
                 this.columnUnitPrice = new global::System.Data.DataColumn("UnitPrice", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUnitPrice);
@@ -4889,10 +4889,10 @@ namespace SweetSoft.APEM.WebApp.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Quantity {
+            public int Quantity {
                 get {
                     try {
-                        return ((string)(this[this.tableJobCylinder.QuantityColumn]));
+                        return ((int)(this[this.tableJobCylinder.QuantityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Quantity\' in table \'JobCylinder\' is DBNull.", e);

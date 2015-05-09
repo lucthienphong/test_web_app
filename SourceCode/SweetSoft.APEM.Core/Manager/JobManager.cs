@@ -663,7 +663,7 @@ namespace SweetSoft.APEM.Core.Manager
             return dt;
         }
 
-        public static List<string> SelectJobNumberByCustomerID(int custID, bool SelectServiceJob, bool HasNoOC)
+        public static List<string> SelectJobNumberByCustomerID(int custID, bool SelectServiceJob, bool HasNoOC, bool IsActived = false)
         {
             SqlQuery select = new Select();
             select = select.From(TblJob.Schema);
@@ -676,6 +676,11 @@ namespace SweetSoft.APEM.Core.Manager
                                                             .InnerJoin(TblJob.JobIDColumn, TblOrderConfirmation.JobIDColumn)
                                                             .Where(TblJob.CustomerIDColumn).IsEqualTo(custID);
                 select = select.And(TblJob.JobIDColumn).NotIn(JobHasOC);
+            }
+
+            if (IsActived)
+            {
+                select = select.And(TblJob.StatusColumn).IsEqualTo("Actived");
             }
 
             var jobs = select.ExecuteTypedList<TblJob>();
@@ -694,9 +699,9 @@ namespace SweetSoft.APEM.Core.Manager
             return jobString;
         }
 
-        public static Dictionary<string, string> SelectRevNumberByJobNumber(string JobNumber, byte Type)
+        public static Dictionary<string, string> SelectRevNumberByJobNumber(string JobNumber, byte Type, bool IsActived = false)
         {
-            Select select = new Select();
+            SqlQuery select = new Select();
             SqlQuery exists = new SqlQuery();
             //Type == 1 -- Order confirmation
             if (Type == 0)
@@ -706,12 +711,16 @@ namespace SweetSoft.APEM.Core.Manager
                 exists = new Select(TblJob.JobIDColumn).From(TblOrderConfirmation.Schema)
                                     .InnerJoin(TblJob.JobIDColumn, TblOrderConfirmation.JobIDColumn)
                                     .Where(TblJob.JobNumberColumn).IsEqualTo(JobNumber);
-            var jobs = select.From(TblJob.Schema)
-                        .Where(TblJob.Columns.JobNumber).IsEqualTo(JobNumber)
-                        .And(TblJob.JobIDColumn).NotIn(exists)
-                        .OrderDesc(TblJob.Columns.RevNumber)
-                        .ExecuteTypedList<TblJob>();
+            select = select.From(TblJob.Schema);
+            select = select.Where(TblJob.Columns.JobNumber).IsEqualTo(JobNumber);
+            select = select.And(TblJob.JobIDColumn).NotIn(exists);
+            if (IsActived)
+            {
+                select = select.And(TblJob.StatusColumn).IsEqualTo("Actived");
+            }
+            select = select.OrderDesc(TblJob.Columns.RevNumber);
 
+            var jobs = select.ExecuteTypedList<TblJob>();
 
             Dictionary<string, string> jobList = new Dictionary<string, string>();
             if (jobs.Count == 0)
@@ -954,5 +963,6 @@ namespace SweetSoft.APEM.Core.Manager
         }
 
         // End 06-05-2015
+       
     }
 }

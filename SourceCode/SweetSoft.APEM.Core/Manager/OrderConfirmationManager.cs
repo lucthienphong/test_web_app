@@ -217,7 +217,10 @@ namespace SweetSoft.APEM.Core.Manager
                 dtCylinder = CylinderManager.SelectCylinderSelectForOrderConfirmation(JobID);
                 if (dtCylinder != null)
                 {
-                    Total += dtCylinder.AsEnumerable().Sum(x => (decimal)x.Field<double>("TotalPrice"));
+                    foreach (DataRow r in dtCylinder.Rows)
+                    {
+                        Total += Math.Round(Convert.ToDecimal(r["TotalPrice"].ToString()), 2);
+                    }
                 }
 
                 //Select all service job

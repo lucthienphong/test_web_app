@@ -876,7 +876,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Seq</Value>
+                              <Value>No.</Value>
                               <Style>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -1305,7 +1305,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Sequence.Value</Value>
+                              <Value>=RowNumber(Nothing)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -1345,6 +1345,7 @@
                         <PaddingBottom>1pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1964,7 +1965,7 @@
         <Top>11.08224cm</Top>
         <Left>0cm</Left>
         <Height>1.2cm</Height>
-        <Width>8.92938cm</Width>
+        <Width>8.92937cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
