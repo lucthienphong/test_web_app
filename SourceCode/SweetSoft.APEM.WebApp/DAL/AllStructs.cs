@@ -72,6 +72,8 @@ namespace SweetSoft.APEM.DataAccess
         
 		public static readonly string TblCylinderStatus = @"tblCylinderStatus";
         
+		public static readonly string TblDataLog = @"tblDataLogs";
+        
 		public static readonly string TblDebit = @"tblDebit";
         
 		public static readonly string TblDebitDetail = @"tblDebitDetail";
@@ -310,6 +312,11 @@ namespace SweetSoft.APEM.DataAccess
 		public static TableSchema.Table TblCylinderStatus
 		{
             get { return DataService.GetSchema("tblCylinderStatus", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblDataLog
+		{
+            get { return DataService.GetSchema("tblDataLogs", "DataAcessProvider"); }
 		}
         
 		public static TableSchema.Table TblDebit

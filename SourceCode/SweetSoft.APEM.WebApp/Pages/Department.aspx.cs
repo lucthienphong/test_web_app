@@ -12,6 +12,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
+using System.Globalization;
+using System.IO;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -33,6 +37,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 ApplyControlText();
                 grvDepartmentList.PageSize = Convert.ToInt32(ApplicationContext.Current.CurrentPageSize);
                 BindData();
+                base.SaveBaseDataBeforeEdit();
             }
             else
             {
@@ -321,6 +326,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj = DepartmentManager.SelectByID(departmentID);
                 if (obj != null)
                 {
+                    string oldName = obj.DepartmentName;
+
                     obj.DepartmentName = departmentName;
                     obj.ShowInWorkFlow = Convert.ToByte(ShowInWorkFlow);
                     obj.TimelineOrder = TimelineOrder;
@@ -328,6 +335,24 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.ProductTypeID = ProductTypeID;
                     obj.IsObsolete = Convert.ToByte(isObsolete);
                     DepartmentManager.Update(obj);
+
+                    short DepartmentID = Convert.ToInt16(grvDepartmentList.DataKeys[rowIndex].Value);
+                    TextBox txtDepartmentName = (TextBox)grvDepartmentList.Rows[rowIndex].FindControl("txtDepartmentName");
+                    DropDownList ddlProcessType = grvDepartmentList.Rows[rowIndex].FindControl("ddlProcessType") as DropDownList;
+                    HtmlGenericControl divProductType = grvDepartmentList.Rows[rowIndex].FindControl("divProductType") as HtmlGenericControl;
+                    List<CheckBox> chkList = divProductType != null ? FindCharacteristics(divProductType) : null;
+                    CheckBox chkUsedInWorkflow = (CheckBox)grvDepartmentList.Rows[rowIndex].FindControl("chkUsedInWorkflow");
+                    TextBox txtTimelineOrder = (TextBox)grvDepartmentList.Rows[rowIndex].FindControl("txtTimelineOrder");
+                    CheckBox chkIsObsolete = (CheckBox)grvDepartmentList.Rows[rowIndex].FindControl("chkIsObsolete");
+
+                    string lstProductType = GetListProductTypeCode(DepartmentID, chkList);
+
+                    LoggingActions("Department",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Department Name", Data = departmentName}
+                            }));
 
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
@@ -342,6 +367,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.ProductTypeID = ProductTypeID;
                     obj.IsObsolete = Convert.ToByte(isObsolete);
                     DepartmentManager.Insert(obj);
+
+                    LoggingActions("Department",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Department Name", Data = obj.DepartmentName} 
+                            }));
 
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
@@ -475,12 +507,19 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
 
                             List<short> idList = new List<short>();
+                            List<JsonData> lstData = new List<JsonData>();
+
                             for (int i = 0; i < grvDepartmentList.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)grvDepartmentList.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     short ID = Convert.ToInt16(grvDepartmentList.DataKeys[i].Value);
+                                    TblDepartment obj = DepartmentManager.SelectByID(ID);
+                                    if (obj != null)
+                                    {
+                                        lstData.Add(new JsonData() { Title = "Department Name", Data = obj.DepartmentName });
+                                    }
                                     idList.Add(ID);
                                 }
                             }
@@ -488,6 +527,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                             BindData();
                             if (string.IsNullOrEmpty(DataCannotDelete))
                             {
+                                LoggingActions("Department",
+                                           LogsAction.Objects.Action.DELETE,
+                                           LogsAction.Objects.Status.SUCCESS,
+                                           JsonConvert.SerializeObject(lstData));
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                                 OpenMessageBox(msg, null, false, false);
                             }
@@ -582,6 +625,29 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
 
         }
+
+        private string GetListProductTypeCode(short DepartmentID, List<CheckBox> chkList)
+        {
+            string ProductTypeCode = string.Empty;
+
+            List<ProductTypeExtension> list = ReferenceTableManager.SelectProductTypeForCheckboxList(DepartmentID);
+
+            foreach (CheckBox chk in chkList)
+            {
+                try
+                {
+                    if (chk.Checked)
+                    {
+                        short chID = Convert.ToInt16(chk.ID);
+                        ProductTypeExtension a = list.Find(item => item.ReferencesID == chID);
+                        ProductTypeCode += a.Code + ", ";
+                    }
+                }
+                catch { }
+            }
+            return ProductTypeCode;
+        }
+
         #endregion
     }
 }

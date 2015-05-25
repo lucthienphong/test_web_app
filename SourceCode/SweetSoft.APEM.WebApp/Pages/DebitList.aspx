@@ -125,7 +125,7 @@
                             ItemStyle-CssClass="column-large">
                             <ItemTemplate>
                                 <asp:Label ID="lbTotal" runat="server"
-                                    Text='<%#Convert.ToDecimal(Eval("Total")).ToString("N3") + " " + Eval("CurrencyName")%>'></asp:Label>
+                                    Text='<%#Convert.ToDecimal(Eval("Total")).ToString("N2") + " " + Eval("CurrencyName")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField ItemStyle-CssClass="column-one" HeaderStyle-CssClass="checkbox-column">

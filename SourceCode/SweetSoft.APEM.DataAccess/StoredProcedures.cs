@@ -1690,7 +1690,7 @@ namespace SweetSoft.APEM.DataAccess{
         /// <summary>
         /// Creates an object wrapper for the tblJob_SelectAll Procedure
         /// </summary>
-        public static StoredProcedure TblJobSelectAll(string Customer, string JobBarcode, string JobNumber, string JobInfo, string CusCylID, int? SaleRepID, DateTime? FromDate, DateTime? ToDate, int? HasOC, int? HasDO, int? HasInvoice, bool? IsServiceJob, int? PageIndex, int? PageSize, string SortColumn, string SortType)
+        public static StoredProcedure TblJobSelectAll(string Customer, string JobBarcode, string JobNumber, string JobInfo, string CusCylID, int? SaleRepID, DateTime? FromDate, DateTime? ToDate, int? HasOC, int? HasDO, int? HasInvoice, bool? IsServiceJob, int? PageIndex, int? PageSize, string SortColumn, string SortType, string Status)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblJob_SelectAll", DataService.GetInstance("DataAcessProvider"), "dbo");
         	
@@ -1725,6 +1725,8 @@ namespace SweetSoft.APEM.DataAccess{
             sp.Command.AddParameter("@SortColumn", SortColumn, DbType.AnsiString, null, null);
         	
             sp.Command.AddParameter("@SortType", SortType, DbType.AnsiString, null, null);
+        	
+            sp.Command.AddParameter("@Status", Status, DbType.String, null, null);
         	
             return sp;
         }

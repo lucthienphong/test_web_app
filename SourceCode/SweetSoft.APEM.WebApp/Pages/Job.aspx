@@ -45,7 +45,7 @@
                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DELETE)%>
                         </asp:LinkButton>
                         <asp:LinkButton ID="btnEngraving" runat="server"
-                            CssClass="btn btn-transparent" OnClick="btnEngraving_Click">
+                            CssClass="btn btn-transparent">
                                 <span class="glyphicon glyphicon-wrench" style="font-size: 19px; line-height: 28px; vertical-align: -3px;"></span>
                                 Engraving
                         </asp:LinkButton>
@@ -72,6 +72,11 @@
                             Unlock
                         </asp:LinkButton>
                         <%--End--%>
+                        <asp:LinkButton ID="btnCreatePO" runat="server" Visible="false"
+                            OnClick="btnCreatePO_Click" CssClass="btn btn-transparent">
+                                <span class="flaticon-order"></span>
+                            Create Steelbase PO
+                        </asp:LinkButton>
                         <asp:LinkButton ID="btnCancel" runat="server" OnClick="btnCancel_Click" CssClass="btn btn-transparent">
                                 <span class="flaticon-back57"></span>
                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.RETURN)%>
@@ -1912,8 +1917,21 @@
         });
 
 
+        addRequestHanlde(InitPODetail);
+        InitPODetail();
+        function InitPODetail() {
+            var linkColl = $('a[id$="btnPOEdit"]');
+            if (linkColl.length > 0) {
+                linkColl.click(function () {
+                    parent.openWindow($('a[data-title]:eq(0)'), 'Purchase Order', '/Pages/PurchaseOrder.aspx?ID=' + $(this).attr('data-id'));
+                    return false;
+                });
+            }
+        }
+
         addRequestHanlde(InitCheckAll);
         InitCheckAll();
+
         function InitCheckAll() {
             $("#chkSelectAll").change(function () {
                 var isChecked = $(this).is(':checked');
@@ -2212,6 +2230,19 @@
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                 results = regex.exec(location.search);
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        addRequestHanlde(InitEngraving);
+        InitEngraving();
+
+        function InitEngraving() {
+            var linkColl = $('a[id$="btnEngraving"]');
+            if (linkColl.length > 0) {
+                linkColl.click(function () {
+                    parent.openWindow($('a[data-title]:eq(0)'), 'Job Engraving', '/Pages/JobEngraving.aspx?ID=' + getParameterByName("ID"));
+                    return false;
+                });
+            }
         }
     </script>
 </asp:Content>

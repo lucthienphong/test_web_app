@@ -65,7 +65,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         }
                         if (e.Value.ToString().Equals("ADD_SUCCESS"))
                         {
-                            Response.Redirect("MachineList.aspx");
+                            Response.Redirect("~/Pages/MachineList.aspx", false);
                         }
                     }
                 }

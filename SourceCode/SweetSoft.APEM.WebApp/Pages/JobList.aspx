@@ -141,7 +141,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">Job Status:</label>
+                            <asp:DropDownList ID="ddlJobStatus" runat="server"
+                                data-style="btn btn-info"
+                                data-width="100%" Required="true"
+                                data-toggle="dropdown" data-live-search="true"
+                                CssClass="form-control">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
                         <div class="form-group">
                             <label class="control-label">OC Status:</label>
                             <asp:DropDownList ID="ddlOCStatus" runat="server"
@@ -152,7 +163,7 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
                         <div class="form-group">
                             <label class="control-label">DO Status:</label>
                             <asp:DropDownList ID="ddlDOStatus" runat="server"
@@ -163,7 +174,7 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-4">
+                    <div class="col-md-3 col-sm-3">
                         <div class="form-group">
                             <label class="control-label">Invoice Status</label>
                             <asp:DropDownList ID="ddlInvoiceStatus" runat="server"
@@ -212,7 +223,7 @@
                             ItemStyle-CssClass="column-one">
                             <ItemTemplate>
                                 <asp:LinkButton ID="btnEdit" runat="server"
-                                    CommandArgument='<%#Eval("JobID")%>' CommandName="Detail"
+                                    CommandArgument='<%#Eval("JobID")%>' 
                                     Text='<%#Eval("JobNumber")%>' data-id='<%#Eval("JobID")%>'></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -353,12 +364,12 @@
 
         $('#dialog-printing').hide();
         addRequestHanlde(InitCheckAll);
-        //addRequestHanlde(InitDetail);
+        addRequestHanlde(InitDetail);
         //addRequestHanlde(InitNew);
 
         InitDialogPrintLink();
         InitCheckAll();
-        //InitDetail();
+        InitDetail();
         //InitNew();
 
         function InitCheckAll() {
@@ -375,15 +386,16 @@
             });
         }
 
-        //function InitDetail() {
-        //    var linkColl = $('div[id$="grvJobList"] a[id$="btnEdit"]');
-        //    if (linkColl.length > 0) {
-        //        linkColl.click(function () {
-        //            parent.openWindow($('a[data-title]:eq(0)'), 'Job', '/Pages/Job.aspx?ID=' + $(this).attr('data-id'));
-        //            return false;
-        //        });
-        //    }
-        //}
+        function InitDetail() {
+            var linkColl = $('div[id$="grvJobList"] a[id$="btnEdit"]');
+            if (linkColl.length > 0) {
+                linkColl.click(function () {
+                    parent.openWindow($('a[data-title]:eq(0)'), 'Job', '/Pages/Job.aspx?ID=' + $(this).attr('data-id'));
+                    return false;
+                });
+            }
+        }      
+              
 
         //function InitNew() {
         //    $('button[id="btnAdd"]').click(function () {

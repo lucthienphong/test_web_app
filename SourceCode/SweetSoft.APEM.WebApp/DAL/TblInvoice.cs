@@ -285,7 +285,7 @@ namespace SweetSoft.APEM.DataAccess
 				TableSchema.TableColumn colvarRemark = new TableSchema.TableColumn(schema);
 				colvarRemark.ColumnName = "Remark";
 				colvarRemark.DataType = DbType.String;
-				colvarRemark.MaxLength = 500;
+				colvarRemark.MaxLength = 2000;
 				colvarRemark.AutoIncrement = false;
 				colvarRemark.IsNullable = true;
 				colvarRemark.IsPrimaryKey = false;

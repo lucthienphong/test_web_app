@@ -94,13 +94,13 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Literal ltrCustomer;
         
         /// <summary>
-        /// ltrOCNumber control.
+        /// ltrJobNumber_Up control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrOCNumber;
+        protected global::System.Web.UI.WebControls.Literal ltrJobNumber_Up;
         
         /// <summary>
         /// ltrOCDate control.

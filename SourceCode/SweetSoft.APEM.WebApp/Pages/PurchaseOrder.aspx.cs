@@ -99,7 +99,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         txtBaseDeliveryDate.Text = bDate.ToString("dd/MM/yyyy");
                         TblSupplier supplier = new SupplierManager().SelectByID(purOrder.SupplierID);
 
-                        ddlSuplier.SelectedValue = supplier.SupplierID.ToString();
+                        ddlSuplier.SelectedValue = supplier != null ? supplier.SupplierID.ToString() : "0";
                         ddlCurrency.SelectedValue = purOrder.CurrencyID.ToString();
                         txtContactName.Text = purOrder.ContactName;
                         txtContactPhone.Text = purOrder.ContactPhone;

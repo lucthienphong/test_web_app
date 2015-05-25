@@ -146,11 +146,10 @@ namespace SweetSoft.APEM.DataAccess
 				colvarSupplierID.AutoIncrement = false;
 				colvarSupplierID.IsNullable = false;
 				colvarSupplierID.IsPrimaryKey = false;
-				colvarSupplierID.IsForeignKey = true;
+				colvarSupplierID.IsForeignKey = false;
 				colvarSupplierID.IsReadOnly = false;
 				colvarSupplierID.DefaultSetting = @"";
-				
-					colvarSupplierID.ForeignKeyTableName = "tblSupplier";
+				colvarSupplierID.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarSupplierID);
 				
 				TableSchema.TableColumn colvarOrderDate = new TableSchema.TableColumn(schema);
@@ -531,17 +530,6 @@ namespace SweetSoft.APEM.DataAccess
 		{
 			get { return SweetSoft.APEM.DataAccess.TblJob.FetchByID(this.JobID); }
 			set { SetColumnValue("JobID", value.JobID); }
-		}
-		
-		
-		/// <summary>
-		/// Returns a TblSupplier ActiveRecord object related to this TblPurchaseOrder
-		/// 
-		/// </summary>
-		public SweetSoft.APEM.DataAccess.TblSupplier TblSupplier
-		{
-			get { return SweetSoft.APEM.DataAccess.TblSupplier.FetchByID(this.SupplierID); }
-			set { SetColumnValue("SupplierID", value.SupplierID); }
 		}
 		
 		

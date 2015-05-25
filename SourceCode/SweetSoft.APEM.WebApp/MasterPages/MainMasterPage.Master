@@ -128,6 +128,12 @@
                                                 Account information</a></li>
                                         <li class="divider"></li>
                                         <li>
+                                            <a href="javascript:void(0);" id="logs" data-title="All Logs"
+                                                data-show="false" class="window" data-href="/Pages/AllLogs.aspx">
+                                                <span class="flaticon-job9"></span>
+                                                All Logs</a></li>
+                                        <li class="divider"></li>
+                                        <li>
                                             <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click">
                                             <span class="flaticon-simple1"></span>
                                             <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.LOGOUT)%>

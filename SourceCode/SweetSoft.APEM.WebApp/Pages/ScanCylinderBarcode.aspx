@@ -43,6 +43,32 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label col-sm-4">
+                                            <span class="pull-left">Department</span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <asp:DropDownList ID="ddlDepartment" runat="server"
+                                                data-style="btn btn-info btn-block"
+                                                data-width="100%" data-live-search="false"
+                                                data-toggle="dropdown"
+                                                CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">
+                                            <span class="pull-left">Machine</span>
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <asp:DropDownList ID="ddlMachine" runat="server"
+                                                data-style="btn btn-info btn-block"
+                                                data-width="100%" data-live-search="false"
+                                                data-toggle="dropdown"
+                                                CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">
                                             <span class="pull-left">Barcode</span>
                                         </label>
                                         <div class="col-sm-8">
@@ -81,6 +107,7 @@
                                 <th>Index</th>
                                 <th>Barcode</th>
                                 <th>Department</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,6 +115,7 @@
                         <td>1</td>
                         <td>000-1223</td>
                         <td>Bangalore</td>
+                        <td>Cylinder In</td>
                     </tr>--%>
                         </tbody>
                     </table>
@@ -151,22 +179,22 @@
                     var isScan = false;
                     if (data.indexOf('{') === 0) {
                         try {
-                            console.log(data);
+                            //console.log(data);
                             obj = JSON.parse(data);
                         }
                         catch (ex) {
-                            console.log('not, ' + ex);
+                            //console.log('not, ' + ex);
                         }
                         if (typeof obj !== 'undefined')
                             isScan = true;
                     }
                     else if (data.indexOf('[') >= 0) {
                         try {
-                            console.log(data);
+                            //console.log(data);
                             obj = eval(data);
                         }
                         catch (ex) {
-                            console.log('not, ' + ex);
+                            //console.log('not, ' + ex);
                         }
                     }
 
@@ -208,6 +236,10 @@
                                 .prop('disabled', false)
                                 .selectpicker('refresh');
 
+                            $('select[id$="ddlMachine"]')
+                              .val('').selectpicker('refresh');
+                            $('select[id$="ddlDepartment"]')
+                          .val('').selectpicker('refresh');
                         }
                         else
                             $('#txtBarCode').val('').focus();
@@ -238,7 +270,7 @@
                     }
                 }
                 else {
-                    parent.SweetSoftScript.mainFunction.OpenModalWindow(undefined, parent.SweetSoftScript.ResourceText.ErrorProcess, 'alert');
+                    parent.SweetSoftScript.mainFunction.OpenSimpleModalWindow(undefined, parent.SweetSoftScript.ResourceText.ErrorProcess, 'alert');
                 }
             },
             getAllBarcode: function () {
@@ -299,7 +331,9 @@
                             SweetSoftScript.jobbarcode.showLoading(function () {
                                 parent.SweetSoftScript.commonFunction.ajaxRequest('/barcode/cylinder.aspx',
                                     'code=' + val + '&num=' + numberItem +
-                                    '&indx=' + (indx && indx.length > 0 ? indx : ''),
+                                    '&indx=' + (indx && indx.length > 0 ? indx : '') +
+                                    '&idmachine=' + $('select[id$="ddlMachine"]').selectpicker('val') +
+                                    '&iddept=' + $('select[id$="ddlDepartment"]').selectpicker('val'),
                                     function (data) {
                                         SweetSoftScript.jobbarcode.hideLoading(function () {
                                             SweetSoftScript.jobbarcode.processData(data, indx);
@@ -332,6 +366,11 @@
                             .val('')
                             .prop('disabled', false)
                             .selectpicker('refresh');
+
+                        $('select[id$="ddlMachine"]').children().remove();
+                        $('select[id$="ddlMachine"]').val('').selectpicker('refresh');
+                        $('select[id$="ddlDepartment"]')
+                          .val('').selectpicker('refresh');
 
                         var tb = $('#tbllist');
                         var divlist = tb.closest('.col-md-5');
@@ -376,6 +415,43 @@
                             divlist.hide();
                         tb.find('tbody').empty();
                     }).trigger('change');
+                }
+
+                var ddlMachine = $('select[id$="ddlMachine"]');
+                if (ddlMachine.length > 0) {
+                    ddlMachine.change(function () {
+                        var val = $(this).val();
+                        if (val && val.length > 0)
+                            $('#txtBarCode').focus();
+                    });
+                }
+
+                var ddlDepartment = $('select[id$="ddlDepartment"]');
+                if (ddlDepartment.length > 0) {
+                    ddlDepartment.change(function () {
+                        var val = $(this).val();
+                        if (val && val.length > 0) {
+                            parent.SweetSoftScript.commonFunction.ajaxRequest('/barcode/cylinder.aspx',
+                                  'iddept=' + val, function (data) {
+                                      if (data) {
+                                          var ddlMachine = $('select[id$="ddlMachine"]');
+                                          if (ddlMachine.length > 0) {
+                                              ddlMachine.empty();
+                                              $.each(data, function (i, o) {
+                                                  ddlMachine.append('<option value="' + o.id + '">' + o.name + '</option>');
+                                              });
+                                              ddlMachine.val('').selectpicker('refresh');
+                                          }
+                                      }
+                                      else {
+                                          var ddlMachine = $('select[id$="ddlMachine"]');
+                                          ddlMachine.children().remove();
+                                          ddlMachine.val('').selectpicker('refresh');
+                                      }
+                                      //$('#txtBarCode').focus();
+                                  });
+                        }
+                    });
                 }
             }
         };

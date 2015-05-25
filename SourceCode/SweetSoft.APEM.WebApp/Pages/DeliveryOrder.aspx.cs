@@ -89,10 +89,11 @@ namespace SweetSoft.APEM.WebApp.Pages
                     TblOrderConfirmation od = OrderConfirmationManager.SelectByID(JobID);
                     if (od != null)
                     {
-                        ddlOD.Items.Clear();
-                        ddlOD.Items.Add(new ListItem(od.OCNumber, od.JobID.ToString()));
-                        ddlOD.Enabled = false;
-                        ddlOD_SelectedIndexChanged(null, null);
+
+                        ddlJob.Items.Clear();
+                        ddlJob.Items.Add(new ListItem(od.TblJob.JobNumber, od.JobID.ToString()));
+                        ddlJob.Enabled = false;
+                        ddlJob_SelectedIndexChanged(null, null);
                         btnDelete.Visible = true;
                         int jobID = od.JobID;
                         txtName.Enabled = false;
@@ -169,7 +170,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 {
                     lblOrderNumber.Text = DeliveryOrderManager.CreateDONumber();
                     txtOrderDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
-                    LoadOrderConfirmationByCustomer(0);
+                    LoadJobByCustomer(0);
                     LoadContactPerson("0");
                 }
             }
@@ -247,9 +248,9 @@ namespace SweetSoft.APEM.WebApp.Pages
                     AddErrorPrompt(txtOrderDate.ClientID, ResourceTextManager.GetApplicationText(ResourceText.VALID_REQUIRE));
                 }
 
-                if (string.IsNullOrEmpty(ddlOD.SelectedValue))
+                if (string.IsNullOrEmpty(ddlJob.SelectedValue))
                 {
-                    AddErrorPrompt(ddlOD.ClientID, ResourceTextManager.GetApplicationText(ResourceText.VALID_REQUIRE));
+                    AddErrorPrompt(ddlJob.ClientID, ResourceTextManager.GetApplicationText(ResourceText.VALID_REQUIRE));
                 }
 
                 if (string.IsNullOrEmpty(ddlContact.SelectedValue))
@@ -259,8 +260,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                 else
                     int.TryParse(ddlContact.SelectedValue, out supID);
 
-                if(ddlOD.SelectedValue == "0")
-                    AddErrorPrompt(ddlOD.ClientID, ResourceTextManager.GetApplicationText(ResourceText.VALID_REQUIRE));
+                if(ddlJob.SelectedValue == "0")
+                    AddErrorPrompt(ddlJob.ClientID, ResourceTextManager.GetApplicationText(ResourceText.VALID_REQUIRE));
 
                 if (!IsValid)
                 {
@@ -275,7 +276,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     return;
                 }
 
-                TblDeliveryOrder devO = DeliveryOrderManager.SelectDeliveryOrderByJobID(int.Parse(ddlOD.SelectedValue));//Lấy thông tin DO theo JobID
+                TblDeliveryOrder devO = DeliveryOrderManager.SelectDeliveryOrderByJobID(int.Parse(ddlJob.SelectedValue));//Lấy thông tin DO theo JobID
                 if (devO != null)//Cập nhật DO
                 {
                     devO.CustomerPO1 = txtPO1.Text.Trim();
@@ -322,7 +323,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 else//Thêm DO
                 {
                     devO = new TblDeliveryOrder();
-                    devO.JobID = int.Parse(ddlOD.SelectedValue);
+                    devO.JobID = int.Parse(ddlJob.SelectedValue);
                     devO.DONumber = DeliveryOrderManager.CreateDONumber();
 
                     devO.CustomerPO1 = txtPO1.Text.Trim();
@@ -336,6 +337,17 @@ namespace SweetSoft.APEM.WebApp.Pages
                     devO.NetWeight = txtNetWeight.Text;
                     int PackingID = 0; int.TryParse(ddlPacking.SelectedValue, out PackingID);
                     devO.PackingID = PackingID == 0 ? (int?)null : PackingID;//int.Parse(ddlPacking.SelectedValue);
+
+                    // Trunglc Add - 11-05-2015
+
+                    TblJob objJob = JobManager.SelectByID(int.Parse(ddlJob.SelectedValue));
+                    if (objJob != null)
+                    {
+                        objJob.Status = Enum.GetName(typeof(JobStatus), JobStatus.Delivered);
+                        JobManager.Update(objJob);
+                    }
+
+                    // End
 
                     if (DeliveryOrderManager.InsertDeliveryOrder(devO) != null)
                     {
@@ -530,9 +542,9 @@ namespace SweetSoft.APEM.WebApp.Pages
             if (cust != null)
             {
                 LoadContactPerson(cust.CustomerID.ToString());
-                //Load order confirmation
-                LoadOrderConfirmationByCustomer(cust.CustomerID);
-                ddlOD_SelectedIndexChanged(null, null);
+                //Load list job by Customer ID
+                LoadJobByCustomer(cust.CustomerID);
+                ddlJob_SelectedIndexChanged(null, null);
             }
         }
 
@@ -583,9 +595,9 @@ namespace SweetSoft.APEM.WebApp.Pages
             OpenMessageBox(msg, result, false, false);
         }
 
-        protected void ddlOD_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ddlJob_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string JobID = ddlOD.SelectedValue;
+            string JobID = ddlJob.SelectedValue;
 
             int b = -1;
             bool a = int.TryParse(JobID, out b);
@@ -606,6 +618,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     {
                         txtPO1.Text = od.CustomerPO1;
                         txtPO2.Text = od.CustomerPO2;
+                        txtRemark.Text = od.Remark;
                     }
                 }
                 TblDeliveryOrder d = DeliveryOrderManager.SelectDeliveryOrderByJobID(b);
@@ -613,11 +626,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                 {
                     txtOrderDate.Text = d.OrderDate.ToString("dd/MM/yyyy");
                     ddlContact.SelectedValue = d.ContactPersonID.ToString();
-                    txtRemark.Text = !string.IsNullOrEmpty(d.OtherItem) ? d.OtherItem : string.Empty;
-                }
-                else
-                {
-                    txtRemark.Text = string.Empty;
                 }
                 BindCylinders(b);
                 upnlCylinder.Update();
@@ -851,15 +859,16 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
         }
 
-        private void LoadOrderConfirmationByCustomer(int p)
+        private void LoadJobByCustomer(int p_CustomerID)
         {
-            List<TblOrderConfirmation> oDList = OrderConfirmationManager.SelectOrderConfirmationByCustomerID(p);
-            if (oDList != null)
+            List<TblJob> lstJob = JobManager.SelectJobHasCreatedOCByCustomer(p_CustomerID);
+
+            if (lstJob != null)
             {
-                ddlOD.DataSource = oDList;
-                ddlOD.DataTextField = "OCNumber";
-                ddlOD.DataValueField = "JobID";
-                ddlOD.DataBind();
+                ddlJob.DataSource = lstJob;
+                ddlJob.DataTextField = "JobNumber";
+                ddlJob.DataValueField = "JobID";
+                ddlJob.DataBind();
             }
         }
 

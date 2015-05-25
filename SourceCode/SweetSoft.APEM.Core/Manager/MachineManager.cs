@@ -23,6 +23,16 @@ namespace SweetSoft.APEM.Core.Manager
             return new TblMachineController().FetchAll();
         }
 
+        public static TblMachineCollection SelectAllByDeparment(int DepartmentID)
+        {
+            if (DepartmentID > 0)
+                return new SubSonic.Select().From(TblMachine.Schema)
+                    .Where(TblMachine.DepartmentIDColumn).IsEqualTo(DepartmentID)
+                    .ExecuteAsCollection<TblMachineCollection>();
+            else
+                return null;
+        }
+
         public static TblMachine SelectMachineByID(int machineID)
         {
             return new TblMachineController().FetchByID(machineID).FirstOrDefault();

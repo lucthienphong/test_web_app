@@ -103,15 +103,6 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Literal ltrCurr;
         
         /// <summary>
-        /// ltrDeliveryTerm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrDeliveryTerm;
-        
-        /// <summary>
         /// ltrPaymentTerms control.
         /// </summary>
         /// <remarks>
@@ -128,6 +119,24 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptDebitDetail;
+        
+        /// <summary>
+        /// lblSubTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubTotal;
+        
+        /// <summary>
+        /// lblTax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTax;
         
         /// <summary>
         /// lblAllTotal control.

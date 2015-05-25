@@ -85,6 +85,15 @@ namespace SweetSoft.APEM.WebApp.Pages {
         protected global::System.Web.UI.WebControls.LinkButton btnUnlock;
         
         /// <summary>
+        /// btnCreatePO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCreatePO;
+        
+        /// <summary>
         /// btnCancel control.
         /// </summary>
         /// <remarks>

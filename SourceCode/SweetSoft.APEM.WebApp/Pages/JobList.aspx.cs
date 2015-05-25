@@ -15,6 +15,8 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 
 namespace SweetSoft.APEM.WebApp.Pages
@@ -61,6 +63,24 @@ namespace SweetSoft.APEM.WebApp.Pages
             ddlSaleRep.DataBind();
         }
 
+        private void BindJobStatusDDL()
+        {
+            string[] strJobStatus = Enum.GetNames(typeof(JobStatus));
+            Dictionary<string, string> lst = new Dictionary<string, string>();
+
+            lst.Add("0", "All Job");
+
+            for (int i = 0; i < strJobStatus.Count(); i++)
+            {
+                lst.Add(strJobStatus[i], strJobStatus[i]);
+            }
+
+            ddlJobStatus.DataSource = lst;
+            ddlJobStatus.DataTextField = "Value";
+            ddlJobStatus.DataValueField = "Key";
+            ddlJobStatus.DataBind();
+        }
+
         private void BindOCStatusDDL()
         {
             List<JobOCStatus> list = ReportManager.SelectJobOCStatusForDDL();
@@ -91,6 +111,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         private void BindDDL()
         {
             BindSaleRepDDL();
+            BindJobStatusDDL();
             BindOCStatusDDL();
             BindDOStatusDDL();
             BindInvoiceStatusDDL();
@@ -129,7 +150,16 @@ namespace SweetSoft.APEM.WebApp.Pages
                 int JobDOStatusID = int.Parse(ddlDOStatus.SelectedValue);
                 int JobInvoiceStatusID = int.Parse(ddlInvoiceStatus.SelectedValue);
 
-                DataTable dt = JobManager.SelectAll(Customer, Barcode, Number, Info, CusCylID, SaleDepID, FromDate, ToDate, JobOCStatusID, JobDOStatusID, JobInvoiceStatusID, false, grvJobList.PageIndex, grvJobList.PageSize, SortColumn, SortType);
+                string StatusConditions = string.Empty;
+                if (ddlJobStatus.SelectedIndex == 0)
+                {
+                    StatusConditions = string.Join(",", Enum.GetNames(typeof(JobStatus)));
+                }
+                else {
+                    StatusConditions = ddlJobStatus.SelectedValue;
+                }
+
+                DataTable dt = JobManager.SelectAll(Customer, Barcode, Number, Info, CusCylID, SaleDepID, FromDate, ToDate, JobOCStatusID, JobDOStatusID, JobInvoiceStatusID, false, grvJobList.PageIndex, grvJobList.PageSize, SortColumn, SortType, StatusConditions);
                 if (dt.Rows.Count == 0 && CurrentPageIndex != 0)
                 {
                     CurrentPageIndex -= 1;
@@ -217,13 +247,24 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
 
             bool HasDataToDelete = false;
+            string lstJobSelected = string.Empty;
+
             for (int i = 0; i < grvJobList.Rows.Count; i++)
             {
                 CheckBox chkIsDelete = (CheckBox)grvJobList.Rows[i].FindControl("chkIsDelete");
                 if (chkIsDelete.Checked)//Nếu tồn tại dòng dữ liệu được check thì hiện thông báo xóa
                 {
+                    if (lstJobSelected.Length > 0)
+                    {
+                        lstJobSelected += ", ";
+                    }
+
+                    LinkButton lbJobNumber = (LinkButton)grvJobList.Rows[i].FindControl("btnEdit");
+                    Label lblJobRev = (Label)grvJobList.Rows[i].FindControl("lbRevNumber");
+
+                    lstJobSelected += lbJobNumber.Text + "R" + lblJobRev.Text;
+                    
                     HasDataToDelete = true;
-                    break;
                 }
             }
             if (HasDataToDelete)
@@ -232,7 +273,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                 ModalConfirmResult result = new ModalConfirmResult();
                 result.Value = "Job_Delete";
                 CurrentConfirmResult = result;
-                MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_CONFIRM_TITLE), "Do you want to delete seleted rows?", MSGButton.DeleteCancel, MSGIcon.Error);
+
+                string s_TemplateMessage = "Do you want to delete selected Job: " + lstJobSelected;
+
+                MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_CONFIRM_TITLE), s_TemplateMessage, MSGButton.DeleteCancel, MSGIcon.Error);
                 OpenMessageBox(msg, result, false, false);
             }
             else
@@ -270,19 +314,39 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     idList.Add(ID);
                                 }
                             }
+
+                            #region Trunglc Add to save log - 20-05-2015
+
+                            List<JsonData> lstData = new List<JsonData>();
+                            foreach (int id in idList)
+                            {
+                                TblJob obj = JobManager.SelectByID(id);
+                                if (obj != null)
+                                {
+                                    lstData.Add(new JsonData() { Title = "Job Number", Data = obj.JobNumber });
+                                    lstData.Add(new JsonData() { Title = "Job Rev", Data = obj.RevNumber.ToString() });
+                                }
+                            }
+
+                            #endregion
+
                             string DataCannotDelete = removeSelectedRows(idList);
                             BindData();
                             if (string.IsNullOrEmpty(DataCannotDelete))
                             {
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                                 OpenMessageBox(msg, null, false, false);
+                                LoggingActions("Job",
+                                           LogsAction.Objects.Action.DELETE,
+                                           LogsAction.Objects.Status.SUCCESS,
+                                           JsonConvert.SerializeObject(lstData));
                             }
                             else
                             {
                                 string message = string.Format("{0}:<br/>{1}", "Can not delete following data because data is begin used", DataCannotDelete);
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), message, MSGButton.OK, MSGIcon.Warning);
                                 OpenMessageBox(msg, null, false, false);
-                            }
+                            }                            
                         }
                     }
                     else

@@ -167,9 +167,14 @@
                                                 </asp:LinkButton>
                                             </li>
                                             <li>
-                                                <asp:LinkButton ID="btnGeneralSalesReport" runat="server" Text="General sales report" 
+                                                <asp:LinkButton ID="btnGeneralSalesReport" runat="server" Text="Sales Report - General" 
                                                     OnClick="btnGeneralSalesReport_Click">
                                             
+                                                </asp:LinkButton>
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton ID="btnByCustomerII" runat="server" Text="Sales Report - By Customer II"
+                                                    OnClick="btnByCustomerII_Click">
                                                 </asp:LinkButton>
                                             </li>
                                         </ul>
@@ -182,6 +187,7 @@
                                     <asp:PostBackTrigger ControlID="tblBySale" />
                                     <asp:PostBackTrigger ControlID="btnByBrandOwner" />
                                     <asp:PostBackTrigger ControlID="btnGeneralSalesReport" />
+                                    <asp:PostBackTrigger ControlID="btnByCustomerII" />
                                 </Triggers>
                             </asp:UpdatePanel>
 

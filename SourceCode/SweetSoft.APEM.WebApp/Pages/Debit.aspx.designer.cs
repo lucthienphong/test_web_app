@@ -112,13 +112,22 @@ namespace SweetSoft.APEM.WebApp.Pages {
         protected global::System.Web.UI.WebControls.TextBox txtTermOfPayment;
         
         /// <summary>
-        /// txtTermOfDelivery control.
+        /// ddlTax control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTermOfDelivery;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTax;
+        
+        /// <summary>
+        /// txtTaxRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SweetSoftCMS.ExtraControls.Controls.ExtraInputMask txtTaxRate;
         
         /// <summary>
         /// txtRemark control.

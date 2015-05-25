@@ -151,25 +151,25 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 quantityTotal += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Quantity"));
                 priceTotal += Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Total"));
             }
-            else
-                if (e.Row.RowType == DataControlRowType.Footer)
-                {
-                    e.Row.Cells[0].ColumnSpan = 6;
-                    e.Row.Cells[0].Text = string.Format("<strong>{0}</strong>", "Total");
-                    e.Row.Cells[1].Visible = false;
-                    e.Row.Cells[2].Visible = false;
-                    e.Row.Cells[3].Visible = false;
+            //else
+            //    if (e.Row.RowType == DataControlRowType.Footer)
+            //    {
+            //        e.Row.Cells[0].ColumnSpan = 6;
+            //        e.Row.Cells[0].Text = string.Format("<strong>{0}</strong>", "Total");
+            //        e.Row.Cells[1].Visible = false;
+            //        e.Row.Cells[2].Visible = false;
+            //        e.Row.Cells[3].Visible = false;
 
-                    e.Row.Cells[4].Text = quantityTotal.ToString("d");
-                    e.Row.Cells[6].Text = priceTotal.ToString("N2");
-                    e.Row.Cells[7].Visible = false;
-                    e.Row.Cells[8].Visible = false;                    
+            //        e.Row.Cells[4].Text = quantityTotal.ToString("d");
+            //        e.Row.Cells[6].Text = priceTotal.ToString("N2");
+            //        e.Row.Cells[7].Visible = false;
+            //        e.Row.Cells[8].Visible = false;                    
                     
-                    //e.Row.Cells[4].Visible = false;
-                    //e.Row.Cells[5].Visible = false;
-                    // for the Footer, display the running totals
-                    //e.Row.Cells[6].Text = quantityTotal.ToString("d");
-                }
+            //        //e.Row.Cells[4].Visible = false;
+            //        //e.Row.Cells[5].Visible = false;
+            //        // for the Footer, display the running totals
+            //        //e.Row.Cells[6].Text = quantityTotal.ToString("d");
+            //    }
         }
 
         public int quantityTotal = 0;

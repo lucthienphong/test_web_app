@@ -24,15 +24,18 @@
     <div class="row row_content">
         <div class="col-xs-12">
             <div class="table-responsive">
-                <asp:GridView runat="server" DataKeyNames="ID"
-                     ID="gvMachine" AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-checkable dataTable">
+                <asp:GridView runat="server"
+                     ID="gvMachine" AutoGenerateColumns="false" 
+                    AllowSorting="true"
+                    OnSorting="gvMachine_Sorting"
+                    CssClass="table table-striped table-bordered table-checkable dataTable">
                     <Columns>
-                        <asp:TemplateField HeaderText="Code">
+                        <asp:TemplateField HeaderText="Code" SortExpression="1" HeaderStyle-CssClass="sorting">
                             <ItemTemplate>
                                 <asp:Label runat="server" Text='<%#Eval("Code") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Machine name">
+                        <asp:TemplateField HeaderText="Machine name" SortExpression="2" HeaderStyle-CssClass="sorting">
                             <ItemTemplate>
                                 <a href='MachineDetail.aspx?ID=<%# Eval("ID")  %>'>
                                     <%#Eval("Name") %>
@@ -44,7 +47,7 @@
                                 <asp:Label runat="server" Text='<%#Eval("Performance") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Department">
+                        <asp:TemplateField HeaderText="Department" SortExpression="4" HeaderStyle-CssClass="sorting">
                             <ItemTemplate>
                                 <asp:Label runat="server" Text='<%#Eval("Department") %>'></asp:Label>
                             </ItemTemplate>

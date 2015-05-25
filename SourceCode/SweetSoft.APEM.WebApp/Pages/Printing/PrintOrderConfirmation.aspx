@@ -135,7 +135,7 @@
                             <label class="control-label" style="font-weight: 300">Number / Date:</label>
                             <p class="form-control-static">
                                 <strong>
-                                    <asp:Literal ID="ltrOCNumber" Text="" runat="server" EnableViewState="false" /></strong>
+                                    <asp:Literal ID="ltrJobNumber_Up" Text="" runat="server" EnableViewState="false" /></strong>
                                 /
                                 <asp:Literal ID="ltrOCDate" runat="server" EnableViewState="false" />
                             </p>

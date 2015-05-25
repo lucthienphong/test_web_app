@@ -222,7 +222,7 @@ namespace SweetSoft.APEM.DataAccess
 				colvarColor.DataType = DbType.String;
 				colvarColor.MaxLength = 50;
 				colvarColor.AutoIncrement = false;
-				colvarColor.IsNullable = false;
+				colvarColor.IsNullable = true;
 				colvarColor.IsPrimaryKey = false;
 				colvarColor.IsForeignKey = false;
 				colvarColor.IsReadOnly = false;

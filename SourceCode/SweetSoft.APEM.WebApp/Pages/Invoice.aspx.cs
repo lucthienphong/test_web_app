@@ -452,6 +452,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                 txtJobName.Text = j.JobName;
                 txtDesign.Text = j.Design;
                 txtJobNumber.Text = j.JobNumber + "(Rev " + j.RevNumber + ")";
+                TblOrderConfirmation objOC = OrderConfirmationManager.SelectByID(jobID);
+
+                if (objOC != null)
+                {
+                    txtRemark.Text = objOC.Remark;
+                }
             }
             else
             {

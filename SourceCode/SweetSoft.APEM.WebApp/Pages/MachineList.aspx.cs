@@ -51,7 +51,8 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                     dt.Rows.Add(item.Id, item.Code, item.Name, item.Performance, dptmentname, item.IsObsolete);
                 }
-                dt.DefaultView.Sort = "Department asc";
+                //dt.DefaultView.Sort = "Department ASC";
+                dt.DefaultView.Sort = dt.Columns[int.Parse(SortColumn)] == null ? "Department ASC" : (dt.Columns[int.Parse(SortColumn)].ColumnName + " " + (SortType == "A" ? "ASC" : "DESC"));
                 gvMachine.DataSource = dt;
                 gvMachine.DataBind();
             }
@@ -142,6 +143,26 @@ namespace SweetSoft.APEM.WebApp.Pages
             {
                 BindData();
             }
+        }
+
+        protected void gvMachine_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            if (SortType == "A")
+            {
+                SortType = "D";
+            }
+            else
+            {
+                SortType = "A";
+            }
+
+            int oldColumnIndex = SortColumn == null ? 0 : int.Parse(SortColumn);
+            SortColumn = e.SortExpression;
+            int columnIndex = int.Parse(e.SortExpression);
+            gvMachine.Columns[columnIndex].HeaderStyle.CssClass = SortType == "A" ? "sorting_desc" : "sorting_asc";
+            if (oldColumnIndex != columnIndex)
+                gvMachine.Columns[oldColumnIndex].HeaderStyle.CssClass = "sorting";
+            BindData();
         }
     }
 }

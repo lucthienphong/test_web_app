@@ -112,13 +112,13 @@ namespace SweetSoft.APEM.WebApp.Pages {
         protected global::System.Web.UI.WebControls.LinkButton btnLoadContacts;
         
         /// <summary>
-        /// ddlOD control.
+        /// ddlJob control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlOD;
+        protected global::System.Web.UI.WebControls.DropDownList ddlJob;
         
         /// <summary>
         /// ddlContact control.

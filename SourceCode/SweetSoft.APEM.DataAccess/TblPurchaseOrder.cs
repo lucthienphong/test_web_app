@@ -146,11 +146,10 @@ namespace SweetSoft.APEM.DataAccess
 				colvarSupplierID.AutoIncrement = false;
 				colvarSupplierID.IsNullable = false;
 				colvarSupplierID.IsPrimaryKey = false;
-				colvarSupplierID.IsForeignKey = true;
+				colvarSupplierID.IsForeignKey = false;
 				colvarSupplierID.IsReadOnly = false;
 				colvarSupplierID.DefaultSetting = @"";
-				
-					colvarSupplierID.ForeignKeyTableName = "tblSupplier";
+				colvarSupplierID.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarSupplierID);
 				
 				TableSchema.TableColumn colvarOrderDate = new TableSchema.TableColumn(schema);
@@ -519,37 +518,6 @@ namespace SweetSoft.APEM.DataAccess
 		#endregion
 		
 		
-		#region PrimaryKey Methods		
-		
-        protected override void SetPrimaryKey(object oValue)
-        {
-            base.SetPrimaryKey(oValue);
-            
-            SetPKValues();
-        }
-        
-		
-		private SweetSoft.APEM.DataAccess.TblPurchaseOrderCylinderCollection colTblPurchaseOrderCylinderRecords;
-		public SweetSoft.APEM.DataAccess.TblPurchaseOrderCylinderCollection TblPurchaseOrderCylinderRecords()
-		{
-			if(colTblPurchaseOrderCylinderRecords == null)
-			{
-				colTblPurchaseOrderCylinderRecords = new SweetSoft.APEM.DataAccess.TblPurchaseOrderCylinderCollection().Where(TblPurchaseOrderCylinder.Columns.PurchaseOrderID, PurchaseOrderID).Load();
-				colTblPurchaseOrderCylinderRecords.ListChanged += new ListChangedEventHandler(colTblPurchaseOrderCylinderRecords_ListChanged);
-			}
-			return colTblPurchaseOrderCylinderRecords;
-		}
-				
-		void colTblPurchaseOrderCylinderRecords_ListChanged(object sender, ListChangedEventArgs e)
-		{
-            if (e.ListChangedType == ListChangedType.ItemAdded)
-            {
-		        // Set foreign key value
-		        colTblPurchaseOrderCylinderRecords[e.NewIndex].PurchaseOrderID = PurchaseOrderID;
-            }
-		}
-		#endregion
-		
 			
 		
 		#region ForeignKey Properties
@@ -565,95 +533,11 @@ namespace SweetSoft.APEM.DataAccess
 		}
 		
 		
-		/// <summary>
-		/// Returns a TblSupplier ActiveRecord object related to this TblPurchaseOrder
-		/// 
-		/// </summary>
-		public SweetSoft.APEM.DataAccess.TblSupplier TblSupplier
-		{
-			get { return SweetSoft.APEM.DataAccess.TblSupplier.FetchByID(this.SupplierID); }
-			set { SetColumnValue("SupplierID", value.SupplierID); }
-		}
-		
-		
 		#endregion
 		
 		
 		
-		#region Many To Many Helpers
-		
-		 
-		public SweetSoft.APEM.DataAccess.TblCylinderCollection GetTblCylinderCollection() { return TblPurchaseOrder.GetTblCylinderCollection(this.PurchaseOrderID); }
-		public static SweetSoft.APEM.DataAccess.TblCylinderCollection GetTblCylinderCollection(int varPurchaseOrderID)
-		{
-		    SubSonic.QueryCommand cmd = new SubSonic.QueryCommand("SELECT * FROM [dbo].[tblCylinder] INNER JOIN [tblPurchaseOrder_Cylinder] ON [tblCylinder].[CylinderID] = [tblPurchaseOrder_Cylinder].[CylinderID] WHERE [tblPurchaseOrder_Cylinder].[PurchaseOrderID] = @PurchaseOrderID", TblPurchaseOrder.Schema.Provider.Name);
-			cmd.AddParameter("@PurchaseOrderID", varPurchaseOrderID, DbType.Int32);
-			IDataReader rdr = SubSonic.DataService.GetReader(cmd);
-			TblCylinderCollection coll = new TblCylinderCollection();
-			coll.LoadAndCloseReader(rdr);
-			return coll;
-		}
-		
-		public static void SaveTblCylinderMap(int varPurchaseOrderID, TblCylinderCollection items)
-		{
-			QueryCommandCollection coll = new SubSonic.QueryCommandCollection();
-			//delete out the existing
-			QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblPurchaseOrder_Cylinder] WHERE [tblPurchaseOrder_Cylinder].[PurchaseOrderID] = @PurchaseOrderID", TblPurchaseOrder.Schema.Provider.Name);
-			cmdDel.AddParameter("@PurchaseOrderID", varPurchaseOrderID, DbType.Int32);
-			coll.Add(cmdDel);
-			DataService.ExecuteTransaction(coll);
-			foreach (TblCylinder item in items)
-			{
-				TblPurchaseOrderCylinder varTblPurchaseOrderCylinder = new TblPurchaseOrderCylinder();
-				varTblPurchaseOrderCylinder.SetColumnValue("PurchaseOrderID", varPurchaseOrderID);
-				varTblPurchaseOrderCylinder.SetColumnValue("CylinderID", item.GetPrimaryKeyValue());
-				varTblPurchaseOrderCylinder.Save();
-			}
-		}
-		public static void SaveTblCylinderMap(int varPurchaseOrderID, System.Web.UI.WebControls.ListItemCollection itemList) 
-		{
-			QueryCommandCollection coll = new SubSonic.QueryCommandCollection();
-			//delete out the existing
-			 QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblPurchaseOrder_Cylinder] WHERE [tblPurchaseOrder_Cylinder].[PurchaseOrderID] = @PurchaseOrderID", TblPurchaseOrder.Schema.Provider.Name);
-			cmdDel.AddParameter("@PurchaseOrderID", varPurchaseOrderID, DbType.Int32);
-			coll.Add(cmdDel);
-			DataService.ExecuteTransaction(coll);
-			foreach (System.Web.UI.WebControls.ListItem l in itemList) 
-			{
-				if (l.Selected) 
-				{
-					TblPurchaseOrderCylinder varTblPurchaseOrderCylinder = new TblPurchaseOrderCylinder();
-					varTblPurchaseOrderCylinder.SetColumnValue("PurchaseOrderID", varPurchaseOrderID);
-					varTblPurchaseOrderCylinder.SetColumnValue("CylinderID", l.Value);
-					varTblPurchaseOrderCylinder.Save();
-				}
-			}
-		}
-		public static void SaveTblCylinderMap(int varPurchaseOrderID , int[] itemList) 
-		{
-			QueryCommandCollection coll = new SubSonic.QueryCommandCollection();
-			//delete out the existing
-			 QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblPurchaseOrder_Cylinder] WHERE [tblPurchaseOrder_Cylinder].[PurchaseOrderID] = @PurchaseOrderID", TblPurchaseOrder.Schema.Provider.Name);
-			cmdDel.AddParameter("@PurchaseOrderID", varPurchaseOrderID, DbType.Int32);
-			coll.Add(cmdDel);
-			DataService.ExecuteTransaction(coll);
-			foreach (int item in itemList) 
-			{
-				TblPurchaseOrderCylinder varTblPurchaseOrderCylinder = new TblPurchaseOrderCylinder();
-				varTblPurchaseOrderCylinder.SetColumnValue("PurchaseOrderID", varPurchaseOrderID);
-				varTblPurchaseOrderCylinder.SetColumnValue("CylinderID", item);
-				varTblPurchaseOrderCylinder.Save();
-			}
-		}
-		
-		public static void DeleteTblCylinderMap(int varPurchaseOrderID) 
-		{
-			QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblPurchaseOrder_Cylinder] WHERE [tblPurchaseOrder_Cylinder].[PurchaseOrderID] = @PurchaseOrderID", TblPurchaseOrder.Schema.Provider.Name);
-			cmdDel.AddParameter("@PurchaseOrderID", varPurchaseOrderID, DbType.Int32);
-			DataService.ExecuteQuery(cmdDel);
-		}
-		
-		#endregion
+		//no ManyToMany tables defined (0)
 		
         
         
@@ -918,32 +802,10 @@ namespace SweetSoft.APEM.DataAccess
 		
 		#region Update PK Collections
 		
-        public void SetPKValues()
-        {
-                if (colTblPurchaseOrderCylinderRecords != null)
-                {
-                    foreach (SweetSoft.APEM.DataAccess.TblPurchaseOrderCylinder item in colTblPurchaseOrderCylinderRecords)
-                    {
-                        if (item.PurchaseOrderID != PurchaseOrderID)
-                        {
-                            item.PurchaseOrderID = PurchaseOrderID;
-                        }
-                    }
-               }
-		}
         #endregion
     
         #region Deep Save
 		
-        public void DeepSave()
-        {
-            Save();
-            
-                if (colTblPurchaseOrderCylinderRecords != null)
-                {
-                    colTblPurchaseOrderCylinderRecords.SaveAll();
-               }
-		}
         #endregion
 	}
 }

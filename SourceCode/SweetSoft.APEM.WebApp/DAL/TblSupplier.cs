@@ -286,37 +286,6 @@ namespace SweetSoft.APEM.DataAccess
 		#endregion
 		
 		
-		#region PrimaryKey Methods		
-		
-        protected override void SetPrimaryKey(object oValue)
-        {
-            base.SetPrimaryKey(oValue);
-            
-            SetPKValues();
-        }
-        
-		
-		private SweetSoft.APEM.DataAccess.TblPurchaseOrderCollection colTblPurchaseOrderRecords;
-		public SweetSoft.APEM.DataAccess.TblPurchaseOrderCollection TblPurchaseOrderRecords()
-		{
-			if(colTblPurchaseOrderRecords == null)
-			{
-				colTblPurchaseOrderRecords = new SweetSoft.APEM.DataAccess.TblPurchaseOrderCollection().Where(TblPurchaseOrder.Columns.SupplierID, SupplierID).Load();
-				colTblPurchaseOrderRecords.ListChanged += new ListChangedEventHandler(colTblPurchaseOrderRecords_ListChanged);
-			}
-			return colTblPurchaseOrderRecords;
-		}
-				
-		void colTblPurchaseOrderRecords_ListChanged(object sender, ListChangedEventArgs e)
-		{
-            if (e.ListChangedType == ListChangedType.ItemAdded)
-            {
-		        // Set foreign key value
-		        colTblPurchaseOrderRecords[e.NewIndex].SupplierID = SupplierID;
-            }
-		}
-		#endregion
-		
 			
 		
 		//no foreign key tables defined (0)
@@ -456,32 +425,10 @@ namespace SweetSoft.APEM.DataAccess
 		
 		#region Update PK Collections
 		
-        public void SetPKValues()
-        {
-                if (colTblPurchaseOrderRecords != null)
-                {
-                    foreach (SweetSoft.APEM.DataAccess.TblPurchaseOrder item in colTblPurchaseOrderRecords)
-                    {
-                        if (item.SupplierID != SupplierID)
-                        {
-                            item.SupplierID = SupplierID;
-                        }
-                    }
-               }
-		}
         #endregion
     
         #region Deep Save
 		
-        public void DeepSave()
-        {
-            Save();
-            
-                if (colTblPurchaseOrderRecords != null)
-                {
-                    colTblPurchaseOrderRecords.SaveAll();
-               }
-		}
         #endregion
 	}
 }

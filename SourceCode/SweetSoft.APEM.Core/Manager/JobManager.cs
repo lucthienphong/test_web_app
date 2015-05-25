@@ -656,10 +656,10 @@ namespace SweetSoft.APEM.Core.Manager
         /// <param name="SortColumn"></param>
         /// <param name="SortType"></param>
         /// <returns></returns>
-        public static DataTable SelectAll(string Customer, string JobBarcode, string JobNumber, string JobInfo, string CusCylID, int SaleRepID, DateTime? FromDate, DateTime? ToDate, int OCStatusID, int DOStatusID, int InvoiceStatusID, bool IsServiceJob, int PageIndex, int PageSize, string SortColumn, string SortType)
+        public static DataTable SelectAll(string Customer, string JobBarcode, string JobNumber, string JobInfo, string CusCylID, int SaleRepID, DateTime? FromDate, DateTime? ToDate, int OCStatusID, int DOStatusID, int InvoiceStatusID, bool IsServiceJob, int PageIndex, int PageSize, string SortColumn, string SortType, string Status)
         {
             DataTable dt = new DataTable();
-            dt.Load(SPs.TblJobSelectAll(Customer, JobBarcode, JobNumber, JobInfo, CusCylID, SaleRepID, FromDate, ToDate, OCStatusID, DOStatusID, InvoiceStatusID, IsServiceJob, PageIndex, PageSize, SortColumn, SortType).GetReader());
+            dt.Load(SPs.TblJobSelectAll(Customer, JobBarcode, JobNumber, JobInfo, CusCylID, SaleRepID, FromDate, ToDate, OCStatusID, DOStatusID, InvoiceStatusID, IsServiceJob, PageIndex, PageSize, SortColumn, SortType, Status).GetReader());
             return dt;
         }
 
@@ -680,7 +680,7 @@ namespace SweetSoft.APEM.Core.Manager
 
             if (IsActived)
             {
-                select = select.And(TblJob.StatusColumn).IsEqualTo("Actived");
+                select = select.And(TblJob.StatusColumn).IsNotEqualTo(Enum.GetName(typeof(JobStatus), JobStatus.Delivered));
             }
 
             var jobs = select.ExecuteTypedList<TblJob>();
@@ -716,7 +716,7 @@ namespace SweetSoft.APEM.Core.Manager
             select = select.And(TblJob.JobIDColumn).NotIn(exists);
             if (IsActived)
             {
-                select = select.And(TblJob.StatusColumn).IsEqualTo("Actived");
+                select = select.And(TblJob.StatusColumn).IsNotEqualTo(Enum.GetName(typeof(JobStatus), JobStatus.Delivered));
             }
             select = select.OrderDesc(TblJob.Columns.RevNumber);
 
@@ -963,6 +963,21 @@ namespace SweetSoft.APEM.Core.Manager
         }
 
         // End 06-05-2015
+
+        // Trung add 12-05-2015
+
+        public static List<TblJob> SelectJobHasCreatedOCByCustomer(int CustomerID)
+        {
+           TblJobCollection result = new Select().From(TblJob.Schema)
+                        .Where(TblJob.CustomerIDColumn).IsEqualTo(CustomerID)
+                        .And(TblJob.JobIDColumn).NotIn(new Select(TblDeliveryOrder.JobIDColumn).From(TblDeliveryOrder.Schema))
+                        .And(TblJob.JobIDColumn).In(new Select(TblOrderConfirmation.JobIDColumn).From(TblOrderConfirmation.Schema))
+                        .ExecuteAsCollection<TblJobCollection>();
+
+           return result.ToList<TblJob>();
+        }
+
+        // End 12-05-2015
        
     }
 }

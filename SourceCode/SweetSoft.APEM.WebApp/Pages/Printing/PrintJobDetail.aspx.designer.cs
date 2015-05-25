@@ -130,6 +130,15 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Literal ltrCustomerContact;
         
         /// <summary>
+        /// ltrCustomerRef control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrCustomerRef;
+        
+        /// <summary>
         /// ltrCreateBy control.
         /// </summary>
         /// <remarks>

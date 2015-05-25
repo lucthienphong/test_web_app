@@ -257,7 +257,7 @@
                                     </ItemTemplate>
                                     <FooterTemplate></FooterTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Unit Price (RM)" HeaderStyle-CssClass="widthPriceGridView" ItemStyle-Width="160px" HeaderStyle-Width="160px">
+                                <%--<asp:TemplateField HeaderText="Unit Price (RM)" HeaderStyle-CssClass="widthPriceGridView" ItemStyle-Width="160px" HeaderStyle-Width="160px">
                                     <HeaderStyle Width="160px" />
                                     <ItemStyle Width="160px" />
                                     <ItemTemplate>
@@ -269,7 +269,7 @@
                                         <asp:Label ID="lbl6" Text='<%# ((SweetSoft.APEM.DataAccess.TblCylinderCollectionModel)Container.DataItem).Total.ToString("N2")%>' runat="server" />
                                     </ItemTemplate>
                                     <FooterTemplate></FooterTemplate>
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
                             </Columns>
                         </SweetSoft:GridviewExtension>
                     </div>

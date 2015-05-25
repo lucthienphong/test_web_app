@@ -73,6 +73,7 @@ namespace SweetSoft.APEM.Core.Manager
             select.InnerJoin(TblOrderConfirmation.JobIDColumn, TblDeliveryOrder.JobIDColumn);
             select.Where(TblJob.CustomerIDColumn).IsEqualTo(customerID);
             select.And(TblJob.IsClosedColumn).IsEqualTo(0);
+            select.And(TblJob.RevNumberColumn).IsEqualTo(0);
             if (exIDs != null && exIDs.Count > 0)
                 select.And(TblDeliveryOrder.JobIDColumn).NotIn(exIDs);
             return select.ExecuteAsCollection<TblDeliveryOrderCollection>();

@@ -7,8 +7,8 @@
         <div class="button-control col-md-12 col-sm-12">
             <div class="form-inline">
                 <div class="form-group" style="margin-bottom: 0; width: 100%;">
-                    <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click"
-                        class="btn btn-transparent new">
+                    <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" OnClientClick="SaveStateOfData('Now')"
+                        class="waitforajax btn btn-transparent new">
                                 <span class="flaticon-floppy1"></span> Save
                     </asp:LinkButton>
                     <asp:LinkButton ID="btnDelete" runat="server"
@@ -46,7 +46,7 @@
                                 <label class="control-label">
                                     <strong><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER)%></strong>
                                 </label>
-                                <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true"
+                                <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true" ToolTip="Customer Code"
                                     runat="server" Repeat="5" ShowMaskOnHover="true" MaxLength="5" Enabled="false"
                                     Greedy="true" RightAlign="false"></SweetSoft:ExtraInputMask>
                             </div>
@@ -56,7 +56,7 @@
                                 <label class="control-label">
                                     &nbsp;
                                 </label>
-                                <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" Placeholder="Customer's name"
+                                <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" Placeholder="Customer's name" ToolTip="Customer Name"
                                     runat="server" AutoCompleteType="Search"></SweetSoft:CustomExtraTextbox>
                                 <asp:HiddenField ID="hCustomerID" runat="server" />
                             </div>
@@ -70,7 +70,7 @@
                         </label>
                         <div class="wrap-datepicker">
                             <SweetSoft:CustomExtraTextbox ID="txtCreditDate" runat="server"
-                                RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                RenderOnlyInput="true" data-format="dd-MM-yyyy" ToolTip="Credit Date"
                                 CssClass="datepicker form-control mask-date">
                             </SweetSoft:CustomExtraTextbox>
                             <span class="fa fa-calendar in-mask-date"></span>
@@ -83,7 +83,7 @@
                             Currency
                         </label>
                         <asp:DropDownList ID="ddlCurrency" runat="server" AutoPostBack="true"
-                            data-style="btn btn-info"
+                            data-style="btn btn-info" ToolTip="Currency"
                             data-width="100%"
                             data-toggle="dropdown"
                             CssClass="form-control">
@@ -95,7 +95,7 @@
                         <label class="control-label">
                             Remark
                         </label>
-                        <asp:TextBox ID="txtRemark" runat="server" TextMode="MultiLine"
+                        <asp:TextBox ID="txtRemark" runat="server" TextMode="MultiLine" ToolTip="Remark"
                             Rows="4" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <asp:GridView ID="grvDetail" runat="server" AutoGenerateColumns="false"
+                            <asp:GridView ID="grvDetail" runat="server" AutoGenerateColumns="false" ToolTip="Credit detail"
                                 CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                                 AllowPaging="false" AllowSorting="false" DataKeyNames="CreditDetailID"
                                 OnRowCommand="grvDetail_RowCommand"
@@ -249,7 +249,22 @@
             $('#dialog-printing').hide();
             SearchText();
             PrintCredit();
+            SaveStateOfData('Before');
+
         });
+
+        var viewstate = '<%=ViewState_PageID%>';
+
+        function SaveStateOfData(time) {
+            var obj = [
+                {
+                    key: 'grvDetail_' + time,
+                    data: $("[id$='grvDetail']").parent().html() == undefined ? "<table></table>" : $("[id$='grvDetail']").parent().html(),
+                    PageID: viewstate
+                }
+            ];
+            SaveStateOfDataForm("Credit.aspx/SaveDataTable", obj, time);
+        }
 
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(SearchText);
         function SearchText(s, a) {

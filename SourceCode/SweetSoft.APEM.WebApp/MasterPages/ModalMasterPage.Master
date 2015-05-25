@@ -128,6 +128,52 @@
         <asp:ContentPlaceHolder ID="ModalPlaceHolder" runat="server">
         </asp:ContentPlaceHolder>
     </form>
+    <script>
+        
+        $(document).ready(function () {
+            modifyLink();
+        })
+        var count = 0;
+        function SaveStateOfDataForm(url, arrObj, time)
+        {
+            for (var i = 0 ; i < arrObj.length; i++) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: url,
+                    data: JSON.stringify(arrObj[i]),
+                    dataType: "json",
+                    async: true,
+                    cache: false,
+                    success: function (result) {
+                        if (typeof time !== 'undefined' && time.toLowerCase() === 'now') {
+                            count += 1;
+                            CallSave(arrObj.length);
+                        }
+                    }
+                });
+            }
+        }
+
+        addRequestHanlde(modifyLink);
+        function modifyLink() {
+            var link = $('a.waitforajax');
+            if (link.length > 0) {
+                link.attr('data-href', link.attr('href'));
+                link.attr('href', 'javascript:void(0);');
+            }
+        }
+
+        function CallSave(countnum) {
+            if (count === countnum) {
+                var link = $('a.waitforajax');
+                if (link.length > 0 && link.attr('data-href').length > 0) {
+                    count = 0;
+                    eval(link.attr('data-href'));
+                }
+            }
+        }
+    </script>
     <asp:ContentPlaceHolder ID="ScriptPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
 </body>

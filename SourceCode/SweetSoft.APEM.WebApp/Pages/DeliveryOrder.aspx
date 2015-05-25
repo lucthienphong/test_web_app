@@ -80,13 +80,13 @@
                 <div class="col-md-3 col-sm-3">
                     <div class="form-group">
                         <label class="control-label">
-                            Order Confirmation
+                            Job Number
                         </label>
-                        <asp:DropDownList ID="ddlOD" runat="server" AutoPostBack="true"
+                        <asp:DropDownList ID="ddlJob" runat="server" AutoPostBack="true"
                             data-style="btn btn-info"
                             data-width="100%" Required="true"
                             data-toggle="dropdown"
-                            OnSelectedIndexChanged="ddlOD_SelectedIndexChanged"
+                            OnSelectedIndexChanged="ddlJob_SelectedIndexChanged"
                             CssClass="form-control">
                         </asp:DropDownList>
                     </div>

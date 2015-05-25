@@ -28,7 +28,7 @@
     <div class="row row_content">
         <div class="col-md-12">
             <div class="dataTables_wrapper form-inline">
-                <SweetSoft:GridviewExtension ID="grvDepartmentList" runat="server" AutoGenerateColumns="false"
+                <SweetSoft:GridviewExtension ID="grvDepartmentList" runat="server" AutoGenerateColumns="false" ToolTip="Department List"
                     CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                     AllowPaging="true" AllowSorting="true" DataKeyNames="DepartmentID"
                     OnRowCommand="grvDepartmentList_RowCommand"
@@ -49,7 +49,7 @@
                             <EditItemTemplate>
                                 <div style="position: relative;">
                                     <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtDepartmentName"
-                                        Text='<%#Eval("DepartmentName")%>' Width="100%"
+                                        Text='<%#Eval("DepartmentName")%>' Width="100%" ToolTip="Department Name"
                                         CssClass="form-control" runat="server">
                                     </SweetSoft:CustomExtraTextbox>
                                 </div>
@@ -62,7 +62,7 @@
                             </ItemTemplate>
                             <EditItemTemplate>
                                 <div style="position: relative;">
-                                    <asp:DropDownList ID="ddlProcessType" runat="server"
+                                    <asp:DropDownList ID="ddlProcessType" runat="server" ToolTip="Process Type"
                                         data-style="btn btn-info" data-width="100%" Required="true"
                                         data-toggle="dropdown" CssClass="form-control">
                                     </asp:DropDownList>
@@ -83,11 +83,11 @@
                             HeaderText="UsedInWorkflow" SortExpression="3" HeaderStyle-CssClass="sorting"
                             ItemStyle-CssClass="column-one">
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkUsedInWorkflowView" CssClass="uniform"
+                                <asp:CheckBox ID="chkUsedInWorkflowView" CssClass="uniform" ToolTip="Show in Work Flow"
                                     Checked='<%#Convert.ToBoolean(Eval("ShowInWorkFlow"))%>' Enabled="false" runat="server"></asp:CheckBox>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:CheckBox ID="chkUsedInWorkflow" CssClass="uniform"
+                                <asp:CheckBox ID="chkUsedInWorkflow" CssClass="uniform" ToolTip="Show in Work Flow"
                                     Checked='<%#Convert.ToBoolean(Eval("ShowInWorkFlow"))%>' runat="server"></asp:CheckBox>
                             </EditItemTemplate>
                         </asp:TemplateField>
@@ -101,7 +101,7 @@
                             <EditItemTemplate>
                                 <div class="col-md-12">
                                     <SweetSoft:ExtraInputMask ID="txtTimelineOrder" runat="server"
-                                        RenderOnlyInput="true" Required="true"
+                                        RenderOnlyInput="true" Required="true" ToolTip="Timeline Order"
                                         RequiredText="Require field"
                                         MaskType="Numeric" GroupSeparator="," RadixPoint="." AutoGroup="true" Digits="0"
                                         ShowMaskOnHover="false" Greedy="false"
@@ -114,11 +114,11 @@
                             HeaderText="Obsolete" SortExpression="5" HeaderStyle-CssClass="sorting"
                             ItemStyle-CssClass="column-one">
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkIsObsoleteView" CssClass="uniform"
+                                <asp:CheckBox ID="chkIsObsoleteView" CssClass="uniform" ToolTip="Is Obsolete"
                                     Checked='<%#Convert.ToBoolean(Eval("IsObsolete"))%>' Enabled="false" runat="server"></asp:CheckBox>
                             </ItemTemplate>
                             <EditItemTemplate>
-                                <asp:CheckBox ID="chkIsObsolete" CssClass="uniform"
+                                <asp:CheckBox ID="chkIsObsolete" CssClass="uniform" ToolTip="Is Obsolete"
                                     Checked='<%#Convert.ToBoolean(Eval("IsObsolete"))%>' runat="server"></asp:CheckBox>
                             </EditItemTemplate>
                         </asp:TemplateField>
@@ -127,7 +127,7 @@
                                 <input type="checkbox" id="chkSelectAll" class="uniform" value="" />
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkIsDelete" CssClass="uniform"
+                                <asp:CheckBox ID="chkIsDelete" CssClass="uniform" ToolTip="Is Delete"
                                     runat="server"></asp:CheckBox>
                             </ItemTemplate>
                             <EditItemTemplate>
@@ -170,6 +170,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script>
+        
         addRequestHanlde(InitCheckAll);
         function InitCheckAll() {
             $("#chkSelectAll").change(function () {

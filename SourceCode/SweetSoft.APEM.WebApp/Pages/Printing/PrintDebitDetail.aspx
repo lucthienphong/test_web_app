@@ -227,9 +227,6 @@
                             <div class="clearfix">
                                 <div class="form-group clearfix">
                                     <ul class="pull-left list-unstyled">
-
-                                        <li>Terms of delivery
-                                        </li>
                                         <li>Terms of payment
                                         </li>
                                         <li>
@@ -237,9 +234,6 @@
                                         </li>
                                     </ul>
                                     <ul class="list-unstyled pull-left" style="margin-left: 15px;">
-                                        <li>:
-                                            <asp:Literal ID="ltrDeliveryTerm" Text="" EnableViewState="false" runat="server" />
-                                        </li>
                                         <li>:
                                             <asp:Literal ID="ltrPaymentTerms" Text="" EnableViewState="false" runat="server" />
                                         </li>
@@ -268,7 +262,9 @@
                                     </h5>
                                 </div>
                                 <div style="display: table-cell; border: 1px solid #000; border-left: none; border-right: 1px solid #000; width: 10%;">
-                                    <h5 style="text-align: center"><strong>Qty <br/>  Pcs.</strong>
+                                    <h5 style="text-align: center"><strong>Qty
+                                        <br />
+                                        Pcs.</strong>
                                     </h5>
                                 </div>
                                 <div style="display: table-cell; border: 1px solid #000; border-left: none; border-right: 1px solid #000; width: 15%;">
@@ -290,7 +286,7 @@
                                                 <asp:Label ID="lblSequence" runat="server" Text=''></asp:Label>
                                             </h5>
                                         </div>
-                                        <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 30%; padding-left:5px;">
+                                        <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 30%; padding-left: 5px;">
                                             <h5 style="text-align: left">
                                                 <asp:Label ID="lblDescription" runat="server" Text='<%#Eval("Description")%>'></asp:Label>
                                             </h5>
@@ -307,12 +303,12 @@
                                         </div>
                                         <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
                                             <h5 style="text-align: center">
-                                                <asp:Label ID="lblUnitPrice" runat="server" Text='<%#Convert.ToDecimal(Eval("UnitPrice")).ToString("N3") %>'></asp:Label>
+                                                <asp:Label ID="lblUnitPrice" runat="server" Text='<%#Convert.ToDecimal(Eval("UnitPrice")).ToString("N2") %>'></asp:Label>
                                             </h5>
                                         </div>
                                         <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
                                             <h5 style="text-align: center">
-                                                <asp:Label ID="lblTotal" runat="server" Text='<%#(Convert.ToDecimal(Eval("Quantity")) * Convert.ToDecimal(Eval("UnitPrice"))).ToString("N3") %>'></asp:Label>
+                                                <asp:Label ID="lblTotal" runat="server" Text='<%#(Convert.ToDecimal(Eval("Quantity")) * Convert.ToDecimal(Eval("UnitPrice"))).ToString("N2") %>'></asp:Label>
                                             </h5>
                                         </div>
                                     </div>
@@ -370,7 +366,7 @@
                                     </h5>
                                 </div>
                                 <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
-                                    <h5 style="text-align: center"><strong></strong>
+                                    <h5 style="text-align: center"><asp:Label ID="lblSubTotal" runat="server"></asp:Label>
                                     </h5>
                                 </div>
                             </div>
@@ -398,7 +394,7 @@
                                     </h5>
                                 </div>
                                 <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
-                                    <h5 style="text-align: center"><strong></strong>
+                                    <h5 style="text-align: center"><asp:Label ID="lblTax" runat="server"></asp:Label>
                                     </h5>
                                 </div>
                             </div>

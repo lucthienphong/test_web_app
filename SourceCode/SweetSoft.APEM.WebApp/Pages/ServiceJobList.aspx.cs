@@ -104,7 +104,9 @@ namespace SweetSoft.APEM.WebApp.Pages
                 int JobDOStatusID = int.Parse(ddlDOStatus.SelectedValue);
                 int JobInvoiceStatusID = int.Parse(ddlInvoiceStatus.SelectedValue);
 
-                DataTable dt = JobManager.SelectAll(Customer, string.Empty, Number, Info, string.Empty, 0, FromDate, ToDate, JobOCStatusID, JobDOStatusID, JobInvoiceStatusID, true, grvJobList.PageIndex, grvJobList.PageSize, SortColumn, SortType);
+                string s_JobStatus = string.Join(",", Enum.GetNames(typeof(JobStatus)));
+
+                DataTable dt = JobManager.SelectAll(Customer, string.Empty, Number, Info, string.Empty, 0, FromDate, ToDate, JobOCStatusID, JobDOStatusID, JobInvoiceStatusID, true, grvJobList.PageIndex, grvJobList.PageSize, SortColumn, SortType, s_JobStatus);
                 if (dt.Rows.Count == 0 && CurrentPageIndex != 0)
                 {
                     CurrentPageIndex -= 1;

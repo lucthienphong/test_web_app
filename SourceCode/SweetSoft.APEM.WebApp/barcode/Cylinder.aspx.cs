@@ -65,7 +65,7 @@ namespace SweetSoft.APEM.WebApp.barcode
             return null;
         }
 
-        static object ProcessCylinder(TblCylinder cylinder, TblDepartment dept)
+        static object ProcessCylinder(TblCylinder cylinder, TblDepartment dept, int idMachine)
         {
             if (dept != null)
             {
@@ -78,9 +78,7 @@ namespace SweetSoft.APEM.WebApp.barcode
                 .And(TblCylinderProcessing.DepartmentIDColumn).IsEqualTo(dept.DepartmentID)
                 .ExecuteSingle<TblCylinderProcessing>();
 
-                TblMachine machine = new SubSonic.Select().Top("1").From(TblMachine.Schema)
-                    .Where(TblMachine.DepartmentIDColumn).IsEqualTo(dept.DepartmentID)
-                    .ExecuteSingle<TblMachine>();
+                TblMachine machine = MachineManager.SelectMachineByID(idMachine);
 
                 //neu chua co ghi nhan
                 if (cp == null)
@@ -152,39 +150,47 @@ namespace SweetSoft.APEM.WebApp.barcode
                 Response.Write("1||" + "Cylinder has been complete.");
                 return false;
             }
+            if (nextDepartment == null) {
+                Response.Write("Wrong department to process.||");
+                return false;
+            }
 
             //kiem tra co dung phong ban
             if (nextDepartment != null)
             {
-                TblUser curentUser = UserManager.GetUserByUserName(ApplicationContext.Current.UserName);
-                if (curentUser != null)
+                string temp = Request.Form["iddept"];
+                if (string.IsNullOrEmpty(temp) == false)
                 {
-                    TblDepartment curDept = curentUser.TblStaff.TblDepartment;
-                    if (curDept != null)
+                    short deptid = 0;
+                    short.TryParse(temp, out deptid);
+                    if (deptid > 0)
                     {
-                        if (nextDepartment.DepartmentID != curDept.DepartmentID)
+                        TblDepartment curDept = DepartmentManager.SelectByID(deptid);
+                        if (curDept != null)
                         {
-                            Response.Write("Wrong cylinder to process.||");
-                            return false;
-                        }
-
-
-                        //common pocess type
-                        if (nextDepartment.ProcessTypeID.HasValue == false || nextDepartment.ProcessTypeID.Value == 0)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            if (cylinder.ProcessTypeID > 0 && cylinder.ProductTypeID != null)
+                            if (nextDepartment.DepartmentID != curDept.DepartmentID)
                             {
-                                if (nextDepartment.ProcessTypeID.HasValue && cylinder.ProcessTypeID.HasValue
-                                    && nextDepartment.ProcessTypeID.Value == cylinder.ProcessTypeID.Value)
-                                    return true;
-                                else if (string.IsNullOrEmpty(nextDepartment.ProductTypeID) == false
-                                    && cylinder.ProductTypeID != null &&
-                                    nextDepartment.ProductTypeID.Contains(string.Format("--{0}--", cylinder.ProductTypeID)))
-                                    return true;
+                                Response.Write("Wrong cylinder to process.||");
+                                return false;
+                            }
+
+                            //common pocess type
+                            if (nextDepartment.ProcessTypeID.HasValue == false || nextDepartment.ProcessTypeID.Value == 0)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                if (cylinder.ProcessTypeID > 0 && cylinder.ProductTypeID != null)
+                                {
+                                    if (nextDepartment.ProcessTypeID.HasValue && cylinder.ProcessTypeID.HasValue
+                                        && nextDepartment.ProcessTypeID.Value == cylinder.ProcessTypeID.Value)
+                                        return true;
+                                    else if (string.IsNullOrEmpty(nextDepartment.ProductTypeID) == false
+                                        && cylinder.ProductTypeID != null &&
+                                        nextDepartment.ProductTypeID.Contains(string.Format("--{0}--", cylinder.ProductTypeID)))
+                                        return true;
+                                }
                             }
                         }
                     }
@@ -201,6 +207,12 @@ namespace SweetSoft.APEM.WebApp.barcode
                 return;
             }
 
+            string iddept = Request.Form["iddept"];
+            if (string.IsNullOrEmpty(iddept) || iddept.Trim() == "0")
+            {
+                Response.Write("Please select department !||");
+                return;
+            }
             //System.Threading.Thread.Sleep(5000);
 
             string code = Request.Form["code"];
@@ -230,6 +242,8 @@ namespace SweetSoft.APEM.WebApp.barcode
                     }
                 }
 
+                #region cylinder
+
                 if (cylinder != null)
                 {
                     TblDepartment nextDepartment;
@@ -243,6 +257,8 @@ namespace SweetSoft.APEM.WebApp.barcode
                     {
                         int index = 0;
                         int.TryParse(indx, out index);
+
+                        #region start
                         if (index > 0)
                         {
                             TblUser curentUser = UserManager.GetUserByUserName(ApplicationContext.Current.UserName);
@@ -250,6 +266,12 @@ namespace SweetSoft.APEM.WebApp.barcode
                             {
                                 if (index == count)
                                 {
+                                    #region main
+                                    string temp = Request.Form["idmachine"];
+                                    int idMachine = 0;
+                                    if (int.TryParse(temp, out idMachine) == false)
+                                        idMachine = 0;
+
                                     code = Request.Form["code"];
                                     string[] arr = code.Split(',');
                                     if (arr != null && arr.Length > 0)
@@ -264,7 +286,7 @@ namespace SweetSoft.APEM.WebApp.barcode
                                                     .ExecuteSingle<TblCylinder>();
                                             if (cylinder != null)
                                             {
-                                                val = ProcessCylinder(cylinder, nextDepartment);
+                                                val = ProcessCylinder(cylinder, nextDepartment, idMachine);
                                                 if (val != null)
                                                     lstResult.Add(val);
                                             }
@@ -275,10 +297,11 @@ namespace SweetSoft.APEM.WebApp.barcode
                                             return;
                                         }
                                     }
+                                    #endregion
                                 }
                                 else
                                 {
-                                    //main process here
+                                    //wait for next
                                     TblCylinderProcessing cp = new SubSonic.Select()
                                     .From(TblCylinderProcessing.Schema).Where(TblCylinderProcessing.CylinderIDColumn)
                                     .IsEqualTo(cylinder.CylinderID)
@@ -296,6 +319,7 @@ namespace SweetSoft.APEM.WebApp.barcode
                                 return;
                             }
                         }
+                        #endregion
                         else
                         {
                             Response.Write("Wrong index !||");
@@ -311,9 +335,37 @@ namespace SweetSoft.APEM.WebApp.barcode
                 }
                 else
                     Response.Write("Wrong barcode !||");
+
+                #endregion
             }
             else
-                Response.Write("Please input barcode !||");
+            {
+                if (string.IsNullOrEmpty(iddept) == false)
+                {
+                    int dept = 0;
+                    int.TryParse(iddept, out dept);
+                    TblMachineCollection allMachine = MachineManager.SelectAllByDeparment(dept);
+                    if (allMachine != null && allMachine.Count > 0)
+                    {
+                        List<object> lst = new List<object>();
+                        foreach (TblMachine item in allMachine)
+                        {
+                            lst.Add(new
+                            {
+                                id = item.Id,
+                                name = item.Name
+                            });
+                        }
+                        if (lst != null && lst.Count > 0)
+                        {
+                            Response.ContentType = "application/json";
+                            Response.Write(JsonConvert.SerializeObject(lst));
+                        }
+                    }
+                }
+                else
+                    Response.Write("Please input barcode !||");
+            }
         }
     }
 }

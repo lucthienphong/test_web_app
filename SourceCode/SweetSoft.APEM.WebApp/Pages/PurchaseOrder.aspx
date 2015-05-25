@@ -129,7 +129,7 @@
                         <label class="control-label">
                             To:
                         </label>
-                        <asp:DropDownList ID="ddlSuplier" runat="server" AutoPostBack="false"
+                        <asp:DropDownList ID="ddlSuplier" runat="server" AutoPostBack="true"
                             data-style="btn btn-info"
                             data-width="100%" Required="true"
                             data-toggle="dropdown" OnSelectedIndexChanged="ddlSuplier_SelectedIndexChanged"

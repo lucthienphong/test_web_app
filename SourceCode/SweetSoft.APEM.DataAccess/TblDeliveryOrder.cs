@@ -208,7 +208,7 @@ namespace SweetSoft.APEM.DataAccess
 				TableSchema.TableColumn colvarOtherItem = new TableSchema.TableColumn(schema);
 				colvarOtherItem.ColumnName = "OtherItem";
 				colvarOtherItem.DataType = DbType.String;
-				colvarOtherItem.MaxLength = 1000;
+				colvarOtherItem.MaxLength = 2000;
 				colvarOtherItem.AutoIncrement = false;
 				colvarOtherItem.IsNullable = true;
 				colvarOtherItem.IsPrimaryKey = false;

@@ -128,7 +128,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
 
                 ltrJobName.Text = j.JobName;
                 ltrDesign.Text = j.Design;
-                ltrOCNumber.Text = od.OCNumber;
+                ltrJobNumber_Up.Text = j.JobNumber + (j.RevNumber > 0 ? string.Format(" (R{0})", j.RevNumber) : string.Empty);
                 ltrOCDate.Text = string.Format("{0}", od.OrderDate.ToString("dd.MM.yyyy"));
                 decimal sumTotalPrice = 0 ;
                 decimal rmValue = od.TotalPrice.HasValue ? od.TotalPrice.Value : 0;

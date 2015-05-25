@@ -27,6 +27,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 return "job_manager";
             }
         }
+
         protected int JobID
         {
             get
@@ -49,14 +50,18 @@ namespace SweetSoft.APEM.WebApp.Pages
                 BindDDL();
                 hPiValue.Value = JobManager.PiNumber().ToString();
                 ApplyControlText();
+
                 if (Request.QueryString["ID"] != null)
                 {
                     BindJobData();
                     ltrPrint.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintJobDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", JobID);
+                    ltrPrint.Visible = true;
+                    btnCreatePO.Visible = true;
                 }
                 else
                 {
                     ResetDataFields();
+                    ltrPrint.Visible = false;
                 }
             }
         }
@@ -920,6 +925,9 @@ namespace SweetSoft.APEM.WebApp.Pages
                     //Show button
                     btnSaveRevision.Visible = true;
                     btnGetCopy.Visible = true;
+                    ltrPrint.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintJobDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", obj.JobID);
+                    ltrPrint.Visible = true;
+                    btnCreatePO.Visible = true;
 
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
@@ -967,20 +975,20 @@ namespace SweetSoft.APEM.WebApp.Pages
         //Create a Revision
         protected void btnSaveRevision_Click(object sender, EventArgs e)
         {
-            #region Trunglc Add - 06-05-2015
+            //#region Trunglc Add - 06-05-2015
 
-            // Check exist Invoice has created by Job
+            //// Check exist Invoice has created by Job
 
-            bool IsExistInvoiceByJobID = JobManager.IsExistInvoiceCreatedByJobID(JobID);
+            //bool IsExistInvoiceByJobID = JobManager.IsExistInvoiceCreatedByJobID(JobID);
 
-            if (IsExistInvoiceByJobID)
-            {
-                MessageBox msgRole = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.CANNOT_SAVE_REVISION), MSGButton.OK, MSGIcon.Error);
-                OpenMessageBox(msgRole, null, false, false);
-                return;
-            }
+            //if (IsExistInvoiceByJobID)
+            //{
+            //    MessageBox msgRole = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.CANNOT_SAVE_REVISION), MSGButton.OK, MSGIcon.Error);
+            //    OpenMessageBox(msgRole, null, false, false);
+            //    return;
+            //}
 
-            #endregion
+            //#endregion
 
             //Gọi message box
             ModalConfirmResult result = new ModalConfirmResult();
@@ -1032,7 +1040,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 txtRevisionJobNumber.Text = oldJob.JobNumber;
 
                                 //Close Old Job
-                                int closedJobID = JobManager.CloseOldJob(JobID);
+                                //int closedJobID = JobManager.CloseOldJob(JobID);
 
                                 //Create new Job
                                 obj.CopyFrom(oldJob);
@@ -1200,6 +1208,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     Response.Redirect("~/Pages/JobList.aspx", false);
                                 }
                             }
+                        }
+                        else if (e.Value.ToString().Equals("Job_Create_Stealbase_PO"))
+                        {
+                            CreateStealBasePO();
                         }
                     }
                     else
@@ -1523,6 +1535,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             removeInvalidRows();
             grvCylinders.EditIndex = e.NewEditIndex;
+            
             //int CylinderID = 0;
             //if (int.TryParse(grvCylinders.DataKeys[grvCylinders.EditIndex].Values[0].ToString(), out CylinderID))
             //{
@@ -1535,6 +1548,9 @@ namespace SweetSoft.APEM.WebApp.Pages
             //}
 
             BindGrid();
+
+            DropDownList ddlStatus = grvCylinders.Rows[e.NewEditIndex].FindControl("ddlStatus") as DropDownList;
+            ddlStatusChanged(ddlStatus);
 
             grvCylinders.Columns[grvCylinders.Columns.Count - 1].Visible = false;
             btnAddContact.Visible = false;
@@ -2903,26 +2919,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             DropDownList ddlStatus = sender as DropDownList;
-            short StatusID = 0;
-            if (ddlStatus != null)
-                short.TryParse(ddlStatus.SelectedValue, out StatusID);
-            TblCylinderStatus csObj = CylinderStatusManager.SelectCylinderStatusByID(StatusID);
-            if (csObj != null)
-            {
-                DropDownList ddlPricing = grvCylinders.Rows[grvCylinders.EditIndex].FindControl("ddlPricing") as DropDownList;
-                if (ddlPricing != null)
-                {
-                    if (Convert.ToBoolean(csObj.Invoice))//Nếu trạng thái cylinder cho lập invoice thì enable pricing
-                    {
-                        ddlPricing.Enabled = true;
-                    }
-                    else//Ngược lại, khóa pricing và set về mặc định không có báo giá
-                    {
-                        ddlPricing.SelectedIndex = 0;
-                        ddlPricing.Enabled = false;
-                    }
-                }
-            }
+            ddlStatusChanged(ddlStatus);
         }
 
         protected void ddlMainProductType_SelectedIndexChanged(object sender, EventArgs e)
@@ -2991,6 +2988,8 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                 AllowEditting(IsAllowEdit);
 
+                grvCylinders.Enabled = IsAllowEdit;
+
                 string KEY_MESSAGE = IsLock ? ResourceText.LOCK_JOB_SAVE_SUCCESSFULLY : ResourceText.UNLOCK_JOB_SAVE_SUCCESSFULLY;
 
                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(KEY_MESSAGE), MSGButton.OK, MSGIcon.Success);
@@ -3002,6 +3001,105 @@ namespace SweetSoft.APEM.WebApp.Pages
                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_NOT_FOUND), MSGButton.OK, MSGIcon.Error);
                 OpenMessageBox(msg, null, false, false);
                 ResetDataFields();
+            }
+        }
+
+        protected void btnCreatePO_Click(object sender, EventArgs e)
+        {
+            //Gọi message box
+            ModalConfirmResult result = new ModalConfirmResult();
+            result.Value = "Job_Create_Stealbase_PO";
+            CurrentConfirmResult = result;
+            MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_CONFIRM_TITLE), "Are you sure want to create Purchase Order for this Job?", MSGButton.YesNo, MSGIcon.Warning);
+            OpenMessageBox(msg, result, false, false);
+        }
+
+        private void CreateStealBasePO()
+        {
+            TblOrderConfirmation oc = OrderConfirmationManager.SelectByID(JobID);
+
+            if (oc != null)
+            {
+                string message = "This job has created order confirm. Cannot create purchase order.";
+                MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), message, MSGButton.OK, MSGIcon.Error);
+                OpenMessageBox(msg, null, false, false);
+                return;
+            }
+
+            TblPurchaseOrder purOrder = new TblPurchaseOrder();
+            //purOrder.SupplierID = 0;
+            purOrder.OrderDate = DateTime.Now;
+            purOrder.OrderNumber = PurchaseOrder.CreateOrderbNumber();
+            //purOrder.RequiredDeliveryDate = DateTime.ParseExact(DateTime.Now.ToShortDateString(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None);
+            purOrder.CylinderType = ddlTypeOfCylinder.SelectedValue;
+            purOrder.Remark = string.Empty;
+            purOrder.TotalNumberOfCylinders = grvCylinders.Rows.Count;
+            purOrder.IsUrgent = Convert.ToByte(false);
+            purOrder.JobID = int.Parse(ddlRevNumber.SelectedValue);
+            purOrder.CurrencyID = short.Parse(ddlCurrency.SelectedValue);
+
+            TblPurchaseOrder _purOrder = PurchaseOrderManager.InsertPurchaseOrder(purOrder);
+
+            if (_purOrder != null)
+            {
+                DataTable dtSource = (DataTable)Session[ViewState["PageID"] + "tableSource"];
+                var rows = dtSource.AsEnumerable();
+                foreach (var r in rows)
+                {
+                    double _circumference = 0, _faceWidth = 0;
+                    double.TryParse(txtCircumference.Text.Trim(), out _circumference);
+                    double.TryParse(txtFaceWidth.Text.Trim(), out _faceWidth);
+
+                    TblPurchaseOrderCylinder pc = new TblPurchaseOrderCylinder();
+                    pc.CylinderNo = r.Field<byte>("SteelBase") == 1 ? CylinderManager.CreateCylinderNumber() : string.Empty;//Nếu SteelBase = 1 thì mới sinh number
+                    pc.CylinderID = r.Field<int>("CylinderID");
+                    pc.Circumference = _circumference;
+                    pc.FaceWidth = _faceWidth;
+                    pc.JobID = JobID;
+                    TblCustomerQuotationDetail cqd = CustomerQuotationManager.SelectDetailByID(r.Field<short>("PricingID"));
+                    pc.Unit = cqd != null ? cqd.UnitOfMeasure : string.Empty;
+                    pc.PurchaseOrderID = _purOrder.PurchaseOrderID;
+                    pc.UnitPrice = r.Field<decimal>("UnitPrice");
+                    pc.Quantity = 1;
+                    PurchaseOrderManager.InsertPurchase_CylinderOrder(pc);
+
+                    TblCylinder cObj = CylinderManager.SelectByID(r.Field<int>("CylinderID"));
+                    if (cObj != null)
+                    {
+                        if (cObj.SteelBase == 1)
+                        {
+                            cObj.CylinderNo = pc.CylinderNo;
+                            CylinderManager.Update(cObj);
+                        }
+                    }
+                }
+                string linkView = "New Purchase Order has created. You can view <a id='btnPOEdit' href='javascript:void(0);' data-id='" + _purOrder.PurchaseOrderID + "'>detail</a>.";
+                MessageBox _msgRole = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), linkView, MSGButton.OK, MSGIcon.Success);
+                OpenMessageBox(_msgRole, null, false, false);
+            }
+        }
+
+        private void ddlStatusChanged(DropDownList ddlStatus)
+        {
+            short StatusID = 0;
+            if (ddlStatus != null)
+                short.TryParse(ddlStatus.SelectedValue, out StatusID);
+            TblCylinderStatus csObj = CylinderStatusManager.SelectCylinderStatusByID(StatusID);
+            if (csObj != null)
+            {
+                DropDownList ddlPricing = grvCylinders.Rows[grvCylinders.EditIndex].FindControl("ddlPricing") as DropDownList;
+                if (ddlPricing != null)
+                {
+                    if (Convert.ToBoolean(csObj.Invoice))//Nếu trạng thái cylinder cho lập invoice thì enable pricing
+                    {
+                        ddlPricing.Enabled = true;
+                    }
+                    else//Ngược lại, khóa pricing và set về mặc định không có báo giá
+                    {
+                        ddlPricing.SelectedIndex = 0;
+                        ddlPricing.Enabled = false;
+                    }
+                }
             }
         }
     }

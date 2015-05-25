@@ -14,6 +14,8 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 
 namespace SweetSoft.APEM.WebApp.Pages
@@ -35,7 +37,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 int ID = 0;
                 if (Request.QueryString["ID"] != null)
                     int.TryParse(Request.QueryString["ID"].ToString(), out ID);
-                else if(Session[ViewState["PageID"] + "ID"] != null)
+                else if (Session[ViewState["PageID"] + "ID"] != null)
                     int.TryParse(Request.QueryString["ID"].ToString(), out ID);
                 return ID;
             }
@@ -52,6 +54,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 {
                     BindDebitData();
                     ltrPrinting.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintDebitDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", DebitID);
+                    base.SaveBaseDataBeforeEdit();
                 }
                 else
                 {
@@ -79,9 +82,19 @@ namespace SweetSoft.APEM.WebApp.Pages
             ddlCurrency.DataBind();
         }
 
+        private void BindGTSDDL()
+        {
+            List<TblTax> lst = new TaxManager().SelectAllForDDL(true);
+            ddlTax.DataSource = lst;
+            ddlTax.DataTextField = "TaxName";
+            ddlTax.DataValueField = "TaxID";
+            ddlTax.DataBind();
+        }
+
         private void BindDDL()
         {
             BindCurrencyDDL();
+            BindGTSDDL();
         }
 
         [WebMethod]
@@ -115,8 +128,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                         ddlCurrency.SelectedValue = obj.CurrencyID.ToString();
 
                         txtTermOfPayment.Text = obj.TermsOfPayment;
-                        txtTermOfDelivery.Text = obj.TermsOfDelivery;
                         txtRemark.Text = obj.Remark;
+
+                        ddlTax.SelectedValue = obj.TaxID != null ? obj.TaxID.ToString() : "0";
+                        txtTaxRate.Text = obj.TaxID != null ?
+                                          new TaxManager().SelectByID((short)obj.TaxID).TaxPercentage.ToString("N2") :
+                                          "0";
 
                         BindDetailData(DebitID);
                         BindGrid();
@@ -148,7 +165,6 @@ namespace SweetSoft.APEM.WebApp.Pages
             hCustomerID.Value = string.Empty;
             txtDebitDate.Text = DateTime.Today.ToString("dd/MM/yyyy");//string.Empty;
 
-            txtTermOfDelivery.Text = string.Empty;
             txtTermOfPayment.Text = string.Empty;
             txtRemark.Text = string.Empty;
             ddlCurrency.SelectedIndex = 0;
@@ -221,14 +237,29 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.DebitDate = DebitDate;
                     obj.CurrencyID = CurrencyID;
                     obj.TermsOfPayment = txtTermOfPayment.Text.Trim();
-                    obj.TermsOfDelivery = txtTermOfDelivery.Text.Trim();
                     obj.Remark = txtRemark.Text.Trim();
                     obj.Total = CalculateTotal();
+
+                    // Get tax rate
+                    short TaxSelectedID = short.Parse(ddlTax.SelectedValue);
+                    TblTax objTax = new TaxManager().SelectByID(TaxSelectedID);
+
+                    if (objTax != null)
+                    {
+                        obj.TaxID = objTax.TaxID;
+                    }
 
                     DebitManager.Update(obj);
                     SaveDetailData(obj.DebitID);
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
+
+                    LoggingActions("Debit",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Debit Code", Data = obj.DebitNo } ,
+                            }));
 
                     BindDetailData(obj.DebitID);
 
@@ -252,9 +283,17 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.DebitDate = DebitDate;
                     obj.CurrencyID = CurrencyID;
                     obj.TermsOfPayment = txtTermOfPayment.Text.Trim();
-                    obj.TermsOfDelivery = txtTermOfDelivery.Text.Trim();
                     obj.Remark = txtRemark.Text.Trim();
                     obj.Total = CalculateTotal();
+
+                    // Get tax rate
+                    short TaxSelectedID = short.Parse(ddlTax.SelectedValue);
+                    TblTax objTax = new TaxManager().SelectByID(TaxSelectedID);
+
+                    if (objTax != null)
+                    {
+                        obj.TaxID = objTax.TaxID;
+                    }
 
                     bool DebitNoChanged = false;
                     string oldNumber = lblDebitNumber.Text.Trim();
@@ -271,6 +310,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
 
+                    LoggingActions("Debit",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Debit Code", Data = obj.DebitNo } ,
+                            }));
+
                     BindDetailData(obj.DebitID);
 
                     Session[ViewState["PageID"] + "ID"] = obj.DebitID;
@@ -282,8 +328,9 @@ namespace SweetSoft.APEM.WebApp.Pages
                     MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), message, MSGButton.OK, MSGIcon.Success);
                     OpenMessageBox(msg, null, false, false);
                 }
-            #endregion
             }
+            #endregion
+
             catch (Exception ex)
             {
                 ProcessException(ex);
@@ -323,6 +370,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                         if (e.Value.ToString().Equals("Debit_Delete"))
                         {
                             DebitManager.Delete(DebitID);
+                            LoggingActions("Debit",
+                            LogsAction.Objects.Action.DELETE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Debit Code", Data = DebitManager.SelectByID(DebitID).DebitNo } ,
+                            }));
                             Response.Redirect("~/Pages/DebitList.aspx", false);
                         }
                     }
@@ -369,13 +422,13 @@ namespace SweetSoft.APEM.WebApp.Pages
             List<TblDebitDetail> source = (List<TblDebitDetail>)Session[ViewState["PageID"] + "Source"];
             if (source == null)
                 source = new List<TblDebitDetail>();
-            
+
             TblDebitDetail obj = new TblDebitDetail();
             Random rnd = new Random();
             int RandID = rnd.Next(-1000, 0);
-            while(source.Where(x => x.DebitDetailID == RandID).Count() > 0)
+            while (source.Where(x => x.DebitDetailID == RandID).Count() > 0)
                 RandID = rnd.Next(-1000, 0);
-            obj.DebitDetailID = RandID;                
+            obj.DebitDetailID = RandID;
             obj.Quantity = 1;
             source.Insert(0, obj);
             Session[ViewState["PageID"] + "Source"] = source;
@@ -473,7 +526,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             {
                 if (int.TryParse(txtQuantity.Text.Trim().Replace(",", ""), out Quantity))
                 {
-                    if(Quantity <= 0)
+                    if (Quantity <= 0)
                         AddErrorPrompt(txtQuantity.ClientID, ResourceTextManager.GetApplicationText(ResourceText.MIN_VALIDATION));
                 }
                 else
@@ -566,6 +619,27 @@ namespace SweetSoft.APEM.WebApp.Pages
             {
                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.SELECT_DATA_TO_DELETE), MSGButton.OK, MSGIcon.Info);
                 OpenMessageBox(msg, null, false, false);
+            }
+        }
+
+        #endregion
+
+        #region Trunglc - 22-05-2015 - Update Require Customer
+
+        protected void ddlTax_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            short taxID = 0; short.TryParse(ddlTax.SelectedValue, out taxID);
+            double taxRate = 0;
+
+            TblTax tax = new TaxManager().SelectByID(taxID);
+            if (tax != null)
+            {
+                txtTaxRate.Text = tax.TaxPercentage.ToString("N2");
+                taxRate = tax.TaxPercentage;
+            }
+            else
+            {
+                txtTaxRate.Text = (0).ToString("N2");
             }
         }
 
