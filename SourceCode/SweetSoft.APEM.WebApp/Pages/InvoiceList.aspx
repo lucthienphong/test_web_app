@@ -226,6 +226,11 @@
                                         </li>
                                     </ul>
                                 </div>
+                                <div class="btn-group openPrinting" role="menu">
+                                    <a href="javascript:;" class="btn btn-primary btn-lock" data-href='Printing/PrintTaxInvoice.aspx?ID=<%#Eval("InvoiceID") %>' data-toggle="tooltip" data-placement="top" title="View">
+                                        <span class="fa fa-eye"></span>
+                                    </a>
+                                </div>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

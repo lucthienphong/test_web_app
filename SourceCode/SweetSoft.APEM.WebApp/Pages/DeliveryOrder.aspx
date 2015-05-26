@@ -50,7 +50,7 @@
                                     <strong><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DELIVERY_ORDER)%></strong>
                                 </label>
                                 <p class="form-control-static">
-                                    <asp:Label ID="lblOrderNumber" runat="server"></asp:Label>
+                                    <asp:Label ID="lblOrderNumber" runat="server" ToolTip="Delivery Order Number"></asp:Label>
                                 </p>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 <label class="control-label">
                                     <strong><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER)%></strong>
                                 </label>
-                                <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true"
+                                <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true" ToolTip="Customer Code"
                                     runat="server" Repeat="5" ShowMaskOnHover="true" MaxLength="5" Enabled="false"
                                     Greedy="true" RightAlign="false"></SweetSoft:ExtraInputMask>
                             </div>
@@ -69,7 +69,7 @@
                                 <label class="control-label">
                                     &nbsp;
                                 </label>
-                                <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" Placeholder="Customer's name"
+                                <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" Placeholder="Customer's name" ToolTip="Customer Name"
                                     runat="server" AutoCompleteType="Search"></SweetSoft:CustomExtraTextbox>
                                 <asp:HiddenField ID="hCustomerID" runat="server" />
                                 <asp:LinkButton ID="btnLoadContacts" runat="server" OnClick="btnLoadContacts_Click" Style="display: none;"></asp:LinkButton>
@@ -83,7 +83,7 @@
                             Job Number
                         </label>
                         <asp:DropDownList ID="ddlJob" runat="server" AutoPostBack="true"
-                            data-style="btn btn-info"
+                            data-style="btn btn-info" ToolTip="Job Number"
                             data-width="100%" Required="true"
                             data-toggle="dropdown"
                             OnSelectedIndexChanged="ddlJob_SelectedIndexChanged"
@@ -97,7 +97,7 @@
                             Contact Person
                         </label>
                         <asp:DropDownList ID="ddlContact" runat="server" AutoPostBack="false"
-                            data-style="btn btn-info"
+                            data-style="btn btn-info" ToolTip="Contact Person"
                             data-width="100%" Required="true"
                             data-toggle="dropdown"
                             CssClass="form-control">
@@ -112,7 +112,7 @@
                                 <label class="control-label">
                                     Job Name
                                 </label>
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtJobName" ReadOnly="true" />
+                                <asp:TextBox runat="server" CssClass="form-control" ID="txtJobName" ReadOnly="true" ToolTip="Job Name"/>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3">
@@ -120,7 +120,7 @@
                                 <label class="control-label">
                                     Design
                                 </label>
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtDesign" ReadOnly="true" />
+                                <asp:TextBox runat="server" CssClass="form-control" ID="txtDesign" ReadOnly="true" ToolTip="Design"/>
                             </div>
                         </div>
                         <div class="col-sm-3 col-md-3">
@@ -130,13 +130,13 @@
                                         <div class="col-sm-8">
                                             <div class="form-group" style="margin-bottom: 0">
                                                 <label class="control-label">Job Nr</label>
-                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtJobNR" ReadOnly="true" />
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtJobNR" ReadOnly="true" ToolTip="Job Number"/>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
                                                 <label class="control-label">Rev</label>
-                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtRev" ReadOnly="true" />
+                                                <asp:TextBox runat="server" CssClass="form-control" ID="txtRev" ReadOnly="true" ToolTip="Job Rev"/>
                                             </div>
                                         </div>
                                     </ContentTemplate>
@@ -150,11 +150,11 @@
                                         <label class="control-label">
                                             Customer P/O
                                         </label>
-                                        <asp:TextBox ID="txtPO1" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtPO1" runat="server" CssClass="form-control" ToolTip="Customer P/O1"></asp:TextBox>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label class="control-label">&nbsp;</label>
-                                        <asp:TextBox ID="txtPO2" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtPO2" runat="server" CssClass="form-control" ToolTip="Customer P/O2"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DELIVERY_DATE)%>
                                 </label>
                                 <SweetSoft:ExtraInputMask ID="txtOrderDate" RenderOnlyInput="true"
-                                    data-format="dd-mm-yyyy"
+                                    data-format="dd-mm-yyyy" ToolTip="Delivery Date"
                                     CssClass="form-control mask-date"
                                     runat="server"></SweetSoft:ExtraInputMask>
                                 <span class="fa fa-calendar in-mask-date"></span>
@@ -187,7 +187,7 @@
                                     </p>
                                 </asp:Panel>
                                 <asp:Panel runat="server" ID="pnListCylinder" Visible="false">
-                                    <SweetSoft:GridviewExtension ID="gvClinders"
+                                    <SweetSoft:GridviewExtension ID="gvClinders" ToolTip="Clinders"
                                         runat="server" AutoGenerateColumns="false"
                                         CssClass="table table-striped table-bordered table-checkable dataTable"
                                         DataKeyNames="CylinderID"
@@ -268,7 +268,7 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.REMARK)%>
                                 </label>
-                                <asp:TextBox TextMode="MultiLine" ID="txtRemark" runat="server" Rows="3" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox TextMode="MultiLine" ID="txtRemark" runat="server" Rows="3" CssClass="form-control" ToolTip="Remark"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label class="control-label DTTT_button_save">
@@ -293,7 +293,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <asp:GridView ID="gvPackingDimension" runat="server" AutoGenerateColumns="false"
+                                    <asp:GridView ID="gvPackingDimension" runat="server" AutoGenerateColumns="false" ToolTip="Packing Dimension"
                                         CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                                         AllowPaging="false" AllowSorting="false" DataKeyNames="VitualID, PackingDimensionID"
                                         OnRowCommand="gvPackingDimension_RowCommand"
@@ -369,7 +369,7 @@
                                     Packing
                                 </label>
                                 <asp:DropDownList ID="ddlPacking" runat="server" AutoPostBack="false"
-                                    data-style="btn btn-info"
+                                    data-style="btn btn-info" ToolTip="Packing"
                                     data-width="100%" Required="true"
                                     data-toggle="dropdown"
                                     CssClass="form-control">
@@ -379,13 +379,13 @@
                                 <label class="control-label">
                                     Gross Weight
                                 </label>
-                                <asp:TextBox ID="txtGrossWeight" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtGrossWeight" runat="server" CssClass="form-control" ToolTip="Gross Weight"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
                                     Net Weight
                                 </label>
-                                <asp:TextBox ID="txtNetWeight" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtNetWeight" runat="server" CssClass="form-control" ToolTip="Net Weight"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -409,7 +409,27 @@
             SearchText();
             InitDialogPrintLink();
             InitCheckAll();
-        })
+            SaveStateOfData('Before');
+
+        });
+
+        var viewstate = '<%=ViewState_PageID%>';
+
+        function SaveStateOfData(time) {
+            var obj = [
+                {
+                    key: 'gvClinders_' + time,
+                    data: $("[id$='gvClinders']").parent().html() == undefined ? "<table></table>" : $("[id$='gvClinders']").parent().html(),
+                    PageID: viewstate
+                },
+                {
+                    key: 'gvPackingDimension_' + time,
+                    data: $("[id$='gvPackingDimension']").parent().html() == undefined ? "<table></table>" : $("[id$='gvPackingDimension']").parent().html(),
+                    PageID: viewstate
+                }
+            ];
+            SaveStateOfDataForm("DeliveryOrder.aspx/SaveDataTable", obj, time);
+        }
 
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(DatePicker);
         function DatePicker() {

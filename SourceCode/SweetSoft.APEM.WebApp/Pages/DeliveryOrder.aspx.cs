@@ -13,6 +13,8 @@ using System.Linq;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -54,6 +56,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                 ViewState["PackingDimesionSource"] = (new Random()).Next().ToString();
                 BindDDL();
                 BindDOData();
+                if (JobID > 0)
+                {
+                    base.SaveBaseDataBeforeEdit();
+                }
             }
         }
 
@@ -301,6 +307,14 @@ namespace SweetSoft.APEM.WebApp.Pages
                         ////DeliveryOrderManager.LockJobAndOC(devO.JobID);
                         ////End
 
+                        LoggingActions("Delivery Order",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Delivery Number", Data = devO.DONumber } ,
+                                new JsonData() { Title = "Job Number", Data = devO.TblJob.JobNumber + "(Rev " + devO.TblJob.RevNumber.ToString() + ")" } 
+                            }));
+
                         Session[ViewState["PageID"] + "ID"] = devO.JobID;
                         MessageBox _msgRole = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_IS_SAVED), MSGButton.OK, MSGIcon.Success);
                         OpenMessageBox(_msgRole, null, false, false);
@@ -358,6 +372,14 @@ namespace SweetSoft.APEM.WebApp.Pages
                         ////Update Status Lock Of Job
                         ////DeliveryOrderManager.LockJobAndOC(devO.JobID);
                         ////End
+
+                        LoggingActions("Delivery Order",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Delivery Number", Data = devO.DONumber } ,
+                                new JsonData() { Title = "Job Number", Data = devO.TblJob.JobNumber + "(Rev " + devO.TblJob.RevNumber.ToString() + ")" } 
+                            }));
 
                         Session[ViewState["PageID"] + "ID"] = devO.JobID;
                         MessageBox _msgRole = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_IS_SAVED), MSGButton.OK, MSGIcon.Success);
@@ -464,7 +486,16 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 if (DeliveryOrderManager.Delete(devOder.JobID))
                                 {
                                     if (AllowSaveLogging)
+                                    {
                                         SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.DELETE_ORDER_CONFIRMATION), FUNCTION_PAGE, devOder.ToJSONString());
+                                        LoggingActions("Delivery Order",
+                                                LogsAction.Objects.Action.DELETE,
+                                                LogsAction.Objects.Status.SUCCESS,
+                                                JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                    new JsonData() { Title = "Delivery Number", Data = devOder.DONumber } ,
+                                                    new JsonData() { Title = "Job Number", Data = devOder.TblJob.JobNumber + "(Rev " + devOder.TblJob.RevNumber.ToString() + ")" } 
+                                                }));
+                                    }
                                     Response.Redirect("DeliveryOrderList.aspx", false);
                                 }
                             }

@@ -62,112 +62,127 @@
     content: "\e008";
 }
 
-.flaticon-new10:before
+.flaticon-eye110:before
 {
     content: "\e009";
 }
 
-.flaticon-files6:before
+.flaticon-new10:before
 {
     content: "\e00a";
 }
 
-.flaticon-flow5:before
+.flaticon-files6:before
 {
     content: "\e00b";
 }
 
-.flaticon-development:before
+.flaticon-flow5:before
 {
     content: "\e00c";
 }
 
-.flaticon-job9:before
+.flaticon-development:before
 {
     content: "\e00d";
 }
 
-.flaticon-medical50:before
+.flaticon-job9:before
 {
     content: "\e00e";
 }
 
-.flaticon-new100:before
+.flaticon-medical50:before
 {
     content: "\e00f";
 }
 
-.flaticon-notebook21:before
+.flaticon-new100:before
 {
     content: "\e010";
 }
 
-.flaticon-padlock19:before
+.flaticon-notebook21:before
 {
     content: "\e011";
 }
 
-.flaticon-padlock21:before
+.flaticon-padlock19:before
 {
     content: "\e012";
 }
 
-.flaticon-paper101:before
+.flaticon-padlock21:before
 {
     content: "\e013";
 }
 
-.flaticon-pdf19:before
+.flaticon-paper101:before
 {
     content: "\e014";
 }
 
-.flaticon-simple1:before
+.flaticon-pdf19:before
 {
     content: "\e015";
 }
 
-.flaticon-printer60:before
+.flaticon-simple1:before
 {
     content: "\e016";
 }
 
-.flaticon-order:before
+.flaticon-printer60:before
 {
     content: "\e017";
 }
 
-.flaticon-question48:before
+.flaticon-order:before
 {
     content: "\e018";
 }
 
-.flaticon-floppy1:before
+.flaticon-question48:before
 {
     content: "\e019";
 }
 
-.flaticon-search29:before
+.flaticon-floppy1:before
 {
     content: "\e01a";
 }
 
-.flaticon-settings39:before
+.flaticon-search29:before
 {
     content: "\e01b";
 }
 
-.flaticon-supermarket10:before
+.flaticon-settings39:before
 {
     content: "\e01c";
 }
 
-.flaticon-guest:before
+.flaticon-supermarket10:before
 {
     content: "\e01d";
 }
 
-.flaticon-xlsx:before
+.flaticon-unlock33:before
 {
     content: "\e01e";
+}
+
+.flaticon-unlocked29:before
+{
+    content: "\e01f";
+}
+
+.flaticon-guest:before
+{
+    content: "\e020";
+}
+
+.flaticon-xlsx:before
+{
+    content: "\e021";
 }

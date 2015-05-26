@@ -189,6 +189,27 @@ namespace SweetSoft.APEM.Core.Manager
             return returnList;
         }
 
+        //Select product type for checkboxList
+        public static ProductTypeExtension SelectProductTypeByReferencesID(short DepartmentID, int RefID)
+        {
+            List<TblReference> list = new List<TblReference>();
+            list = new Select().From(TblReference.Schema)
+                .Where(TblReference.IsObsoleteColumn).IsEqualTo(0)
+                .And(TblReference.TypeColumn).IsEqualTo(ReferenceTypeHelper.ProductType)
+                .OrderAsc(TblReference.Columns.Code).ExecuteAsCollection<TblReferenceCollection>().ToList();
+            //Select department
+            TblDepartment obj = DepartmentManager.SelectByID(DepartmentID);
+            string ProductIDs = obj != null ? obj.ProductTypeID : string.Empty;
+            ProductTypeExtension pObj = new ProductTypeExtension();
+            TblReference item = list.Find(i => i.ReferencesID == RefID);
+            pObj.ReferencesID = item.ReferencesID;
+            pObj.Code = item.Code;
+            pObj.Name = pObj.Name;//(ProductTypeExtension)item;
+            pObj.IsChecked = ProductIDs == null ? false : (ProductIDs.Contains(string.Format("--{0}--", item.ReferencesID)) ? true : false);
+
+            return pObj;
+        }
+
         //Select product type for dropdownlist
         public static List<TblReference> SelectProcessTypeForDDL(bool ShowCommonType)
         {

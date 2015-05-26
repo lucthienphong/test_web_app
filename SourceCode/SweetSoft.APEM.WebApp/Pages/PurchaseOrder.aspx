@@ -10,7 +10,6 @@
         .width50px
         {
             width: 57px;
-            ;
         }
     </style>
 </asp:Content>
@@ -131,7 +130,7 @@
                         </label>
                         <asp:DropDownList ID="ddlSuplier" runat="server" AutoPostBack="true"
                             data-style="btn btn-info"
-                            data-width="100%" Required="true"
+                            data-width="100%"
                             data-toggle="dropdown" OnSelectedIndexChanged="ddlSuplier_SelectedIndexChanged"
                             CssClass="form-control">
                         </asp:DropDownList>

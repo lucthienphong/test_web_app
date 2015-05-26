@@ -14,6 +14,8 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -44,12 +46,24 @@ namespace SweetSoft.APEM.WebApp.Pages
                         }
 
                         List<int> idList = new List<int>();
+                        List<JsonData> lstData = new List<JsonData>();
                         for (int i = 0; i < gvDeliveryOrder.Rows.Count; i++)
                         {
                             CheckBox chkIsDelete = (CheckBox)gvDeliveryOrder.Rows[i].FindControl("chkIsDelete");
+                             
                             if (chkIsDelete.Checked)
                             {
                                 int ID = Convert.ToInt32(gvDeliveryOrder.DataKeys[i].Value);
+                                TblDeliveryOrder obj = DeliveryOrderManager.SelectDeliveryOrderByJobID(ID);
+
+                                if (JobManager.JobHasInvoice(ID).Length == 0)
+                                {
+                                    if (obj != null)
+                                    {
+                                        lstData.Add(new JsonData() { Title = "Delivery Number", Data = obj.DONumber });
+                                        lstData.Add(new JsonData() { Title = "Job Number", Data = obj.TblJob.JobNumber + "(Rev " + obj.TblJob.RevNumber.ToString() + ")" });
+                                    }
+                                }
                                 idList.Add(ID);
                                 //DeliveryOrderManager.Delete(ID);
                             }
@@ -58,6 +72,11 @@ namespace SweetSoft.APEM.WebApp.Pages
                         BindData();
                         if (string.IsNullOrEmpty(DataCannotDelete))
                         {
+                            LoggingActions("Delivery",
+                                           LogsAction.Objects.Action.DELETE,
+                                           LogsAction.Objects.Status.SUCCESS,
+                                           JsonConvert.SerializeObject(lstData));
+
                             MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                             OpenMessageBox(msg, null, false, false);
                         }

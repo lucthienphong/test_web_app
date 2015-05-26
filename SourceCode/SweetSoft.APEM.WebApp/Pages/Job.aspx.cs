@@ -611,6 +611,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
 
             btnDelete.Visible = IsJobLocking ? false : true;
+            grvCylinders.Enabled = IsJobLocking ? false : true;
 
             ///End
         }
@@ -3018,9 +3019,9 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             TblOrderConfirmation oc = OrderConfirmationManager.SelectByID(JobID);
 
-            if (oc != null)
+            if (oc == null)
             {
-                string message = "This job has created order confirm. Cannot create purchase order.";
+                string message = "This job hasn't created order confirm yet. Cannot create purchase order.";
                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), message, MSGButton.OK, MSGIcon.Error);
                 OpenMessageBox(msg, null, false, false);
                 return;

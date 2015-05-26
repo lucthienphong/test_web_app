@@ -45,7 +45,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                 }
                 BindDDL();
                 LoadData();
-
             }
         }
 

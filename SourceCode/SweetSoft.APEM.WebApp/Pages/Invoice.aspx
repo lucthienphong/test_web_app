@@ -74,6 +74,7 @@
                                 <span class="flaticon-padlock21"></span>
                             Unlock
                 </asp:LinkButton>
+                <asp:Literal Text="" ID="ltrView" runat="server" />
                 <%--End--%>
                 <asp:LinkButton ID="btnCancel" runat="server" class="btn btn-transparent new" OnClick="btnCancel_Click">
                     <span class="flaticon-back57"></span>
@@ -337,6 +338,7 @@
     <div id="dialog-printing" title="Printing" style="background: #fff">
         <iframe src="" frameborder="0" width="100%" height="100%" style="min-height: 500px"></iframe>
     </div>
+
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script src="/js/plugins/printThis.js"></script>
@@ -460,6 +462,37 @@
                 });
             })
         }
+
+        $('a#printing').on('click', function (e) {
+
+            var hrefLink = $(this).data("href");
+            var iframe = $("#dialog-printing").find('iframe');
+
+            iframe.attr("src", hrefLink);
+
+            $("#dialog-printing").dialog({
+                autoOpen: false,
+                height: 'auto',
+                width: '850',
+                modal: true,
+                appendTo: "form",
+                resizable: false,
+                buttons: [
+                    {
+                        text: "Close",
+                        Class: 'btn btn-default',
+                        click: function () {
+                            iframe.attr("src", "");
+                            $("#dialog-printing").dialog("close");
+
+                        }
+                    }
+                ]
+            });
+            $("#dialog-printing").show();
+            $("#dialog-printing").dialog("open");
+            return false;
+        });;
 
         function DoRemoveJob(id) {
             console.log(id);

@@ -1726,7 +1726,7 @@ namespace SweetSoft.APEM.DataAccess{
         	
             sp.Command.AddParameter("@SortType", SortType, DbType.AnsiString, null, null);
         	
-            sp.Command.AddParameter("@Status", Status, DbType.String, null, null);
+            sp.Command.AddParameter("@Status", Status, DbType.AnsiString, null, null);
         	
             return sp;
         }
