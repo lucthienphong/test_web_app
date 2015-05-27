@@ -20,7 +20,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
     {
         protected decimal TOTAL = 0;
         protected decimal SubTOTAL = 0;
-        protected string TaxPercen = "0.00";
+        protected decimal TaxPercen = 0;
 
         private int DebitID
         {
@@ -48,8 +48,11 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             ltrRemark.Text = debit.Remark;
             ltrCNumber.Text = debit.DebitNo;
             ltrCDate.Text = debit.DebitDate.ToString("dd.MM.yyyy");
-            this.TaxPercen = debit.TaxID != null ? new TaxManager().SelectByID((short)debit.TaxID).TaxPercentage.ToString("N2") : 0.ToString("N2");
-            lblTax.Text = this.TaxPercen + "%";
+
+            TblTax tax = new TaxManager().SelectByID((short)debit.TaxID);
+
+            this.TaxPercen = debit.TaxID != null ? (decimal)tax.TaxPercentage : 0;
+            lblTax.Text = this.TaxPercen.ToString() + "%";
 
             TblCustomer customer = CustomerManager.SelectByID(debit.CustomerID);
             ltrCustomerNumber.Text = customer.Code.ToString();
@@ -74,9 +77,10 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 l.Text = e.Item.ItemIndex + 1 + "";
             TblDebitDetail detail = (TblDebitDetail)e.Item.DataItem;            
             this.SubTOTAL += detail.UnitPrice * detail.Quantity;
-            this.TOTAL = this.SubTOTAL * (1 + decimal.Parse(this.TaxPercen) / 100);
+            this.TOTAL = this.SubTOTAL * (1 + this.TaxPercen / 100);
             lblSubTotal.Text = this.SubTOTAL.ToString("N2");
             lblAllTotal.Text = this.TOTAL.ToString("N2");
+            lblTaxAmount.Text = (this.SubTOTAL * this.TaxPercen / 100).ToString("N2");
         }
     }
 }
