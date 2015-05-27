@@ -21,6 +21,7 @@ using SweetSoft.APEM.WebApp.Controls;
 using Microsoft.Reporting.WebForms;
 using System.IO;
 using System.Text;
+using SweetSoft.APEM.Core.Logs;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -144,7 +145,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             TblInvoice invoice = InvoiceManager.SelectByID(InvoiceID);
             if (invoice != null)
             {
-               
+
                 txtName.ReadOnly = true;
                 TblCustomer customer = CustomerManager.SelectByID(invoice.CustomerID);
                 if (customer != null)
@@ -254,7 +255,7 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                             jobInvoice.CylinderTotalPrice = totalPriceCylinder;
                             jobInvoice.CylinderDataSource = dt;
-                            jobInvoice.NetTotalCylinderPrice = totalPriceCylinder * (1 - (decimal)(orderConfirm.Discount.HasValue ? orderConfirm.Discount : 0)/100);
+                            jobInvoice.NetTotalCylinderPrice = totalPriceCylinder * (1 - (decimal)(orderConfirm.Discount.HasValue ? orderConfirm.Discount : 0) / 100);
 
                             //Other changer
                             decimal totalPriceOtherCharges = 0;
@@ -273,7 +274,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 }
                             }
                             jobInvoice.OtherChargesTotalPrice = totalPriceOtherCharges;
-                            jobInvoice.NetTotalOtherChargesPrice = totalPriceOtherCharges * (1 - (decimal)(orderConfirm.Discount.HasValue ? orderConfirm.Discount.Value : 0)/100);
+                            jobInvoice.NetTotalOtherChargesPrice = totalPriceOtherCharges * (1 - (decimal)(orderConfirm.Discount.HasValue ? orderConfirm.Discount.Value : 0) / 100);
 
 
                             //Service job
@@ -291,7 +292,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
                             jobInvoice.ServiceJobTotalPrice = totalPriceServiceJob;
                             jobInvoice.NetTotalServicePrice = totalPriceServiceJob * (1 - (decimal)(orderConfirm.Discount.HasValue ? orderConfirm.Discount.Value : 0) / 100);
-                            
+
                             list.Add(jobInvoice);
                         }
                     }
@@ -454,7 +455,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         }
                     }
                 }
-            }   
+            }
         }
 
         protected void ddlDeliveryOrder_SelectedIndexChanged(object sender, EventArgs e)
@@ -483,7 +484,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
             upnlJobRev.Update();
         }
-       
+
         public static string CreateOrderbNumber()
         {
             string _No = "1" + DateTime.Today.ToString("yy") + "3";
@@ -513,12 +514,11 @@ namespace SweetSoft.APEM.WebApp.Pages
             return ret;
         }
 
-     
         private void SaveData()
         {
             short? taxID = (short?)null;
             int invoiceId = 0;
-            int customerId =0; int.TryParse(hCustomerID.Value, out customerId);
+            int customerId = 0; int.TryParse(hCustomerID.Value, out customerId);
             int contactId = 0; int.TryParse(ddlContact.SelectedValue, out contactId);
             short CurrencyID = 0; short.TryParse(hCurrencyID.Value, out CurrencyID);
             if (CurrencyID == 0)
@@ -602,12 +602,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     invoice = InvoiceManager.Update(invoice);
                     if (invoice != null)
                     {
-                      
+
                         //Current
                         List<int> CurrentList = InvoiceManager.SelectListJobIDByInvoiceId(invoice.InvoiceID);
+                        bool UpdateListJobs = false;
                         if (CurrentList != null && CurrentList.Count > 0)
                         {
-                           
+
                             if (Session[ViewState["PageID"] + "SweetSoft-JobInvoice-List"] != null)
                             {
                                 //List<JobInvoice> list = Session[ViewState["PageID"] + "SweetSoft-JobInvoice-List"] as List<JobInvoice>;
@@ -619,6 +620,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                                         {
                                             if (!InvoiceManager.CheckExitJobInDetail(item.JobID))
                                             {
+                                                UpdateListJobs = true;
                                                 InvoiceManager.InsertDetail(invoice.InvoiceID, item.JobID);
                                             }
                                         }
@@ -628,17 +630,20 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     {
                                         if ((list.Find(r => r.JobID == item) == null ? true : false))
                                         {
+                                            UpdateListJobs = true;
                                             InvoiceManager.DeleteDetailByJobIdAndInvoiceId(item, invoice.InvoiceID);
                                         }
                                     }
                                 }
                                 else
                                 {
+                                    UpdateListJobs = true;
                                     InvoiceManager.DeleteDetailByInvoiceId(invoice.InvoiceID);
                                 }
                             }
                             else
                             {
+                                UpdateListJobs = true;
                                 InvoiceManager.DeleteDetailByInvoiceId(invoice.InvoiceID);
                             }
                         }
@@ -653,6 +658,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     {
                                         if (!InvoiceManager.CheckExitJobInDetail(item.JobID))
                                         {
+                                            UpdateListJobs = true;
                                             InvoiceManager.InsertDetail(invoice.InvoiceID, item.JobID);
                                         }
                                     }
@@ -661,7 +667,41 @@ namespace SweetSoft.APEM.WebApp.Pages
                         }
 
                         if (AllowSaveLogging)
+                        {
                             SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.UPDATE_INVOICE), FUNCTION_PAGE, invoice.ToJSONString());
+                            if (UpdateListJobs)
+                            {
+                                JsonData jsDT = new JsonData();
+                                string OldValue = string.Empty;
+                                string NewValue = string.Empty;
+
+                                foreach (int iID in CurrentList)
+                                {
+                                    TblJob j = JobManager.SelectByID(iID);
+                                    OldValue += j != null ? (j.JobNumber + "(Rev " + j.RevNumber + ")") : string.Empty;
+                                }
+                                foreach (var item in list)
+                                {
+                                    NewValue += item.JobNumber + "(Rev " + item.JobRev + ")";
+                                }
+                                LoggingActions("Invoice",
+                                            LogsAction.Objects.Action.UPDATE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                new JsonData() { Title = "Invoice Number", Data = invoice.InvoiceNo },
+                                                new JsonData() { Title = "Jobs", Data = JsonConvert.SerializeObject(new Json(){OldValue = OldValue, NewValue = NewValue})}
+                                            }));
+                            }
+                            else
+                            {
+                                LoggingActions("Invoice",
+                                            LogsAction.Objects.Action.UPDATE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                new JsonData() { Title = "Invoice Number", Data = invoice.InvoiceNo }
+                                            }));
+                            }                            
+                        }
 
                         /// Trunglc Add - 23-04-2015
                         /// 
@@ -675,7 +715,7 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                         /// 
                         /// End
-                      
+
 
                         Session[ViewState["PageID"] + "SweetSoft_InvoiceID"] = invoice.InvoiceID;
                         LoadData();
@@ -763,7 +803,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         /// End
 
                         Session[ViewState["PageID"] + "SweetSoft_InvoiceID"] = invoice.InvoiceID;
-                        invoiceId = invoice.InvoiceID;                       
+                        invoiceId = invoice.InvoiceID;
 
                         MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_ADD_SUCCESSFULLY), MSGButton.OK, MSGIcon.Success);
                         OpenMessageBox(msg, null, false, false);
@@ -771,14 +811,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     }
                 }
             }
-            
-            if(!IsValid)
+
+            if (!IsValid)
                 ShowErrorPromptExtension();
 
             //if (isCreate)
             //    Response.Redirect(string.Format("OrderInvoice.aspx?ID={0}", invoiceId));
         }
-
 
         protected void btnAddJob_Click(object sender, EventArgs e)
         {
@@ -790,7 +829,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             //    return;
             //}
 
-            List<int> IDs= null;
+            List<int> IDs = null;
             if (Session[ViewState["PageID"] + "SweetSoft-JobID-List"] != null)
                 IDs = Session[ViewState["PageID"] + "SweetSoft-JobID-List"] as List<int>;
 
@@ -953,7 +992,6 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
         }
 
-
         private void GetData(TblJob job)
         {
             TblOrderConfirmation orderConfirm = OrderConfirmationManager.SelectByID(job.JobID);
@@ -987,7 +1025,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 jobInvoice.CylinderTotalPrice = totalPriceCylinder;
                 jobInvoice.CylinderDataSource = dt;
                 jobInvoice.NetTotalCylinderPrice = totalPriceCylinder * (1 - (decimal)(orderConfirm.Discount.HasValue ? orderConfirm.Discount : 0) / 100);
-                
+
                 //Other changer
                 decimal totalPriceOtherCharges = 0;
                 List<OtherChargesExtension> coll = OrderConfirmationManager.SelectOtherChargeByJobID(job.JobID);
@@ -1131,7 +1169,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     foreach (var item in list)
                     {
                         //Tính discount
-                        decimal price= item.CylinderTotalPrice + item.OtherChargesTotalPrice + item.ServiceJobTotalPrice;
+                        decimal price = item.CylinderTotalPrice + item.OtherChargesTotalPrice + item.ServiceJobTotalPrice;
                         decimal priceDiscount = price * (1 - (decimal)item.Discount / 100);
                         totalPrice = totalPrice + priceDiscount;
                     }

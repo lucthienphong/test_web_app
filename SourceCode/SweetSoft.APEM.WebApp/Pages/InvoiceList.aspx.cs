@@ -32,7 +32,6 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             try
             {
-
                 if (e != null)
                 {
                     if (e.Value.ToString().Equals("Invoice_Delte"))
@@ -79,7 +78,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 BindData();
                 grvInvoiceList.PageSize = Convert.ToInt32(ApplicationContext.Current.CurrentPageSize);
             }
-            
+
         }
 
         private void ApplyControlResourceTexts()
@@ -91,6 +90,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             grvInvoiceList.Columns[4].HeaderText = ResourceTextManager.GetApplicationText(ResourceText.JOB_NUMBER);
             grvInvoiceList.Columns[5].HeaderText = ResourceTextManager.GetApplicationText(ResourceText.JOB_NAME);
         }
+
         protected void grvInvoiceList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             CurrentPageIndex = e.NewPageIndex;
@@ -227,7 +227,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                 grvInvoiceList.PageIndex = CurrentPageIndex;
             }
         }
-
 
         [WebMethod]
         public static string GetCustomerData(string Keyword)
