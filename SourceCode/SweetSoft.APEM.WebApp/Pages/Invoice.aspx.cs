@@ -141,6 +141,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     txtName.Text = customer.Name;
 
                     BindContact(customer.CustomerID);
+                    ddlContact.SelectedValue = invoice.ContactID.ToString();
                     BindDeliveryOrder(customer.CustomerID);
                 }
                 txtYourReference.Text = invoice.PONumber;
@@ -585,6 +586,8 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                     invoice.TotalPrice = CalculatorPrice();
                     invoice.NetTotal = CalculatorNetTotalPrice();
+
+                    invoice.ContactID = contactId;
 
                     invoice.PONumber = txtYourReference.Text.Trim();
                     invoice = InvoiceManager.Update(invoice);
@@ -1167,7 +1170,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 InvoiceNo = dtInvoice.Rows[0]["InvoiceNo"].ToString();
                 SAPCode = dtInvoice.Rows[0]["SAPCode"].ToString();
                 InvoiceDate = dtInvoice.Rows[0]["InvoiceNo"].ToString();
-                PostingDate = DateTime.Today.ToString("yyyyMMdd");
+                PostingDate = Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
                 CurrencyName = dtInvoice.Rows[0]["CurrencyName"].ToString();
                 CalcTax = dtInvoice.Rows[0]["CalcTax"].ToString();
                 TaxCode = dtInvoice.Rows[0]["TaxCode"].ToString();
@@ -1243,7 +1246,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 InvoiceNo = dtInvoice.Rows[0]["InvoiceNo"].ToString();
                 SAPCode = dtInvoice.Rows[0]["SAPCode"].ToString();
                 InvoiceDate = dtInvoice.Rows[0]["InvoiceNo"].ToString();
-                PostingDate = DateTime.Today.ToString("yyyyMMdd");
+                PostingDate = Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
                 CurrencyName = dtInvoice.Rows[0]["CurrencyName"].ToString();
                 CalcTax = dtInvoice.Rows[0]["CalcTax"].ToString();
                 TaxCode = dtInvoice.Rows[0]["TaxCode"].ToString();

@@ -263,7 +263,6 @@
     <Content Include="js\jquery.qtip.min.js" />
     <Content Include="js\plugins\printThis.js" />
     <Content Include="js\SweetsoftValidate.js" />
-    <Content Include="Pages\AllLogs.aspx" />
     <Content Include="Pages\Printing\PrintCreditDetail.aspx" />
     <Content Include="Pages\Printing\PrintDebitDetail.aspx" />
     <Content Include="Pages\refBrandOwner.aspx" />
@@ -309,7 +308,6 @@
     <Content Include="Pages\SalesReport.aspx" />
     <Content Include="Pages\ScanCylinderBarcode.aspx" />
     <Content Include="Pages\ScanJobBarcode.aspx" />
-    <Content Include="Pages\tmpCompareDatatable.aspx" />
     <Content Include="ResetPassword.aspx" />
     <Content Include="css\bootstrap-select.min.css" />
     <Content Include="css\bootstrap.min.css" />
@@ -687,13 +685,6 @@
     <Compile Include="Controls\SelectReceivers.ascx.designer.cs">
       <DependentUpon>SelectReceivers.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AllLogs.aspx.cs">
-      <DependentUpon>AllLogs.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\AllLogs.aspx.designer.cs">
-      <DependentUpon>AllLogs.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Printing\PrintCreditDetail.aspx.cs">
       <DependentUpon>PrintCreditDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1008,13 +999,6 @@
     </Compile>
     <Compile Include="Pages\ScanJobBarcode.aspx.designer.cs">
       <DependentUpon>ScanJobBarcode.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\tmpCompareDatatable.aspx.cs">
-      <DependentUpon>tmpCompareDatatable.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\tmpCompareDatatable.aspx.designer.cs">
-      <DependentUpon>tmpCompareDatatable.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reports\DeliveryOrderDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1485,7 +1469,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\SaleReport_ByCustomersII.rdlc" />
     <EmbeddedResource Include="Reports\SaleReport_GeneralSalesReport.rdlc" />
     <EmbeddedResource Include="Reports\SaleReport_ByBrandOwners.rdlc" />
     <EmbeddedResource Include="Reports\SaleReport_ByProductTypes.rdlc" />

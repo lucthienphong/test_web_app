@@ -58,8 +58,6 @@
     <Compile Include="TblCustomerQuotationOtherChargeController.cs" />
     <Compile Include="TblCylinderProcessing.cs" />
     <Compile Include="TblCylinderProcessingController.cs" />
-    <Compile Include="TblDataLog.cs" />
-    <Compile Include="TblDataLogController.cs" />
     <Compile Include="TblDebit.cs" />
     <Compile Include="TblDebitController.cs" />
     <Compile Include="TblDebitDetail.cs" />

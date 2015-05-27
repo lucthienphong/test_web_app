@@ -15,8 +15,6 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SweetSoft.APEM.Core.Logs;
-using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -30,7 +28,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
         }
 
-        protected int CustomerID
+        private int CustomerID
         {
             get
             {
@@ -53,7 +51,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                 {
                     Session[ViewState["PageID"] + "ID"] = Request.QueryString["ID"];
                     BindCustomerData();
-                    base.SaveBaseDataBeforeEdit();
                 }
                 else
                 {
@@ -175,13 +172,6 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             try
             {
-                string data1 = Session[ViewState_PageID + "DataSource_grvPrices_Before"] as string;
-                string data2 = Session[ViewState_PageID + "DataSource_grvAdditionalService_Before"] as string;
-                string data3 = Session[ViewState_PageID + "DataSource_grvOtherCharges_Before"] as string;
-
-                string now1 = Session[ViewState_PageID + "DataSource_grvPrices_Now"] as string;
-                string now2 = Session[ViewState_PageID + "DataSource_grvAdditionalService_Now"] as string;
-                string now3 = Session[ViewState_PageID + "DataSource_grvOtherCharges_Now"] as string;
                 //-------BEGIN VALIDATION
                 int ID = Session[ViewState["PageID"] + "ID"] == null ? 0 : int.Parse(Session[ViewState["PageID"] + "ID"].ToString());
                 ///DateOfQuotation
@@ -249,14 +239,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     //Lưu vào logging
                                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
 
-                                    LoggingActions("Customer Quotation",
-                                                    LogsAction.Objects.Action.UPDATE,
-                                                    LogsAction.Objects.Status.SUCCESS,
-                                                    JsonConvert.SerializeObject(new List<JsonData>() { 
-                                                        new JsonData() { Title = "Customer Code", Data = txtCode.Text } ,
-                                                        new JsonData() { Title = "Customer Name", Data = txtName.Text } 
-                                                    }));
-
                                     Session[ViewState["PageID"] + "ID"] = obj.CustomerID;
                                     MessageBox errMsg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_SAVED_SUCCESS), MSGButton.OK, MSGIcon.Success);
                                     OpenMessageBox(errMsg, null, false, false);
@@ -295,14 +277,6 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                                     //Lưu vào logging
                                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
-
-                                    LoggingActions("Customer Quotation",
-                                                LogsAction.Objects.Action.CREATE,
-                                                LogsAction.Objects.Status.SUCCESS,
-                                                JsonConvert.SerializeObject(new List<JsonData>() { 
-                                                    new JsonData() { Title = "Customer Code", Data = txtCode.Text } ,
-                                                    new JsonData() { Title = "Customer Name", Data = txtName.Text } 
-                                                }));
 
                                     Session[ViewState["PageID"] + "ID"] = obj.CustomerID;
                                     MessageBox errMsg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_SAVED_SUCCESS), MSGButton.OK, MSGIcon.Success);

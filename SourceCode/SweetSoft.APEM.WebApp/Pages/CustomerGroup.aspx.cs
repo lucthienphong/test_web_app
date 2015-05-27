@@ -12,8 +12,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SweetSoftCMS.ExtraControls.Controls;
-using SweetSoft.APEM.Core.Logs;
-using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -35,7 +33,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                 ApplyControlText();
                 gvReference.PageSize = Convert.ToInt32(ApplicationContext.Current.CurrentPageSize);
                 BindData();
-                base.SaveBaseDataBeforeEdit();
             }
         }
 
@@ -210,21 +207,11 @@ namespace SweetSoft.APEM.WebApp.Pages
                         OpenMessageBox(msgRole, null, false, false);
                         return;
                     }
-                    string oldName = obj.Name;
-                    string oldCode = obj.Code;
                     obj.Name = countryName;
                     obj.Code = countryCode;
                     obj.IsObsolete = isObsolete;
                     obj.Type = type;
                     ReferenceTableManager.Update(obj);
-
-                    LoggingActions("Customer Group",
-                            LogsAction.Objects.Action.UPDATE,
-                            LogsAction.Objects.Status.SUCCESS,
-                            JsonConvert.SerializeObject(new List<JsonData>() { 
-                                new JsonData() { Title = "Group Code", Data = JsonConvert.SerializeObject(new Json(){OldValue = oldCode, NewValue = obj.Code}) } ,
-                                new JsonData() { Title = "Group Name", Data = JsonConvert.SerializeObject(new Json(){OldValue = oldName, NewValue = obj.Name}) } 
-                            }));
 
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
@@ -244,14 +231,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.Code = countryCode;
                     obj.IsObsolete = isObsolete;
                     ReferenceTableManager.Insert(obj);
-
-                    LoggingActions("Customer Group",
-                            LogsAction.Objects.Action.CREATE,
-                            LogsAction.Objects.Status.SUCCESS,
-                            JsonConvert.SerializeObject(new List<JsonData>() { 
-                                new JsonData() { Title = "Group Code", Data = obj.Code } ,
-                                new JsonData() { Title = "Group Name", Data = obj.Name } 
-                            }));
 
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
@@ -416,20 +395,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
 
                             List<int> idList = new List<int>();
-                            List<JsonData> lstData = new List<JsonData>();
-
                             for (int i = 0; i < gvReference.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)gvReference.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     int ID = Convert.ToInt16(gvReference.DataKeys[i].Value);
-                                    TblReference obj = ReferenceTableManager.SelectByID(ID);
-                                    if (obj != null)
-                                    {
-                                        lstData.Add(new JsonData() { Title = "Group Code", Data = obj.Code });
-                                        lstData.Add(new JsonData() { Title = "Group Name", Data = obj.Name });
-                                    }
                                     idList.Add(ID);
                                 }
                             }
@@ -437,10 +408,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                             BindData();
                             if (string.IsNullOrEmpty(DataCannotDelete))
                             {
-                                LoggingActions("Customer Group",
-                                           LogsAction.Objects.Action.DELETE,
-                                           LogsAction.Objects.Status.SUCCESS,
-                                           JsonConvert.SerializeObject(lstData));
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                                 OpenMessageBox(msg, null, false, false);
                             }

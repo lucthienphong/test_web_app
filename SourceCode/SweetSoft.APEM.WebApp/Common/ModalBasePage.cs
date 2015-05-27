@@ -15,11 +15,6 @@ using SweetSoft.APEM.DataAccess;
 using SweetSoft.APEM.Core.Helper;
 using System.Web.SessionState;
 using SweetSoftCMS.ExtraControls.Controls;
-using System.Data;
-using SweetSoft.APEM.Core.UI;
-using SweetSoft.APEM.Core.Logs;
-using Newtonsoft.Json;
-using System.Text.RegularExpressions;
 
 namespace SweetSoft.APEM.WebApp.Common
 {
@@ -561,11 +556,12 @@ namespace SweetSoft.APEM.WebApp.Common
         public void SaveLogging(string activity, string functionPage, string description)
         {
             LoggingManager.LogAction(activity, functionPage, description);
-        }
+        }        
 
         protected override void OnLoadComplete(EventArgs e)
         {
             base.OnLoadComplete(e);
+
         }
 
         protected void ProcessException(Exception ex)
@@ -641,250 +637,6 @@ namespace SweetSoft.APEM.WebApp.Common
         {
             return GetResourceText(string.Format("APEMResourcesText_{0}", ApplicationContext.Current.CurrentLanguageCode.Replace("-", "_")), resourceKey);
         }
-
-        #region Trunglc Add - 15/05/2015
-
-        private Dictionary<string, ValueObject> GetDataControlPage(bool isNow)
-        {
-            ContentPlaceHolder MainContent = Page.Master.FindControl("ContentPlaceHolder1") as ContentPlaceHolder;
-
-            Dictionary<string, ValueObject> dicxNow = new Dictionary<string, ValueObject>();
-            foreach (Control ctrl in MainContent.Controls)
-            {
-                if (ctrl.GetType().Equals(typeof(ExtraInputMask)))
-                {
-                    ValueObject vo = new ValueObject();
-                    vo.Label = ((ExtraInputMask)ctrl).ToolTip;
-                    vo.Value = ((ExtraInputMask)ctrl).Suffix != null ? 
-                                ((ExtraInputMask)ctrl).Text.Replace(((ExtraInputMask)ctrl).Suffix, string.Empty) :
-                                ((ExtraInputMask)ctrl).Text;
-                    vo.Type = typeof(ExtraInputMask).ToString();
-
-                    dicxNow.Add(ctrl.ID, vo);
-                }
-                if (ctrl.GetType().Equals(typeof(DropDownList)))
-                {
-                    ValueObject vo = new ValueObject();
-                    vo.Label = ((DropDownList)ctrl).ToolTip;
-                    vo.Value = ((DropDownList)ctrl).SelectedItem.Text;
-                    vo.Type = typeof(DropDownList).ToString();
-
-                    dicxNow.Add(ctrl.ID, vo);
-                }
-
-                if (ctrl.GetType().Equals(typeof(GridView)) || ctrl.GetType().Equals(typeof(GridviewExtension)))
-                {
-                    string htmlData = string.Empty;
-
-                    if (isNow)
-                    {
-                        if (Session[ViewState_PageID + "DataSource_" + ctrl.ID + "_Now"] != null)
-                        {
-                            htmlData = Session[ViewState_PageID + "DataSource_" + ctrl.ID + "_Now"] as string;
-                        }
-                    }
-                    else
-                    {
-                        if (Session[ViewState_PageID + "DataSource_" + ctrl.ID + "_Before"] != null)
-                        {
-                            htmlData = Session[ViewState_PageID + "DataSource_" + ctrl.ID + "_Before"] as string;
-                        }
-                    }
-
-                    ValueObject vo = new ValueObject();
-                    vo.Label = ((GridView)ctrl).ToolTip;
-                    vo.Value = htmlData;
-                    vo.Type = typeof(GridView).ToString();
-
-                    dicxNow.Add(ctrl.ID, vo);
-                }
-
-                if (ctrl.GetType().Equals(typeof(CheckBox)))
-                {
-                    ValueObject vo = new ValueObject();
-                    vo.Label = ((CheckBox)ctrl).ToolTip;
-                    vo.Value = ((CheckBox)ctrl).Checked;
-                    vo.Type = typeof(CheckBox).ToString();
-
-                    dicxNow.Add(ctrl.ID, vo);
-                }
-                if (ctrl.GetType().Equals(typeof(RadioButton)))
-                {
-                    ValueObject vo = new ValueObject();
-                    vo.Label = ((RadioButton)ctrl).ToolTip;
-                    vo.Value = ((RadioButton)ctrl).Checked;
-                    vo.Type = typeof(RadioButton).ToString();
-
-                    dicxNow.Add(ctrl.ID, vo);
-                }
-                if (ctrl.GetType().Equals(typeof(CustomExtraTextbox)))
-                {
-                    ValueObject vo = new ValueObject();
-                    vo.Label = ((CustomExtraTextbox)ctrl).ToolTip;
-                    vo.Value = ((CustomExtraTextbox)ctrl).Text;
-                    vo.Type = typeof(CustomExtraTextbox).ToString();
-
-                    dicxNow.Add(ctrl.ID, vo);
-                }
-                if (ctrl.GetType().Equals(typeof(TextBox)))
-                {
-                    ValueObject vo = new ValueObject();
-                    vo.Label = ((TextBox)ctrl).ToolTip;
-                    vo.Value = ((TextBox)ctrl).Text;
-                    vo.Type = typeof(TextBox).ToString();
-
-                    dicxNow.Add(ctrl.ID, vo);
-                }
-            }
-            return dicxNow;
-        }
-
-        protected void SaveBaseDataBeforeEdit()
-        {
-            Dictionary<string, ValueObject> dicxNow = GetDataControlPage(false);
-            Session[ViewState_PageID + "DataBeforeEdit"] = dicxNow;
-        }
-
-        protected Dictionary<string, ValueObject> GetDataAfterEdit()
-        {
-            Dictionary<string, ValueObject> dicxNow = GetDataControlPage(true);
-            return dicxNow;
-        }
-
-        protected void LoggingActions(string typeObj, string action, string status, string objdata = null)
-        {
-            ObjLogs newObjLogs = new ObjLogs();
-            newObjLogs.Action = action;
-            newObjLogs.Status = status;
-            newObjLogs.TypeObject = typeObj;
-
-            if (action == LogsAction.Objects.Action.UPDATE)
-            {
-                Dictionary<string, ValueObject> dicxBefore = Session[ViewState_PageID + "DataBeforeEdit"] as Dictionary<string, ValueObject>;
-                Dictionary<string, ValueObject> dicxNow = GetDataAfterEdit();
-                List<JsonData> lstJsonData = JsonConvert.DeserializeObject<List<JsonData>>(objdata);
-                List<JsonData> lstObjData = new List<JsonData>();
-                lstObjData = GenerateListJsonDataLogs(dicxBefore, dicxNow);
-                lstJsonData.AddRange(lstObjData);
-                newObjLogs.JsonDatas = JsonConvert.SerializeObject(lstJsonData);
-                Session[ViewState_PageID + "DataBeforeEdit"] = dicxNow;
-            }
-            else
-            {
-                newObjLogs.JsonDatas = objdata;
-            }
-            DataLogsManager.LogAction(TypeActionLogs.Data, JsonHelper.Serialize<ObjLogs>(newObjLogs), Request.UserHostAddress);
-        }
-
-        protected List<JsonData> GenerateListJsonDataLogs(Dictionary<string, ValueObject> dicBefore, Dictionary<string, ValueObject> dicAfter)
-        {
-            List<JsonData> retJsonData = new List<JsonData>();
-
-            foreach (var item in dicAfter)
-            {
-                ValueObject voBefore = dicBefore[item.Key] as ValueObject;
-                ValueObject voAfter = item.Value as ValueObject;
-
-                if (voBefore.Value != null)
-                {
-                    if (voAfter.Value != null)
-                    {
-                        if (!voBefore.Value.Equals(voAfter.Value))
-                        {
-                            if (voAfter.Type == typeof(GridView).ToString() || voAfter.Type == typeof(GridviewExtension).ToString())
-                            {
-                                string sOldData = string.Empty;
-                                string sNewData = string.Empty;
-
-                                sOldData = Session[ViewState_PageID + "DataSource_" + item.Key + "_Before"] as string;
-                                sNewData = Session[ViewState_PageID + "DataSource_" + item.Key + "_Now"] as string;
-                                Session.Remove(ViewState_PageID + "DataSource_" + item.Key + "_Before");
-                                Session[ViewState_PageID + "DataSource_" + item.Key + "_Before"] = sNewData;
-
-                                string s_CompareOld = Regex.Replace(sOldData, @"\s+", String.Empty);
-                                string s_CompareNew = Regex.Replace(sNewData, @"\s+", String.Empty);
-
-                                if (!String.Equals(s_CompareOld, s_CompareNew, StringComparison.OrdinalIgnoreCase))
-                                {
-                                    Json newJ = new Json();
-                                    newJ.OldValue = sOldData;
-                                    newJ.NewValue = sNewData;
-                                    newJ.Type = voAfter.Type;
-
-                                    JsonData newJData = new JsonData();
-                                    newJData.Title = voBefore.Label;
-                                    newJData.Data = JsonConvert.SerializeObject(newJ);
-                                    retJsonData.Add(newJData);
-                                }
-                            }
-                            else
-                            {
-
-                                Json newJ = new Json();
-                                newJ.OldValue = voBefore.Value.ToString();
-                                newJ.NewValue = voAfter.Value.ToString();
-                                newJ.Type = voAfter.Type;
-
-                                JsonData newJData = new JsonData();
-                                newJData.Title = voBefore.Label;
-                                newJData.Data = JsonConvert.SerializeObject(newJ);
-                                retJsonData.Add(newJData);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Json newJ = new Json();
-                        newJ.OldValue = voBefore.Value.ToString();
-                        newJ.NewValue = null;
-                        newJ.Type = voAfter.Type;
-
-                        JsonData newJData = new JsonData();
-                        newJData.Title = voBefore.Label;
-                        newJData.Data = JsonConvert.SerializeObject(newJ);
-
-                        retJsonData.Add(newJData);
-                    }
-                }
-                else
-                {
-                    if (voAfter.Value != null)
-                    {
-                        Json newJ = new Json();
-                        newJ.OldValue = null;
-                        newJ.NewValue = voAfter.Value.ToString();
-                        newJ.Type = voAfter.Type;
-
-                        JsonData newJData = new JsonData();
-                        newJData.Title = voBefore.Label;
-                        newJData.Data = JsonConvert.SerializeObject(newJ);
-
-                        retJsonData.Add(newJData);
-                    }
-                }
-            }
-
-            return retJsonData;
-        }
-
-
-        protected string ViewState_PageID
-        {
-            get
-            {
-                return ViewState["PageID"] != null ? ViewState["PageID"].ToString() : string.Empty;
-            }
-        }
-
-        [WebMethod(EnableSession = true)]
-        public static bool SaveDataTable(string key, string data, string PageID)
-        {
-            HttpContext.Current.Session[PageID + "DataSource_" + key] = data;
-            return true;
-        }
-
-        #endregion
-
         #endregion
 
         #region User Role
@@ -1139,7 +891,7 @@ namespace SweetSoft.APEM.WebApp.Common
                 return PromptControdClientIDs.Count == 0;
             }
         }
-        #endregion
+        #endregion      
     }
 
 

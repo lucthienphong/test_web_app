@@ -13,8 +13,6 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SweetSoft.APEM.Core.Logs;
-using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -28,7 +26,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
         }
 
-        protected int CustomerID
+        private int CustomerID
         {
             get
             {
@@ -41,12 +39,6 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
         }
 
-        protected string IsShow
-        {
-            get;
-            set;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -57,7 +49,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                 if (Request.QueryString["ID"] != null)
                 {
                     BindCustomerData();
-                    base.SaveBaseDataBeforeEdit();
                 }
                 else
                 {
@@ -147,8 +138,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     if (obj != null)
                     {
                         bool isBrand = obj.IsBrand == 1 ? true : false;
-                        IsShow = isBrand ? "none" : "normal";
-                        //ShowControl(isBrand);
+                        ShowControl(isBrand);
                         chkIsBrand.Checked = isBrand;
                         txtCode.Text = obj.Code;
                         txtName.Text = obj.Name;
@@ -202,8 +192,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 }
                 else
                 {
-                    IsShow = "none";
-                    //ShowControl(false);
+                    ShowControl(false);
                     ResetDataFields();
                 }
             }
@@ -439,14 +428,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                         //Lưu vào logging
                         LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
 
-                        LoggingActions("Customer",
-                            LogsAction.Objects.Action.UPDATE,
-                            LogsAction.Objects.Status.SUCCESS,
-                            JsonConvert.SerializeObject(new List<JsonData>() { 
-                                new JsonData() { Title = "Customer Code", Data = obj.Code } ,
-                                new JsonData() { Title = "Customer Name", Data = obj.Name } 
-                            }));
-
                         Session[ViewState["PageID"] + "ID"] = obj.CustomerID;
                         MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.CUSTOMER_SAVED_SUCCESSFULLY), MSGButton.OK, MSGIcon.Success);
                         OpenMessageBox(msg, null, false, false);
@@ -505,19 +486,9 @@ namespace SweetSoft.APEM.WebApp.Pages
                         //Lưu vào logging
                         LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
 
-                        LoggingActions("Customer",
-                            LogsAction.Objects.Action.CREATE,
-                            LogsAction.Objects.Status.SUCCESS,
-                            JsonConvert.SerializeObject(new List<JsonData>() { 
-                                new JsonData() { Title = "Customer Code", Data = txtCode.Text } ,
-                                new JsonData() { Title = "Customer Name", Data = txtName.Text } 
-                            }));
-
                         Session[ViewState["PageID"] + "ID"] = obj.CustomerID;
                         MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.CUSTOMER_SAVED_SUCCESSFULLY), MSGButton.OK, MSGIcon.Success);
                         OpenMessageBox(msg, null, false, false);
-
-                        
                     }
                 }
                 if (!IsValid)
@@ -780,23 +751,23 @@ namespace SweetSoft.APEM.WebApp.Pages
         }
         #endregion
 
-        //private void ShowControl(bool isBrand)
-        //{
-        //    if (isBrand)
-        //    {
-        //        //divLeft.Visible = false;
-        //        divRight.Visible = false;
-        //        divShipping.Visible = false;
-        //    }
-        //    else
-        //    {
-        //        divRight.Visible = true;
-        //        divShipping.Visible = true;
-        //    }
-        //}
+        private void ShowControl(bool isBrand)
+        {
+            if (isBrand)
+            {
+                //divLeft.Visible = false;
+                divRight.Visible = false;
+                divShipping.Visible = false;
+            }
+            else
+            {
+                divRight.Visible = true;
+                divShipping.Visible = true;
+            }
+        }
         protected void chkIsBrand_CheckedChanged(object sender, EventArgs e)
         {
-            //ShowControl(chkIsBrand.Checked);
+            ShowControl(chkIsBrand.Checked);
         }
 
         protected void btnPricingMaster_Click(object sender, EventArgs e)

@@ -6,8 +6,8 @@
         <div class="button-control col-md-12 col-sm-12">
             <div class="form-inline">
                 <div class="form-group" style="margin-bottom: 0; width: 100%;">
-                    <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" OnClientClick="SaveStateOfData('Now')"
-                        class="waitforajax btn btn-transparent new">
+                    <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click"
+                        class="btn btn-transparent new">
                                 <span class="flaticon-floppy1"></span> Save
                     </asp:LinkButton>
                     <asp:LinkButton ID="btnDelete" runat="server"
@@ -45,7 +45,7 @@
                                 <label class="control-label">
                                     <strong><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER)%></strong>
                                 </label>
-                                <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true" ToolTip="Customer Code"
+                                <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true"
                                         runat="server" Repeat="5" ShowMaskOnHover="true" MaxLength="5" Enabled="false"
                                         Greedy="true" RightAlign="false"></SweetSoft:ExtraInputMask>
                             </div>
@@ -55,7 +55,7 @@
                                 <label class="control-label">
                                     &nbsp;
                                 </label>
-                                <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" Placeholder="Customer's name" ToolTip="Customer Name"
+                                <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" Placeholder="Customer's name"
                                     runat="server" AutoCompleteType="Search"></SweetSoft:CustomExtraTextbox>
                                 <asp:HiddenField ID="hCustomerID" runat="server" />
                             </div>
@@ -69,7 +69,7 @@
                         </label>
                         <div class="wrap-datepicker">
                             <SweetSoft:CustomExtraTextbox ID="txtDebitDate" runat="server"
-                                RenderOnlyInput="true" data-format="dd-MM-yyyy" ToolTip="Debit Date"
+                                RenderOnlyInput="true" data-format="dd-MM-yyyy"
                                 CssClass="datepicker form-control mask-date">
                             </SweetSoft:CustomExtraTextbox>
                             <span class="fa fa-calendar in-mask-date"></span>
@@ -82,7 +82,7 @@
                             Currency
                         </label>
                         <asp:DropDownList ID="ddlCurrency" runat="server" AutoPostBack="true"
-                            data-style="btn btn-info" ToolTip="Currency"
+                            data-style="btn btn-info"
                             data-width="100%"
                             data-toggle="dropdown"
                             CssClass="form-control">
@@ -94,7 +94,7 @@
                         <label class="control-label">
                             Terms of payment
                         </label>
-                        <asp:TextBox ID="txtTermOfPayment" runat="server" CssClass="form-control" ToolTip="Terms of payment"></asp:TextBox>
+                        <asp:TextBox ID="txtTermOfPayment" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-3">
@@ -103,7 +103,7 @@
                             Tax
                         </label>
                         <asp:DropDownList ID="ddlTax" runat="server" AutoPostBack="true"
-                            data-style="btn btn-info" ToolTip="Tax"
+                            data-style="btn btn-info"
                             data-width="100%"
                             data-toggle="dropdown" OnSelectedIndexChanged="ddlTax_SelectedIndexChanged"
                             CssClass="form-control">
@@ -116,7 +116,7 @@
                            Tax Rate
                         </label>
                         <div>
-                            <SweetSoft:ExtraInputMask ID="txtTaxRate" Enabled="false" RenderOnlyInput="true" Required="false" Suffix=" %" ToolTip="Tax Rate"
+                            <SweetSoft:ExtraInputMask ID="txtTaxRate" Enabled="false" RenderOnlyInput="true" Required="false" Suffix=" %"
                                 runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="0" Digits="3" AutoGroup="true"></SweetSoft:ExtraInputMask>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                         <label class="control-label">
                             Remark
                         </label>
-                        <asp:TextBox ID="txtRemark" runat="server" TextMode="MultiLine" ToolTip="Remark"
+                        <asp:TextBox ID="txtRemark" runat="server" TextMode="MultiLine"
                             Rows="4" CssClass="form-control"></asp:TextBox>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <asp:GridView ID="grvDetail" runat="server" AutoGenerateColumns="false" ToolTip="Debit detail"
+                            <asp:GridView ID="grvDetail" runat="server" AutoGenerateColumns="false"
                                 CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                                 AllowPaging="false" AllowSorting="false" DataKeyNames="DebitDetailID"
                                 OnRowCommand="grvDetail_RowCommand"
@@ -280,21 +280,7 @@
             SearchText();
             $('#dialog-printing').hide();
             PrintDedit();
-            SaveStateOfData('Before');
         });
-
-        var viewstate = '<%=ViewState_PageID%>';
-
-        function SaveStateOfData(time) {
-            var obj = [
-                {
-                    key: 'grvDetail_' + time,
-                    data: $("[id$='grvDetail']").parent().html() == undefined ? "<table></table>" : $("[id$='grvDetail']").parent().html(),
-                    PageID: viewstate
-                }
-            ];
-            SaveStateOfDataForm("Debit.aspx/SaveDataTable", obj, time);
-        }
 
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(SearchText);
         function SearchText(s, a) {

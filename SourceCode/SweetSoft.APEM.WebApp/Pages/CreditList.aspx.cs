@@ -15,8 +15,6 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SweetSoft.APEM.Core.Logs;
-using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -190,29 +188,17 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
 
                             List<int> idList = new List<int>();
-                            List<JsonData> lstData = new List<JsonData>();
                             for (int i = 0; i < grvCrebitList.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)grvCrebitList.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     int ID = Convert.ToInt32(grvCrebitList.DataKeys[i].Value);
-                                    TblCredit obj = CreditManager.SelectByID(ID);
-                                    if (obj != null)
-                                    {
-                                        lstData.Add(new JsonData() { Title = "Credit Code", Data = obj.CreditNo });
-                                    }
                                     idList.Add(ID);
                                 }
                             }
                             removeSelectedRows(idList);
                             BindData();
-
-                            LoggingActions("Credit",
-                                           LogsAction.Objects.Action.DELETE,
-                                           LogsAction.Objects.Status.SUCCESS,
-                                           JsonConvert.SerializeObject(lstData));
-
                             MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                             OpenMessageBox(msg, null, false, false);
                         }

@@ -9,7 +9,7 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="form-inline">
                         <div class="form-group">
-                            <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" OnClientClick="SaveStateOfData('Now')" class="waitforajax btn btn-transparent">
+                            <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" class="btn btn-transparent">
                                 <span class="flaticon-floppy1"></span>
                                  <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.SAVE)%></asp:LinkButton>
                         </div>
@@ -44,11 +44,11 @@
                                 <div class="form-horizontal">
                                     <div class="form-group" style="margin-bottom: 0">
                                         <div class="col-sm-2">
-                                            <asp:TextBox ID="txtCode" runat="server" ReadOnly="true" ToolTip="Customer Code"
+                                            <asp:TextBox ID="txtCode" runat="server" ReadOnly="true"
                                                 CssClass="form-control"></asp:TextBox>
                                         </div>
                                         <div class="col-sm-10">
-                                            <asp:TextBox ID="txtName" runat="server" ReadOnly="true" ToolTip="Customer Name"
+                                            <asp:TextBox ID="txtName" runat="server" ReadOnly="true"
                                                 CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                 <div class="col-sm-2">
                                     <div class="wrap-datepicker">
                                         <label class="control-label">Last Update Date</label>
-                                        <SweetSoft:CustomExtraTextbox ID="txtQuotationDate" runat="server" ToolTip="Last Update Date"
+                                        <SweetSoft:CustomExtraTextbox ID="txtQuotationDate" runat="server"
                                             RenderOnlyInput="true" data-format="dd-MM-yyyy"
                                             CssClass="datepicker form-control mask-date"></SweetSoft:CustomExtraTextbox>
                                         <span class="fa fa-calendar in-mask-date"></span>
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="control-label">Customer Contact</label>
-                                    <asp:DropDownList ID="ddlContacts" runat="server" ToolTip="Customer Contact"
+                                    <asp:DropDownList ID="ddlContacts" runat="server"
                                         data-style="btn btn-info"
                                         data-width="100%"
                                         data-live-search="true"
@@ -86,7 +86,7 @@
                                     <label class="control-label">
                                         Contact Designation
                                     </label>
-                                    <SweetSoft:CustomExtraTextbox ID="txtContactDesignation" runat="server" ToolTip="Contact Designation"
+                                    <SweetSoft:CustomExtraTextbox ID="txtContactDesignation" runat="server"
                                         RenderOnlyInput="true" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <asp:GridView ID="grvPrices" runat="server" AutoGenerateColumns="false" ToolTip="Pricing master"
+                    <asp:GridView ID="grvPrices" runat="server" AutoGenerateColumns="false"
                         CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                         AllowPaging="false" AllowSorting="false" DataKeyNames="ID"
                         OnRowDeleting="grvPrices_RowDeleting"
@@ -293,7 +293,7 @@
                             </div>
                         </div>
                     </div>
-                    <asp:GridView ID="grvAdditionalService" runat="server" AutoGenerateColumns="false" ToolTip="Additional Services"
+                    <asp:GridView ID="grvAdditionalService" runat="server" AutoGenerateColumns="false"
                         CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                         AllowPaging="false" AllowSorting="false" DataKeyNames="ID"
                         OnRowDeleting="grvAdditionalService_RowDeleting"
@@ -302,7 +302,7 @@
                         OnRowCancelingEdit="grvAdditionalService_RowCancelingEdit"
                         OnRowDataBound="grvAdditionalService_RowDataBound"
                         OnRowCommand="grvAdditionalService_RowCommand">
-                        <Columns>
+                        <Columns>                        
                             <asp:TemplateField HeaderText="Additional Services">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" Text='<%# Eval("Description") %>'></asp:LinkButton>
@@ -419,7 +419,7 @@
                             </div>
                         </div>
                     </div>
-                    <asp:GridView ID="grvOtherCharges" runat="server" AutoGenerateColumns="false" ToolTip="Other charges"
+                    <asp:GridView ID="grvOtherCharges" runat="server" AutoGenerateColumns="false"
                         CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                         AllowPaging="false" AllowSorting="false" DataKeyNames="ID"
                         OnRowDeleting="grvOtherCharges_RowDeleting"
@@ -428,7 +428,7 @@
                         OnRowCancelingEdit="grvOtherCharges_RowCancelingEdit"
                         OnRowDataBound="grvOtherCharges_RowDataBound"
                         OnRowCommand="grvOtherCharges_RowCommand">
-                        <Columns>
+                        <Columns>                        
                             <asp:TemplateField HeaderText="Other charges">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" Text='<%# Eval("Description") %>'></asp:LinkButton>
@@ -449,7 +449,7 @@
                                 <EditItemTemplate>
                                     <div style="position: relative;">
                                         <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtGLCode"
-                                            Text='<%#Eval("GLCode")%>' Width="100%" MaxLength="10"
+                                            Text='<%#Eval("GLCode")%>' Width="100%"
                                             CssClass="form-control" runat="server">
                                         </SweetSoft:CustomExtraTextbox>
                                     </div>
@@ -516,7 +516,7 @@
         <div class="col-sm-12">
             <div class="form-group">
                 <label class="control-label">Remark</label>
-                <asp:TextBox ID="txtQuotationNote" runat="server" ToolTip="Remark"
+                <asp:TextBox ID="txtQuotationNote" runat="server"
                     TextMode="MultiLine" Rows="6" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
@@ -525,41 +525,12 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script src="/js/plugins/printThis.js"></script>
     <script>
-        var viewstate = '<%=ViewState_PageID%>';
-        var customerid = '<%=CustomerID%>';
-
         $(document).ready(function () {
             $('#dialog-printing').hide();
             InitDialogPrintLink();
-            SaveStateOfData('Before');
         })
-       
-        function SaveStateOfData(time) {
-            if (customerid != '0') {
-                var obj = [
-                    {
-                        key: 'grvPrices_' + time,
-                        data: $("[id$='grvPrices']").parent().html() == undefined ? "<table></table>" : $("[id$='grvPrices']").parent().html(),
-                        PageID: viewstate
-                    },
-                    {
-                        key: 'grvAdditionalService_' + time,
-                        data: $("[id$='grvAdditionalService']").parent().html() == undefined ? "<table></table>" : $("[id$='grvAdditionalService']").parent().html(),
-                        PageID: viewstate
-                    },
-                    {
-                        key: 'grvOtherCharges_' + time,
-                        data: $("[id$='grvOtherCharges']").parent().html() == undefined ? "<table></table>" : $("[id$='grvOtherCharges']").parent().html(),
-                        PageID: viewstate
-                    }
-                ];
-                SaveStateOfDataForm("CustomerQuotation.aspx/SaveDataTable", obj, time);
-            }
-        }
-
         addRequestHanlde(InitDialogPrintLink);
         function InitDialogPrintLink() {
-
             $('a#printing').each(function () {
                 $(this).on('click', function (e) {
 

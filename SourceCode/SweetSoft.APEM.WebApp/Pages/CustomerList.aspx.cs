@@ -12,8 +12,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SweetSoft.APEM.Core.Logs;
-using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -214,34 +212,21 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
 
                             List<int> idList = new List<int>();
-                            List<JsonData> lstData = new List<JsonData>();
-
                             for (int i = 0; i < grvCustomerList.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)grvCustomerList.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     int ID = Convert.ToInt32(grvCustomerList.DataKeys[i].Value);
-                                    TblCustomer obj = CustomerManager.SelectByID(ID);
-                                    if (obj != null)
-                                    {
-                                        lstData.Add(new JsonData() { Title = "Customer Code", Data = obj.Code });
-                                        lstData.Add(new JsonData() { Title = "Customer Name", Data = obj.Name });
-                                    }
                                     idList.Add(ID);
                                 }
                             }
-
                             string DataCannotDelete = removeSelectedRows(idList);
                             BindData();
                             if (string.IsNullOrEmpty(DataCannotDelete))
                             {
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                                 OpenMessageBox(msg, null, false, false);
-                                LoggingActions("Customer",
-                                           LogsAction.Objects.Action.DELETE,
-                                           LogsAction.Objects.Status.SUCCESS,
-                                           JsonConvert.SerializeObject(lstData));
                             }
                             else
                             {

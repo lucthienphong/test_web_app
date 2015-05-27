@@ -67,6 +67,15 @@ namespace SweetSoft.APEM.WebApp.Pages {
         protected global::System.Web.UI.WebControls.CheckBox chkIsBrand;
         
         /// <summary>
+        /// divShipping control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divShipping;
+        
+        /// <summary>
         /// txtShortName control.
         /// </summary>
         /// <remarks>
@@ -191,6 +200,15 @@ namespace SweetSoft.APEM.WebApp.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSaleRep;
+        
+        /// <summary>
+        /// divRight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRight;
         
         /// <summary>
         /// ddlDelivery control.

@@ -46,8 +46,6 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,7 +68,6 @@
     <Compile Include="Helper\ExtensionHelper.cs" />
     <Compile Include="Helper\GridViewAdapter.cs" />
     <Compile Include="Helper\Helpers.cs" />
-    <Compile Include="Helper\JsonHelper.cs" />
     <Compile Include="Helper\KeyboardHelper.cs" />
     <Compile Include="Helper\LanguageHelper.cs" />
     <Compile Include="Helper\MyDataTable.cs" />
@@ -83,8 +80,6 @@
     <Compile Include="Helper\WebControlAdapterExtender.cs" />
     <Compile Include="LoggingManager\ActivityLogging.cs" />
     <Compile Include="LoggingManager\LoggingManager.cs" />
-    <Compile Include="Logs\DataLogsManager.cs" />
-    <Compile Include="Logs\DataLogs.cs" />
     <Compile Include="Manager\ContactManager.cs" />
     <Compile Include="Manager\DeditManager.cs" />
     <Compile Include="Manager\CreditManager.cs" />

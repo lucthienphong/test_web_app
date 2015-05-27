@@ -14,8 +14,6 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SweetSoft.APEM.Core.Logs;
-using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -54,7 +52,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                 {
                     BindCreditData();
                     ltrPrinting.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintCreditDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", CreditID);
-                    base.SaveBaseDataBeforeEdit();
                 }
                 else
                 {
@@ -226,13 +223,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
 
-                    LoggingActions("Credit",
-                            LogsAction.Objects.Action.UPDATE,
-                            LogsAction.Objects.Status.SUCCESS,
-                            JsonConvert.SerializeObject(new List<JsonData>() { 
-                                new JsonData() { Title = "Credit Code", Data = obj.CreditNo } ,
-                            }));
-
                     BindDetailData(obj.CreditID);
 
                     Session[ViewState["PageID"] + "ID"] = obj.CreditID;
@@ -271,13 +261,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                     SaveDetailData(obj.CreditID);
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
-
-                    LoggingActions("Credit",
-                            LogsAction.Objects.Action.UPDATE,
-                            LogsAction.Objects.Status.SUCCESS,
-                            JsonConvert.SerializeObject(new List<JsonData>() { 
-                                new JsonData() { Title = "Credit Code", Data = obj.CreditNo }
-                            }));
 
                     BindDetailData(obj.CreditID);
 
@@ -331,12 +314,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                         if (e.Value.ToString().Equals("Credit_Delete"))
                         {
                             CreditManager.Delete(CreditID);
-                            LoggingActions("Credit",
-                                            LogsAction.Objects.Action.DELETE,
-                                            LogsAction.Objects.Status.SUCCESS,
-                                            JsonConvert.SerializeObject(new List<JsonData>() { 
-                                                new JsonData() { Title = "Credit Code", Data = CreditManager.SelectByID(CreditID).CreditNo }
-                                            }));
                             Response.Redirect("~/Pages/CreditList.aspx", false);
                         }
                     }

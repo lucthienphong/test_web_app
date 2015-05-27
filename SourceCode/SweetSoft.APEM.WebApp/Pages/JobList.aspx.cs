@@ -15,8 +15,6 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using SweetSoft.APEM.Core.Logs;
-using Newtonsoft.Json;
 
 
 namespace SweetSoft.APEM.WebApp.Pages
@@ -314,39 +312,19 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     idList.Add(ID);
                                 }
                             }
-
-                            #region Trunglc Add to save log - 20-05-2015
-
-                            List<JsonData> lstData = new List<JsonData>();
-                            foreach (int id in idList)
-                            {
-                                TblJob obj = JobManager.SelectByID(id);
-                                if (obj != null)
-                                {
-                                    lstData.Add(new JsonData() { Title = "Job Number", Data = obj.JobNumber });
-                                    lstData.Add(new JsonData() { Title = "Job Rev", Data = obj.RevNumber.ToString() });
-                                }
-                            }
-
-                            #endregion
-
                             string DataCannotDelete = removeSelectedRows(idList);
                             BindData();
                             if (string.IsNullOrEmpty(DataCannotDelete))
                             {
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                                 OpenMessageBox(msg, null, false, false);
-                                LoggingActions("Job",
-                                           LogsAction.Objects.Action.DELETE,
-                                           LogsAction.Objects.Status.SUCCESS,
-                                           JsonConvert.SerializeObject(lstData));
                             }
                             else
                             {
                                 string message = string.Format("{0}:<br/>{1}", "Can not delete following data because data is begin used", DataCannotDelete);
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), message, MSGButton.OK, MSGIcon.Warning);
                                 OpenMessageBox(msg, null, false, false);
-                            }                            
+                            }
                         }
                     }
                     else
