@@ -2195,7 +2195,7 @@
                               <Style />
                             </TextRun>
                             <TextRun>
-                              <Value>=Sum(Fields!Tax.Value)</Value>
+                              <Value>=Fields!TaxRate.Value</Value>
                               <Style />
                             </TextRun>
                             <TextRun>

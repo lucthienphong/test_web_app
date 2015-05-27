@@ -21,6 +21,10 @@
         {
             font-size: 16px !important;
         }
+        .btn
+        {
+            padding: 6px 11px !important;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -226,11 +230,35 @@
                                         </li>
                                     </ul>
                                 </div>
+
                                 <div class="btn-group openPrinting" role="menu">
+                                    <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="fa fa-eye"></span>&nbsp;<span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu openPrinting" role="menu" style="right: 0; left: auto">
+                                        <%--<li>
+                                            <a href="#" data-href='Printing/PrintDetailInvoice.aspx?ID=<%#Eval("InvoiceID") %>'>Detail Invoice</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-href='Printing/PrintInvoice.aspx?ID=<%#Eval("InvoiceID") %>'>Combine Invoice</a>
+                                        </li>--%>
+                                        <li>
+                                             <a href="javascript:;" data-href='Printing/PrintTaxInvoice.aspx?ID=<%#Eval("InvoiceID") %>'>View Tax Invoice</a>
+                                        </li>                                        
+                                       <%-- <li>
+                                            <a href="#" data-href='Printing/PrintTaxInvoiceByCustomer.aspx?ID=<%#Eval("InvoiceID") %>'>Customer Invoice</a>
+                                        </li>--%>
+                                        <li>
+                                            <a href="javascript:;" data-href='Printing/PrintTaxInvoiceServices.aspx?ID=<%#Eval("InvoiceID") %>'>Service Job Invoice</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <%--<div class="btn-group openPrinting" role="menu">
                                     <a href="javascript:;" class="btn btn-primary btn-lock" data-href='Printing/PrintTaxInvoice.aspx?ID=<%#Eval("InvoiceID") %>' data-toggle="tooltip" data-placement="top" title="View">
                                         <span class="fa fa-eye"></span>
                                     </a>
-                                </div>
+                                </div>--%>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

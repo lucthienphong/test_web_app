@@ -49,9 +49,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             ltrCNumber.Text = debit.DebitNo;
             ltrCDate.Text = debit.DebitDate.ToString("dd.MM.yyyy");
 
-            TblTax tax = new TaxManager().SelectByID((short)debit.TaxID);
-
-            this.TaxPercen = debit.TaxID != null ? (decimal)tax.TaxPercentage : 0;
+            this.TaxPercen = debit.TaxID != null ? (decimal)new TaxManager().SelectByID((short)debit.TaxID).TaxPercentage : 0;
             lblTax.Text = this.TaxPercen.ToString() + "%";
 
             TblCustomer customer = CustomerManager.SelectByID(debit.CustomerID);

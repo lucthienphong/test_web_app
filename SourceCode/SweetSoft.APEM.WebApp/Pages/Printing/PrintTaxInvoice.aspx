@@ -34,9 +34,10 @@
             counter-increment: page;
             content: counter(page);
         }
+
         .table > tbody > tr > td
         {
-            border-top:none;
+            border-top: none;
         }
 
         @media all
@@ -309,7 +310,7 @@
                                         <td colspan="7">
                                             <strong>Total</strong>
                                         </td>
-                                        <td style="text-align:right;">
+                                        <td style="text-align: right;">
                                             <asp:Label ID="lblTotalQty" runat="server" Text="0"></asp:Label>
                                         </td>
                                         <td></td>
@@ -392,7 +393,7 @@
                 <asp:Panel runat="server" ID="pnlSubTotal">
                     <div class="row" style="page-break-inside: avoid">
                         <div class="col-xs-12">
-                            <table class="table" border="0" style="border-top:none !important;">
+                            <table class="table" border="0" style="border-top: none !important;">
                                 <tr>
                                     <td>Total Before GST
                                     </td>
@@ -401,7 +402,8 @@
                                 </tr>
                                 <tr>
                                     <td>Total GST <%=TotalTaxRate.ToString() %>%</td>
-                                    <td style="text-align: right"><asp:Literal ID="ltrTotalGST" EnableViewState="false" runat="server" /></td>
+                                    <td style="text-align: right">
+                                        <asp:Literal ID="ltrTotalGST" EnableViewState="false" runat="server" /></td>
                                 </tr>
                                 <tr>
                                     <td>Total Invoice</td>
