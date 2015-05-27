@@ -12,6 +12,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
+using System.Globalization;
+using System.IO;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -33,6 +37,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 ApplyControlText();
                 grvDepartmentList.PageSize = Convert.ToInt32(ApplicationContext.Current.CurrentPageSize);
                 BindData();
+                base.SaveBaseDataBeforeEdit();
             }
             else
             {
@@ -321,6 +326,111 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj = DepartmentManager.SelectByID(departmentID);
                 if (obj != null)
                 {
+                    string oldName = obj.DepartmentName;
+
+                    short DepartmentID = Convert.ToInt16(grvDepartmentList.DataKeys[rowIndex].Value);
+                    TextBox txtDepartmentName = (TextBox)grvDepartmentList.Rows[rowIndex].FindControl("txtDepartmentName");
+                    DropDownList ddlProcessType = grvDepartmentList.Rows[rowIndex].FindControl("ddlProcessType") as DropDownList;
+                    HtmlGenericControl divProductType = grvDepartmentList.Rows[rowIndex].FindControl("divProductType") as HtmlGenericControl;
+                    List<CheckBox> chkList = divProductType != null ? FindCharacteristics(divProductType) : null;
+                    CheckBox chkUsedInWorkflow = (CheckBox)grvDepartmentList.Rows[rowIndex].FindControl("chkUsedInWorkflow");
+                    TextBox txtTimelineOrder = (TextBox)grvDepartmentList.Rows[rowIndex].FindControl("txtTimelineOrder");
+                    CheckBox chkIsObsolete = (CheckBox)grvDepartmentList.Rows[rowIndex].FindControl("chkIsObsolete");
+
+
+                    List<JsonData> jsData = new List<JsonData>();
+
+                    if (obj.DepartmentName != departmentName)
+                    {
+                        jsData.Add(new JsonData()
+                        {
+                            Title = "Department Name",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = obj.DepartmentName,
+                                NewValue = departmentName
+                            })
+                        });
+                    }
+                    else
+                    {
+                        jsData.Add(new JsonData()
+                        {
+                            Title = "Department",
+                            Data = obj.DepartmentName
+                        });
+                    }
+
+                    if (obj.ShowInWorkFlow != Convert.ToByte(ShowInWorkFlow))
+                    {
+                        jsData.Add(new JsonData()
+                        {
+                            Title = "Show In Work Flow",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = Convert.ToBoolean(obj.ShowInWorkFlow) ? "true" : "false",
+                                NewValue = ShowInWorkFlow ? "true" : "false"
+                            })
+                        });
+                    }
+
+                    if (obj.TimelineOrder != TimelineOrder)
+                    {
+                        jsData.Add(new JsonData()
+                        {
+                            Title = "Timeline Order",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = Convert.ToBoolean(obj.TimelineOrder) ? "true" : "false",
+                                NewValue = Convert.ToBoolean(TimelineOrder) ? "true" : "false"
+                            })
+                        });
+                    }
+
+                    if (obj.ProcessTypeID != ProcessTypeID)
+                    {
+                        jsData.Add(new JsonData()
+                        {
+                            Title = "Process Type",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = ddlProcessType.Items.FindByValue(obj.ProcessTypeID.Value.ToString()).Text,
+                                NewValue = ddlProcessType.Items.FindByValue(ProcessTypeID.ToString()).Text
+                            })
+                        });
+                    }
+
+                    if (obj.ProductTypeID != ProductTypeID)
+                    {
+                        jsData.Add(new JsonData()
+                        {
+                            Title = "Product Type",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = ProductType_ParseIDToCode(obj.ProductTypeID),
+                                NewValue = ProductType_ParseIDToCode(ProductTypeID)
+                            })
+                        });
+                    }
+
+                    if (obj.IsObsolete != Convert.ToByte(isObsolete))
+                    {
+                        jsData.Add(new JsonData()
+                        {
+                            Title = "Is Obsolete",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = Convert.ToBoolean(obj.IsObsolete) ? "true" : "false",
+                                NewValue = Convert.ToBoolean(isObsolete) ? "true" : "false"
+                            })
+                        });
+                    }
+
+                    LoggingActions("Department",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(jsData));
+
                     obj.DepartmentName = departmentName;
                     obj.ShowInWorkFlow = Convert.ToByte(ShowInWorkFlow);
                     obj.TimelineOrder = TimelineOrder;
@@ -342,6 +452,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.ProductTypeID = ProductTypeID;
                     obj.IsObsolete = Convert.ToByte(isObsolete);
                     DepartmentManager.Insert(obj);
+
+                    LoggingActions("Department",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Department Name", Data = obj.DepartmentName} 
+                            }));
 
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
@@ -475,12 +592,19 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
 
                             List<short> idList = new List<short>();
+                            List<JsonData> lstData = new List<JsonData>();
+
                             for (int i = 0; i < grvDepartmentList.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)grvDepartmentList.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     short ID = Convert.ToInt16(grvDepartmentList.DataKeys[i].Value);
+                                    TblDepartment obj = DepartmentManager.SelectByID(ID);
+                                    if (obj != null)
+                                    {
+                                        lstData.Add(new JsonData() { Title = "Department Name", Data = obj.DepartmentName });
+                                    }
                                     idList.Add(ID);
                                 }
                             }
@@ -488,6 +612,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                             BindData();
                             if (string.IsNullOrEmpty(DataCannotDelete))
                             {
+                                LoggingActions("Department",
+                                           LogsAction.Objects.Action.DELETE,
+                                           LogsAction.Objects.Status.SUCCESS,
+                                           JsonConvert.SerializeObject(lstData));
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                                 OpenMessageBox(msg, null, false, false);
                             }
@@ -582,6 +710,26 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
 
         }
+
+        private string ProductType_ParseIDToCode(string lstID)
+        {
+            string ProductTypeCode = string.Empty;
+
+            string NotSpecChar = lstID.Replace("-", " ");
+            string[] ArrSplitChar = NotSpecChar.Split(' ');
+
+            List<string> lstSID = ArrSplitChar.ToList<string>();
+            lstSID = lstSID.FindAll(item => item.Length > 0);
+
+            foreach (string sID in lstSID)
+            {
+                TblReference productType = ReferenceTableManager.SelectByID(int.Parse(sID));
+                ProductTypeCode += productType.Code + ", ";
+            }
+            ProductTypeCode = ProductTypeCode.Remove(ProductTypeCode.Length - 2);
+            return ProductTypeCode;
+        }
+
         #endregion
     }
 }

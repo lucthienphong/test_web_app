@@ -68,9 +68,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                 Session[ViewState["PageID"] + "SweetSoft_InvoiceID"] = string.Empty;
                 BindTaxForDDL();
                 LoadData();
-                ltrView.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintTaxInvoice.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-eye110'></span> View</a>", InvoiceID);
-                ltrView.Visible = true;
-
                 ////Kiểm tra invoice có bị khóa không?
                 ////Nếu khóa thì không cho edit hay xóa invoice
                 //if(OrderLockingManager.CheckLockingStatus(InvoiceID, OrderLockingType.Invoice))
@@ -141,7 +138,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                     txtName.Text = customer.Name;
 
                     BindContact(customer.CustomerID);
-                    ddlContact.SelectedValue = invoice.ContactID.ToString();
                     BindDeliveryOrder(customer.CustomerID);
                 }
                 txtYourReference.Text = invoice.PONumber;
@@ -586,8 +582,6 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                     invoice.TotalPrice = CalculatorPrice();
                     invoice.NetTotal = CalculatorNetTotalPrice();
-
-                    invoice.ContactID = contactId;
 
                     invoice.PONumber = txtYourReference.Text.Trim();
                     invoice = InvoiceManager.Update(invoice);
@@ -1170,7 +1164,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 InvoiceNo = dtInvoice.Rows[0]["InvoiceNo"].ToString();
                 SAPCode = dtInvoice.Rows[0]["SAPCode"].ToString();
                 InvoiceDate = dtInvoice.Rows[0]["InvoiceNo"].ToString();
-                PostingDate = Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
+                PostingDate = DateTime.Today.ToString("yyyyMMdd");
                 CurrencyName = dtInvoice.Rows[0]["CurrencyName"].ToString();
                 CalcTax = dtInvoice.Rows[0]["CalcTax"].ToString();
                 TaxCode = dtInvoice.Rows[0]["TaxCode"].ToString();
@@ -1246,7 +1240,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 InvoiceNo = dtInvoice.Rows[0]["InvoiceNo"].ToString();
                 SAPCode = dtInvoice.Rows[0]["SAPCode"].ToString();
                 InvoiceDate = dtInvoice.Rows[0]["InvoiceNo"].ToString();
-                PostingDate = Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
+                PostingDate = DateTime.Today.ToString("yyyyMMdd");
                 CurrencyName = dtInvoice.Rows[0]["CurrencyName"].ToString();
                 CalcTax = dtInvoice.Rows[0]["CalcTax"].ToString();
                 TaxCode = dtInvoice.Rows[0]["TaxCode"].ToString();

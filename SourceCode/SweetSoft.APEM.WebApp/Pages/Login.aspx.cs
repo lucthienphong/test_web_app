@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -66,7 +67,18 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                     //Lưu vào lịch sử hệ thống
                     if (AllowSaveLogging)
+                    {
+                        AuthLogs authLog = new AuthLogs();
+                        authLog.Action = LogsAction.Auth.Action.LOGIN;
+                        authLog.Status = LogsAction.Auth.Status.SUCCESS;
+                        authLog.UserId = loginUser.UserID;
+                        authLog.Username = loginUser.UserName;
+
+
+                        DataLogsManager.LogAction(TypeActionLogs.Authentication, JsonHelper.Serialize<AuthLogs>(authLog), Request.UserHostAddress);
+
                         LoggingManager.LogAction(loginUser.UserName, ActivityLoggingHelper.LOGIN, "Login succeefull");
+                    }
                 }
                 else
                 {
@@ -81,6 +93,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                 //Lưu vào lịch sử hệ thống
                 if (AllowSaveLogging)
                 {
+                    AuthLogs authLog = new AuthLogs();
+                    authLog.Action = LogsAction.Auth.Action.LOGIN;
+                    authLog.Status = LogsAction.Auth.Status.FAIL;
+                    authLog.Username = txtUserName.Text;
+
+                    DataLogsManager.LogAction(TypeActionLogs.Authentication, JsonHelper.Serialize<AuthLogs>(authLog), Request.UserHostAddress);
+
                     LoggingManager.LogAction(txtUserName.Text.Trim(), Request.UserHostAddress, ActivityLoggingHelper.LOGIN, "", string.Format("{0} Login failed", txtUserName.Text.Trim()));
                 }
             }

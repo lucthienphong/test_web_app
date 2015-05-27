@@ -199,7 +199,7 @@
                                         <div style="display: table-cell; border-right: 1px solid #000">
                                             <h5>
                                                 <small>Customer Ref: </small>
-                                                <strong><asp:Literal Text="text" ID="ltrCustomerRef" runat="server" EnableViewState="false" /></strong>
+                                                <strong></strong>
                                             </h5>
                                         </div>
                                         <div style="display: table-cell; width: 35mm">

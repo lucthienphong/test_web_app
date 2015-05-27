@@ -8,119 +8,92 @@
     <link href="/css/uniform.default.css" rel="stylesheet" />
 
     <style>
-        body
-        {
+        body {
             margin-top: 20px;
         }
 
         table,
-        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td
-        {
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
             border-color: #000 !important;
         }
 
-        label
-        {
+        label {
             font-weight: 300!important;
         }
 
-        small
-        {
+        small {
             color: #000!important;
         }
 
-        #PageNumber:after
-        {
+        #PageNumber:after {
             counter-increment: page;
             content: counter(page);
         }
-        .table > tbody > tr > td
-        {
-            border-top:none;
-        }
 
-        @media all
-        {
-            body
-            {
+        @media all {
+            body {
                 font-size: 12px !important;
             }
 
-            .information-do label.control-label, .information-do p.form-control-static
-            {
+            .information-do label.control-label, .information-do p.form-control-static {
                 margin-bottom: 3px!important;
             }
 
-            .form-group
-            {
+            .form-group {
                 margin-bottom: 0px;
             }
 
-            .control-label
-            {
+            .control-label {
                 padding-top: 0px !important;
                 margin-bottom: 0 !important;
             }
 
-            .form-control-static
-            {
+            .form-control-static {
                 padding-top: 0;
                 padding-bottom: 0;
             }
         }
 
-        @page
-        {
+        @page {
             size: auto;
             margin: 55mm 6mm 15mm 6mm;
         }
 
-        @media screen
-        {
-            #PageNumber
-            {
-                display: none;
+        @media screen {
+            #PageNumber {
+                display:none;
             }
         }
-
-        @media print
-        {
-            body
-            {
+        @media print {
+            body {
                 margin: 0;
             }
 
-            .form-group
-            {
+            .form-group {
                 margin-bottom: 0;
             }
 
-            h5
-            {
+            h5 {
                 margin-top: 1mm;
                 margin-bottom: 1mm;
                 font-size: 0.7em;
             }
 
-            .no-border-left
-            {
+            .no-border-left {
                 border-left-color: #fff !important;
                 border-left-color: transparent !important;
             }
 
-            .no-border-right
-            {
+            .no-border-right {
                 border-right-color: #fff !important;
                 border-right-color: transparent !important;
             }
 
-            div.uniform-checker.uniform-disabled span.uniform-checked
-            {
+            div.uniform-checker.uniform-disabled span.uniform-checked {
                 background-position: -114px -260px;
             }
 
-            #PageNumber
-            {
+            #PageNumber {
                 position: fixed;
                 top: 200px;
             }
@@ -144,16 +117,14 @@
 
                 <div class="row">
                     <div class="col-xs-6">
-                        <h3 style="text-transform: capitalize; margin-top: 0px;"><strong>Tax Invoice</strong></h3>
+                        <h3 style="text-transform: capitalize; margin-top:0px;"><strong>Tax Invoice</strong></h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
                         <p class="form-control-static">
                             <br />
-                            <strong>
-                                <asp:Literal ID="ltrCustomerName" runat="server" />
-                            </strong>
+                            <asp:Literal ID="ltrCustomerName" runat="server" />
                             <br />
                             <asp:Literal ID="ltrCustomerAddress" runat="server" />
                             <%--<br />--%>
@@ -166,18 +137,12 @@
                         <div class="form-group" style="margin-top: 15px;">
                             <label class="control-label">Number/ Date: </label>
                             <p class="form-control-static">
-                                <asp:Literal ID="ltrInvoiceNumber" runat="server" EnableViewState="false" />
+                                <strong>
+                                    <asp:Literal ID="ltrInvoiceNumber" runat="server" EnableViewState="false" />
+                                </strong>
                                 /
                                     <asp:Literal ID="ltrInvoiceDate" EnableViewState="false" runat="server" />
                             </p>
-                            <label class="control-label">
-                                Billing Currency:
-                                <asp:Literal ID="ltrCurrency" runat="server" EnableViewState="false" /></label>
-                            &nbsp;
-                            <label class="control-label">
-                                Page:
-                                <asp:Literal ID="ltrPage" runat="server" EnableViewState="false" /></label><br />
-
                             <label class="control-label">
                                 Customer number:
                                 <asp:Literal ID="ltrSAPCode" runat="server" EnableViewState="false" /></label><br />
@@ -197,6 +162,16 @@
                                 </p>
                             </div>
                         </div>
+                    </div>  
+                    <div class="col-xs-4 col-xs-offset-2 information-do">
+                        <div id="PageNumber">
+                            <label class="control-label">Page:</label>
+                        </div>
+                        <label class="control-label">
+                            Curr: <%=CurrencyName %></label><br />
+                        <label class="control-label">
+                            Exchange Rate: 
+                                <asp:Literal ID="ltrExchangeRate" runat="server" EnableViewState="false" /></label>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 15px; margin-bottom: 5px;">
@@ -234,8 +209,6 @@
                                     </li>
                                     <li>APE Order no / Date
                                     </li>
-                                    <li>Your Reference
-                                    </li>
                                 </ul>
                                 <ul class="list-unstyled pull-left">
                                     <li>:
@@ -259,14 +232,14 @@
                                         <tr>
                                             <th>No</th>
                                             <%--<th>Cyl Barcode</th>--%>
-                                            <th style="min-width: 160px;">Cyl Description</th>
+                                            <th style="min-width:160px;">Description</th>
                                             <%--<th>Cylinder ID/ Product ID</th>--%>
-                                            <th style="min-width: 90px;">Cus Cyl No</th>
-                                            <th style="min-width: 90px;">Cus Steelbase ID</th>
+                                            <th style="min-width:90px;">Cus Cyl No</th>
+                                            <th style="min-width:90px;">Cus Steelbase ID</th>
                                             <th>Width (mm)</th>
                                             <th>Circumf. (mm)</th>
                                             <th>SB</th>
-                                            <th>Qty</th>
+                                            <th>Qty Pcs.</th>
                                             <th>Unit Price</th>
                                             <th>Total</th>
                                             <%--<th>Total (MYR)</th>--%>
@@ -305,16 +278,6 @@
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>
-                                    <tr>
-                                        <td colspan="7">
-                                            <strong>Total</strong>
-                                        </td>
-                                        <td style="text-align:right;">
-                                            <asp:Label ID="lblTotalQty" runat="server" Text="0"></asp:Label>
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
                                     <asp:Repeater ID="rptOtherCharges" runat="server" Visible="false">
                                         <HeaderTemplate>
                                             <tr>
@@ -346,14 +309,14 @@
                                     </asp:Repeater>
                                     <tr>
                                         <%--<td colspan="7" style="border: none;"></td>--%>
-                                        <td colspan="9" style="text-align: right;"><strong>Sub Total</strong></td>
+                                        <td colspan="9" style="text-align:right;"><strong>Sub Total</strong></td>
                                         <td style="text-align: right">
                                             <asp:Label ID="lblSubTotal" runat="server"></asp:Label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <%--<td colspan="7" style="border: none;"></td>--%>
-                                        <td colspan="9" style="text-align: right;"><strong>Discount </strong>(<%=Discount.ToString("N2") %>%)</td>
+                                        <td colspan="9" style="text-align:right;"><strong>Discount </strong>(<asp:Literal ID="ltrDiscountRate" runat="server"></asp:Literal>)</td>
                                         <td style="text-align: right">
                                             <asp:Label ID="lblDiscount" runat="server"></asp:Label></td>
                                         <%--<td style="text-align:right">
@@ -361,7 +324,7 @@
                                     </tr>
                                     <tr>
                                         <%--<td colspan="7" style="border: none;"></td>--%>
-                                        <td colspan="9" style="text-align: right;"><strong>Sub Total before GST</strong></td>
+                                        <td colspan="9" style="text-align:right;"><strong>Sub Total before GST</strong></td>
                                         <td style="text-align: right">
                                             <asp:Label ID="lblSubTotalBefore" runat="server"></asp:Label></td>
                                         <%--<td style="text-align:right">
@@ -369,7 +332,7 @@
                                     </tr>
                                     <tr>
                                         <%--<td colspan="7" style="border: none;"></td>--%>
-                                        <td colspan="9" style="text-align: right;"><strong>GST </strong>(<asp:Literal ID="ltrTaxRate" runat="server"></asp:Literal>%)</td>
+                                        <td colspan="9" style="text-align:right;"><strong>GST </strong>(<asp:Literal ID="ltrTaxRate" runat="server"></asp:Literal>%)</td>
                                         <td style="text-align: right">
                                             <asp:Label ID="lblGST" runat="server"></asp:Label></td>
                                         <%--<td style="text-align:right">
@@ -377,7 +340,7 @@
                                     </tr>
                                     <tr>
                                         <%--<td colspan="7" style="border: none;"></td>--%>
-                                        <td colspan="9" style="text-align: right;"><strong>Total</strong></td>
+                                        <td colspan="9" style="text-align:right;"><strong>Total</strong></td>
                                         <td style="text-align: right">
                                             <asp:Label ID="lblTotal" runat="server"></asp:Label></td>
                                         <%--<td style="text-align:right">
@@ -392,21 +355,38 @@
                 <asp:Panel runat="server" ID="pnlSubTotal">
                     <div class="row" style="page-break-inside: avoid">
                         <div class="col-xs-12">
-                            <table class="table" border="0" style="border-top:none !important;">
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td>Total Before GST
+                                    <td><strong>Total</strong></td>
+                                    <td><strong>Total (<%=CurrencyName %>)</strong></td>
+                                    <%--<td><strong>Total (MYR)</strong></td>--%>
+                                </tr>
+                                <tr>
+                                    <td>Sub total before GST
                                     </td>
                                     <td style="text-align: right">
-                                        <asp:Literal ID="ltrTotalBeforeGST" EnableViewState="false" runat="server" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Total GST <%=TotalTaxRate.ToString() %>%</td>
-                                    <td style="text-align: right"><asp:Literal ID="ltrTotalGST" EnableViewState="false" runat="server" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Total Invoice</td>
+                                        <asp:Literal ID="ltrSubTotalBeforeGST" EnableViewState="false" runat="server" /></td>
                                     <td style="text-align: right">
-                                        <asp:Literal ID="ltrTotalInvoice" runat="server" EnableViewState="false" /></td>
+                                        <asp:Literal ID="ltrSubTotalBeforeGSTMY" EnableViewState="false" runat="server" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Total invoice with GST 0%</td>
+                                    <td style="text-align: right">0.00</td>
+                                    <td style="text-align: right">0.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Total invoice with GST <%=taxRate.TaxPercentage.ToString() %>%</td>
+                                    <td style="text-align: right">
+                                        <asp:Literal ID="ltrTotalInvoiceWithGST" runat="server" EnableViewState="false" /></td>
+                                    <td style="text-align: right">
+                                        <asp:Literal ID="ltrTotalInvoiceWithGSTMY" runat="server" EnableViewState="false" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Final amount</td>
+                                    <td style="text-align: right">
+                                        <asp:Literal ID="ltrFinalAmount" EnableViewState="false" runat="server" /></td>
+                                    <td style="text-align: right">
+                                        <asp:Literal ID="ltrFinalAmountMY" EnableViewState="false" runat="server" /></td>
                                 </tr>
                             </table>
                         </div>
@@ -414,8 +394,7 @@
                 </asp:Panel>
                 <div class="row">
                     <div class="col-xs-12">
-                        <label class="control-label">
-                            <strong>Remark:</strong>
+                        <label class="control-label"><strong>Remark:</strong>
                             <asp:Literal ID="ltrRemark" runat="server" /></label>
                         <br />
                         <br />

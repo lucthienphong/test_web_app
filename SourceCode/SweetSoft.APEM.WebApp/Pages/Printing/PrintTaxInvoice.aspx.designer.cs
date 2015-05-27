@@ -76,24 +76,6 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Literal ltrInvoiceDate;
         
         /// <summary>
-        /// ltrCurrency control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrCurrency;
-        
-        /// <summary>
-        /// ltrPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrPage;
-        
-        /// <summary>
         /// ltrSAPCode control.
         /// </summary>
         /// <remarks>
@@ -110,6 +92,15 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltrShipToAddress;
+        
+        /// <summary>
+        /// ltrExchangeRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrExchangeRate;
         
         /// <summary>
         /// ltrDeliveryTerm control.
@@ -148,31 +139,58 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Panel pnlSubTotal;
         
         /// <summary>
-        /// ltrTotalBeforeGST control.
+        /// ltrSubTotalBeforeGST control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrTotalBeforeGST;
+        protected global::System.Web.UI.WebControls.Literal ltrSubTotalBeforeGST;
         
         /// <summary>
-        /// ltrTotalGST control.
+        /// ltrSubTotalBeforeGSTMY control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrTotalGST;
+        protected global::System.Web.UI.WebControls.Literal ltrSubTotalBeforeGSTMY;
         
         /// <summary>
-        /// ltrTotalInvoice control.
+        /// ltrTotalInvoiceWithGST control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrTotalInvoice;
+        protected global::System.Web.UI.WebControls.Literal ltrTotalInvoiceWithGST;
+        
+        /// <summary>
+        /// ltrTotalInvoiceWithGSTMY control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrTotalInvoiceWithGSTMY;
+        
+        /// <summary>
+        /// ltrFinalAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrFinalAmount;
+        
+        /// <summary>
+        /// ltrFinalAmountMY control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrFinalAmountMY;
         
         /// <summary>
         /// ltrRemark control.

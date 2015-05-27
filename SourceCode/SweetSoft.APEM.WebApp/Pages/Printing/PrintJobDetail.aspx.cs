@@ -57,7 +57,6 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 ltrJobName.Text = dtModel.Rows[0]["JobName"].ToString();
                 ltrJobDesign.Text = dtModel.Rows[0]["Design"].ToString();
                 ltrJobNr.Text = dtModel.Rows[0]["JobNumber"].ToString();
-                ltrCustomerRef.Text = Common.Extensions.CombineString(dtModel.Rows[0]["CustomerPO1"].ToString(), dtModel.Rows[0]["CustomerPO2"].ToString(), ",");
 
                 if ((bool)dtModel.Rows[0]["LeavingAPE"] || string.IsNullOrEmpty(dtModel.Rows[0]["LeavingAPE"].ToString()))
                 {

@@ -37,7 +37,7 @@
             </SweetSoft:CustomExtraTextbox>
             <div class="dataTables_wrapper form-inline sweet-input-mask">
                 <div class="dataTables_wrapper form-inline sweet-input-mask">
-                    <SweetSoft:GridviewExtension ID="gvReference" runat="server" AutoGenerateColumns="false"
+                    <SweetSoft:GridviewExtension ID="gvReference" runat="server" AutoGenerateColumns="false" ToolTip="List Customer Groups"
                         CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                         AllowPaging="true" AllowSorting="true" DataKeyNames="ReferencesID"
                         OnPageIndexChanging="gvReference_PageIndexChanging"
@@ -138,6 +138,22 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script>
+
+        $(document).ready(function () {
+            //SaveStateOfData('Before');
+        });
+
+        //function SaveStateOfData(time) {
+        //        var obj = [
+        //            {
+        //                key: 'gvReference_' + time,
+        //                data: $("[id$='gvReference']").parent().html() == undefined ? "<table></table>" : $("[id$='gvReference']").html(),
+        //                PageID: viewstate
+        //            }
+        //        ];
+        //        SaveStateOfDataForm("CustomerGroup.aspx/SaveDataTable", obj, time);
+        //    }
+
         addRequestHanlde(InitCheckAll);
         function InitCheckAll() {
             $("#chkSelectAll").change(function () {

@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-horizontal">
-                        <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="btn btn-transparent">
+                        <asp:LinkButton ID="btnSave" runat="server" OnClientClick="SaveStateOfData('Now')" OnClick="btnSave_Click" CssClass="waitforajax btn btn-transparent">
                                 <span class="flaticon-floppy1"></span>
                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.SAVE)%>
                         </asp:LinkButton>
@@ -97,11 +97,11 @@
                         <div class="form-horizontal">
                             <div class="form-group" style="margin-bottom: 0">
                                 <div class="col-sm-2 col-xs-2">
-                                    <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" runat="server" Enabled="false">
+                                    <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" runat="server" Enabled="false" ToolTip="Customer Code">
                                     </SweetSoft:ExtraInputMask>
                                 </div>
                                 <div class="col-sm-10 col-xs-10">
-                                    <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true"
+                                    <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" ToolTip="Customer Name"
                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                 </div>
                                 <asp:HiddenField ID="hCustomerID" runat="server" />
@@ -117,14 +117,14 @@
                 <div class="col-sm-8">
                     <div class="form-group" style="margin-bottom: 0">
                         <label class="control-label">Job Nr</label>
-                        <SweetSoft:CustomExtraTextbox ID="txtJobNumber" RenderOnlyInput="true"
+                        <SweetSoft:CustomExtraTextbox ID="txtJobNumber" RenderOnlyInput="true" ToolTip="Job Number"
                             runat="server" Enabled="false"></SweetSoft:CustomExtraTextbox>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label class="control-label">Rev</label>
-                        <asp:DropDownList ID="ddlRevNumber" runat="server"
+                        <asp:DropDownList ID="ddlRevNumber" runat="server" ToolTip="Revision Number"
                             data-style="btn btn-info"
                             data-width="100%" Required="true" AutoPostBack="true"
                             data-toggle="dropdown" OnSelectedIndexChanged="ddlRevNumber_SelectedIndexChanged"
@@ -141,7 +141,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label class="control-label">Job name</label>
-                        <SweetSoft:CustomExtraTextbox ID="txtJobName"
+                        <SweetSoft:CustomExtraTextbox ID="txtJobName" ToolTip="Job Name"
                             RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                     </div>
                 </div>
@@ -153,7 +153,7 @@
                     <div class="form-group">
                         <label class="control-label">Type of Job</label>
                         <asp:DropDownList ID="ddlTypeOfOrder" runat="server"
-                            data-style="btn btn-info"
+                            data-style="btn btn-info" ToolTip="Type of Job"
                             data-width="100%" Required="true" data-toggle="dropdown"
                             CssClass="form-control">
                         </asp:DropDownList>
@@ -162,7 +162,7 @@
                 <div class="col-md-2 col-sm-2">
                     <div class="form-group">
                         <label class="control-label">Currency</label>
-                        <asp:DropDownList ID="ddlCurrency" runat="server"
+                        <asp:DropDownList ID="ddlCurrency" runat="server" ToolTip="Currency"
                             data-style="btn btn-info" AutoPostBack="true"
                             data-width="100%" Required="true"
                             data-toggle="dropdown" data-live-search="true"
@@ -175,7 +175,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="control-label">Product type</label>
-                                <asp:DropDownList ID="ddlMainProductType" runat="server"
+                                <asp:DropDownList ID="ddlMainProductType" runat="server" ToolTip="Product type"
                                     data-style="btn btn-info" AutoPostBack="true"
                                     OnSelectedIndexChanged="ddlMainProductType_SelectedIndexChanged"
                                     data-width="100%" Required="true" data-toggle="dropdown"
@@ -194,12 +194,12 @@
                 <div class="row">
                     <div class="col-md-8">
                         <label class="control-label">Design</label>
-                        <SweetSoft:CustomExtraTextbox ID="txtDesign"
+                        <SweetSoft:CustomExtraTextbox ID="txtDesign" ToolTip="Design"
                             RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                     </div>
                     <div class="col-md-4">
                         <label class="control-label">Drawing Number</label>
-                        <SweetSoft:CustomExtraTextbox ID="txtDrawing"
+                        <SweetSoft:CustomExtraTextbox ID="txtDrawing" ToolTip="Drawing Number"
                             RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                     </div>
                 </div>
@@ -208,7 +208,7 @@
         <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label class="control-label">Item code</label>
-                <asp:TextBox ID="txtItemCode" runat="server"
+                <asp:TextBox ID="txtItemCode" runat="server" ToolTip="Item code"
                     CssClass="form-control">
                 </asp:TextBox>
             </div>
@@ -240,12 +240,12 @@
                                                 <div class="form-group">
                                                     <div class="col-md-8 col-sm-8">
                                                         <label class="control-label">Root job Nr</label>
-                                                        <SweetSoft:CustomExtraTextbox ID="txtRootJobNumber"
+                                                        <SweetSoft:CustomExtraTextbox ID="txtRootJobNumber" ToolTip="Root Job Numberr"
                                                             RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4">
                                                         <label class="control-label">R</label>
-                                                        <SweetSoft:CustomExtraTextbox ID="txtRootJobRevNumber"
+                                                        <SweetSoft:CustomExtraTextbox ID="txtRootJobRevNumber" ToolTip="Root Job Revision"
                                                             RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                                                     </div>
                                                     <asp:HiddenField ID="hRootJobID" runat="server" />
@@ -258,7 +258,7 @@
                                             <label class="control-label">
                                                 Common Job Nr
                                             </label>
-                                            <SweetSoft:CustomExtraTextbox ID="txtCommonJobNumber"
+                                            <SweetSoft:CustomExtraTextbox ID="txtCommonJobNumber" ToolTip="Common Job Number"
                                                 RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                                         </div>
                                     </div>
@@ -269,7 +269,7 @@
                                             <div class="col-md-12 com-sm-12">
                                                 <label class="control-label">Contact person</label>
                                                 <asp:DropDownList ID="ddlContacts" runat="server" AutoPostBack="false"
-                                                    data-style="btn btn-info"
+                                                    data-style="btn btn-info" ToolTip="Contact Person"
                                                     data-width="100%" Required="true"
                                                     data-toggle="dropdown"
                                                     CssClass="form-control">
@@ -282,7 +282,7 @@
                                             <div class="col-md-12 com-sm-12">
                                                 <label class="control-label">Sales Rep</label>
                                                 <asp:DropDownList ID="ddlSaleRep" runat="server"
-                                                    data-style="btn btn-info"
+                                                    data-style="btn btn-info" ToolTip="Sales Rep"
                                                     data-width="100%" Required="true"
                                                     data-toggle="dropdown" data-live-search="true"
                                                     CssClass="form-control">
@@ -294,7 +294,7 @@
                                         <div class="form-group">
                                             <label class="control-label">Job Coordinator</label>
                                             <asp:DropDownList ID="ddlJobCoordinator" runat="server"
-                                                data-style="btn btn-info"
+                                                data-style="btn btn-info" ToolTip="Job Coordinator"
                                                 data-width="100%" Required="true"
                                                 data-toggle="dropdown"
                                                 CssClass="form-control">
@@ -308,14 +308,14 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Customer P/O1</label>
-                                            <SweetSoft:CustomExtraTextbox ID="txtCustomerPO1"
+                                            <SweetSoft:CustomExtraTextbox ID="txtCustomerPO1" ToolTip="Customer P/O1"
                                                 RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="control-label">Customer P/O2</label>
-                                            <SweetSoft:CustomExtraTextbox ID="txtCustomerPO2"
+                                            <SweetSoft:CustomExtraTextbox ID="txtCustomerPO2" ToolTip="Customer P/O2"
                                                 RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                                         </div>
                                     </div>
@@ -328,7 +328,7 @@
                             <label class="control-label">Job Barcode</label>
                             <div>
                                 <asp:Image ID="imgBarcode" CssClass="visible-xs-inline visible-sm-inline visible-md-inline visible-lg-inline img-responsive"
-                                    runat="server" AlternateText="Barcode" />
+                                    runat="server" AlternateText="Barcode" ToolTip="Image Barcode" />
                                 <asp:HiddenField ID="hBarcode" runat="server" />
                                 <asp:HiddenField ID="hRevisionRootJob" runat="server" />
                             </div>
@@ -345,7 +345,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group" style="margin-bottom: 0">
                                         <asp:DropDownList ID="ddlBrandOwner" runat="server"
-                                            data-style="btn btn-info"
+                                            data-style="btn btn-info" ToolTip="Brand Owner"
                                             data-width="100%" Required="true"
                                             data-toggle="dropdown" data-live-search="true"
                                             CssClass="form-control">
@@ -362,7 +362,7 @@
                                     Date created
                                 </label>
                                 <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtCreatedDate" runat="server"
+                                    <SweetSoft:CustomExtraTextbox ID="txtCreatedDate" runat="server" ToolTip="Date Created"
                                         RenderOnlyInput="true" data-format="dd-MM-yyyy" Enabled="false"
                                         CssClass="datepicker form-control mask-date">
                                     </SweetSoft:CustomExtraTextbox>
@@ -373,7 +373,7 @@
                                 <label class="control-label">
                                     Created by
                                 </label>
-                                <SweetSoft:CustomExtraTextbox ID="txtCreatedBy" Enabled="false"
+                                <SweetSoft:CustomExtraTextbox ID="txtCreatedBy" Enabled="false" ToolTip="Created By"
                                     RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                             </div>
                         </div>
@@ -388,10 +388,11 @@
                                     <div class="form-horizontal">
                                         <div class="form-group" style="margin-bottom: 0">
                                             <div class="col-sm-3 col-xs-3">
-                                                <SweetSoft:ExtraInputMask ID="txtShipToPartyCode" RenderOnlyInput="true" runat="server" Enabled="false"></SweetSoft:ExtraInputMask>
+                                                <SweetSoft:ExtraInputMask ID="txtShipToPartyCode" RenderOnlyInput="true" runat="server" Enabled="false"
+                                                    ToolTip="Ship To Party Code"></SweetSoft:ExtraInputMask>
                                             </div>
                                             <div class="col-sm-9 col-xs-9">
-                                                <SweetSoft:CustomExtraTextbox ID="txtShipToParty" RenderOnlyInput="true"
+                                                <SweetSoft:CustomExtraTextbox ID="txtShipToParty" RenderOnlyInput="true" ToolTip="Ship To Party"
                                                     runat="server"></SweetSoft:CustomExtraTextbox>
                                             </div>
                                             <asp:HiddenField ID="hdShipToPartyID" runat="server" />
@@ -410,7 +411,7 @@
                                         <div class="form-group" style="margin-bottom: 0">
                                         </div>
                                     </div>
-                                    <asp:Label ID="lbShipToPartyAddress" runat="server">abc</asp:Label>
+                                    <asp:Label ID="lbShipToPartyAddress" runat="server" ToolTip="Address">abc</asp:Label>
                                 </div>
                             </div>
                         </div>
@@ -420,7 +421,7 @@
                     <div class="col-md-6 col-sm-6">
                         <label class="control-label">Status</label>
                         <asp:DropDownList ID="ddlStatus" runat="server"
-                            data-style="btn btn-info"
+                            data-style="btn btn-info" ToolTip="Status"
                             data-width="100%" Required="true"
                             data-toggle="dropdown"
                             CssClass="form-control">
@@ -433,13 +434,13 @@
                                 <div class="col-md-3 col-sm-3">
                                     <div class="checkbox" style="margin-left: -20px;">
                                         <label>
-                                            <asp:CheckBox ID="chkIsOutsource" runat="server" CssClass="uniform" AutoPostBack="true" OnCheckedChanged="chkIsOutsource_CheckedChanged" />&nbsp;Yes
+                                            <asp:CheckBox ID="chkIsOutsource" runat="server" CssClass="uniform" AutoPostBack="true" OnCheckedChanged="chkIsOutsource_CheckedChanged" ToolTip="Outsource" />&nbsp;Yes
                                         </label>
                                     </div>
                                 </div>
                                 <div class="col-md-9 col-sm-9">
                                     <asp:DropDownList ID="ddlSupplier" runat="server"
-                                        data-style="btn btn-info"
+                                        data-style="btn btn-info" ToolTip="Supplier"
                                         data-width="100%" Required="true"
                                         data-toggle="dropdown"
                                         CssClass="form-control">
@@ -453,7 +454,7 @@
                     <div class="col-md-8 col-sm-8">
                         <div class="form-group">
                             <label class="control-label">Job Remark</label>
-                            <asp:TextBox ID="txtJobRemark" TextMode="Multiline"
+                            <asp:TextBox ID="txtJobRemark" TextMode="Multiline" ToolTip="Job Remark"
                                 Rows="8" runat="server" class="form-control">
                             </asp:TextBox>
                         </div>
@@ -461,7 +462,7 @@
                     <div class="col-md-4 col-sm-4">
                         <div class="form-group">
                             <label class="control-label">Internal/External</label>
-                            <asp:DropDownList ID="ddlInExternal" runat="server"
+                            <asp:DropDownList ID="ddlInExternal" runat="server" ToolTip="Internal/External"
                                 data-style="btn btn-info"
                                 data-width="100%" Required="true"
                                 data-toggle="dropdown"
@@ -470,7 +471,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Revision detail</label>
-                            <asp:TextBox ID="txtViewRevisionDetail" TextMode="Multiline"
+                            <asp:TextBox ID="txtViewRevisionDetail" TextMode="Multiline" ToolTip="Revision detail"
                                 Rows="4" runat="server" class="form-control">
                             </asp:TextBox>
                         </div>
@@ -481,7 +482,7 @@
                         <label class="control-label">Revision history</label>
                     </div>
                     <div class="col-md-12">
-                        <asp:GridView ID="grvRevisionHistory" runat="server"
+                        <asp:GridView ID="grvRevisionHistory" runat="server" ToolTip="Revision History"
                             AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-checkable dataTable"
                             GridLines="None" AllowPaging="false" AllowSorting="false" DataKeyNames="JobID">
                             <Columns>
@@ -535,7 +536,7 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <label class="control-label">Repro Operator</label>
-                                    <SweetSoft:CustomExtraTextbox ID="txtReproOperator" RenderOnlyInput="true"
+                                    <SweetSoft:CustomExtraTextbox ID="txtReproOperator" RenderOnlyInput="true" ToolTip="Repro Operator"
                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                 </div>
                                 <div class="col-sm-8">
@@ -543,7 +544,7 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label class="control-label">Circumference</label>
-                                                <SweetSoft:ExtraInputMask ID="txtCircumference" RenderOnlyInput="true"
+                                                <SweetSoft:ExtraInputMask ID="txtCircumference" RenderOnlyInput="true" ToolTip="Circumference"
                                                     MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                     PlaceholderMask="0" runat="server" onkeyup="ChangeCircumference();"></SweetSoft:ExtraInputMask>
                                                 <asp:HiddenField ID="hPiValue" runat="server" Value="3.1416" />
@@ -552,7 +553,7 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label class="control-label">Face width</label>
-                                                <SweetSoft:ExtraInputMask ID="txtFaceWidth" RenderOnlyInput="true"
+                                                <SweetSoft:ExtraInputMask ID="txtFaceWidth" RenderOnlyInput="true" ToolTip="Face Width"
                                                     MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                     PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                             </div>
@@ -560,7 +561,7 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label class="control-label">Diameter Nom</label>
-                                                <SweetSoft:ExtraInputMask ID="txtDiameter" RenderOnlyInput="true"
+                                                <SweetSoft:ExtraInputMask ID="txtDiameter" RenderOnlyInput="true" ToolTip="Diameter Nom"
                                                     MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                     PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                             </div>
@@ -568,7 +569,7 @@
                                         <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label class="control-label">Diameter Diff</label>
-                                                <SweetSoft:ExtraInputMask ID="txtDiameterDiff" RenderOnlyInput="true"
+                                                <SweetSoft:ExtraInputMask ID="txtDiameterDiff" RenderOnlyInput="true" ToolTip="Diameter Diff"
                                                     MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                     PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                             </div>
@@ -614,7 +615,7 @@
                                             </div>
                                         </div>
                                         <div class="table-responsive">
-                                            <asp:GridView ID="grvCylinders" runat="server" AutoGenerateColumns="false"
+                                            <asp:GridView ID="grvCylinders" runat="server" AutoGenerateColumns="false" ToolTip="Cylinders"
                                                 CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                                                 AllowPaging="false" AllowSorting="false" DataKeyNames="CylinderID, SteelBase, PricingID, Protocol, CylinderStatusID, Dept"
                                                 OnRowCommand="grvCylinders_RowCommand" OnRowDataBound="grvCylinders_RowDataBound"
@@ -631,7 +632,7 @@
                                                         <EditItemTemplate>
                                                             <div style="position: relative;">
                                                                 <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtSequence"
-                                                                    Text='<%#Eval("Sequence")%>' Width="100%"
+                                                                    Text='<%#Eval("Sequence")%>' Width="100%" ToolTip="Cylinder - Sequence"
                                                                     CssClass="form-control" runat="server">
                                                                 </SweetSoft:CustomExtraTextbox>
                                                             </div>
@@ -657,7 +658,7 @@
                                                         <EditItemTemplate>
                                                             <div style="position: relative;">
                                                                 <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtCusCylinderID"
-                                                                    Text='<%#Eval("CusCylinderID")%>' Width="100%"
+                                                                    Text='<%#Eval("CusCylinderID")%>' Width="100%" ToolTip="Cylinder - Customer Cylinder ID"
                                                                     CssClass="form-control" runat="server">
                                                                 </SweetSoft:CustomExtraTextbox>
                                                             </div>
@@ -671,7 +672,7 @@
                                                         <EditItemTemplate>
                                                             <div style="position: relative;">
                                                                 <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtCusSteelBaseID"
-                                                                    Text='<%#Eval("CusSteelBaseID")%>' Width="100%"
+                                                                    Text='<%#Eval("CusSteelBaseID")%>' Width="100%" ToolTip="Cylinder - Customer Steel Base ID"
                                                                     CssClass="form-control" runat="server">
                                                                 </SweetSoft:CustomExtraTextbox>
                                                             </div>
@@ -686,7 +687,7 @@
                                                             <div style="position: relative;">
                                                                 <asp:DropDownList ID="ddlSteelBase" runat="server"
                                                                     data-style="btn btn-info" data-width="100%" Required="true"
-                                                                    data-container="body"
+                                                                    data-container="body" ToolTip="Cylinder - Steel Base"
                                                                     data-toggle="dropdown" CssClass="form-control">
                                                                 </asp:DropDownList>
                                                             </div>
@@ -694,13 +695,13 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Color" HeaderStyle-CssClass="column-180" ItemStyle-CssClass="column-180">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lbColor" runat="server"
+                                                            <asp:Label ID="lbColor" runat="server" ToolTip="Color"
                                                                 Text='<%#Eval("Color")%>'></asp:Label>
                                                         </ItemTemplate>
                                                         <EditItemTemplate>
                                                             <div style="position: relative;">
                                                                 <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtColor"
-                                                                    Text='<%#Eval("Color")%>' Width="100%"
+                                                                    Text='<%#Eval("Color")%>' Width="100%" ToolTip="Cylinder - Color"
                                                                     CssClass="form-control" runat="server">
                                                                 </SweetSoft:CustomExtraTextbox>
                                                             </div>
@@ -715,7 +716,7 @@
                                                             <div style="position: relative;">
                                                                 <asp:DropDownList ID="ddlStatus" runat="server"
                                                                     data-style="btn btn-info" data-width="100%" Required="true"
-                                                                    data-container="body" AutoPostBack="true"
+                                                                    data-container="body" AutoPostBack="true" ToolTip="Cylinder - Status"
                                                                     OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged"
                                                                     data-toggle="dropdown" CssClass="form-control">
                                                                 </asp:DropDownList>
@@ -731,7 +732,7 @@
                                                             <div style="position: relative;">
                                                                 <asp:DropDownList ID="ddlProtocol" runat="server"
                                                                     data-style="btn btn-info" data-width="100%" Required="true"
-                                                                    data-container="body"
+                                                                    data-container="body" ToolTip="Cylinder - Protocol"
                                                                     data-toggle="dropdown" CssClass="form-control">
                                                                 </asp:DropDownList>
                                                             </div>
@@ -746,7 +747,7 @@
                                                             <div style="position: relative;">
                                                                 <asp:DropDownList ID="ddlPricing" runat="server"
                                                                     data-style="btn btn-info" data-width="100%" Required="true"
-                                                                    data-container="body"
+                                                                    data-container="body" ToolTip="Cylinder - Pricing"
                                                                     data-toggle="dropdown" CssClass="form-control">
                                                                 </asp:DropDownList>
                                                             </div>
@@ -765,8 +766,8 @@
                                                         </ItemTemplate>
                                                         <EditItemTemplate>
                                                             <div style="position: relative;">
-                                                                <SweetSoft:ExtraInputMask ID="txtDirameter" RenderOnlyInput="true" Required="false" 
-                                                                    Width="100%" runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text='<%#Eval("Dirameter")%>' 
+                                                                <SweetSoft:ExtraInputMask ID="txtDirameter" RenderOnlyInput="true" Required="false" ToolTip="Cylinder - Dirameter"
+                                                                    Width="100%" runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text='<%#Eval("Dirameter")%>'
                                                                     Digits="2" AutoGroup="true"></SweetSoft:ExtraInputMask>
                                                             </div>
                                                         </EditItemTemplate>
@@ -791,8 +792,8 @@
                                                         <EditItemTemplate>
                                                             <div style="position: relative;">
                                                                 <asp:DropDownList ID="ddlDept" runat="server"
-                                                                    data-style="btn btn-info" data-width="100%" 
-                                                                    data-container="body" 
+                                                                    data-style="btn btn-info" data-width="100%"
+                                                                    data-container="body" ToolTip="Cylinder - Dept"
                                                                     data-toggle="dropdown" CssClass="form-control">
                                                                 </asp:DropDownList>
                                                             </div>
@@ -866,7 +867,7 @@
                                                                 <div class="col-sm-10">
                                                                     <div class="wrap-datepicker">
                                                                         <SweetSoft:CustomExtraTextbox ID="txtReproDate" runat="server"
-                                                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                                                            RenderOnlyInput="true" data-format="dd-MM-yyyy" ToolTip="Delivery - Repro Date"
                                                                             CssClass="datepicker form-control mask-date">
                                                                         </SweetSoft:CustomExtraTextbox>
                                                                         <span class="fa fa-calendar in-mask-date"></span>
@@ -880,13 +881,13 @@
                                                             <div class="col-sm-6">
                                                                 <div class="checkbox" style="margin-left: -20px;">
                                                                     <label>
-                                                                        <asp:CheckBox ID="chkHasIrisProof" runat="server" CssClass="uniform" />
+                                                                        <asp:CheckBox ID="chkHasIrisProof" runat="server" CssClass="uniform" ToolTip="Delivery - Digital Proof" />
                                                                         Digital Proof
                                                                     </label>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                <SweetSoft:ExtraInputMask ID="txtIrisProof" RenderOnlyInput="true"
+                                                                <SweetSoft:ExtraInputMask ID="txtIrisProof" RenderOnlyInput="true" ToolTip="Delivery - IrisProof"
                                                                     MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="0"
                                                                     PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                             </div>
@@ -913,7 +914,7 @@
                                                                         <div class="col-sm-8">
                                                                             <div class="wrap-datepicker">
                                                                                 <SweetSoft:CustomExtraTextbox ID="txtCylinderDate" runat="server"
-                                                                                    RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                                                                    RenderOnlyInput="true" data-format="dd-MM-yyyy" ToolTip="Cylinder/Shipping - Date"
                                                                                     CssClass="datepicker form-control mask-date">
                                                                                 </SweetSoft:CustomExtraTextbox>
                                                                                 <span class="fa fa-calendar in-mask-date"></span>
@@ -925,7 +926,7 @@
                                                             <div class="col-sm-4">
                                                                 <div class="checkbox" style="margin-left: -20px;">
                                                                     <label>
-                                                                        <asp:CheckBox ID="chkPreApproval" runat="server" CssClass="uniform" />
+                                                                        <asp:CheckBox ID="chkPreApproval" runat="server" CssClass="uniform" ToolTip="Cylinder/Shipping - Pre-Approval" />
                                                                         Pre-Approval
                                                                     </label>
                                                                 </div>
@@ -937,7 +938,7 @@
                                                             <div class="form-group" style="margin-left: -20px">
                                                                 <div class="radio">
                                                                     <label>
-                                                                        <asp:RadioButton ID="radLeavingAPEM" GroupName="LeavingAPEM" runat="server" CssClass="uniform" />
+                                                                        <asp:RadioButton ID="radLeavingAPEM" GroupName="LeavingAPEM" runat="server" CssClass="uniform" ToolTip="Cylinder/Shipping - Leaving APE" />
                                                                         Leaving APE
                                                                     </label>
                                                                 </div>
@@ -948,7 +949,7 @@
                                                             <div class="form-group" style="margin-left: -20px">
                                                                 <div class="radio">
                                                                     <label>
-                                                                        <asp:RadioButton ID="radExpected" GroupName="LeavingAPEM" runat="server" CssClass="uniform" />
+                                                                        <asp:RadioButton ID="radExpected" GroupName="LeavingAPEM" runat="server" CssClass="uniform" ToolTip="Cylinder/Shipping - Expected" />
                                                                         Expected at client
                                                                     </label>
                                                                 </div>
@@ -958,7 +959,7 @@
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <label class="control-label">Notes</label>
-                                                            <asp:TextBox ID="txtDeilveryNotes" runat="server" CssClass="form-control"
+                                                            <asp:TextBox ID="txtDeilveryNotes" runat="server" CssClass="form-control" ToolTip="Cylinder/Shipping - Notes"
                                                                 TextMode="MultiLine" Rows="5"></asp:TextBox>
                                                         </div>
                                                     </div>
@@ -975,7 +976,7 @@
                                                     <div class="form-group" style="margin-left: -20px">
                                                         <div class="checkbox">
                                                             <label>
-                                                                <asp:CheckBox ID="chkEyeMark" runat="server" CssClass="uniform" />
+                                                                <asp:CheckBox ID="chkEyeMark" runat="server" CssClass="uniform" ToolTip="Repro - Eye Mark" />
                                                                 Eye Mark
                                                             </label>
                                                         </div>
@@ -988,11 +989,11 @@
                                                                 </label>
                                                                 <div class="col-sm-9">
                                                                     <div class="input-group">
-                                                                        <SweetSoft:ExtraInputMask ID="txtEMWidth" RenderOnlyInput="true"
+                                                                        <SweetSoft:ExtraInputMask ID="txtEMWidth" RenderOnlyInput="true" ToolTip="Repro - Width"
                                                                             MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="0"
                                                                             PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                                         <span class="input-group-addon">x</span>
-                                                                        <SweetSoft:ExtraInputMask ID="txtEMHeight" RenderOnlyInput="true"
+                                                                        <SweetSoft:ExtraInputMask ID="txtEMHeight" RenderOnlyInput="true" ToolTip="Repro - Height"
                                                                             MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="0"
                                                                             PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                                     </div>
@@ -1007,7 +1008,7 @@
                                                                     <span class="pull-left">Colour</span>
                                                                 </label>
                                                                 <div class="col-sm-9">
-                                                                    <SweetSoft:CustomExtraTextbox ID="txtEMColor" RenderOnlyInput="true"
+                                                                    <SweetSoft:CustomExtraTextbox ID="txtEMColor" RenderOnlyInput="true" ToolTip="Repro - Colour"
                                                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                                                 </div>
                                                             </div>
@@ -1021,7 +1022,7 @@
                                                                 </label>
                                                                 <div class="col-sm-9">
                                                                     <asp:DropDownList ID="ddlBacking" runat="server"
-                                                                        data-style="btn btn-info"
+                                                                        data-style="btn btn-info" ToolTip="Repro - Backing"
                                                                         data-width="100%" Required="true"
                                                                         data-toggle="dropdown"
                                                                         CssClass="form-control">
@@ -1039,10 +1040,10 @@
                                                             </div>
                                                             <div class="col-sm-5">
                                                                 <div class="form-group">
-                                                                    <asp:LinkButton class="btn btn-block btn-default" ID="btnMoreEyeMark" runat="server">...</asp:LinkButton>
+                                                                    <asp:LinkButton class="btn btn-block btn-default" ID="btnMoreEyeMark" runat="server" ToolTip="Repro - More Eye Mark">...</asp:LinkButton>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <asp:LinkButton class="btn btn-block btn-default" ID="btnClearEyeMark" runat="server">
+                                                                    <asp:LinkButton class="btn btn-block btn-default" ID="btnClearEyeMark" runat="server" ToolTip="Repro - Clear Eye Mark">
                                                                         <span class="glyphicon glyphicon-remove"></span>
                                                                         Clear</asp:LinkButton>
                                                                 </div>
@@ -1059,7 +1060,7 @@
                                                     <div class="form-group" style="margin-left: -20px">
                                                         <div class="checkbox">
                                                             <label>
-                                                                <asp:CheckBox ID="chkBarcode" runat="server" CssClass="uniform" />
+                                                                <asp:CheckBox ID="chkBarcode" runat="server" CssClass="uniform" ToolTip="Repro - Barcode" />
                                                                 Barcode
                                                             </label>
                                                         </div>
@@ -1072,7 +1073,7 @@
                                                                 </label>
                                                                 <div class="col-sm-9">
                                                                     <div class="input-group">
-                                                                        <SweetSoft:ExtraInputMask ID="txtBarcodeSize" RenderOnlyInput="true"
+                                                                        <SweetSoft:ExtraInputMask ID="txtBarcodeSize" RenderOnlyInput="true" ToolTip="Barcode - Size"
                                                                             MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="0"
                                                                             PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                                         <span class="input-group-addon">%</span>
@@ -1088,7 +1089,7 @@
                                                                     <span class="pull-left">Colour</span>
                                                                 </label>
                                                                 <div class="col-sm-9">
-                                                                    <SweetSoft:CustomExtraTextbox ID="txtBarcodeColor" RenderOnlyInput="true"
+                                                                    <SweetSoft:CustomExtraTextbox ID="txtBarcodeColor" RenderOnlyInput="true" ToolTip="Barcode - Color"
                                                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                                                 </div>
                                                             </div>
@@ -1101,7 +1102,7 @@
                                                                     <span class="pull-left">No</span>
                                                                 </label>
                                                                 <div class="col-sm-9">
-                                                                    <SweetSoft:CustomExtraTextbox ID="txtBarcodeNo" RenderOnlyInput="true"
+                                                                    <SweetSoft:CustomExtraTextbox ID="txtBarcodeNo" RenderOnlyInput="true" ToolTip="Barcode - No"
                                                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                                                 </div>
                                                             </div>
@@ -1115,7 +1116,7 @@
                                                                 </label>
                                                                 <div class="col-sm-9">
                                                                     <asp:DropDownList ID="ddlSupply" runat="server"
-                                                                        data-style="btn btn-info"
+                                                                        data-style="btn btn-info" ToolTip="Barcode - Supply"
                                                                         data-width="100%" Required="true"
                                                                         data-toggle="dropdown"
                                                                         CssClass="form-control">
@@ -1131,7 +1132,7 @@
                                                                     <span class="pull-left">BWR</span>
                                                                 </label>
                                                                 <div class="col-sm-9">
-                                                                    <SweetSoft:ExtraInputMask ID="txtBWR" RenderOnlyInput="true"
+                                                                    <SweetSoft:ExtraInputMask ID="txtBWR" RenderOnlyInput="true" ToolTip="Barcode - BWR"
                                                                         MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                                         PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                                 </div>
@@ -1142,7 +1143,7 @@
                                                         <div class="row">
                                                             <div class="col-sm-5">
                                                                 <label class="checkbox" style="font-weight: 300">
-                                                                    <asp:CheckBox ID="chkTraps" runat="server" CssClass="uniform" />
+                                                                    <asp:CheckBox ID="chkTraps" runat="server" CssClass="uniform" ToolTip="Barcode - Traps" />
                                                                     Traps
                                                                 </label>
                                                             </div>
@@ -1151,7 +1152,7 @@
                                                                     <div class="form-group">
                                                                         <label class="control-label col-sm-4">Size</label>
                                                                         <div class="col-sm-8">
-                                                                            <SweetSoft:ExtraInputMask ID="txtSize" RenderOnlyInput="true"
+                                                                            <SweetSoft:ExtraInputMask ID="txtSize" RenderOnlyInput="true" ToolTip="Barcode - Traps Size"
                                                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="3"
                                                                                 PlaceholderMask="0.000" runat="server"></SweetSoft:ExtraInputMask>
                                                                         </div>
@@ -1170,13 +1171,13 @@
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 <label class="control-label">Unit Size V</label>
-                                                                <SweetSoft:ExtraInputMask ID="txtUNSizeV" RenderOnlyInput="true"
+                                                                <SweetSoft:ExtraInputMask ID="txtUNSizeV" RenderOnlyInput="true" ToolTip="Unit Size V"
                                                                     MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                                     PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <label class="control-label">Unit Size H</label>
-                                                                <SweetSoft:ExtraInputMask ID="txtUNSizeH" RenderOnlyInput="true"
+                                                                <SweetSoft:ExtraInputMask ID="txtUNSizeH" RenderOnlyInput="true" ToolTip="Unit Size H"
                                                                     MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                                     PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                             </div>
@@ -1186,12 +1187,12 @@
                                                         <div class="row">
                                                             <div class="col-sm-6">
                                                                 <label class="checkbox" style="font-weight: 300">
-                                                                    <asp:CheckBox ID="chkOpaqueInk" runat="server" CssClass="uniform" />
+                                                                    <asp:CheckBox ID="chkOpaqueInk" runat="server" CssClass="uniform" ToolTip="Opaque Ink" />
                                                                     Opaque Ink
                                                                 </label>
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                <SweetSoft:ExtraInputMask ID="txtOpaqueInkRate" RenderOnlyInput="true"
+                                                                <SweetSoft:ExtraInputMask ID="txtOpaqueInkRate" RenderOnlyInput="true" ToolTip="Opaque Ink Rate"
                                                                     MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                                     PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                             </div>
@@ -1201,7 +1202,7 @@
                                                         <div class="row">
                                                             <div class="col-sm-12">
                                                                 <label class="checkbox" style="font-weight: 300">
-                                                                    <asp:CheckBox ID="chkIsEndless" runat="server" CssClass="uniform" />
+                                                                    <asp:CheckBox ID="chkIsEndless" runat="server" CssClass="uniform" ToolTip="Endless/Continuous" />
                                                                     Endless/Continuous
                                                                 </label>
                                                             </div>
@@ -1212,28 +1213,28 @@
                                                         <div class="row">
                                                             <div class="col-sm-3" style="text-align: center">
                                                                 <label class="radio" style="font-weight: 300">
-                                                                    <asp:RadioButton ID="radPrintingDirectionU" runat="server" GroupName="PrintingDirection" CssClass="uniform" />
+                                                                    <asp:RadioButton ID="radPrintingDirectionU" runat="server" GroupName="PrintingDirection" CssClass="uniform" ToolTip="Printing Direction - U" />
                                                                     U
                                                                 </label>
                                                                 <img src="/img/up.png" alt="" />
                                                             </div>
                                                             <div class="col-sm-3" style="text-align: center">
                                                                 <label class="radio" style="font-weight: 300">
-                                                                    <asp:RadioButton ID="radPrintingDirectionD" runat="server" GroupName="PrintingDirection" CssClass="uniform" />
+                                                                    <asp:RadioButton ID="radPrintingDirectionD" runat="server" GroupName="PrintingDirection" CssClass="uniform" ToolTip="Printing Direction - D" />
                                                                     D
                                                                 </label>
                                                                 <img src="/img/down.png" alt="" />
                                                             </div>
                                                             <div class="col-sm-3" style="text-align: center">
                                                                 <label class="radio" style="font-weight: 300">
-                                                                    <asp:RadioButton ID="radPrintingDirectionL" runat="server" GroupName="PrintingDirection" CssClass="uniform" />
+                                                                    <asp:RadioButton ID="radPrintingDirectionL" runat="server" GroupName="PrintingDirection" CssClass="uniform" ToolTip="Printing Direction - L" />
                                                                     L
                                                                 </label>
                                                                 <img src="/img/left.png" alt="" />
                                                             </div>
                                                             <div class="col-sm-3" style="text-align: center">
                                                                 <label class="radio" style="font-weight: 300">
-                                                                    <asp:RadioButton ID="radPrintingDirectionR" runat="server" GroupName="PrintingDirection" CssClass="uniform" />
+                                                                    <asp:RadioButton ID="radPrintingDirectionR" runat="server" GroupName="PrintingDirection" CssClass="uniform" ToolTip="Printing Direction - R" />
                                                                     R
                                                                 </label>
                                                                 <img src="/img/right.png" alt="" />
@@ -1249,7 +1250,7 @@
                                             <label class="control-label">
                                                 Color Target
                                             </label>
-                                            <asp:TextBox ID="txtColorTarget" runat="server" TextMode="MultiLine"
+                                            <asp:TextBox ID="txtColorTarget" runat="server" TextMode="MultiLine" ToolTip="Color Target"
                                                 Rows="2" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
@@ -1269,7 +1270,7 @@
                                                                     </label>
                                                                     <div class="col-sm-6">
                                                                         <asp:DropDownList ID="ddlTypeOfCylinder" runat="server"
-                                                                            data-style="btn btn-info"
+                                                                            data-style="btn btn-info" ToolTip="Cylinder - Type Of Cylinder"
                                                                             data-width="100%" Required="true"
                                                                             data-toggle="dropdown"
                                                                             CssClass="form-control">
@@ -1286,7 +1287,7 @@
                                                                     </label>
                                                                     <div class="col-sm-6">
                                                                         <asp:DropDownList ID="ddlPrinting" runat="server"
-                                                                            data-style="btn btn-info"
+                                                                            data-style="btn btn-info" ToolTip="Cylinder - Printing"
                                                                             data-width="100%" Required="true"
                                                                             data-toggle="dropdown"
                                                                             CssClass="form-control">
@@ -1308,21 +1309,21 @@
                                                             <label class="control-label">
                                                                 Proofing Material
                                                             </label>
-                                                            <SweetSoft:CustomExtraTextbox ID="txtProofingMaterial" RenderOnlyInput="true"
+                                                            <SweetSoft:CustomExtraTextbox ID="txtProofingMaterial" RenderOnlyInput="true" ToolTip="Cylinder - Proofing Material"
                                                                 runat="server"></SweetSoft:CustomExtraTextbox>
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <label class="control-label">
                                                                 Actual Printing Material
                                                             </label>
-                                                            <SweetSoft:CustomExtraTextbox ID="txtActualPrintingMaterial" RenderOnlyInput="true"
+                                                            <SweetSoft:CustomExtraTextbox ID="txtActualPrintingMaterial" RenderOnlyInput="true" ToolTip="Cylinder - Actual Printing Material"
                                                                 runat="server"></SweetSoft:CustomExtraTextbox>
                                                         </div>
                                                         <div class="col-sm-4">
                                                             <label class="control-label">
                                                                 Material Width
                                                             </label>
-                                                            <SweetSoft:CustomExtraTextbox ID="txtMaterialWidth" RenderOnlyInput="true"
+                                                            <SweetSoft:CustomExtraTextbox ID="txtMaterialWidth" RenderOnlyInput="true" ToolTip="Cylinder - Material Width"
                                                                 runat="server"></SweetSoft:CustomExtraTextbox>
                                                         </div>
                                                     </div>
@@ -1341,7 +1342,7 @@
                                                                         <span class="pull-left">No of repeats Horizontal</span>
                                                                     </label>
                                                                     <div class="col-sm-6">
-                                                                        <SweetSoft:ExtraInputMask ID="txtNumberOfRepeatH" RenderOnlyInput="true"
+                                                                        <SweetSoft:ExtraInputMask ID="txtNumberOfRepeatH" RenderOnlyInput="true" ToolTip="Number Of Repeat H"
                                                                             MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="0"
                                                                             PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                                     </div>
@@ -1355,7 +1356,7 @@
                                                                         <span class="pull-left">No of repeats Vertical</span>
                                                                     </label>
                                                                     <div class="col-sm-6">
-                                                                        <SweetSoft:ExtraInputMask ID="txtNumberOfRepeatV" RenderOnlyInput="true"
+                                                                        <SweetSoft:ExtraInputMask ID="txtNumberOfRepeatV" RenderOnlyInput="true" ToolTip="Number Of Repeat V"
                                                                             MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="0"
                                                                             PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                                                     </div>
@@ -1366,7 +1367,7 @@
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <label class="control-label">Remarks</label>
-                                                            <asp:TextBox ID="txtSRRemark" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                                                            <asp:TextBox ID="txtSRRemark" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" ToolTip="SR Remark"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1541,7 +1542,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <SweetSoft:GridviewExtension ID="grvOtherCharges"
+                                <SweetSoft:GridviewExtension ID="grvOtherCharges" ToolTip="Other Charges"
                                     runat="server" AutoGenerateColumns="false"
                                     CssClass="table table-striped table-bordered table-checkable dataTable"
                                     OnRowEditing="grvOtherCharges_RowEditing"
@@ -1560,7 +1561,7 @@
                                             </ItemTemplate>
                                             <EditItemTemplate>
                                                 <div style="position: relative;">
-                                                    <asp:DropDownList ID="ddlPricing" runat="server"
+                                                    <asp:DropDownList ID="ddlPricing" runat="server" ToolTip="Other Charges - Pricing"
                                                         data-style="btn btn-info" data-width="100%" Required="true"
                                                         data-container="body" AutoPostBack="true"
                                                         OnSelectedIndexChanged="ddlPricing_SelectedIndexChanged"
@@ -1575,7 +1576,7 @@
                                             </ItemTemplate>
                                             <EditItemTemplate>
                                                 <div style="position: relative;">
-                                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtDescription"
+                                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtDescription" ToolTip="Other Charges - Description"
                                                         Text='<%#Eval("Description")%>' Width="100%"></asp:TextBox>
                                                 </div>
                                             </EditItemTemplate>
@@ -1586,7 +1587,7 @@
                                             </ItemTemplate>
                                             <EditItemTemplate>
                                                 <div style="position: relative;">
-                                                    <SweetSoft:ExtraInputMask ID="txtQuantity" RenderOnlyInput="true" Required="false"
+                                                    <SweetSoft:ExtraInputMask ID="txtQuantity" RenderOnlyInput="true" Required="false" ToolTip="Other Charges - Quantity"
                                                         runat="server" MaskType="Integer" GroupSeparator="," Text='<%#Eval("Quantity")%>'
                                                         AutoGroup="true" Width="100%"></SweetSoft:ExtraInputMask>
                                                 </div>
@@ -1598,7 +1599,7 @@
                                             </ItemTemplate>
                                             <EditItemTemplate>
                                                 <div style="position: relative;">
-                                                    <SweetSoft:ExtraInputMask ID="txtCharge" RenderOnlyInput="true" Required="false"
+                                                    <SweetSoft:ExtraInputMask ID="txtCharge" RenderOnlyInput="true" Required="false" ToolTip="Other Charges - Charge"
                                                         runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Width="100%"
                                                         Text='<%#ShowNumberFormat(Eval("Charge"), "N2")%>' Digits="2" AutoGroup="true"></SweetSoft:ExtraInputMask>
                                                 </div>
@@ -1766,7 +1767,7 @@
                                                 <div class="form-group">
                                                     <div class="col-sm-6">
                                                         <asp:DropDownList ID="ddlIsInternal" runat="server"
-                                                            data-style="btn btn-info"
+                                                            data-style="btn btn-info" ToolTip="Revision Panel - Internal"
                                                             data-width="100%" Required="true"
                                                             data-toggle="dropdown"
                                                             CssClass="form-control">
@@ -1784,7 +1785,7 @@
                                                         <span class="pull-left">Remark</span>
                                                     </label>
                                                     <div class="col-sm-10">
-                                                        <SweetSoft:CustomExtraTextbox ID="txtRevisionDetail" RenderOnlyInput="true"
+                                                        <SweetSoft:CustomExtraTextbox ID="txtRevisionDetail" RenderOnlyInput="true" ToolTip="Revision - Remark"
                                                             runat="server"></SweetSoft:CustomExtraTextbox>
                                                     </div>
                                                 </div>
@@ -1905,17 +1906,36 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script src="/js/plugins/printThis.js"></script>
     <script type="text/javascript">
+        var viewstate = '<%=ViewState_PageID%>';
+        var jobid = '<%=JobID%>';
         $(document).ready(function () {
+
             $('#dialog-printing').hide();
             SearchText();
             SearchShipToParty();
             CreateEyemark();
             CreateRevision();
             RegisterButton();
-
             ChooseCylinderPrinter();
+            SaveStateOfData('Before');
+
         });
 
+        function SaveStateOfData(time) {
+            var obj = [
+                {
+                    key: 'grvOtherCharges_' + time,
+                    data: $("[id$='grvOtherCharges']").html() == undefined ? "<table></table>" : $("[id$='grvOtherCharges']").html(),
+                    PageID: viewstate
+                },
+                {
+                    key: 'grvCylinders_' + time,
+                    data: $("[id$='grvCylinders']").parent().html() == undefined ? "<table></table>" : $("[id$='grvCylinders']").parent().html(),
+                    PageID: viewstate
+                }                
+            ];
+            SaveStateOfDataForm("Job.aspx/SaveDataTable", obj, time);
+        }
 
         addRequestHanlde(InitPODetail);
         InitPODetail();

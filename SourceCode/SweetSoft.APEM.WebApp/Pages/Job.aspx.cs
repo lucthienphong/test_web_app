@@ -15,6 +15,8 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SweetSoftCMS.ExtraControls.Controls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -57,6 +59,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     ltrPrint.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintJobDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", JobID);
                     ltrPrint.Visible = true;
                     btnCreatePO.Visible = true;
+                    base.SaveBaseDataBeforeEdit();
                 }
                 else
                 {
@@ -611,7 +614,6 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
 
             btnDelete.Visible = IsJobLocking ? false : true;
-            grvCylinders.Enabled = IsJobLocking ? false : true;
 
             ///End
         }
@@ -823,6 +825,14 @@ namespace SweetSoft.APEM.WebApp.Pages
                     }
                     BindRevisionHistory(obj.JobID);
 
+                    LoggingActions("Job",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Job Number", Data = obj.JobNumber } ,
+                                new JsonData() { Title = "Job Rev", Data = obj.RevNumber.ToString() }
+                            }));
+
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
 
@@ -929,6 +939,14 @@ namespace SweetSoft.APEM.WebApp.Pages
                     ltrPrint.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintJobDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", obj.JobID);
                     ltrPrint.Visible = true;
                     btnCreatePO.Visible = true;
+
+                    LoggingActions("Job",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Job Number", Data = obj.JobNumber } ,
+                                new JsonData() { Title = "Job Rev", Data = obj.RevNumber.ToString() }
+                            }));
 
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
@@ -1110,6 +1128,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Popup", script, true);
                                     lbMessage.Text = string.Empty;
                                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
+
+                                    LoggingActions("Job",
+                                                    LogsAction.Objects.Action.CREATE_REVISION,
+                                                    LogsAction.Objects.Status.SUCCESS,
+                                                    JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                        new JsonData() { Title = "Job Number", Data = obj.JobNumber } ,
+                                                        new JsonData() { Title = "Job Rev - Old", Data = (obj.RevNumber - 1).ToString() },
+                                                        new JsonData() { Title = "Job Rev - New", Data = obj.RevNumber.ToString() }
+                                                    }));
                                 }
                             }
                         }
@@ -1185,6 +1212,16 @@ namespace SweetSoft.APEM.WebApp.Pages
                                         "Job");
                                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
 
+                                    LoggingActions("Job",
+                                                    LogsAction.Objects.Action.GET_COPY,
+                                                    LogsAction.Objects.Status.SUCCESS,
+                                                    JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                        new JsonData() { Title = "[Old Job] - Number", Data = oldJob.JobNumber } ,
+                                                        new JsonData() { Title = "[Old Job] - Rev", Data = oldJob.RevNumber.ToString() },
+                                                        new JsonData() { Title = "[New Job] - Number", Data = obj.JobNumber } ,
+                                                        new JsonData() { Title = "[New Job] - Rev", Data = obj.RevNumber.ToString() }
+                                                    }));
+
                                     Response.Redirect("~/Pages/Job.aspx?ID=" + obj.JobID.ToString(), false);
                                 }
                             }
@@ -1205,6 +1242,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                                         return;
                                     }
                                     JobManager.Delete(JobID);
+
+                                    LoggingActions("Job",
+                                                    LogsAction.Objects.Action.DELETE,
+                                                    LogsAction.Objects.Status.SUCCESS,
+                                                    JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                        new JsonData() { Title = "Job Number", Data = obj.JobNumber } ,
+                                                        new JsonData() { Title = "Job Rev", Data = obj.RevNumber.ToString() }
+                                                    }));
+
                                     LoggingManager.LogAction(ActivityLoggingHelper.DELETE, FUNCTION_PAGE_ID, obj.ToJSONString());
                                     Response.Redirect("~/Pages/JobList.aspx", false);
                                 }
@@ -1536,7 +1582,6 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             removeInvalidRows();
             grvCylinders.EditIndex = e.NewEditIndex;
-            
             //int CylinderID = 0;
             //if (int.TryParse(grvCylinders.DataKeys[grvCylinders.EditIndex].Values[0].ToString(), out CylinderID))
             //{
@@ -2988,7 +3033,6 @@ namespace SweetSoft.APEM.WebApp.Pages
                 bool IsAllowEdit = !IsLock ? true : false;
 
                 AllowEditting(IsAllowEdit);
-
                 grvCylinders.Enabled = IsAllowEdit;
 
                 string KEY_MESSAGE = IsLock ? ResourceText.LOCK_JOB_SAVE_SUCCESSFULLY : ResourceText.UNLOCK_JOB_SAVE_SUCCESSFULLY;
@@ -2996,6 +3040,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(KEY_MESSAGE), MSGButton.OK, MSGIcon.Success);
                 OpenMessageBox(msg, null, false, false);
 
+                LoggingActions("Job",
+                    IsLock ? LogsAction.Objects.Action.LOCK : LogsAction.Objects.Action.UNLOCK,
+                                LogsAction.Objects.Status.SUCCESS,
+                                JsonConvert.SerializeObject(new List<JsonData>() { 
+                                    new JsonData() { Title = "Job Number", Data = objJob.JobNumber } ,
+                                    new JsonData() { Title = "Job Rev", Data = objJob.RevNumber.ToString() }
+                                }));
             }
             else
             {
@@ -3019,9 +3070,9 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             TblOrderConfirmation oc = OrderConfirmationManager.SelectByID(JobID);
 
-            if (oc == null)
+            if (oc != null)
             {
-                string message = "This job hasn't created order confirm yet. Cannot create purchase order.";
+                string message = "This job has created order confirm. Cannot create purchase order.";
                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), message, MSGButton.OK, MSGIcon.Error);
                 OpenMessageBox(msg, null, false, false);
                 return;
@@ -3074,6 +3125,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                         }
                     }
                 }
+
+                LoggingActions("Purchase Order",
+                                LogsAction.Objects.Action.CREATE,
+                                LogsAction.Objects.Status.SUCCESS,
+                                JsonConvert.SerializeObject(new List<JsonData>() { 
+                                    new JsonData() { Title = "Order Number", Data = _purOrder.OrderNumber } ,
+                                    new JsonData() { Title = "Job Number", Data = _purOrder.TblJob.JobNumber }
+                                }));
+
                 string linkView = "New Purchase Order has created. You can view <a id='btnPOEdit' href='javascript:void(0);' data-id='" + _purOrder.PurchaseOrderID + "'>detail</a>.";
                 MessageBox _msgRole = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), linkView, MSGButton.OK, MSGIcon.Success);
                 OpenMessageBox(_msgRole, null, false, false);

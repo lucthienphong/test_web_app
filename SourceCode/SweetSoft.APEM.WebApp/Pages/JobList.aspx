@@ -394,7 +394,8 @@
                     return false;
                 });
             }
-        }        
+        }      
+              
 
         //function InitNew() {
         //    $('button[id="btnAdd"]').click(function () {

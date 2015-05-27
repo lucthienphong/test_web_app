@@ -9,7 +9,7 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="form-inline">
                         <div class="form-group">
-                            <asp:LinkButton class="btn btn-transparent" ID="btnSave"
+                            <asp:LinkButton class="waitforajax btn btn-transparent" ID="btnSave" OnClientClick="SaveStateOfData('Now')"
                                 runat="server" OnClick="btnSave_Click">
                                 <span class="flaticon-floppy1"></span> <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.SAVE)%>
                             </asp:LinkButton>
@@ -38,7 +38,7 @@
                                     <label class="control-label">
                                         Short code
                                     </label>
-                                    <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true"
+                                    <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true" ToolTip="Customer Code"
                                         runat="server" Repeat="5" ShowMaskOnHover="true" MaxLength="5"
                                         Greedy="true" RightAlign="false"></SweetSoft:ExtraInputMask>
                                 </div>
@@ -46,15 +46,15 @@
                                     <label class="control-label">
                                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_NAME)%>
                                     </label>
-                                    <SweetSoft:CustomExtraTextbox ID="txtName" CssClass="ignore" RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
+                                    <SweetSoft:CustomExtraTextbox ID="txtName" CssClass="ignore" RenderOnlyInput="true" runat="server" ToolTip="Customer Name"></SweetSoft:CustomExtraTextbox>
                                 </div>
                                 <div class="col-sm-2 col-md-2">
                                     <label class="control-label">
                                         &nbsp;
                                     </label>
                                     <div>
-                                        <label class="control-label" style="display:none;">
-                                            <asp:CheckBox ID="chkIsBrand" runat="server" AutoPostBack="true" OnCheckedChanged="chkIsBrand_CheckedChanged" CssClass="uniform" Visible="false"/>
+                                        <label class="control-label" style="display: none;">
+                                            <asp:CheckBox ID="chkIsBrand" runat="server" AutoPostBack="true" OnCheckedChanged="chkIsBrand_CheckedChanged" CssClass="uniform" Visible="false" ToolTip="Brand Owner" />
                                             Brand Owner
                                         </label>
                                     </div>
@@ -69,12 +69,12 @@
     <div class="row">
         <div class="col-md-12 tabbable">
             <ul class="nav nav-tabs" role="tablist">
-                <li class="active"><a href="#detail" role="tab" data-toggle="tab">
+                <li class="active" style="display:normal"><a href="#detail" role="tab" data-toggle="tab">
                     <strong>
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_DETAIL)%>
                     </strong>
                 </a></li>
-                <li runat="server" id="divShipping"><a href="#shipping" role="tab" data-toggle="tab">
+                <li style="display: <%=IsShow%>"><a href="#shipping" role="tab" data-toggle="tab">
                     <strong>
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_SHIPPING)%>
                     </strong>
@@ -92,18 +92,18 @@
                                 <label class="control-label">
                                     Customer short name
                                 </label>
-                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtShortName" runat="server"
+                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtShortName" runat="server" ToolTip="Short Name"
                                     MaxWords="64" MaxLength="64" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
                             </div>
 
-                            <div class="form-group" style="margin-bottom:0px;">
+                            <div class="form-group" style="margin-bottom: 0px;">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">
                                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_TEL)%>
                                             </label>
-                                            <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtTelNumber"
+                                            <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtTelNumber" ToolTip="Tel Number"
                                                 runat="server" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
                                             <label class="control-label">
                                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_FAX)%>
                                             </label>
-                                            <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtFax"
+                                            <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtFax" ToolTip="Fax"
                                                 runat="server" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
                                         </div>
                                     </div>
@@ -122,7 +122,7 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.EMAIL)%>
                                 </label>
-                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtEmail"
+                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtEmail" ToolTip="Email"
                                     EmailType="true" EmailErrorText="Wrong email format"
                                     runat="server" CssClass="form-control" MaxWords="200" MaxLength="200"></SweetSoft:CustomExtraTextbox>
                             </div>
@@ -130,18 +130,18 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_ADDRESS)%>
                                 </label>
-                                <asp:TextBox ID="txtAddress" runat="server"
+                                <asp:TextBox ID="txtAddress" runat="server" ToolTip="Address"
                                     TextMode="MultiLine" Rows="3"
                                     CssClass="form-control"></asp:TextBox>
                             </div>
-                            <div class="form-group" style="margin-bottom:0px;">
+                            <div class="form-group" style="margin-bottom: 0px;">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label">
                                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_CITY)%>
                                             </label>
-                                            <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtCity"
+                                            <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtCity" ToolTip="City"
                                                 runat="server" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
                                         </div>
                                     </div>
@@ -150,7 +150,7 @@
                                             <label class="control-label">
                                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_POSTCODE)%>
                                             </label>
-                                            <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtPostcode" runat="server" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
+                                            <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtPostcode" runat="server" CssClass="form-control" ToolTip="Postcode"></SweetSoft:CustomExtraTextbox>
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +159,7 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_COUNTRY)%>
                                 </label>
-                                <asp:DropDownList ID="ddlCountry" runat="server"
+                                <asp:DropDownList ID="ddlCountry" runat="server" ToolTip="Country"
                                     data-style="btn btn-info btn-block"
                                     data-width="100%" data-live-search="true"
                                     data-toggle="dropdown"
@@ -174,16 +174,16 @@
                                 <label class="control-label">
                                     GST Code
                                 </label>
-                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtGSTCode" runat="server" 
+                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtGSTCode" runat="server" ToolTip="GST Code"
                                     MaxWords="12" MaxLength="12" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
                                     TIN (Tax Information No.)
                                 </label>
-                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtTIN" runat="server" MaxWords="20" MaxLength="20" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
+                                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtTIN" runat="server" MaxWords="20" MaxLength="20" CssClass="form-control" ToolTip="TIN"></SweetSoft:CustomExtraTextbox>
                             </div>
-                            <div class="form-group" style="margin-bottom:0px;">
+                            <div class="form-group" style="margin-bottom: 0px;">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="form-group">
@@ -191,7 +191,7 @@
                                                 Customer code (SAP)
                                             </label>
                                             <SweetSoft:ExtraInputMask ID="txtSAPCode" MaxLength="5" RenderOnlyInput="true" Required="false"
-                                                runat="server" MaskString="99999" AutoGroup="true"                                                
+                                                runat="server" MaskString="99999" AutoGroup="true" ToolTip="Customer Code (SAP)"
                                                 Greedy="true" RightAlign="false"></SweetSoft:ExtraInputMask>
                                         </div>
                                     </div>
@@ -200,8 +200,8 @@
                                             <label class="control-label">
                                                 Internal Order No. (SAP)
                                             </label>
-                                            <SweetSoft:ExtraInputMask ID="txtInternalOrderNo" MaxLength="6"  RenderOnlyInput="true" Required="true"
-                                                runat="server" MaskString="999999" ShowMaskOnHover="true"
+                                            <SweetSoft:ExtraInputMask ID="txtInternalOrderNo" MaxLength="6" RenderOnlyInput="true" Required="true"
+                                                runat="server" MaskString="999999" ShowMaskOnHover="true" ToolTip="Internal Order No. (SAP)"
                                                 Greedy="true" RightAlign="false"></SweetSoft:ExtraInputMask>
                                         </div>
                                     </div>
@@ -212,7 +212,7 @@
                                     Group
                                 </label>
                                 <asp:DropDownList ID="ddlCustomerGroup" runat="server"
-                                    data-style="btn btn-info btn-block"
+                                    data-style="btn btn-info btn-block" ToolTip="Group"
                                     data-width="100%" data-live-search="true"
                                     data-toggle="dropdown"
                                     CssClass="form-control">
@@ -223,42 +223,37 @@
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_SALE_REP)%>
                                 </label>
                                 <asp:DropDownList ID="ddlSaleRep" runat="server"
+                                    data-style="btn btn-info btn-block" ToolTip="Customer Sale Rep"
+                                    data-width="100%" data-live-search="true"
+                                    data-toggle="dropdown"
+                                    CssClass="form-control">
+                                </asp:DropDownList>
+                            </div>
+                            <div class="form-group" style="display: <%=IsShow%>">
+                                <label class="control-label">
+                                    <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_DELIVERY)%>
+                                </label>
+                                <asp:DropDownList ID="ddlDelivery" runat="server"
+                                    data-style="btn btn-info btn-block" ToolTip="Customer Delivery"
+                                    data-width="100%" data-live-search="true"
+                                    data-toggle="dropdown"
+                                    CssClass="form-control">
+                                </asp:DropDownList>
+                            </div>
+                            <div class="form-group" style="display: <%=IsShow%>">
+                                <label class="control-label">
+                                    <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_PAYMENT)%>
+                                </label>
+                                <asp:DropDownList ID="ddlPayment" runat="server" ToolTip="Customer Payment"
                                     data-style="btn btn-info btn-block"
                                     data-width="100%" data-live-search="true"
                                     data-toggle="dropdown"
                                     CssClass="form-control">
                                 </asp:DropDownList>
                             </div>
-                            <div runat="server" id="divRight">
-                                <div class="form-group">
-                                    <label class="control-label">
-                                        <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_DELIVERY)%>
-                                    </label>
-                                    <%--<asp:TextBox ID="txtCustomerDelivery" runat="server" CssClass="form-control"></asp:TextBox>--%>
-                                    <asp:DropDownList ID="ddlDelivery" runat="server"
-                                        data-style="btn btn-info btn-block"
-                                        data-width="100%" data-live-search="true"
-                                        data-toggle="dropdown"
-                                        CssClass="form-control">
-                                    </asp:DropDownList>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label">
-                                        <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_PAYMENT)%>
-                                    </label>
-                                    <%--<asp:TextBox ID="txtCustomerPayment" runat="server"
-                                        data-ignore="1" CssClass="form-control"></asp:TextBox>--%>
-                                    <asp:DropDownList ID="ddlPayment" runat="server"
-                                        data-style="btn btn-info btn-block"
-                                        data-width="100%" data-live-search="true"
-                                        data-toggle="dropdown"
-                                        CssClass="form-control">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label>
-                                    <asp:CheckBox ID="chkIsObsolete" runat="server" CssClass="uniform" />
+                                    <asp:CheckBox ID="chkIsObsolete" runat="server" CssClass="uniform" ToolTip="Obsolete" />
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.IS_OBSOLETE)%>
                                 </label>
                             </div>
@@ -289,7 +284,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <asp:GridView ID="grvContacts" runat="server" AutoGenerateColumns="false"
+                                <asp:GridView ID="grvContacts" runat="server" AutoGenerateColumns="false" ToolTip="Contacts"
                                     CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                                     AllowPaging="false" AllowSorting="false" DataKeyNames="ContactID"
                                     OnRowCommand="grvContacts_RowCommand"
@@ -418,13 +413,13 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_SALES_RECORDS)%>
                                 </label>
-                                <asp:TextBox ID="txtSaleRecords" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtSaleRecords" runat="server" TextMode="MultiLine" Rows="10" CssClass="form-control" ToolTip="Sale Records"></asp:TextBox>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_PACKAGE_REQUIREMENTS)%>
                                 </label>
-                                <asp:TextBox ID="txtPackingRequirement" runat="server" TextMode="MultiLine" Rows="7" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtPackingRequirement" runat="server" TextMode="MultiLine" Rows="7" CssClass="form-control" ToolTip="Packing Requirement"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -434,21 +429,21 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_TECH_DATA)%>
                                 </label>
-                                <asp:TextBox ID="txtTechData" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtTechData" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control" ToolTip="Tech Data"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_FORWARD_NAME)%>
                                 </label>
-                                <asp:TextBox ID="txtForwarderName" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtForwarderName" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control" ToolTip="Forwarder Name"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_FORWARD_ADDRESS)%>
                                 </label>
-                                <asp:TextBox ID="txtForwarderAddress" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtForwarderAddress" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control" ToolTip="Forwared Address"></asp:TextBox>
                             </div>
                         </div>
                     </div>
@@ -459,6 +454,24 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script>
+
+        var viewstate = '<%=ViewState_PageID%>';
+        var customerid = '<%=CustomerID%>';
+        $(document).ready(function () {
+            SaveStateOfData('Before');
+        });
+
+        function SaveStateOfData(time) {
+            var obj = [
+                {
+                    key: 'grvContacts_' + time,
+                    data: $("[id$='grvContacts']").parent().html() == undefined ? "<table></table>" : $("[id$='grvContacts']").parent().html(),
+                    PageID: viewstate
+                }
+            ];
+            SaveStateOfDataForm("Customer.aspx/SaveDataTable", obj, time);
+        }
+
         addRequestHanlde(InitCheckAll);
         function InitCheckAll() {
             $("#chkSelectAll").change(function () {

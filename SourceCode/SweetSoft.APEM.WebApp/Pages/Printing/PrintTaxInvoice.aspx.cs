@@ -26,25 +26,22 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 return 0;
             }
         }
-
-        protected decimal Discount = 0;
-
-        protected decimal TotalBeforeGST = 0;
-        protected decimal TotalTaxRate = 0;
-        protected decimal TotalGST = 0;
-        protected decimal TotalInvoice = 0;
+        public TblTax taxRate = new TblTax();
+        private decimal subTotalBeforeGST = 0;
+        private decimal subTotalBeforeGSTMY = 0;
+        private decimal subTotalWithGST = 0;
+        private decimal subTotalWithGSTMY = 0;
+        public string CurrencyName;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             LoadInformation();
         }
-
         public TblInvoice iv = new TblInvoice();
         TblCurrency cr = new TblCurrency();
-
         private void LoadInformation()
         {
-            ltrPage.Text = "1";
+
             iv = InvoiceManager.SelectByID(InvoiceID);
 
             if (iv != null)
@@ -90,8 +87,8 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 cr = new CurrencyManager().SelectByID(iv.CurrencyID);
                 if (cr != null)
                 {
-                    //ltrExchangeRate.Text = cr.RMValue.ToString();
-                    ltrCurrency.Text = cr.CurrencyName;
+                    ltrExchangeRate.Text = cr.RMValue.ToString();
+                    CurrencyName = cr.CurrencyName;
                 }
                 #region Print Job Template
                 TblJobCollection jCol = JobManager.SelectJobByInvoiceID(InvoiceID);
@@ -118,9 +115,13 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 }
                 else
                 {
-                    ltrTotalBeforeGST.Text = TotalBeforeGST.ToString("N2");
-                    ltrTotalGST.Text = TotalGST.ToString("N2");
-                    ltrTotalInvoice.Text = TotalInvoice.ToString("N2");
+                    ltrSubTotalBeforeGST.Text = subTotalBeforeGST.ToString("N2");
+                    ltrTotalInvoiceWithGST.Text = subTotalWithGST.ToString("N2");
+                    ltrFinalAmount.Text = (subTotalBeforeGST + subTotalWithGST).ToString("N2");
+
+                    ltrSubTotalBeforeGSTMY.Text = subTotalBeforeGSTMY.ToString("N2");
+                    ltrTotalInvoiceWithGSTMY.Text = subTotalWithGSTMY.ToString("N2");
+                    ltrFinalAmountMY.Text = (subTotalBeforeGSTMY + subTotalWithGSTMY).ToString("N2");
                 }
                 ltrRemark.Text = iv.Remark.Replace("\n", "<br/>");
             }
@@ -150,18 +151,13 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             //Label lblTotalMY = e.Item.FindControl("lblTotalMY") as Label;
             Repeater rptCylinder = e.Item.FindControl("rptCylinder") as Repeater;
             Repeater rptOtherCharges = e.Item.FindControl("rptOtherCharges") as Repeater;
-
-            Label lblTotalQty = e.Item.FindControl("lblTotalQty") as Label;
             #endregion
 
             TblJob job = e.Item.DataItem as TblJob;
-
             #region Job Information
-
             ltrJobName.Text = job.JobName;
             ltrJobDesign.Text = job.Design;
             TblDeliveryOrder od = DeliveryOrderManager.SelectDeliveryOrderByJobID(job.JobID);
-
             if (od != null)
             {
                 ltrDONumber.Text = string.Format("{0} / {1}", od.DONumber, od.OrderDate.ToString("dd.MM.yyyy"));
@@ -178,59 +174,45 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             DataTable dt = CylinderManager.SelectCylinderSelectForOrderConfirmation(job.JobID);
             if (dt != null)
             {
-                decimal? TotalAmount = 0;
-                decimal? SubTotal = 0;
-                decimal? TotalTax = 0;
-                decimal TaxRate = 0;
-
+                decimal sumTotalPrice = 0;
+                decimal sumTotalPriceMY = 0;
+                decimal discountPer = 0;
+                decimal discountReal = 0;
+                decimal discountRealMY = 0;
                 List<CylinderExtension> listCylinder = new List<CylinderExtension>();
 
                 TblOrderConfirmation _od = OrderConfirmationManager.SelectByID(job.JobID);
                 if (_od != null)
-                {
-                    TotalAmount = (_od.TotalPrice * (1 - (decimal)_od.Discount / 100) * (1 + (decimal)_od.TaxPercentage / 100));
-                    SubTotal = (_od.TotalPrice * (1 - (decimal)_od.Discount / 100));
-                    TotalTax = (_od.TotalPrice * (1 - ((decimal)_od.Discount / 100))) * (decimal)_od.TaxPercentage / 100;
-                    TaxRate = (decimal)_od.TaxPercentage.Value;
-                    Discount = (decimal)_od.Discount.Value;
-                }
+                    discountPer = (decimal)(_od.Discount.HasValue ? _od.Discount.Value : 0);
 
-                TotalBeforeGST += SubTotal.Value;
-                TotalTaxRate += TaxRate;
-                TotalGST += TotalTax.Value;
-                TotalInvoice += TotalAmount.Value;
-
-                int Seq = 1;
-                int TotalQty = 0;
+                taxRate = new TaxManager().SelectByID(iv.TaxID ?? -1);
 
                 foreach (DataRow dr in dt.Rows)
                 {
-                    int Qty = int.Parse(dr["Quantity"].ToString());
-                    if (Qty > 0)
+                    CylinderExtension c = new CylinderExtension()
                     {
-                        TotalQty += Qty;
-                        CylinderExtension c = new CylinderExtension()
-                        {
-                            No = Seq.ToString(),
-                            Description = dr["CylDescription"].ToString(),
-                            CylinderID = dr["CylinderNo"].ToString(),
-                            Width = dr["FaceWidth"].ToString(),
-                            Cirf = dr["Circumference"].ToString(),
-                            UnitPrice = decimal.Parse(dr["UnitPrice"].ToString()),
-                            Qty = int.Parse(dr["Quantity"].ToString()),
-                            TotalPrice = decimal.Parse(dr["TotalPrice"].ToString()),
-                            //TotalPriceMY = decimal.Parse(dr["TotalPrice"].ToString()) * cr.RMValue,
-                            CylBarcode = dr["CylBarcode"].ToString(),
-                            CusCylID = dr["CusCylID"].ToString(),
-                            CusSteelBaseID = dr["CusSteelBaseID"].ToString(),
-                            SteelBase = dr["SteelBaseName"].ToString()
-                        };
+                        No = dr["Sequence"].ToString(),
+                        Description = dr["CylDescription"].ToString(),
+                        CylinderID = dr["CylinderNo"].ToString(),
+                        Width = dr["FaceWidth"].ToString(),
+                        Cirf = dr["Circumference"].ToString(),
+                        UnitPrice = decimal.Parse(dr["UnitPrice"].ToString()),
+                        Qty = int.Parse(dr["Quantity"].ToString()),
+                        TotalPrice = decimal.Parse(dr["TotalPrice"].ToString()),
+                        //TotalPriceMY = decimal.Parse(dr["TotalPrice"].ToString()) * cr.RMValue,
+                        CylBarcode = dr["CylBarcode"].ToString(),
+                        CusCylID = dr["CusCylID"].ToString(),
+                        CusSteelBaseID = dr["CusSteelBaseID"].ToString(),
+                        SteelBase = dr["SteelBaseName"].ToString()
+                    };
 
-                        Seq++;
-
-                        c.TaxRate = TotalTax.Value.ToString("N2");
-                        listCylinder.Add(c);
+                    if (taxRate != null)
+                    {
+                        c.TaxRate = taxRate.TaxPercentage.ToString();
                     }
+                    listCylinder.Add(c);
+                    sumTotalPrice += c.TotalPrice;
+                    sumTotalPriceMY += c.TotalPriceMY;
                 }
                 if (listCylinder.Count > 0)
                 {
@@ -261,25 +243,52 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                         CusSteelBaseID = string.Empty
                     };
 
-                    c.TaxRate = TotalTax.Value.ToString("N2");
+                    if (taxRate != null)
+                    {
+                        c.TaxRate = taxRate.TaxPercentage.ToString();
+                    }
                     listCylinder.Add(c);
+                    sumTotalPrice += c.TotalPrice;
+                    sumTotalPriceMY += c.TotalPriceMY;
                 }
 
-                if (listCylinder.Count > 0)
+                if (listCylinder.Count>0)
                 {
                     rptOtherCharges.Visible = true;
                     rptOtherCharges.DataSource = listCylinder;
                     rptOtherCharges.DataBind();
                 }
 
-                ltrTaxRate.Text = TaxRate.ToString("N2");
-                lblGST.Text = TotalTax.Value.ToString("N2");
-                lblSubTotal.Text = _od.TotalPrice.Value.ToString("N2");
-                lblDiscount.Text = _od.Discount.Value.ToString("N2");
-                lblSubTotalBefore.Text = SubTotal.Value.ToString("N2");
-                lblTotal.Text = TotalAmount.Value.ToString("N2");
+                discountReal = discountPer * sumTotalPrice / 100;
+                discountRealMY = discountPer * sumTotalPriceMY / 100;
 
-                lblTotalQty.Text = TotalQty.ToString();
+                if (taxRate != null)
+                {
+                    ltrTaxRate.Text = ((decimal)taxRate.TaxPercentage).ToString("N2");
+                    lblGST.Text = (((sumTotalPrice - discountReal) * (decimal)taxRate.TaxPercentage) / 100).ToString("N2");
+                    //lblGSTMY.Text = (((sumTotalPriceMY - discountRealMY) * (decimal)taxRate.TaxPercentage) / 100).ToString("N2");
+                    subTotalWithGST += (((sumTotalPrice - discountReal) * (decimal)taxRate.TaxPercentage) / 100);
+                    subTotalWithGSTMY += (((sumTotalPriceMY - discountRealMY) * (decimal)taxRate.TaxPercentage) / 100);
+                }
+
+                ltrDiscountRate.Text = discountPer.ToString("N2") + "%";
+                lblDiscount.Text = discountReal.ToString("N2");
+                //lblDiscountMY.Text = discountRealMY.ToString("N2");
+
+                lblSubTotal.Text = sumTotalPrice.ToString();
+                //lblSubTotalMY.Text = sumTotalPriceMY.ToString("N2");
+
+                lblSubTotalBefore.Text = (sumTotalPrice - discountReal).ToString("N2");
+                subTotalBeforeGST += (sumTotalPrice - discountReal);
+
+                //lblSubTotalBeforeMY.Text = (sumTotalPriceMY - discountReal).ToString("N2");
+                //subTotalBeforeGSTMY += (sumTotalPriceMY - discountReal);
+
+                lblTotal.Text = ((sumTotalPrice - discountReal) + ((sumTotalPrice - discountReal) * (decimal)taxRate.TaxPercentage / 100)).ToString("N2");
+                //lblTotalMY.Text = ((sumTotalPriceMY - discountRealMY) + ((sumTotalPriceMY - discountRealMY) * (decimal)taxRate.TaxPercentage / 100)).ToString("N2");
+
+
+
             }
         }
 

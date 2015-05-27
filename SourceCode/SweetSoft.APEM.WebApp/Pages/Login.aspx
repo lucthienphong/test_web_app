@@ -53,9 +53,10 @@
                                                     <hr />
                                                     <div class="form-group">
                                                         <div class="col-sm-9 col-sm-push-3">
-                                                            <button class="btn btn-default pull-right" id="btnLogin" runat="server" onserverclick="btnLogin_ServerClick">
+                                                            <%--<button class="btn btn-default pull-right" id="btnLogin" runat="server" onserverclick="btnLogin_ServerClick">--%>
+                                                            <asp:LinkButton CssClass="btn btn-default pull-right" ID="btnLogin" runat="server" OnClick="btnLogin_ServerClick">
                                                                 <span class="fa fa-unlock fa-1x"></span>
-                                                                <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.LOGIN)%></button>
+                                                                <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.LOGIN)%></asp:LinkButton>
                                                             <p class="form-control-static">
                                                                 <a href="/ForgotPassword.aspx" style="color: white; text-decoration: none;">Forgot your password ?</a>
                                                             </p>

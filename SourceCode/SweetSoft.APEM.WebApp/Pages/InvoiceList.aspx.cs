@@ -91,7 +91,6 @@ namespace SweetSoft.APEM.WebApp.Pages
             grvInvoiceList.Columns[4].HeaderText = ResourceTextManager.GetApplicationText(ResourceText.JOB_NUMBER);
             grvInvoiceList.Columns[5].HeaderText = ResourceTextManager.GetApplicationText(ResourceText.JOB_NAME);
         }
-
         protected void grvInvoiceList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             CurrentPageIndex = e.NewPageIndex;
@@ -281,7 +280,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 InvoiceNo = dtInvoice.Rows[0]["InvoiceNo"].ToString();
                 SAPCode = dtInvoice.Rows[0]["SAPCode"].ToString();
                 InvoiceDate = dtInvoice.Rows[0]["InvoiceNo"].ToString();
-                PostingDate = Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
+                PostingDate = DateTime.Today.ToString("yyyyMMdd");
                 CurrencyName = dtInvoice.Rows[0]["CurrencyName"].ToString();
                 CalcTax = dtInvoice.Rows[0]["CalcTax"].ToString();
                 TaxCode = dtInvoice.Rows[0]["TaxCode"].ToString();
@@ -358,7 +357,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 InvoiceNo = r.Field<string>("InvoiceNo");
                 SAPCode = r.Field<string>("SAPCode");
                 InvoiceDate = r.Field<string>("InvoiceNo");
-                PostingDate = Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
+                PostingDate = DateTime.Today.ToString("yyyyMMdd");
                 CurrencyName = r.Field<string>("CurrencyName");
                 CalcTax = r.Field<string>("CalcTax");
                 TaxCode = r.Field<string>("TaxCode");

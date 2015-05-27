@@ -13,6 +13,8 @@ using System.Linq;
 using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -54,6 +56,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                 ViewState["PackingDimesionSource"] = (new Random()).Next().ToString();
                 BindDDL();
                 BindDOData();
+                if (JobID > 0)
+                {
+                    base.SaveBaseDataBeforeEdit();
+                }
             }
         }
 
@@ -260,7 +266,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 else
                     int.TryParse(ddlContact.SelectedValue, out supID);
 
-                if(ddlJob.SelectedValue == "0")
+                if (ddlJob.SelectedValue == "0")
                     AddErrorPrompt(ddlJob.ClientID, ResourceTextManager.GetApplicationText(ResourceText.VALID_REQUIRE));
 
                 if (!IsValid)
@@ -300,6 +306,14 @@ namespace SweetSoft.APEM.WebApp.Pages
                         ////Update Status Lock Of Job
                         ////DeliveryOrderManager.LockJobAndOC(devO.JobID);
                         ////End
+
+                        LoggingActions("Delivery Order",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Delivery Number", Data = devO.DONumber },
+                                new JsonData() { Title = "Job Number", Data = devO.TblJob.JobNumber + "(Rev " + devO.TblJob.RevNumber.ToString() +")" }
+                            }));
 
                         Session[ViewState["PageID"] + "ID"] = devO.JobID;
                         MessageBox _msgRole = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_IS_SAVED), MSGButton.OK, MSGIcon.Success);
@@ -358,6 +372,14 @@ namespace SweetSoft.APEM.WebApp.Pages
                         ////Update Status Lock Of Job
                         ////DeliveryOrderManager.LockJobAndOC(devO.JobID);
                         ////End
+
+                        LoggingActions("Delivery Order",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Delivery Number", Data = devO.DONumber },
+                                new JsonData() { Title = "Job Number", Data = devO.TblJob.JobNumber + "(Rev " + devO.TblJob.RevNumber.ToString() +")" }
+                            }));
 
                         Session[ViewState["PageID"] + "ID"] = devO.JobID;
                         MessageBox _msgRole = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_IS_SAVED), MSGButton.OK, MSGIcon.Success);
@@ -464,7 +486,16 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 if (DeliveryOrderManager.Delete(devOder.JobID))
                                 {
                                     if (AllowSaveLogging)
+                                    {
                                         SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.DELETE_ORDER_CONFIRMATION), FUNCTION_PAGE, devOder.ToJSONString());
+                                        LoggingActions("Delivery Order",
+                                                LogsAction.Objects.Action.DELETE,
+                                                LogsAction.Objects.Status.SUCCESS,
+                                                JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                    new JsonData() { Title = "Delivery Number", Data = devOder.DONumber },
+                                                    new JsonData() { Title = "Job Number", Data = devOder.TblJob.JobNumber + "(Rev " + devOder.TblJob.RevNumber.ToString() +")" }
+                                                }));
+                                    }
                                     Response.Redirect("DeliveryOrderList.aspx", false);
                                 }
                             }
@@ -663,7 +694,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             DeliveryOrderPackingDimensionExtension obj = new DeliveryOrderPackingDimensionExtension();
             Random rnd = new Random();
             int rndID = rnd.Next(-1000, -1);
-            while(source.Where(x => x.VitualID == rndID).Count() > 0)
+            while (source.Where(x => x.VitualID == rndID).Count() > 0)
                 rndID = rnd.Next(-1000, -1);
             obj.VitualID = rndID;
             obj.PackingDimensionID = 0;
@@ -687,8 +718,8 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             List<DeliveryOrderPackingDimensionExtension> source = new List<DeliveryOrderPackingDimensionExtension>();
             List<DeliveryOrderPackingDimensionExtension> oldSource = (List<DeliveryOrderPackingDimensionExtension>)Session[ViewState["PageID"] + "PackingDimesion"];
-            if(oldSource != null)
-            source.AddRange(oldSource.Where(x => !IDs.Contains(x.PackingDimensionID)).ToList());
+            if (oldSource != null)
+                source.AddRange(oldSource.Where(x => !IDs.Contains(x.PackingDimensionID)).ToList());
             Session[ViewState["PageID"] + "PackingDimesion"] = source;
         }
 
@@ -698,7 +729,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             if (source == null)
                 source = new List<DeliveryOrderPackingDimensionExtension>();
             DeliveryOrderPackingDimensionExtension obj = source.Where(x => x.VitualID == VitualID).FirstOrDefault();
-            if(obj != null)
+            if (obj != null)
             {
                 obj.PackingDimensionID = PackingDimesionID;
                 obj.PackingDimensionName = PackingDimensionName;
@@ -769,7 +800,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             {
                 AddErrorPrompt(txtQuantity.ClientID, ResourceTextManager.GetApplicationText(ResourceText.VALID_REQUIRE));
             }
-            else if(!int.TryParse(txtQuantity.Text.Trim().Replace(",", ""), out Quantity))
+            else if (!int.TryParse(txtQuantity.Text.Trim().Replace(",", ""), out Quantity))
             {
                 AddErrorPrompt(txtQuantity.ClientID, ResourceTextManager.GetApplicationText(ResourceText.INVALID_VALUE));
             }
@@ -785,7 +816,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             else
             {
                 PackingDimensionID = Convert.ToInt32(ddlPackingDimension.SelectedValue);
-                if(source.Where(x => x.VitualID != VitualID && x.PackingDimensionID == PackingDimensionID).Count() > 0)
+                if (source.Where(x => x.VitualID != VitualID && x.PackingDimensionID == PackingDimensionID).Count() > 0)
                     AddErrorPrompt(ddlPackingDimension.ClientID, ResourceTextManager.GetApplicationText(ResourceText.VALID_EXISTS));
             }
 
@@ -813,7 +844,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     int? PackingDimensionID = (int?)gvPackingDimension.DataKeys[e.Row.RowIndex].Values[1];
                     DropDownList ddlPackingDimension = e.Row.FindControl("ddlPackingDimension") as DropDownList;
                     if (ddlPackingDimension != null)
-                    {                        
+                    {
                         ddlPackingDimension.DataSource = ReferenceTableManager.SelectPackingDimensionForDDL();
                         ddlPackingDimension.DataTextField = "Name";
                         ddlPackingDimension.DataValueField = "ReferencesID";

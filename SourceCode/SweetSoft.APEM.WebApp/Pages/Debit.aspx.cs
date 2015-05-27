@@ -14,6 +14,8 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 
 namespace SweetSoft.APEM.WebApp.Pages
@@ -52,6 +54,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 {
                     BindDebitData();
                     ltrPrinting.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintDebitDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", DebitID);
+                    base.SaveBaseDataBeforeEdit();
                 }
                 else
                 {
@@ -251,6 +254,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
 
+                    LoggingActions("Debit",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Debit Code", Data = obj.DebitNo } ,
+                            }));
+
                     BindDetailData(obj.DebitID);
 
                     Session[ViewState["PageID"] + "ID"] = obj.DebitID;
@@ -299,6 +309,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     SaveDetailData(obj.DebitID);
                     //Lưu vào logging
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
+
+                    LoggingActions("Debit",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Debit Code", Data = obj.DebitNo } ,
+                            }));
 
                     BindDetailData(obj.DebitID);
 
@@ -353,6 +370,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                         if (e.Value.ToString().Equals("Debit_Delete"))
                         {
                             DebitManager.Delete(DebitID);
+                            LoggingActions("Debit",
+                            LogsAction.Objects.Action.DELETE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Debit Code", Data = DebitManager.SelectByID(DebitID).DebitNo } ,
+                            }));
                             Response.Redirect("~/Pages/DebitList.aspx", false);
                         }
                     }
