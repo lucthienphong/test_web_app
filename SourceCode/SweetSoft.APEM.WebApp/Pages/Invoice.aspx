@@ -76,6 +76,7 @@
                                 <span class="flaticon-padlock21"></span>
                             Unlock
                 </asp:LinkButton>
+                <asp:Literal ID="ltrView" runat="server" EnableViewState="false"></asp:Literal>
                 <%--End--%>
                 <asp:LinkButton ID="btnCancel" runat="server" class="btn btn-transparent new" OnClick="btnCancel_Click">
                     <span class="flaticon-back57"></span>
