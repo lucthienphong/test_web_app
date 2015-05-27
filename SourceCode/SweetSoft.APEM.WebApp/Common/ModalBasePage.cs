@@ -15,6 +15,7 @@ using SweetSoft.APEM.DataAccess;
 using SweetSoft.APEM.Core.Helper;
 using System.Web.SessionState;
 using SweetSoftCMS.ExtraControls.Controls;
+using System.Web.Script.Serialization;
 
 namespace SweetSoft.APEM.WebApp.Common
 {
@@ -375,7 +376,6 @@ namespace SweetSoft.APEM.WebApp.Common
             RunScript("CloseRadWindDow", string.Empty);
         }
 
-
         /// <summary>
         /// Hàm run script trong telerik script block từ code behind
         /// </summary>
@@ -637,6 +637,7 @@ namespace SweetSoft.APEM.WebApp.Common
         {
             return GetResourceText(string.Format("APEMResourcesText_{0}", ApplicationContext.Current.CurrentLanguageCode.Replace("-", "_")), resourceKey);
         }
+
         #endregion
 
         #region User Role
@@ -760,6 +761,7 @@ namespace SweetSoft.APEM.WebApp.Common
                 CURRENT_MASTERPAGES.OpenMessageBox(message, result, isClosePostBack, showmodal);
             }
         }
+
         public virtual void CloseMessageBox()
         {
             if (CURRENT_MASTERPAGES != null)
@@ -767,6 +769,7 @@ namespace SweetSoft.APEM.WebApp.Common
                 CURRENT_MASTERPAGES.CloseMessageBox();
             }
         }
+
         #endregion
 
         #region Inherit Functions
@@ -878,9 +881,6 @@ namespace SweetSoft.APEM.WebApp.Common
             }
         }
 
-
-
-
         /// <summary>
         /// Tình trạng lỗi
         /// </summary>
@@ -891,10 +891,22 @@ namespace SweetSoft.APEM.WebApp.Common
                 return PromptControdClientIDs.Count == 0;
             }
         }
+
         #endregion      
+
+        #region Web Methob
+
+        [WebMethod]
+        public static string GetCustomerData(string Keyword)
+        {
+            List<TblCustomer> result = new List<TblCustomer>();
+            result = CustomerManager.SelectByKeyword(Keyword);
+            string ret = new JavaScriptSerializer().Serialize(result);
+            return ret;
+        }
+
+        #endregion
     }
-
-
 
     public class ModalConfirmResult
     {
