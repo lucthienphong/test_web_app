@@ -68,6 +68,24 @@ namespace SweetSoft.APEM.WebApp.Pages
                 Session[ViewState["PageID"] + "SweetSoft_InvoiceID"] = string.Empty;
                 BindTaxForDDL();
                 LoadData();
+<<<<<<< HEAD
+=======
+                ltrView.Text = string.Format(@"<div class='btn-group'>
+                        <button type='button' class='btn btn-transparent dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
+                            <span class='flaticon-eye110'></span> View <span class='caret'></span>
+                        </button>
+                        <ul class='dropdown-menu openPrinting' role='menu'>
+                            <li>
+                                <a id='printing' href='javascript:;' data-href='Printing/PrintTaxInvoice.aspx?ID={0}'>Tax Invoice</a>
+                            </li>
+                            <li>
+                                <a id='printing' href='javascript:;' data-href='Printing/PrintTaxInvoiceServices.aspx?ID={0}'>Service Job Invoice</a>
+                            </li>
+                        </ul>
+                        </div>", InvoiceID);
+                ltrView.Visible = true;
+
+>>>>>>> backup_1
                 ////Kiểm tra invoice có bị khóa không?
                 ////Nếu khóa thì không cho edit hay xóa invoice
                 //if(OrderLockingManager.CheckLockingStatus(InvoiceID, OrderLockingType.Invoice))

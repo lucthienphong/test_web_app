@@ -263,7 +263,11 @@
     <Content Include="js\jquery.qtip.min.js" />
     <Content Include="js\plugins\printThis.js" />
     <Content Include="js\SweetsoftValidate.js" />
+<<<<<<< HEAD
     <Content Include="Pages\AllLogs.aspx" />
+=======
+    <Content Include="Pages\Printing\PrintTaxInvoiceServices.aspx" />
+>>>>>>> backup_1
     <Content Include="Pages\Printing\PrintCreditDetail.aspx" />
     <Content Include="Pages\Printing\PrintDebitDetail.aspx" />
     <Content Include="Pages\refBrandOwner.aspx" />
@@ -687,12 +691,21 @@
     <Compile Include="Controls\SelectReceivers.ascx.designer.cs">
       <DependentUpon>SelectReceivers.ascx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Pages\AllLogs.aspx.cs">
       <DependentUpon>AllLogs.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\AllLogs.aspx.designer.cs">
       <DependentUpon>AllLogs.aspx</DependentUpon>
+=======
+    <Compile Include="Pages\Printing\PrintTaxInvoiceServices.aspx.cs">
+      <DependentUpon>PrintTaxInvoiceServices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Printing\PrintTaxInvoiceServices.aspx.designer.cs">
+      <DependentUpon>PrintTaxInvoiceServices.aspx</DependentUpon>
+>>>>>>> backup_1
     </Compile>
     <Compile Include="Pages\Printing\PrintCreditDetail.aspx.cs">
       <DependentUpon>PrintCreditDetail.aspx</DependentUpon>

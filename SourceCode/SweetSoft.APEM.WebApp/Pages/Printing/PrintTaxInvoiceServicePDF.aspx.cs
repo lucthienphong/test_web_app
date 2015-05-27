@@ -85,7 +85,6 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
 
             viewer.LocalReport.DataSources.Add(new ReportDataSource("InvoiceSource", sourceInvoiceSummary));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("JobSource", sourceJobSummary));
-            viewer.LocalReport.DataSources.Add(new ReportDataSource("JobSource", sourceJobSummary));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("AdditionalServicesSource", sourceAdditionalServices));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("OtherChargesSource", sourceOtherCharges));
 

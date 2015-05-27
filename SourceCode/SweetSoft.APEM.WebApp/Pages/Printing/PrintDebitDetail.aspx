@@ -386,7 +386,7 @@
                                     </h5>
                                 </div>
                                 <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 10%;">
-                                    <h5 style="text-align: left; padding-left: 5px;">GST
+                                    <h5 style="text-align: left; padding-left: 5px;">GST(<asp:Label ID="lblTax" runat="server"></asp:Label>)
                                     </h5>
                                 </div>
                                 <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
@@ -394,7 +394,7 @@
                                     </h5>
                                 </div>
                                 <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
-                                    <h5 style="text-align: center"><asp:Label ID="lblTax" runat="server"></asp:Label>
+                                    <h5 style="text-align: center"><asp:Label ID="lblTaxAmount" runat="server"></asp:Label>
                                     </h5>
                                 </div>
                             </div>

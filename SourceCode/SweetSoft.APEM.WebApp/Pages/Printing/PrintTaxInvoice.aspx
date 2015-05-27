@@ -29,6 +29,14 @@
             counter-increment: page;
             content: counter(page);
         }
+<<<<<<< HEAD
+=======
+
+        .table > tbody > tr > td
+        {
+            border-top: none;
+        }
+>>>>>>> backup_1
 
         @media all {
             body {
@@ -278,6 +286,19 @@
                                             </tr>
                                         </ItemTemplate>
                                     </asp:Repeater>
+<<<<<<< HEAD
+=======
+                                    <tr>
+                                        <td colspan="7">
+                                            <strong>Total</strong>
+                                        </td>
+                                        <td style="text-align: right;">
+                                            <asp:Label ID="lblTotalQty" runat="server" Text="0"></asp:Label>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+>>>>>>> backup_1
                                     <asp:Repeater ID="rptOtherCharges" runat="server" Visible="false">
                                         <HeaderTemplate>
                                             <tr>
@@ -355,7 +376,11 @@
                 <asp:Panel runat="server" ID="pnlSubTotal">
                     <div class="row" style="page-break-inside: avoid">
                         <div class="col-xs-12">
+<<<<<<< HEAD
                             <table class="table table-bordered">
+=======
+                            <table class="table" border="0" style="border-top: none !important;">
+>>>>>>> backup_1
                                 <tr>
                                     <td><strong>Total</strong></td>
                                     <td><strong>Total (<%=CurrencyName %>)</strong></td>
@@ -370,9 +395,15 @@
                                         <asp:Literal ID="ltrSubTotalBeforeGSTMY" EnableViewState="false" runat="server" /></td>
                                 </tr>
                                 <tr>
+<<<<<<< HEAD
                                     <td>Total invoice with GST 0%</td>
                                     <td style="text-align: right">0.00</td>
                                     <td style="text-align: right">0.00</td>
+=======
+                                    <td>Total GST <%=TotalTaxRate.ToString() %>%</td>
+                                    <td style="text-align: right">
+                                        <asp:Literal ID="ltrTotalGST" EnableViewState="false" runat="server" /></td>
+>>>>>>> backup_1
                                 </tr>
                                 <tr>
                                     <td>Total invoice with GST <%=taxRate.TaxPercentage.ToString() %>%</td>

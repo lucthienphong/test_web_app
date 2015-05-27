@@ -10,7 +10,7 @@
 namespace SweetSoft.APEM.WebApp.Pages.Printing {
     
     
-    public partial class PrintDebitDetail {
+    public partial class PrintTaxInvoiceServices {
         
         /// <summary>
         /// form1 control.
@@ -22,13 +22,13 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ltrCompanyName control.
+        /// ltrCompany control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrCompanyName;
+        protected global::System.Web.UI.WebControls.Literal ltrCompany;
         
         /// <summary>
         /// ltrInvoiceAndDate control.
@@ -40,58 +40,49 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Literal ltrInvoiceAndDate;
         
         /// <summary>
-        /// ltrCustomerName control.
+        /// ltrCustomerInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrCustomerName;
+        protected global::System.Web.UI.WebControls.Literal ltrCustomerInfo;
         
         /// <summary>
-        /// ltrCustomerAddress control.
+        /// ltrOCNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrCustomerAddress;
+        protected global::System.Web.UI.WebControls.Literal ltrOCNumber;
         
         /// <summary>
-        /// Literal1 control.
+        /// ltrOCDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
+        protected global::System.Web.UI.WebControls.Literal ltrOCDate;
         
         /// <summary>
-        /// ltrCNumber control.
+        /// ltrJobNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrCNumber;
+        protected global::System.Web.UI.WebControls.Literal ltrJobNumber;
         
         /// <summary>
-        /// ltrCDate control.
+        /// ltrJobDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrCDate;
-        
-        /// <summary>
-        /// ltrCustomerNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrCustomerNumber;
+        protected global::System.Web.UI.WebControls.Literal ltrJobDate;
         
         /// <summary>
         /// ltrCurr control.
@@ -103,22 +94,49 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Literal ltrCurr;
         
         /// <summary>
-        /// ltrPaymentTerms control.
+        /// ltrDeliveryTerm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrPaymentTerms;
+        protected global::System.Web.UI.WebControls.Literal ltrDeliveryTerm;
         
         /// <summary>
-        /// rptDebitDetail control.
+        /// ltrPaymentTerm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptDebitDetail;
+        protected global::System.Web.UI.WebControls.Literal ltrPaymentTerm;
+        
+        /// <summary>
+        /// ltrReferences control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrReferences;
+        
+        /// <summary>
+        /// rptServiceJob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptServiceJob;
+        
+        /// <summary>
+        /// rptOtherCharges control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptOtherCharges;
         
         /// <summary>
         /// lblSubTotal control.
@@ -130,31 +148,58 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Label lblSubTotal;
         
         /// <summary>
-        /// lblTax control.
+        /// ltrDiscountRate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTax;
+        protected global::System.Web.UI.WebControls.Literal ltrDiscountRate;
         
         /// <summary>
-        /// lblTaxAmount control.
+        /// lblDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTaxAmount;
+        protected global::System.Web.UI.WebControls.Label lblDiscount;
         
         /// <summary>
-        /// lblAllTotal control.
+        /// lblSubTotalBefore control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAllTotal;
+        protected global::System.Web.UI.WebControls.Label lblSubTotalBefore;
+        
+        /// <summary>
+        /// ltrTaxRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrTaxRate;
+        
+        /// <summary>
+        /// lblGST control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGST;
+        
+        /// <summary>
+        /// lblTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
         
         /// <summary>
         /// ltrRemark control.
