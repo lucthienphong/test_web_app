@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPages/ModalMasterPage.Master"
     AutoEventWireup="True" CodeBehind="NotificationDetailAll.aspx.cs"
     Inherits="SweetSoft.APEM.WebApp.Pages.NotificationDetailAll" %>
+
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register Src="~/Controls/NotificationSettingAll.ascx" TagPrefix="SweetSoft" TagName="NotificationSettingAll" %>
 

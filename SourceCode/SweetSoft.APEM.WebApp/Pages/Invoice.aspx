@@ -21,8 +21,8 @@
             <div class="form-inline">
                 <div class="form-group" style="margin-bottom: 0">
                     <asp:LinkButton runat="server" ID="btnSave" 
-                        OnClick="btnSave_Click"  OnClientClick="SaveStateOfData('Now')"
-                        CssClass="waitforajax btn btn-transparent new"><span class="flaticon-new10"></span> Save</asp:LinkButton>
+                        OnClick="btnSave_Click"
+                        CssClass="btn btn-transparent new"><span class="flaticon-new10"></span> Save</asp:LinkButton>
 
                     <asp:LinkButton ID="btnDelete" runat="server"
                         class="btn btn-transparent new" OnClick="btnDelete_Click">
@@ -249,12 +249,12 @@
                     </label>
                     <div class="col-sm-4">
                         <div class="input-group">
-                            <SweetSoft:ExtraInputMask ID="txtCurrencyValue" RenderOnlyInput="true" Enabled="false" Required="false"
+                            <SweetSoft:ExtraInputMask ID="txtCurrencyValue" RenderOnlyInput="true" Enabled="false" Required="false" ToolTip="Currency Value"
                                 runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="1.0000" Digits="4" AutoGroup="true"></SweetSoft:ExtraInputMask>
                             <span class="input-group-addon">
                                 <asp:Literal ID="ltrCurrency" runat="server"></asp:Literal></span>
                             <span class="input-group-addon">=</span>
-                            <SweetSoft:ExtraInputMask ID="txtRMValue" RenderOnlyInput="true" Required="false"
+                            <SweetSoft:ExtraInputMask ID="txtRMValue" RenderOnlyInput="true" Required="false" ToolTip="RM Value"
                                 runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="1" Digits="4" AutoGroup="true"></SweetSoft:ExtraInputMask>
                             <span class="input-group-addon">RM
                             </span>
@@ -266,7 +266,7 @@
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.TAX)%>
                     </label>
                     <div class="col-sm-4">
-                        <asp:DropDownList ID="ddlTax" runat="server"
+                        <asp:DropDownList ID="ddlTax" runat="server" ToolTip="Tax"
                             data-style="btn btn-info" Enabled="false"
                             data-width="100%" Width="100%"
                             data-toggle="dropdown"
@@ -278,7 +278,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2"><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.REMARK)%></label>
                     <div class="col-sm-10">
-                        <asp:TextBox TextMode="MultiLine" ID="txtRemark" runat="server" Rows="2" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox TextMode="MultiLine" ID="txtRemark" runat="server" Rows="2" CssClass="form-control" ToolTip="Remark"></asp:TextBox>
                     </div>
 
                     <%--<label class="control-label col-sm-2">
@@ -294,7 +294,7 @@
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DELIVERY_TERMS)%>
                     </label>
                     <div class="col-sm-10">
-                        <asp:TextBox runat="server" ID="txtYourReference" class="form-control"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtYourReference" class="form-control" ToolTip="Delivery Terms"></asp:TextBox>
                     </div>
                 </div>
 
@@ -303,7 +303,7 @@
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.PAYMENT_TERMS)%>
                     </label>
                     <div class="col-sm-10">
-                        <asp:TextBox runat="server" ID="txtPaymentTerms" class="form-control"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtPaymentTerms" class="form-control" ToolTip="Payment Terms"></asp:TextBox>
                     </div>
                 </div>
             </div>

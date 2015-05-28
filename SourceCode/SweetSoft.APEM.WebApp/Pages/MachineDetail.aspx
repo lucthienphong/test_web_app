@@ -31,25 +31,37 @@
                 <label class="control-label">
                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.MACHINE_NAME)%>
                 </label>
-                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtMachineName" runat="server" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
+                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" 
+                    ID="txtMachineName" ToolTip="Machine Name"
+                    runat="server" 
+                    CssClass="form-control"></SweetSoft:CustomExtraTextbox>
             </div>
             <div class="form-group">
                 <label class="control-label">
                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.MACHINE_CODE)%>
                 </label>
-                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtMachineCode" runat="server" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
+                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" 
+                    ID="txtMachineCode" ToolTip="Machine Code"
+                    runat="server" 
+                    CssClass="form-control"></SweetSoft:CustomExtraTextbox>
             </div>
             <div class="form-group">
                 <label class="control-label">
                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.PERFORMANCE)%>
                 </label>
-                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtPerformance" runat="server" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
+                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" 
+                    ID="txtPerformance" ToolTip="Performance"
+                    runat="server" 
+                    CssClass="form-control"></SweetSoft:CustomExtraTextbox>
             </div>
             <div class="form-group">
                 <label class="control-label">
                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.MAINTERNANCE)%>
                 </label>
-                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtMainternance" runat="server" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
+                <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" 
+                    ID="txtMainternance" ToolTip="Mainternance"
+                    runat="server" 
+                    CssClass="form-control"></SweetSoft:CustomExtraTextbox>
             </div>
         </div>
         <div class="col-md-6 col-sm-6 sweet-input-mask">
@@ -58,13 +70,16 @@
                     <label class="control-label">
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.MANUFACTURER)%>
                     </label>
-                    <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtManufacturer" runat="server" CssClass="form-control"></SweetSoft:CustomExtraTextbox>
+                    <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" 
+                        ID="txtManufacturer" ToolTip="Manufacturer"
+                        runat="server" 
+                        CssClass="form-control"></SweetSoft:CustomExtraTextbox>
                 </div>
                 <div class="form-group">
                     <label>
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.PRODUCEYEAR)%>
                     </label>
-                    <SweetSoft:ExtraInputMask ID="txtProductYear" RenderOnlyInput="true" Required="false" CssClass="text-left"
+                    <SweetSoft:ExtraInputMask ID="txtProductYear" RenderOnlyInput="true" Required="false" CssClass="text-left" ToolTip="Product Year"
                         runat="server" MaskType="Integer" Text="2015" Digits="3" AutoGroup="true"></SweetSoft:ExtraInputMask>
 
                 </div>
@@ -72,7 +87,7 @@
                     <label class="control-label">
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DEPARTMENT)%>
                     </label>
-                    <asp:DropDownList ID="ddlDepartment" runat="server"
+                    <asp:DropDownList ID="ddlDepartment" runat="server" ToolTip="Department"
                         data-style="btn btn-info btn-block"
                         data-width="100%" data-live-search="true"
                         data-toggle="dropdown"
@@ -82,7 +97,7 @@
                 <div class="form-group">
 
                     <label style="margin-top: 20px">
-                        <asp:CheckBox ID="chkIsObsolete" runat="server" CssClass="uniform" />
+                        <asp:CheckBox ID="chkIsObsolete" runat="server" CssClass="uniform" ToolTip="Obsolete"/>
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.IS_OBSOLETE)%>
                     </label>
                 </div>

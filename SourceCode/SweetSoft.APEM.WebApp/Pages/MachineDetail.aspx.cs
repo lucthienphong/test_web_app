@@ -9,6 +9,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -60,6 +62,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                             if (machine != null)
                             {
                                 MachineManager.Delete(machine.Id);
+                                LoggingActions("Machine",
+                                                LogsAction.Objects.Action.DELETE,
+                                                LogsAction.Objects.Status.SUCCESS,
+                                                JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                    new JsonData() { Title = "Machine Code", Data = machine.Code } ,
+                                                    new JsonData() { Title = "Machine Name", Data = machine.Name }
+                                                }));
                                 btnCancel_Click(null, null);
                             }
                         }
@@ -136,6 +145,14 @@ namespace SweetSoft.APEM.WebApp.Pages
                 };
                 MachineManager.Insert(machine);
 
+                LoggingActions("Machine",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Machine Code", Data = machine.Code } ,
+                                new JsonData() { Title = "Machine Name", Data = machine.Name }
+                            }));
+
                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_SAVED_SUCCESS), MSGButton.Ok_With_Reload, MSGIcon.Success);
                 ModalConfirmResult result = new ModalConfirmResult();
                 result.Value = "ADD_SUCCESS";
@@ -157,6 +174,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                     machine.IsObsolete = _isAbsolete;
 
                     MachineManager.Update(machine);
+
+                    LoggingActions("Machine",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Machine Code", Data = machine.Code } ,
+                                new JsonData() { Title = "Machine Name", Data = machine.Name }
+                            }));
+
                     MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_SAVED_SUCCESS), MSGButton.OK, MSGIcon.Success);
                     OpenMessageBox(msg, null, false, false);
                 }
@@ -192,6 +218,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 {
                     LoadMachine();
                     btnDelete.Visible = true;
+                    base.SaveBaseDataBeforeEdit();
                 }
             }
         }

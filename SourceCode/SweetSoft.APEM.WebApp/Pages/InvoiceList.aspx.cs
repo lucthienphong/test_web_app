@@ -15,6 +15,8 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -37,6 +39,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                     if (e.Value.ToString().Equals("Invoice_Delte"))
                     {
                         List<int> idList = new List<int>();
+                        List<JsonData> lstData = new List<JsonData>();
+
                         for (int i = 0; i < grvInvoiceList.Rows.Count; i++)
                         {
                             CheckBox chkIsDelete = (CheckBox)grvInvoiceList.Rows[i].FindControl("chkIsDelete");
@@ -46,6 +50,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 TblInvoice invoice = InvoiceManager.SelectByID(ID);
                                 if (invoice != null)
                                 {
+                                    lstData.Add(new JsonData() { Title = "Invoice Number", Data = invoice.InvoiceNo });
                                     if (InvoiceManager.Delete(ID))
                                     {
                                         //Lưu vào logging
@@ -57,6 +62,11 @@ namespace SweetSoft.APEM.WebApp.Pages
                         }
 
                         BindData();
+
+                        LoggingActions("Invoice",
+                                        LogsAction.Objects.Action.DELETE,
+                                        LogsAction.Objects.Status.SUCCESS,
+                                        JsonConvert.SerializeObject(lstData));
 
                         MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.WARNING), "The data have been deleted", MSGButton.OK, MSGIcon.Success);
                         OpenMessageBox(msg, null, false, false);

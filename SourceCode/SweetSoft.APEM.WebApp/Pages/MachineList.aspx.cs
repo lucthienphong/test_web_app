@@ -11,6 +11,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -68,15 +70,26 @@ namespace SweetSoft.APEM.WebApp.Pages
                     {
                         if (e.Value.ToString().Equals("MACHINE_DELETE"))
                         {
+                            List<JsonData> lstJsData = new List<JsonData>();
+
                             for (int i = 0; i < gvMachine.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)gvMachine.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     short ID = Convert.ToInt16(gvMachine.DataKeys[i].Value);
+                                    TblMachine machine = MachineManager.SelectMachineByID(ID);
+
+                                    lstJsData.Add(new JsonData() { Title = "Machine Code", Data = machine.Code });
+                                    lstJsData.Add(new JsonData() { Title = "Machine Name", Data = machine.Name });
+
                                     MachineManager.Delete(ID);
                                 }
                             }
+                            LoggingActions("Machine",
+                                            LogsAction.Objects.Action.DELETE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(lstJsData));
                             BindData();
                             MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                             OpenMessageBox(msg, null, false, false);

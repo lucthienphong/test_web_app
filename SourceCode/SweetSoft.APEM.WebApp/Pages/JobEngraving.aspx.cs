@@ -16,6 +16,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SweetSoftCMS.ExtraControls.Controls;
 using System.Text;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -42,6 +44,15 @@ namespace SweetSoft.APEM.WebApp.Pages
             }
         }
 
+        protected bool MechanicalVisible = false;
+
+        protected string MechanicalDisplay
+        {
+            get{
+                return MechanicalVisible ? "normal" : "none";
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -53,6 +64,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 {
                     Session[ViewState["PageID"] + "ID"] = Request.QueryString["ID"];
                     BindJobData();
+                    base.SaveBaseDataBeforeEdit();
                 }
                 else
                 {
@@ -98,7 +110,6 @@ namespace SweetSoft.APEM.WebApp.Pages
             return ret;
         }
 
-
         [WebMethod]
         public static string SelectCellDepth(string Keyword)
         {
@@ -122,8 +133,6 @@ namespace SweetSoft.APEM.WebApp.Pages
             string ret = new JavaScriptSerializer().Serialize(list);
             return ret;
         }
-
-
 
         private void BindRevNumberDDL(int JobID)
         {
@@ -303,7 +312,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         engraving.ChromeThickness = txtChromeThickness.Text.Trim();
                         engraving.Roughness = txtRoughness.Text;
                         //EMG
-                        if (divMechanical.Visible)
+                        if (MechanicalVisible)
                         {
                             if (double.TryParse(txtEngravingStart.Text.Trim(), out EngravingStart))
                                 _EngravingStart = EngravingStart;
@@ -392,6 +401,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                             BindEngravingDetail(engraving.JobID);
                             BindTobacco(engraving.JobID);
                             BindEtching(engraving.JobID);
+
+                            LoggingActions("Job Engraving",
+                                        LogsAction.Objects.Action.UPDATE,
+                                        LogsAction.Objects.Status.SUCCESS,
+                                        JsonConvert.SerializeObject(new List<JsonData>() { 
+                                            new JsonData() { Title = "Job Number", Data = obj.JobNumber } ,
+                                            new JsonData() { Title = "Job Rev", Data = obj.RevNumber.ToString() }
+                                        }));
+
                             //Update detail
                             MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_UPDATED_SUCCESSFULLY), MSGButton.OK, MSGIcon.Success);
                             OpenMessageBox(msg, null, false, false);
@@ -407,7 +425,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         engraving.ChromeThickness = txtChromeThickness.Text.Trim();
                         engraving.Roughness = txtRoughness.Text;
                         //EMG
-                        if (divMechanical.Visible)
+                        if (MechanicalVisible)
                         {
                             if (double.TryParse(txtEngravingStart.Text.Trim(), out EngravingStart))
                                 _EngravingStart = EngravingStart;
@@ -497,6 +515,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                             BindEngravingDetail(engraving.JobID);
                             BindTobacco(engraving.JobID);
                             BindEtching(engraving.JobID);
+
+                            LoggingActions("Job Engraving",
+                                        LogsAction.Objects.Action.CREATE,
+                                        LogsAction.Objects.Status.SUCCESS,
+                                        JsonConvert.SerializeObject(new List<JsonData>() { 
+                                            new JsonData() { Title = "Job Number", Data = obj.JobNumber } ,
+                                            new JsonData() { Title = "Job Rev", Data = obj.RevNumber.ToString() }
+                                        }));
+
                             MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_SAVED_SUCCESSFULLY), MSGButton.OK, MSGIcon.Success);
                             OpenMessageBox(msg, null, false, false);
                         }
@@ -523,13 +550,13 @@ namespace SweetSoft.APEM.WebApp.Pages
 
             if (dt.Rows.Count > 0)
             {
-                divMechanical.Visible = true;
+                MechanicalVisible = true;                
                 Session[ViewState["PageID"] + "tableSource"] = dt;
                 BindGrid();
             }
             else
             {
-                divMechanical.Visible = false;
+                MechanicalVisible = false;
             }
         }
 
@@ -620,10 +647,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                 Session[ViewState["PageID"] + "tableSource"] = source;
             }
         }
-        
+
         private void SaveEngravingDetail(int jobID)
         {
-            if (!divMechanical.Visible)
+            if (!MechanicalVisible)
                 return;
             //Lấy danh sách cũ
             List<int> list = JobEngravingManager.GetListEngravingIdByJobID(jobID);
@@ -1618,7 +1645,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     JobEngravingManager.EtchingUpdate(objDetail);
 
                     TblCylinder objCylinder = CylinderManager.SelectByID(objDetail.CylinderID);
-                    
+
                     if (objCylinder != null)
                     {
                         objCylinder.Color = objDetail.Color;

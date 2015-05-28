@@ -223,7 +223,7 @@
                             ItemStyle-CssClass="column-one">
                             <ItemTemplate>
                                 <asp:LinkButton ID="btnEdit" runat="server"
-                                    CommandArgument='<%#Eval("JobID")%>' 
+                                    CommandArgument='<%#Eval("JobID")%>'
                                     Text='<%#Eval("JobNumber")%>' data-id='<%#Eval("JobID")%>'></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -394,8 +394,8 @@
                     return false;
                 });
             }
-        }      
-              
+        }
+
 
         //function InitNew() {
         //    $('button[id="btnAdd"]').click(function () {
@@ -452,6 +452,26 @@
         $(function () {
             $('[data-toggle="tooltip"]').bstooltip()
         })
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        addRequestHanlde(InitEngraving);
+        InitEngraving();
+
+        function InitEngraving() {
+            var linkColl = $('a[id$="lnkEngraving"]');
+            if (linkColl.length > 0) {
+                linkColl.click(function () {
+                    parent.openWindow($('a[data-title]:eq(0)'), 'Job Engraving', '/Pages/' + linkColl.attr('href'));
+                    return false;
+                });
+            }
+        }
 
     </script>
 </asp:Content>

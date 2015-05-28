@@ -9,7 +9,7 @@
                 <div class="col-sm-12">
                     <div class="form-horizontal">
 
-                        <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="btn btn-transparent">
+                        <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="waitforajax btn btn-transparent" OnClientClick="SaveStateOfData('Now')">
                                 <span class="flaticon-floppy1"></span>
                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.SAVE)%>
                         </asp:LinkButton>
@@ -40,11 +40,14 @@
                         <div class="form-horizontal">
                             <div class="form-group" style="margin-bottom: 0">
                                 <div class="col-sm-2 col-xs-2">
-                                    <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" runat="server" ReadOnly="true"
+                                    <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" runat="server" ToolTip="Customer Code"
+                                        ReadOnly="true"
                                         Enabled="false"></SweetSoft:ExtraInputMask>
                                 </div>
                                 <div class="col-sm-10 col-xs-10">
-                                    <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" ReadOnly="true" Enabled="false"
+                                    <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" ToolTip="Customer Name"
+                                        ReadOnly="true"
+                                        Enabled="false"
                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                 </div>
                                 <asp:HiddenField ID="hCustomerID" runat="server" />
@@ -59,7 +62,9 @@
                 <div class="col-sm-8">
                     <div class="form-group" style="margin-bottom: 0">
                         <label class="control-label">Job Nr</label>
-                        <SweetSoft:CustomExtraTextbox ID="txtJobNumber" RenderOnlyInput="true" ReadOnly="true" Enabled="false"
+                        <SweetSoft:CustomExtraTextbox ID="txtJobNumber" RenderOnlyInput="true" ToolTip="Job Number"
+                            ReadOnly="true"
+                            Enabled="false"
                             runat="server"></SweetSoft:CustomExtraTextbox>
                     </div>
                 </div>
@@ -67,7 +72,7 @@
                     <div class="form-group">
                         <label class="control-label">Rev</label>
                         <asp:DropDownList ID="ddlRevNumber" runat="server" ReadOnly="true" Enabled="false"
-                            data-style="btn btn-info"
+                            data-style="btn btn-info" ToolTip="Rev Number"
                             data-width="100%" Required="true"
                             data-toggle="dropdown"
                             CssClass="form-control">
@@ -84,7 +89,7 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="control-label">Job Co-Ord:</label>
-                            <SweetSoft:CustomExtraTextbox ID="txtJobCoOrd" RenderOnlyInput="true"
+                            <SweetSoft:CustomExtraTextbox ID="txtJobCoOrd" RenderOnlyInput="true" ToolTip="Job Co-ord"
                                 runat="server"></SweetSoft:CustomExtraTextbox>
                         </div>
                     </div>
@@ -93,19 +98,19 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label class="control-label">Chrome Thickness:</label>
-                            <SweetSoft:CustomExtraTextbox ID="txtChromeThickness" RenderOnlyInput="true"
+                            <SweetSoft:CustomExtraTextbox ID="txtChromeThickness" RenderOnlyInput="true" ToolTip="Chrome Thickness"
                                 runat="server"></SweetSoft:CustomExtraTextbox>
                         </div>
                         <div class="form-group col-md-6">
                             <label class="control-label">Roughness:</label>
-                            <SweetSoft:CustomExtraTextbox ID="txtRoughness" RenderOnlyInput="true"
+                            <SweetSoft:CustomExtraTextbox ID="txtRoughness" RenderOnlyInput="true" ToolTip="Roughness"
                                 runat="server"></SweetSoft:CustomExtraTextbox>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row" id="divMechanical" runat="server">
+            <div class="row" style="display:<%=MechanicalDisplay%>">
                 <div class="col-sm-12">
                     <div class="form-group col-md-12">
                         <div class="row">
@@ -115,25 +120,25 @@
                                     <div class="row">
                                         <div class="form-group col-md-3">
                                             <label class="control-label">Engraving Start</label>
-                                            <SweetSoft:ExtraInputMask ID="txtEngravingStart" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtEngravingStart" RenderOnlyInput="true" ToolTip="Engraving Start"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label class="control-label">Engraving Width</label>
-                                            <SweetSoft:ExtraInputMask ID="txtEngravingWidth" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtEngravingWidth" RenderOnlyInput="true" ToolTip="Engraving Width"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label class="control-label">File Size H</label>
-                                            <SweetSoft:ExtraInputMask ID="txtFileSizeHEMG" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtFileSizeHEMG" RenderOnlyInput="true" ToolTip="File Size H"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label class="control-label">File Size V</label>
-                                            <SweetSoft:ExtraInputMask ID="txtFileSizeVEMG" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtFileSizeVEMG" RenderOnlyInput="true" ToolTip="File Size V"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
@@ -141,7 +146,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label class="control-label">Remark (EMG)</label>
-                                            <asp:TextBox ID="txtRemarkEMG" runat="server"
+                                            <asp:TextBox ID="txtRemarkEMG" runat="server" ToolTip="Remark (EMG)"
                                                 CssClass="form-control" TextMode="MultiLine"
                                                 Rows="4"></asp:TextBox>
                                         </div>
@@ -150,7 +155,7 @@
                             </div>
                             <div id="tablesContacts" class="dataTables_wrapper form-inline no-footer">
                                 <div class="table-responsive">
-                                    <asp:GridView ID="grvCylinder" runat="server" AutoGenerateColumns="false"
+                                    <asp:GridView ID="grvCylinder" runat="server" AutoGenerateColumns="false" ToolTip="Cylindes"
                                         CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                                         AllowPaging="false" AllowSorting="false" DataKeyNames="EngravingID"
                                         OnRowCommand="grvCylinder_RowCommand"
@@ -375,7 +380,7 @@
                                                     </asp:LinkButton>
                                                 </EditItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField  HeaderStyle-CssClass="column-80 text-center" ItemStyle-CssClass="column-80 text-center">
+                                            <asp:TemplateField HeaderStyle-CssClass="column-80 text-center" ItemStyle-CssClass="column-80 text-center">
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="tbnDelete" Visible='<%#Convert.ToBoolean(Eval("IsCopy"))%>'
                                                         runat="server" CssClass="btn btn-link"
@@ -413,13 +418,13 @@
                                             <div class="row">
                                                 <div class="form-group col-md-12">
                                                     <label>
-                                                        <asp:CheckBox ID="chkEngravingOnNut" runat="server" CssClass="uniform" />
+                                                        <asp:CheckBox ID="chkEngravingOnNut" runat="server" CssClass="uniform" ToolTip="Engraving On Nut" />
                                                         Engraving On Nut
                                                     </label>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label>
-                                                        <asp:CheckBox ID="chkEngravingOnBoader" runat="server" CssClass="uniform" />
+                                                        <asp:CheckBox ID="chkEngravingOnBoader" runat="server" CssClass="uniform" ToolTip="Engraving On Board" />
                                                         Engraving On Board
                                                     </label>
                                                 </div>
@@ -427,13 +432,13 @@
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label class="control-label">File Size H</label>
-                                            <SweetSoft:ExtraInputMask ID="txtFileSizeHDLS" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtFileSizeHDLS" RenderOnlyInput="true" ToolTip="File Size H"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label class="control-label">File Size V</label>
-                                            <SweetSoft:ExtraInputMask ID="txtFileSizeVDLS" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtFileSizeVDLS" RenderOnlyInput="true" ToolTip="File Size V"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
@@ -441,7 +446,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label class="control-label">Remark (DLS)</label>
-                                            <asp:TextBox ID="txtRemarkDLS" runat="server"
+                                            <asp:TextBox ID="txtRemarkDLS" runat="server" ToolTip="Remark (DLS)"
                                                 CssClass="form-control" TextMode="MultiLine"
                                                 Rows="4"></asp:TextBox>
                                         </div>
@@ -449,7 +454,7 @@
                                 </div>
                             </div>
                             <div id="divGridview" class="table-responsive">
-                                <asp:GridView ID="grvTobacco" runat="server" AutoGenerateColumns="false"
+                                <asp:GridView ID="grvTobacco" runat="server" AutoGenerateColumns="false" ToolTip="Tobaco"
                                     CssClass="table table-striped table-bordered table-checkable " GridLines="None"
                                     AllowPaging="false" AllowSorting="false" DataKeyNames="EngravingID"
                                     OnRowCommand="grvTobaccco_RowCommand"
@@ -467,7 +472,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="CylinderNo" HeaderStyle-CssClass="column-60 text-center" ItemStyle-CssClass="column-60">
-                                            <ItemTemplate>                                                
+                                            <ItemTemplate>
                                                 <asp:Label ID="lbCylinderNo" runat="server"
                                                     Text='<%#Eval("CylinderNo")%>'></asp:Label>
                                             </ItemTemplate>
@@ -914,32 +919,32 @@
                                             <div class="row">
                                                 <div class="form-group col-md-12">
                                                     <label class="control-label">Laser start keyway at right position:</label>
-                                                    <SweetSoft:CustomExtraTextbox ID="txtLaseStart" RenderOnlyInput="true"
+                                                    <SweetSoft:CustomExtraTextbox ID="txtLaseStart" RenderOnlyInput="true" ToolTip="Laser Start Postion"
                                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label class="control-label">Start Position</label>
-                                            <SweetSoft:ExtraInputMask ID="txtEngrStartEtching" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtEngrStartEtching" RenderOnlyInput="true" ToolTip="Start Position Etching"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label class="control-label">Laser Width</label>
-                                            <SweetSoft:ExtraInputMask ID="txtEngrWidthEtching" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtEngrWidthEtching" RenderOnlyInput="true" ToolTip="Laser Width"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label class="control-label">File Size H</label>
-                                            <SweetSoft:ExtraInputMask ID="txtFileSizeHEtching" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtFileSizeHEtching" RenderOnlyInput="true" ToolTip="File Size H"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label class="control-label">File Size V</label>
-                                            <SweetSoft:ExtraInputMask ID="txtFileSizeVEtching" RenderOnlyInput="true"
+                                            <SweetSoft:ExtraInputMask ID="txtFileSizeVEtching" RenderOnlyInput="true" ToolTip="File Size V"
                                                 MaskType="Numeric" GroupSeparator="," AutoGroup="true" Digits="2"
                                                 PlaceholderMask="0" runat="server"></SweetSoft:ExtraInputMask>
                                         </div>
@@ -950,7 +955,7 @@
                                             <div class="row">
                                                 <div class="form-group col-md-12">
                                                     <label class="control-label">Laser Operator:</label>
-                                                    <SweetSoft:CustomExtraTextbox ID="txtLaserOperator" RenderOnlyInput="true"
+                                                    <SweetSoft:CustomExtraTextbox ID="txtLaserOperator" RenderOnlyInput="true" ToolTip="Laser Operator"
                                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                                 </div>
                                             </div>
@@ -959,7 +964,7 @@
                                             <div class="row">
                                                 <div class="form-group col-md-12">
                                                     <label class="control-label">Final Control(QA):</label>
-                                                    <SweetSoft:CustomExtraTextbox ID="txtFinalControl" RenderOnlyInput="true"
+                                                    <SweetSoft:CustomExtraTextbox ID="txtFinalControl" RenderOnlyInput="true" ToolTip="Final Control(QA)"
                                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                                 </div>
                                             </div>
@@ -969,7 +974,7 @@
                                         <div class="form-group col-md-12">
                                             <label class="control-label">Remark (Etching)</label>
                                             <asp:TextBox ID="txtSRRemarkEtching" runat="server"
-                                                CssClass="form-control" TextMode="MultiLine"
+                                                CssClass="form-control" TextMode="MultiLine" ToolTip="Remark (Etching)"
                                                 Rows="4"></asp:TextBox>
                                         </div>
                                     </div>
@@ -977,7 +982,7 @@
                             </div>
                             <div id="Div2" class="dataTables_wrapper form-inline no-footer">
                                 <div class="table-responsive">
-                                    <asp:GridView ID="grvEtching" runat="server" AutoGenerateColumns="false"
+                                    <asp:GridView ID="grvEtching" runat="server" AutoGenerateColumns="false" ToolTip="Etching"
                                         CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                                         AllowPaging="false" AllowSorting="false" DataKeyNames="EngravingID"
                                         OnRowCommand="grvEtching_RowCommand"
@@ -1243,7 +1248,31 @@
         $(document).ready(function () {
             InitDialogPrintLink();
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Innit);
+            SaveStateOfData('Before');
         });
+
+        var viewstate = '<%=ViewState_PageID%>';
+
+        function SaveStateOfData(time) {
+            var obj = [
+                {
+                    key: 'grvCylinder_' + time,
+                    data: $("[id$='grvCylinder']").parent().html() == undefined ? "<table></table>" : $("[id$='grvCylinder']").parent().html(),
+                    PageID: viewstate
+                },
+                {
+                    key: 'grvEtching_' + time,
+                    data: $("[id$='grvEtching']").html() == undefined ? "<table></table>" : $("[id$='grvEtching']").html(),
+                    PageID: viewstate
+                },
+                {
+                    key: 'grvTobacco_' + time,
+                    data: $("[id$='grvTobacco']").parent().html() == undefined ? "<table></table>" : $("[id$='grvTobacco']").parent().html(),
+                    PageID: viewstate
+                }
+            ];
+            SaveStateOfDataForm("JobEngraving.aspx/SaveDataTable", obj, time);
+        }
 
         var oldScreen, oldAngle;
         var oldStylus, oldSh;

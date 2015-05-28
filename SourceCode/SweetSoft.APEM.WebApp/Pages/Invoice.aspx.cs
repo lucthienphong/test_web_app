@@ -83,6 +83,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         </ul>
                         </div>", InvoiceID);
                 ltrView.Visible = true;
+                base.SaveBaseDataBeforeEdit();
 
                 ////Kiểm tra invoice có bị khóa không?
                 ////Nếu khóa thì không cho edit hay xóa invoice
@@ -678,12 +679,16 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 foreach (int iID in CurrentList)
                                 {
                                     TblJob j = JobManager.SelectByID(iID);
-                                    OldValue += j != null ? (j.JobNumber + "(Rev " + j.RevNumber + ")") : string.Empty;
+                                    OldValue += j != null ? (j.JobNumber + "(Rev " + j.RevNumber + "), ") : string.Empty;
                                 }
                                 foreach (var item in list)
                                 {
-                                    NewValue += item.JobNumber + "(Rev " + item.JobRev + ")";
+                                    NewValue += item.JobNumber + "(Rev " + item.JobRev + "), ";
                                 }
+
+                                OldValue = OldValue.Remove(OldValue.Length - 2);
+                                NewValue = NewValue.Remove(NewValue.Length - 2);
+
                                 LoggingActions("Invoice",
                                             LogsAction.Objects.Action.UPDATE,
                                             LogsAction.Objects.Status.SUCCESS,
@@ -787,7 +792,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                         }
 
                         if (AllowSaveLogging)
+                        {
                             SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.INSERT_INVOICE), FUNCTION_PAGE, invoice.ToJSONString());
+                            LoggingActions("Invoice",
+                                            LogsAction.Objects.Action.CREATE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                new JsonData() { Title = "Invoice Number", Data = invoice.InvoiceNo }
+                                            }));
+                        }
 
                         /// Trunglc Add - 23-04-2015
                         /// 
@@ -804,6 +817,7 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                         Session[ViewState["PageID"] + "SweetSoft_InvoiceID"] = invoice.InvoiceID;
                         invoiceId = invoice.InvoiceID;
+                        
 
                         MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_ADD_SUCCESSFULLY), MSGButton.OK, MSGIcon.Success);
                         OpenMessageBox(msg, null, false, false);
@@ -957,7 +971,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 {
                                     isDelete = true;
                                     if (AllowSaveLogging)
+                                    {
+                                        LoggingActions("Invoice",
+                                            LogsAction.Objects.Action.DELETE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                new JsonData() { Title = "Invoice Number", Data = invoice.InvoiceNo }
+                                            }));
                                         SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.UPDATE_INVOICE), FUNCTION_PAGE, invoice.ToJSONString());
+                                    }
                                 }
                                 else
                                 {
@@ -1436,6 +1458,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(KEY_MESSAGE), MSGButton.OK, MSGIcon.Success);
                 OpenMessageBox(msg, null, false, false);
 
+                LoggingActions("Invoice",
+                    IsLock ? LogsAction.Objects.Action.LOCK : LogsAction.Objects.Action.UNLOCK,
+                                LogsAction.Objects.Status.SUCCESS,
+                                JsonConvert.SerializeObject(new List<JsonData>() { 
+                                    new JsonData() { Title = "Invoice Number", Data = InvoiceManager.SelectByID(InvoiceID).InvoiceNo }
+                                }));
             }
             else
             {

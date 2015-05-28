@@ -230,8 +230,6 @@
                                         </li>
                                     </ul>
                                 </div>
-<<<<<<< HEAD
-=======
 
                                 <div class="btn-group openPrinting" role="menu">
                                     <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -261,7 +259,6 @@
                                         <span class="fa fa-eye"></span>
                                     </a>
                                 </div>--%>
->>>>>>> backup_1
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

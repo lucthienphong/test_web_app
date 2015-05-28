@@ -26,7 +26,7 @@
             <div class="table-responsive">
                 <asp:GridView runat="server"
                      ID="gvMachine" AutoGenerateColumns="false" 
-                    AllowSorting="true"
+                    AllowSorting="true" DataKeyNames="ID"
                     OnSorting="gvMachine_Sorting"
                     CssClass="table table-striped table-bordered table-checkable dataTable">
                     <Columns>
