@@ -231,6 +231,9 @@
                                     <li>:
                                         <asp:Literal ID="ltrJobNumber" runat="server" EnableViewState="false" />
                                     </li>
+                                    <li>:
+                                        <asp:Literal ID="ltrReferences" runat="server" EnableViewState="false" />
+                                    </li>
                                 </ul>
                             </div>
                             <%--Cylinder Grid--%>

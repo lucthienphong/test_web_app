@@ -116,7 +116,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     JobNumber = txtJobNumber.Text.Trim();
                 }
 
-                DataTable dt = ProgressManager.SelectProgresseEngraving(DeliveryB, DeliveryE, EngravingB, EngravingE, ReproStatusID, CurrentPageIndex, grvProgressEngraving.PageSize, SortColumn, SortType, JobNumber);
+                string CustomerName = null;
+                if (!string.IsNullOrEmpty(txtCustomerName.Text.Trim()))
+                {
+                    CustomerName = txtCustomerName.Text.Trim();
+                }
+
+                DataTable dt = ProgressManager.SelectProgresseEngraving(DeliveryB, DeliveryE, EngravingB, EngravingE, ReproStatusID, CurrentPageIndex, grvProgressEngraving.PageSize, SortColumn, SortType, JobNumber, CustomerName);
                 if (dt.Rows.Count == 0 && CurrentPageIndex != 0)
                 {
                     CurrentPageIndex -= 1;
@@ -345,6 +351,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                 JobNumber = txtJobNumber.Text.Trim();
             }
 
+            string CustomerName = null;
+            if (!string.IsNullOrEmpty(txtCustomerName.Text.Trim()))
+            {
+                CustomerName = txtCustomerName.Text.Trim();
+            }
+
             //Parameters
 
             ReportParameter[] parameters = new ReportParameter[1];
@@ -367,7 +379,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
-            DataTable dt = ProgressManager.SelectProgresseEngraving(DeliveryB, DeliveryE, EngravingB, EngravingE, ReproStatusID, 0, 0, SortColumn, SortType, JobNumber);
+            DataTable dt = ProgressManager.SelectProgresseEngraving(DeliveryB, DeliveryE, EngravingB, EngravingE, ReproStatusID, 0, 0, SortColumn, SortType, JobNumber, CustomerName);
             DataTable dtSource = dt;
 
             viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/JobProgressEngraving_rpt.rdlc");

@@ -49,15 +49,6 @@ namespace SweetSoft.APEM.WebApp.Pages {
         protected global::System.Web.UI.WebControls.LinkButton btnEmbossing;
         
         /// <summary>
-        /// txtJobNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtJobNumber;
-        
-        /// <summary>
         /// txtDeliveryB control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,24 @@ namespace SweetSoft.APEM.WebApp.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::SweetSoftCMS.ExtraControls.Controls.CustomExtraTextbox txtDeliveryE;
+        
+        /// <summary>
+        /// txtJobNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtJobNumber;
+        
+        /// <summary>
+        /// txtCustomerName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerName;
         
         /// <summary>
         /// txtEngravingB control.

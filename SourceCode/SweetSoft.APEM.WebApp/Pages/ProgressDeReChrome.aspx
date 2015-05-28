@@ -4,7 +4,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .GridSrc td {
+        .GridSrc td
+        {
             /*background-color: #A1DCF2;
             color: black;
             font-size: 10pt;
@@ -57,224 +58,256 @@
         </div>
     </div>
     <div class="row row_content">
-        <div class="col-sm-10 col-sm-offset-1">
+        <div class="col-sm-12">
             <div class="row">
-                <div class="col-md-3 col-sm-3">
-                    <label class="control-label">Delivery Date:</label>
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <div class="form-group">
-                                <p class="form-control-static">From</p>
-                            </div>
-                            <div class="form-group">
-                                <p class="form-control-static">To</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-10">
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtDeliveryB" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                <div class="col-md-12 col-sm-12">
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label">Delivery Date:</label>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">From</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtDeliveryE" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtDeliveryB" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">To</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtDeliveryE" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label">De/Re Date:</label>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">From</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtDeReDateB" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">To</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtDeReDateE" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3">
-                    <label class="control-label">De/Re Date:</label>
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <div class="form-group">
-                                <p class="form-control-static">From</p>
-                            </div>
-                            <div class="form-group">
-                                <p class="form-control-static">To</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-10">
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtDeReDateB" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                <div class="col-md-12 col-sm-12">
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label">Cylinder Date:</label>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">From</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtDeReDateE" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                            <div class="col-md-5 col-sm-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtCylDateB" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3">
-                    <label class="control-label">Cylinder Date:</label>
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <div class="form-group">
-                                <p class="form-control-static">From</p>
-                            </div>
-                            <div class="form-group">
-                                <p class="form-control-static">To</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-10">
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtCylDateB" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                            <div class="col-md-1 col-sm-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">To</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtCylDateE" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtCylDateE" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-3">
-                    <label class="control-label">Job Number:</label>
-                    <div class="form-group">
-                        <asp:TextBox ID="txtJobNumber" runat="server" class="form-control"></asp:TextBox>
+                    <div class="col-md-2 col-sm-2">
+                        <label class="control-label">Job Number:</label>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtJobNumber" runat="server" class="form-control"></asp:TextBox>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary pull-right"
-                            OnClick="btnSearch_Click">
+                    <div class="col-md-3 col-sm-3">
+                        <label class="control-label">Customer:</label>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtCustomerName" runat="server" class="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-sm-1">
+                        <label class="control-label">&nbsp;</label>
+                        <div class="form-group">
+                            <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary pull-right"
+                                OnClick="btnSearch_Click">
                                 <span class="glyphicon glyphicon-search"></span>&nbsp;
                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.SEARCH)%>
-                        </asp:LinkButton>
+                            </asp:LinkButton>
+                        </div>
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-    <div class="row" style="margin-top: 15px;">
-        <div class="col-md-12">
-            <div class="table-responsive">
-                <SweetSoft:GridviewExtension ID="grvProgressDeReChrome" runat="server" AutoGenerateColumns="false"
-                    CssClass="table table-striped table-bordered table-checkable dataTable drag_drop_grid GridSrc" GridLines="None"
-                    AllowPaging="true" AllowSorting="true" DataKeyNames="JobID"
-                    OnRowCommand="grvProgressDeReChrome_RowCommand"
-                    OnPageIndexChanging="grvProgressDeReChrome_PageIndexChanging"
-                    OnSorting="grvProgressDeReChrome_Sorting">
-                    <Columns>
-                        <asp:TemplateField HeaderText="Code" SortExpression="0" HeaderStyle-CssClass="sorting column-80" ItemStyle-CssClass="column-80">
+        <div class="row" style="margin-top: 15px;">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <SweetSoft:GridviewExtension ID="grvProgressDeReChrome" runat="server" AutoGenerateColumns="false"
+                        CssClass="table table-striped table-bordered table-checkable dataTable drag_drop_grid GridSrc" GridLines="None"
+                        AllowPaging="true" AllowSorting="true" DataKeyNames="JobID"
+                        OnRowCommand="grvProgressDeReChrome_RowCommand"
+                        OnPageIndexChanging="grvProgressDeReChrome_PageIndexChanging"
+                        OnSorting="grvProgressDeReChrome_Sorting">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Code" SortExpression="0" HeaderStyle-CssClass="sorting column-80" ItemStyle-CssClass="column-80">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbCode" runat="server" Text='<%#Eval("Code")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="JobNumber" SortExpression="1" HeaderStyle-CssClass="sorting column-80" ItemStyle-CssClass="column-100">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnUpdateByNo" runat="server"
+                                        CommandArgument='<%#Eval("JobID")%>' CommandName="UpdateEngraving" Text='<%#Eval("JobNumber")%>'>
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="RevNumber" SortExpression="2" HeaderStyle-CssClass="sorting column-100" ItemStyle-CssClass="column-60">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbRevNumber" runat="server"
+                                        Text='<%#Eval("RevNumber")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="JobName" SortExpression="3" HeaderStyle-CssClass="sorting column-250" ItemStyle-CssClass="column-250">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbJobName" runat="server"
+                                        Text='<%#Eval("JobName")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Design" SortExpression="4" HeaderStyle-CssClass="sorting column-250" ItemStyle-CssClass="column-250">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbDesign" runat="server"
+                                        Text='<%#Eval("Design")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Qty" SortExpression="5" HeaderStyle-CssClass="sorting column-60" ItemStyle-CssClass="column-60">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbQty" runat="server"
+                                        Text='<%#Eval("Qty")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="DeliveryDate" SortExpression="6" HeaderStyle-CssClass="sorting column-100" ItemStyle-CssClass="column-100">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbDeliveryDate" runat="server"
+                                        Text='<%#Eval("DeliveryDate")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="DeReChromeDate" SortExpression="7" HeaderStyle-CssClass="sorting column-100" ItemStyle-CssClass="column-100">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbDeReChromeDate" runat="server"
+                                        Text='<%#Eval("DeReChromeDate")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="CylinderDate" SortExpression="8" HeaderStyle-CssClass="sorting column-120" ItemStyle-CssClass="column-120">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbCylinderDate" runat="server"
+                                        Text='<%#Eval("CylinderDate")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="CylinderStatusName" SortExpression="9" HeaderStyle-CssClass="sorting column-180" ItemStyle-CssClass="column-180">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbCylinderStatusName" runat="server"
+                                        Text='<%#Eval("CylinderStatusName")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Customer" SortExpression="10" HeaderStyle-CssClass="sorting column-150" ItemStyle-CssClass="column-150">
                             <ItemTemplate>
-                                <asp:Label ID="lbCode" runat="server" Text='<%#Eval("Code")%>'></asp:Label>
+                                <asp:Label ID="lbCustomer" runat="server"
+                                    Text='<%#Eval("Name")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="JobNumber" SortExpression="1" HeaderStyle-CssClass="sorting column-80" ItemStyle-CssClass="column-100">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="btnUpdateByNo" runat="server"
-                                    CommandArgument='<%#Eval("JobID")%>' CommandName="UpdateEngraving" Text='<%#Eval("JobNumber")%>'>
-                                </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="RevNumber" SortExpression="2" HeaderStyle-CssClass="sorting column-100" ItemStyle-CssClass="column-60">
-                            <ItemTemplate>
-                                <asp:Label ID="lbRevNumber" runat="server"
-                                    Text='<%#Eval("RevNumber")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="JobName" SortExpression="3" HeaderStyle-CssClass="sorting column-250" ItemStyle-CssClass="column-250">
-                            <ItemTemplate>
-                                <asp:Label ID="lbJobName" runat="server"
-                                    Text='<%#Eval("JobName")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Design" SortExpression="4" HeaderStyle-CssClass="sorting column-250" ItemStyle-CssClass="column-250">
-                            <ItemTemplate>
-                                <asp:Label ID="lbDesign" runat="server"
-                                    Text='<%#Eval("Design")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Qty" SortExpression="5" HeaderStyle-CssClass="sorting column-60" ItemStyle-CssClass="column-60">
-                            <ItemTemplate>
-                                <asp:Label ID="lbQty" runat="server"
-                                    Text='<%#Eval("Qty")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="DeliveryDate" SortExpression="6" HeaderStyle-CssClass="sorting column-100" ItemStyle-CssClass="column-100">
-                            <ItemTemplate>
-                                <asp:Label ID="lbDeliveryDate" runat="server"
-                                    Text='<%#Eval("DeliveryDate")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="DeReChromeDate" SortExpression="7" HeaderStyle-CssClass="sorting column-100" ItemStyle-CssClass="column-100">
-                            <ItemTemplate>
-                                <asp:Label ID="lbDeReChromeDate" runat="server"
-                                    Text='<%#Eval("DeReChromeDate")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="CylinderDate" SortExpression="8" HeaderStyle-CssClass="sorting column-120" ItemStyle-CssClass="column-120">
-                            <ItemTemplate>
-                                <asp:Label ID="lbCylinderDate" runat="server"
-                                    Text='<%#Eval("CylinderDate")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="CylinderStatusName" SortExpression="9" HeaderStyle-CssClass="sorting column-180" ItemStyle-CssClass="column-180">
-                            <ItemTemplate>
-                                <asp:Label ID="lbCylinderStatusName" runat="server"
-                                    Text='<%#Eval("CylinderStatusName")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Note" SortExpression="10" HeaderStyle-CssClass="sorting column-150" ItemStyle-CssClass="column-150">
-                            <ItemTemplate>
-                                <asp:Label ID="lbNote" runat="server"
-                                    Text='<%#Eval("Note")%>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-CssClass="column-one">
-                            <ItemTemplate>
-                                <asp:LinkButton ID="btnUpdate" runat="server" CssClass="btn btn-primary btnEdit"
-                                    CommandArgument='<%#Eval("JobID")%>' CommandName="UpdateEngraving">
+                            <asp:TemplateField HeaderText="Note" SortExpression="11" HeaderStyle-CssClass="sorting column-150" ItemStyle-CssClass="column-150">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbNote" runat="server"
+                                        Text='<%#Eval("Note")%>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ItemStyle-CssClass="column-one">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnUpdate" runat="server" CssClass="btn btn-primary btnEdit"
+                                        CommandArgument='<%#Eval("JobID")%>' CommandName="UpdateEngraving">
                                     <span class="glyphicon glyphicon-edit"></span>
-                                </asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <PagerStyle BorderStyle="None" />
-                    <PagerSettings
-                        Mode="NumericFirstLast"
-                        PageButtonCount="5"
-                        FirstPageText="&laquo;"
-                        LastPageText="&raquo;"
-                        NextPageText="&rsaquo;"
-                        PreviousPageText="&lsaquo;"
-                        Position="Bottom" />
-                    <PagerTemplate>
-                        <SweetSoft:GridViewPager ID="GridViewPager1" runat="server" />
-                    </PagerTemplate>
-                    <EmptyDataTemplate>
-                        There are currently no items in this table.
-                    </EmptyDataTemplate>
-                </SweetSoft:GridviewExtension>
-                <asp:HiddenField ID="hJobID" runat="server" />
+                                    </asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <PagerStyle BorderStyle="None" />
+                        <PagerSettings
+                            Mode="NumericFirstLast"
+                            PageButtonCount="5"
+                            FirstPageText="&laquo;"
+                            LastPageText="&raquo;"
+                            NextPageText="&rsaquo;"
+                            PreviousPageText="&lsaquo;"
+                            Position="Bottom" />
+                        <PagerTemplate>
+                            <SweetSoft:GridViewPager ID="GridViewPager1" runat="server" />
+                        </PagerTemplate>
+                        <EmptyDataTemplate>
+                            There are currently no items in this table.
+                        </EmptyDataTemplate>
+                    </SweetSoft:GridviewExtension>
+                    <asp:HiddenField ID="hJobID" runat="server" />
+                </div>
             </div>
         </div>
     </div>
@@ -354,7 +387,7 @@
                                                 OnSelectedIndexChanged="ddlProgressCylinderStatus_SelectedIndexChanged"
                                                 CssClass="form-control">
                                             </asp:DropDownList>
-                                            <label class="control-label" style="display:none;">Status Desc</label>
+                                            <label class="control-label" style="display: none;">Status Desc</label>
                                             <asp:TextBox ID="txtProgressCylinderStatusDesc" CssClass="form-control" Visible="false"
                                                 runat="server" Enabled="false"></asp:TextBox>
                                         </div>
@@ -408,6 +441,51 @@
         $(document).ready(function () {
             CreateRepro();
         });
+
+        addRequestHanlde(SearchText);
+        SearchText();
+        function SearchText(s, a) {
+            if ($("input[type='text'][id$='txtCustomerName']").length > 0) {
+                $(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
+                $("input[type='text'][id$='txtCustomerName']").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "ProgressRepro.aspx/GetCustomerData",
+                            data: "{'Keyword':'" + $("input[type='text'][id$='txtCustomerName']").val() + "'}",
+                            dataType: "json",
+                            async: true,
+                            cache: false,
+                            success: function (result) {
+                                response($.map($.parseJSON(result.d), function (item) {
+                                    return { ID: item.CustomerID, Name: item.Name, Code: item.Code };
+                                }));
+                            }
+                        });
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function () { }
+                    },
+                    focus: function (event, ui) {
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $("input[type='text'][id$='txtCustomerName']").val(ui.item.Name);
+                        return false;
+                    }
+                }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                    return $("<li>")
+                        .data("ui-autocomplete-item", item)
+                        .append("<a><span style='width:30px;'>" + item.Code + '</span> --- ' + item.Name + "</a>")
+                        .appendTo(ul);
+                };
+            }
+            else {
+                $("input[type='hidden'][id$='hCustomerID']").val("");
+            }
+        }
 
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(CreateRepro);
         function CreateRepro(sender, args) {

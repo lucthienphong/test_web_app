@@ -58,7 +58,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             DataTable sourceCylinder = CylinderManager.SelectCylinderSelectForDeliveryOrder(JobID);
 
             DataTable fillSourceCylinder = sourceCylinder.Clone();
-            DataRow[] dataRow = sourceCylinder.Select("Quantity > 0");
+            DataRow[] dataRow = sourceCylinder.Select("Quantity > 0 AND Physical = 1");
 
             int Seq = 0;
             foreach (DataRow r in dataRow)

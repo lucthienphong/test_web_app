@@ -34,10 +34,10 @@ namespace SweetSoft.APEM.Core.Manager
         /// Select all job for Progress Repro
         /// </summary>
         /// <returns></returns>
-        public static DataTable SelectProgressRepro(DateTime? OrderdateBegin, DateTime? OrderdateEnd, DateTime? ProofDateBegin, DateTime? ProofDateEnd, DateTime? ReproDateBegin, DateTime? ReproDateEnd, DateTime? CylinderDateBegin, DateTime? CylinderDateEnd, int ReproStatusID, int PageIndex, int PageSize, string SortColumn, string SortType, string JobNumber)
+        public static DataTable SelectProgressRepro(DateTime? OrderdateBegin, DateTime? OrderdateEnd, DateTime? ProofDateBegin, DateTime? ProofDateEnd, DateTime? ReproDateBegin, DateTime? ReproDateEnd, DateTime? CylinderDateBegin, DateTime? CylinderDateEnd, int ReproStatusID, int PageIndex, int PageSize, string SortColumn, string SortType, string JobNumber, string Customer)
         {
             DataTable dt = new DataTable();
-            dt.Load(SPs.TblJobProgressForRepro(OrderdateBegin, OrderdateEnd, ProofDateBegin, ProofDateEnd, ReproDateBegin, ReproDateEnd, CylinderDateBegin, CylinderDateEnd, ReproStatusID, PageIndex, PageSize, SortColumn, SortType, JobNumber).GetReader());
+            dt.Load(SPs.TblJobProgressForRepro(OrderdateBegin, OrderdateEnd, ProofDateBegin, ProofDateEnd, ReproDateBegin, ReproDateEnd, CylinderDateBegin, CylinderDateEnd, ReproStatusID, PageIndex, PageSize, SortColumn, SortType, JobNumber, Customer).GetReader());
             return dt;
         }
 
@@ -52,10 +52,10 @@ namespace SweetSoft.APEM.Core.Manager
             return dt;
         }
 
-        public static DataTable SelectProgresseEngraving(DateTime? DeliveryBegin, DateTime? DeliveryEnd, DateTime? EngravingBegin, DateTime? EngravingEnd, int ReproStatusID, int PageIndex, int PageSize, string SortColumn, string SortType, string JobNumber)
+        public static DataTable SelectProgresseEngraving(DateTime? DeliveryBegin, DateTime? DeliveryEnd, DateTime? EngravingBegin, DateTime? EngravingEnd, int ReproStatusID, int PageIndex, int PageSize, string SortColumn, string SortType, string JobNumber, string Customer)
         {
             DataTable dt = new DataTable();
-            dt.Load(SPs.TblJobProgressForEngraving(DeliveryBegin, DeliveryEnd, EngravingBegin, EngravingEnd, ReproStatusID, PageIndex, PageSize, SortColumn, SortType, JobNumber).GetReader());
+            dt.Load(SPs.TblJobProgressForEngraving(DeliveryBegin, DeliveryEnd, EngravingBegin, EngravingEnd, ReproStatusID, PageIndex, PageSize, SortColumn, SortType, JobNumber, Customer).GetReader());
             return dt;
         }
 
@@ -77,10 +77,10 @@ namespace SweetSoft.APEM.Core.Manager
             return dt;
         }
 
-        public static DataTable SelectProgresseDeReChrome(DateTime? DeliveryBegin, DateTime? DeliveryEnd, DateTime? DeReBegin, DateTime? DeReEnd, DateTime? CylinderDateBegin, DateTime? CylinderDateEnd, int PageIndex, int PageSize, string SortColumn, string SortType, string JobNumber)
+        public static DataTable SelectProgresseDeReChrome(DateTime? DeliveryBegin, DateTime? DeliveryEnd, DateTime? DeReBegin, DateTime? DeReEnd, DateTime? CylinderDateBegin, DateTime? CylinderDateEnd, int PageIndex, int PageSize, string SortColumn, string SortType, string JobNumber, string Customer)
         {
             DataTable dt = new DataTable();
-            dt.Load(SPs.TblJobProgressForDeReChrome(DeliveryBegin, DeliveryEnd, DeReBegin, DeReEnd, CylinderDateBegin, CylinderDateEnd, PageIndex, PageSize, SortColumn, SortType, JobNumber).GetReader());
+            dt.Load(SPs.TblJobProgressForDeReChrome(DeliveryBegin, DeliveryEnd, DeReBegin, DeReEnd, CylinderDateBegin, CylinderDateEnd, PageIndex, PageSize, SortColumn, SortType, JobNumber, Customer).GetReader());
             return dt;
         }
     }

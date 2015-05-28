@@ -95,7 +95,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     JobNumber = txtJobNumber.Text.Trim();
                 }
 
-                DataTable dt = ProgressManager.SelectProgresseDeReChrome(DeliveryB, DeliveryE, DeReDateB, DeReDateE, CylinderDateB, CylinderDateE, CurrentPageIndex, grvProgressDeReChrome.PageSize, SortColumn, SortType, JobNumber);
+                string CustomerName = null;
+                if (!string.IsNullOrEmpty(txtCustomerName.Text.Trim()))
+                {
+                    CustomerName = txtCustomerName.Text.Trim();
+                }
+
+                DataTable dt = ProgressManager.SelectProgresseDeReChrome(DeliveryB, DeliveryE, DeReDateB, DeReDateE, CylinderDateB, CylinderDateE, CurrentPageIndex, grvProgressDeReChrome.PageSize, SortColumn, SortType, JobNumber, CustomerName);
 
                 if (dt.Rows.Count == 0 && CurrentPageIndex != 0)
                 {
@@ -277,6 +283,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                 JobNumber = txtJobNumber.Text.Trim();
             }
 
+            string CustomerName = null;
+            if (!string.IsNullOrEmpty(txtCustomerName.Text.Trim()))
+            {
+                CustomerName = txtCustomerName.Text.Trim();
+            }
+
             //Parameters
 
             ReportParameter[] parameters = new ReportParameter[1];
@@ -299,7 +311,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             ReportViewer viewer = new ReportViewer();
             viewer.ProcessingMode = ProcessingMode.Local;
 
-            DataTable dt = ProgressManager.SelectProgresseDeReChrome(DeliveryB, DeliveryE, DeReDateB, DeReDateE, CylinderDateB, CylinderDateE, 0, 0, SortColumn, SortType, JobNumber);
+            DataTable dt = ProgressManager.SelectProgresseDeReChrome(DeliveryB, DeliveryE, DeReDateB, DeReDateE, CylinderDateB, CylinderDateE, 0, 0, SortColumn, SortType, JobNumber, CustomerName);
             DataTable dtSource = dt;
 
             viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/JobProgressDeReChrome_rpt.rdlc");

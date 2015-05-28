@@ -81,95 +81,115 @@
                         </div>
                     </div>
                 </div>--%>
-                <div class="col-md-3 col-sm-3">
-                    <label class="control-label">Job Number:</label>
-                    <div class="form-group">
-                        <asp:TextBox ID="txtJobNumber" runat="server" class="form-control"></asp:TextBox>
+                <div class="col-md-12 col-sm-12">
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label">Repro Date:</label>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">From</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtReProDateB" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">To</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtReProDateE" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <label class="control-label">Job Number:</label>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtJobNumber" runat="server" class="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <label class="control-label">Customer:</label>
+                        <div class="form-group">
+                            <asp:TextBox ID="txtCustomerName" runat="server" class="form-control"></asp:TextBox>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3">
-                    <label class="control-label">Repro Date:</label>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                <p class="form-control-static">From</p>
-                            </div>
-                            <div class="form-group">
-                                <p class="form-control-static">To</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-8">
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtReProDateB" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                <div class="col-md-12 col-sm-12">
+                    <div class="col-md-6 col-sm-6">
+                        <label class="control-label">Cylinder Date:</label>
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">From</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtReProDateE" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtCylDateB" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3">
-                    <label class="control-label">Cylinder Date:</label>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <div class="form-group">
-                                <p class="form-control-static">From</p>
-                            </div>
-                            <div class="form-group">
-                                <p class="form-control-static">To</p>
-                            </div>
-                        </div>
-                        <div class="col-xs-8">
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtCylDateB" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                            <div class="col-xs-1">
+                                <div class="form-group">
+                                    <p class="form-control-static">To</p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="wrap-datepicker">
-                                    <SweetSoft:CustomExtraTextbox ID="txtCylDateE" runat="server"
-                                        RenderOnlyInput="true" data-format="dd-MM-yyyy"
-                                        CssClass="datepicker form-control mask-date">
-                                    </SweetSoft:CustomExtraTextbox>
-                                    <span class="fa fa-calendar in-mask-date"></span>
+                            <div class="col-xs-5">
+                                <div class="form-group">
+                                    <div class="wrap-datepicker">
+                                        <SweetSoft:CustomExtraTextbox ID="txtCylDateE" runat="server"
+                                            RenderOnlyInput="true" data-format="dd-MM-yyyy"
+                                            CssClass="datepicker form-control mask-date">
+                                        </SweetSoft:CustomExtraTextbox>
+                                        <span class="fa fa-calendar in-mask-date"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
-                <div class="col-md-3 col-sm-3">
-                    <label class="control-label">RePro Status:</label>
-                    <div class="form-group">
-                        <asp:DropDownList ID="ddlReProStatus" runat="server"
-                            data-style="btn btn-info"
-                            data-width="100%" Required="true"
-                            data-toggle="dropdown"
-                            CssClass="form-control">
-                        </asp:DropDownList>
+                    <div class="col-md-4 col-sm-4">
+                        <label class="control-label">RePro Status:</label>
+                        <div class="form-group">
+                            <asp:DropDownList ID="ddlReProStatus" runat="server"
+                                data-style="btn btn-info"
+                                data-width="100%" Required="true"
+                                data-toggle="dropdown"
+                                CssClass="form-control">
+                            </asp:DropDownList>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary pull-right"
-                            OnClick="btnSearch_Click">
+                    <div class="col-md-2 col-sm-2">
+                        <label class="control-label">&nbsp;</label>
+                        <div class="form-group">
+                            <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary pull-right"
+                                OnClick="btnSearch_Click">
                                         <span class="glyphicon glyphicon-search"></span>&nbsp;
                                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.SEARCH)%>
-                        </asp:LinkButton>
+                            </asp:LinkButton>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -257,7 +277,13 @@
                                     Text='<%#Eval("CylinderStatusName")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Note" SortExpression="11" HeaderStyle-CssClass="sorting column-150" ItemStyle-CssClass="column-150">
+                        <asp:TemplateField HeaderText="Customer" SortExpression="11" HeaderStyle-CssClass="sorting column-150" ItemStyle-CssClass="column-150">
+                            <ItemTemplate>
+                                <asp:Label ID="lbCustomer" runat="server"
+                                    Text='<%#Eval("Name")%>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Note" SortExpression="12" HeaderStyle-CssClass="sorting column-150" ItemStyle-CssClass="column-150">
                             <ItemTemplate>
                                 <asp:Label ID="lbNote" runat="server"
                                     Text='<%#Eval("Note")%>'></asp:Label>
@@ -435,6 +461,51 @@
         $(document).ready(function () {
             CreateRepro();
         });
+
+        addRequestHanlde(SearchText);
+        SearchText();
+        function SearchText(s, a) {
+            if ($("input[type='text'][id$='txtCustomerName']").length > 0) {
+                $(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
+                $("input[type='text'][id$='txtCustomerName']").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "ProgressRepro.aspx/GetCustomerData",
+                            data: "{'Keyword':'" + $("input[type='text'][id$='txtCustomerName']").val() + "'}",
+                            dataType: "json",
+                            async: true,
+                            cache: false,
+                            success: function (result) {
+                                response($.map($.parseJSON(result.d), function (item) {
+                                    return { ID: item.CustomerID, Name: item.Name, Code: item.Code };
+                                }));
+                            }
+                        });
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function () { }
+                    },
+                    focus: function (event, ui) {
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $("input[type='text'][id$='txtCustomerName']").val(ui.item.Name);
+                        return false;
+                    }
+                }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                    return $("<li>")
+                        .data("ui-autocomplete-item", item)
+                        .append("<a><span style='width:30px;'>" + item.Code + '</span> --- ' + item.Name + "</a>")
+                        .appendTo(ul);
+                };
+            }
+            else {
+                $("input[type='hidden'][id$='hCustomerID']").val("");
+            }
+        }
 
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(CreateRepro);
         function CreateRepro(sender, args) {

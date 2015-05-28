@@ -20,6 +20,7 @@ using SweetSoft.APEM.Core.UI;
 using SweetSoft.APEM.Core.Logs;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
+using System.Web.Script.Serialization;
 
 namespace SweetSoft.APEM.WebApp.Common
 {
@@ -379,7 +380,6 @@ namespace SweetSoft.APEM.WebApp.Common
         {
             RunScript("CloseRadWindDow", string.Empty);
         }
-
 
         /// <summary>
         /// Hàm run script trong telerik script block từ code behind
@@ -1008,6 +1008,7 @@ namespace SweetSoft.APEM.WebApp.Common
                 CURRENT_MASTERPAGES.OpenMessageBox(message, result, isClosePostBack, showmodal);
             }
         }
+
         public virtual void CloseMessageBox()
         {
             if (CURRENT_MASTERPAGES != null)
@@ -1015,6 +1016,7 @@ namespace SweetSoft.APEM.WebApp.Common
                 CURRENT_MASTERPAGES.CloseMessageBox();
             }
         }
+
         #endregion
 
         #region Inherit Functions
@@ -1126,9 +1128,6 @@ namespace SweetSoft.APEM.WebApp.Common
             }
         }
 
-
-
-
         /// <summary>
         /// Tình trạng lỗi
         /// </summary>
@@ -1139,10 +1138,22 @@ namespace SweetSoft.APEM.WebApp.Common
                 return PromptControdClientIDs.Count == 0;
             }
         }
+
+        #endregion      
+
+        #region Web Methob
+
+        [WebMethod]
+        public static string GetCustomerData(string Keyword)
+        {
+            List<TblCustomer> result = new List<TblCustomer>();
+            result = CustomerManager.SelectByKeyword(Keyword);
+            string ret = new JavaScriptSerializer().Serialize(result);
+            return ret;
+        }
+
         #endregion
     }
-
-
 
     public class ModalConfirmResult
     {

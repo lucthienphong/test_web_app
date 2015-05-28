@@ -1590,7 +1590,7 @@ namespace SweetSoft.APEM.DataAccess{
         /// <summary>
         /// Creates an object wrapper for the tblJob_ProgressForDeReChrome Procedure
         /// </summary>
-        public static StoredProcedure TblJobProgressForDeReChrome(DateTime? DeliveryBegin, DateTime? DeliveryEnd, DateTime? DeReDateBegin, DateTime? DeReDateEnd, DateTime? CylinderDateBegin, DateTime? CylinderDateEnd, int? PageIndex, int? PageSize, string SortColumn, string SortType, string JobNumber)
+        public static StoredProcedure TblJobProgressForDeReChrome(DateTime? DeliveryBegin, DateTime? DeliveryEnd, DateTime? DeReDateBegin, DateTime? DeReDateEnd, DateTime? CylinderDateBegin, DateTime? CylinderDateEnd, int? PageIndex, int? PageSize, string SortColumn, string SortType, string JobNumber, string Customer)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblJob_ProgressForDeReChrome", DataService.GetInstance("DataAcessProvider"), "dbo");
         	
@@ -1616,13 +1616,15 @@ namespace SweetSoft.APEM.DataAccess{
         	
             sp.Command.AddParameter("@JobNumber", JobNumber, DbType.AnsiString, null, null);
         	
+            sp.Command.AddParameter("@Customer", Customer, DbType.AnsiString, null, null);
+        	
             return sp;
         }
         
         /// <summary>
         /// Creates an object wrapper for the tblJob_ProgressForEngraving Procedure
         /// </summary>
-        public static StoredProcedure TblJobProgressForEngraving(DateTime? DeliveryBegin, DateTime? DeliveryEnd, DateTime? EngravingBegin, DateTime? EngravingEnd, int? ReproStatusID, int? PageIndex, int? PageSize, string SortColumn, string SortType, string JobNumber)
+        public static StoredProcedure TblJobProgressForEngraving(DateTime? DeliveryBegin, DateTime? DeliveryEnd, DateTime? EngravingBegin, DateTime? EngravingEnd, int? ReproStatusID, int? PageIndex, int? PageSize, string SortColumn, string SortType, string JobNumber, string Customer)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblJob_ProgressForEngraving", DataService.GetInstance("DataAcessProvider"), "dbo");
         	
@@ -1646,13 +1648,15 @@ namespace SweetSoft.APEM.DataAccess{
         	
             sp.Command.AddParameter("@JobNumber", JobNumber, DbType.AnsiString, null, null);
         	
+            sp.Command.AddParameter("@Customer", Customer, DbType.AnsiString, null, null);
+        	
             return sp;
         }
         
         /// <summary>
         /// Creates an object wrapper for the tblJob_ProgressForRepro Procedure
         /// </summary>
-        public static StoredProcedure TblJobProgressForRepro(DateTime? OrderDateBegin, DateTime? OrderDateEnd, DateTime? ProofBegin, DateTime? ProofEnd, DateTime? ReproDateBegin, DateTime? ReproDateEnd, DateTime? CylinderDateBegin, DateTime? CylinderDateEnd, int? ReproStatusID, int? PageIndex, int? PageSize, string SortColumn, string SortType, string JobNumber)
+        public static StoredProcedure TblJobProgressForRepro(DateTime? OrderDateBegin, DateTime? OrderDateEnd, DateTime? ProofBegin, DateTime? ProofEnd, DateTime? ReproDateBegin, DateTime? ReproDateEnd, DateTime? CylinderDateBegin, DateTime? CylinderDateEnd, int? ReproStatusID, int? PageIndex, int? PageSize, string SortColumn, string SortType, string JobNumber, string Customer)
         {
             SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblJob_ProgressForRepro", DataService.GetInstance("DataAcessProvider"), "dbo");
         	
@@ -1683,6 +1687,8 @@ namespace SweetSoft.APEM.DataAccess{
             sp.Command.AddParameter("@SortType", SortType, DbType.AnsiString, null, null);
         	
             sp.Command.AddParameter("@JobNumber", JobNumber, DbType.AnsiString, null, null);
+        	
+            sp.Command.AddParameter("@Customer", Customer, DbType.AnsiString, null, null);
         	
             return sp;
         }

@@ -63,12 +63,12 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     TaxRate = od.TaxPercentage != null ? (double)od.TaxPercentage : 0;
                 }
                 TblCurrency cr = new CurrencyManager().SelectByID(od.CurrencyID);
-                if (cr!=null)
+                if (cr != null)
                 {
-                    ltrCurr.Text = cr.CurrencyName;    
+                    ltrCurr.Text = cr.CurrencyName;
                 }
                 TblContact ct = ContactManager.SelectByID(j.ContactPersonID);
-                if (ct!=null)
+                if (ct != null)
                 {
                     ltrContact.Text = string.Format("{0}. {1}", ct.Honorific, ct.ContactName);
                 }
@@ -88,10 +88,10 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     ltrCustomerInfo.Text = sb.ToString();
                 }
 
-               
+
                 ltrSignature.Text = string.Format("<div class='text-center col-xs-6'><br /><br /><br /><br /><br /><br /><span style='font-size: 8pt'>{0}</span></div>", SettingManager.GetSettingValue(SettingNames.CompanyName));
 
-                
+
                 //Bind detail
                 BindServiceJobDetail();
 
@@ -104,17 +104,17 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 Tax = TotalPriceBeforGST * (decimal)(TaxRate / 100);
 
                 lblSubTotal.Text = TotalPrice.ToString("N2");
-                ltrDiscountRate.Text = DiscountRate.ToString("N2") + "%";
+                ltrDiscountRate.Text = DiscountRate.ToString() + "%";
                 lblDiscount.Text = Discount.ToString("N2");
                 lblSubTotalBefore.Text = TotalPriceBeforGST.ToString("N2");
-                ltrTaxRate.Text = TaxRate.ToString("N2") + "%";
+                ltrTaxRate.Text = TaxRate.ToString() + "%";
                 lblGST.Text = Tax.ToString("N2");
                 lblTotal.Text = (TotalPrice - Discount + Tax).ToString("N2");
 
             }
         }
 
-        #region Service job detail       
+        #region Service job detail
         private void BindServiceJobDetail()
         {
             List<ServiceJobDetailExtension> coll = JobManager.SelectServiceJobDetailByID(JobID);
@@ -125,7 +125,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             rptServiceJob.DataSource = coll;
             rptServiceJob.DataBind();
         }
-        #endregion 
+        #endregion
 
         #region Other Charges
         private void BindOtherCharges()

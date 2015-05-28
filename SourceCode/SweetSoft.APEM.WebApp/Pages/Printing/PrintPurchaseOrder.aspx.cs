@@ -49,16 +49,16 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 TblSupplier supplier = new SupplierManager().SelectByID(purOrder.SupplierID);
 
                 //ddlSuplier.SelectedValue = supplier.SupplierID.ToString();
-                ltrSupplier.Text = string.Format( "{0} <br/> {1} <br/> Tel: {2} - Fax: {3} <br/> Attention to: {4}",supplier.Name, supplier.Address, supplier.Tel, supplier.Fax, supplier.ContactPerson);
+                ltrSupplier.Text = string.Format("{0} <br/> {1} <br/> Tel: {2} - Fax: {3} <br/> Attention to: {4}", supplier.Name, supplier.Address, supplier.Tel, supplier.Fax, supplier.ContactPerson);
 
                 TblJob job = JobManager.SelectByID(purOrder.JobID);
                 ltrJobDesign.Text = job.Design.ToString();
                 ltrJobName.Text = job.JobName.ToString();
                 ltrJobNumber.Text = job.JobNumber.ToString();
                 TblCurrency cr = new CurrencyManager().SelectByID(purOrder.CurrencyID);
-                if (cr!=null)
+                if (cr != null)
                 {
-                    ltrCurr.Text = cr.CurrencyName;    
+                    ltrCurr.Text = cr.CurrencyName;
                 }
 
                 TblUser uObj = UserManager.GetUserByUserName(purOrder.CreatedBy);
@@ -96,15 +96,18 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 TblCylinderCollection cylinders = CylinderManager.GetCylindersByJobID(job.JobID, job != null ? Convert.ToBoolean(job.IsOutsource) : false);
                 if (cylinders != null && cylinders.Count() > 0)
                 {
-                    
+
                     #region bind cylinder
 
                     List<TblCylinderCollectionModel> listCylinderModel = new List<TblCylinderCollectionModel>();
                     TblJobSheet jSheet = JobManager.SelectJobSheetByID(job.JobID);
+                    int Seq = 1;
                     foreach (var item in cylinders)
                     {
                         TblCylinderCollectionModel c = new TblCylinderCollectionModel();
+                        
                         c.objCylinder = item;
+                        c.objCylinder.Sequence = Seq;
 
                         if (item.POQuantity == null)
                             c.objCylinder.POQuantity = 0;
@@ -112,8 +115,8 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                         TblPurchaseOrderCylinder p = PurchaseOrderManager.SelectPurchaseOrderByJobId_PurchaseID(item.CylinderID, purOrder.PurchaseOrderID);
                         if (p != null)
                         {
-                           c.UnitPriceExtension = p.UnitPrice.ToString();
-                           c.Quantity = (int)p.Quantity;
+                            c.UnitPriceExtension = p.UnitPrice.ToString();
+                            c.Quantity = (int)p.Quantity;
                         }
                         else
                         {
@@ -126,10 +129,9 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                         //c.Total = item.POQuantity != null && !string.IsNullOrEmpty(c.UnitPriceExtension) ? (int)item.POQuantity * decimal.Parse(c.UnitPriceExtension) : 0;
 
                         c.Total = c.Quantity * decimal.Parse(c.UnitPriceExtension);
-
                         c.CylinderType = jSheet.TypeOfCylinder;
-
                         listCylinderModel.Add(c);
+                        Seq++;
                     }
 
                     ltrCylinderType.Text = jSheet.TypeOfCylinder;
