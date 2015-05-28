@@ -84,7 +84,6 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     {
                         ltrDeliveryTerm.Text = refer.Name;
                     }
-
                 }
                 #endregion
                 cr = new CurrencyManager().SelectByID(iv.CurrencyID);
@@ -152,6 +151,8 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             Repeater rptOtherCharges = e.Item.FindControl("rptOtherCharges") as Repeater;
 
             Label lblTotalQty = e.Item.FindControl("lblTotalQty") as Label;
+
+            Literal ltrReferences = e.Item.FindControl("ltrReferences") as Literal;
             #endregion
 
             TblJob job = e.Item.DataItem as TblJob;
@@ -166,6 +167,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             {
                 ltrDONumber.Text = string.Format("{0} / {1}", od.DONumber, od.OrderDate.ToString("dd.MM.yyyy"));
                 //ltrDODate.Text = od.OrderDate.ToString("dd.MM.yyyy");
+                ltrReferences.Text = Common.Extensions.CombineString(od.CustomerPO1, od.CustomerPO2, ",");
             }
             ltrJobNumber.Text = string.Format("{0} / {1}", job.JobNumber, ((DateTime)job.CreatedOn).ToString("dd.MM.yyyy"));
             //if (job.CreatedOn != null)

@@ -9,84 +9,103 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <style>
-        body {
+        body
+        {
             margin-top: 20px;
         }
 
         table,
-        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td
+        {
             border-color: #000 !important;
         }
 
-        label {
+        label
+        {
             font-weight: 300!important;
         }
 
-        small {
+        small
+        {
             color: #000!important;
         }
 
-        @media all {
-            body {
+        @media all
+        {
+            body
+            {
                 font-size: 12px !important;
             }
 
-            .information-do label.control-label, .information-do p.form-control-static {
+            .information-do label.control-label, .information-do p.form-control-static
+            {
                 margin-bottom: 3px!important;
             }
 
-            .form-group {
+            .form-group
+            {
                 margin-bottom: 0px;
             }
 
-            .control-label {
+            .control-label
+            {
                 padding-top: 0px !important;
                 margin-bottom: 0 !important;
             }
 
-            .form-control-static {
+            .form-control-static
+            {
                 padding-top: 0;
                 padding-bottom: 0;
             }
         }
 
-        @page {
+        @page
+        {
             size: auto;
             margin: 20mm 6mm 20mm 6mm;
             margin-top: 20mm;
         }
 
-        @media print {
-            body {
+        @media print
+        {
+            body
+            {
                 margin: 0;
             }
 
-            .form-group {
+            .form-group
+            {
                 margin-bottom: 0;
             }
 
-            h5 {
+            h5
+            {
                 margin-top: 1mm;
                 margin-bottom: 1mm;
                 font-size: 0.7em;
             }
 
-            [class^="col-xs-"] {
+            [class^="col-xs-"]
+            {
                 /*padding-left: 0mm;
                 padding-right: 0mm;*/
             }
 
-            .no-border-left {
+            .no-border-left
+            {
                 border-left-color: #fff !important;
                 border-left-color: transparent !important;
             }
 
-            .no-border-right {
+            .no-border-right
+            {
                 border-right-color: #fff !important;
                 border-right-color: transparent !important;
             }
 
-            div.uniform-checker.uniform-disabled span.uniform-checked {
+            div.uniform-checker.uniform-disabled span.uniform-checked
+            {
                 background-position: -114px -260px;
             }
         }
@@ -96,7 +115,7 @@
     <form id="form1" runat="server">
         <div class="container-fluid" id="wrapPrint">
             <div class="printContent">
-                <div class="row" style="margin-bottom:20px;">
+                <div class="row" style="margin-bottom: 20px;">
                     <div class="col-sm-2 col-xs-2">
                         <img src="/img/apem-logo-print.png" class="img-responsive" />
                     </div>
@@ -159,20 +178,26 @@
                                     </li>
                                 </ul>
                                 <ul class="list-unstyled pull-left" style="margin-left: 15px;">
-                                    <li>: <asp:Literal ID="ltrDeliveryTerm" Text="" EnableViewState="false" runat="server" />
+                                    <li>:
+                                        <asp:Literal ID="ltrDeliveryTerm" Text="" EnableViewState="false" runat="server" />
                                     </li>
-                                    <li>: <asp:Literal ID="ltrPaymentTerm" Text="" EnableViewState="false" runat="server" />
+                                    <li>:
+                                        <asp:Literal ID="ltrPaymentTerm" Text="" EnableViewState="false" runat="server" />
                                     </li>
                                     <li>
                                         <label class="control-label"></label>
                                     </li>
-                                    <li>: <asp:Literal Text="" ID="ltrContact" runat="server" EnableViewState="false" />
+                                    <li>:
+                                        <asp:Literal Text="" ID="ltrContact" runat="server" EnableViewState="false" />
                                     </li>
-                                    <li>: <asp:Literal Text="" ID="ltrReferences" runat="server" EnableViewState="false" />
+                                    <li>:
+                                        <asp:Literal Text="" ID="ltrReferences" runat="server" EnableViewState="false" />
                                     </li>
-                                    <li>: <asp:Literal Text="" ID="ltrJobName" runat="server" EnableViewState="false" />
+                                    <li>:
+                                        <asp:Literal Text="" ID="ltrJobName" runat="server" EnableViewState="false" />
                                     </li>
-                                    <li>: <asp:Literal Text="" ID="ltrDesign" EnableViewState="false" runat="server" />
+                                    <li>:
+                                        <asp:Literal Text="" ID="ltrDesign" EnableViewState="false" runat="server" />
                                     </li>
                                 </ul>
                             </div>
@@ -273,63 +298,70 @@
                                             <asp:Label runat="server" Text='<%#Eval("Description")%>'></asp:Label></td>
                                         <td>
                                             <asp:Label runat="server" Text='<%#Eval("CategoryName")%>'></asp:Label></td>
-                                        <td style="text-align:right;">
+                                        <td style="text-align: right;">
                                             <asp:Label runat="server" Text='<%#Eval("WorkOrderValues")%>'></asp:Label></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
-                            
+
                             <%--Other charges--%>
+                            <tr>
+                                <td colspan="6"><strong>Other charges</strong></td>
+                            </tr>
                             <asp:Repeater ID="rptOtherCharges" runat="server">
                                 <HeaderTemplate>
                                     <tr>
-                                        <td colspan="6"><strong>Other charges</strong></td>
+                                        <th>No</th>
+                                        <th colspan="2">Description</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>Total Price</th>
                                     </tr>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <tr>
-                                        <td colspan="1"><%#((SweetSoft.APEM.WebApp.Pages.Printing.TblOtherChargeExtension)Container.DataItem).No%></td>
-                                        <td colspan="4">
+                                        <td><%#((SweetSoft.APEM.WebApp.Pages.Printing.TblOtherChargeExtension)Container.DataItem).No%></td>
+                                        <td colspan="2">
                                             <%#((SweetSoft.APEM.WebApp.Pages.Printing.TblOtherChargeExtension)Container.DataItem).tblOtherCharges.Description%>
                                         </td>
-                                        <%--<td style="text-align: right">
+                                        <td style="text-align: right">
                                             <%#((SweetSoft.APEM.WebApp.Pages.Printing.TblOtherChargeExtension)Container.DataItem).tblOtherCharges.Quantity%>
                                         </td>
                                         <td style="text-align: right">
                                             <%#((decimal)((SweetSoft.APEM.WebApp.Pages.Printing.TblOtherChargeExtension)Container.DataItem).tblOtherCharges.Charge).ToString("N2")%>
-                                        </td>--%>
+                                        </td>
                                         <td style="text-align: right"><%#(((SweetSoft.APEM.WebApp.Pages.Printing.TblOtherChargeExtension)Container.DataItem).TotalPrice).ToString("N2")%></td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
                             <tr>
                                 <%--<td colspan="3"></td>--%>
-                                <td colspan="5" style="text-align:right"><strong>Sub Total</strong></td>
+                                <td colspan="5" style="text-align: right"><strong>Sub Total</strong></td>
                                 <td style="text-align: right">
                                     <asp:Label ID="lblSubTotal" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <%--<td colspan="3"></td>--%>
-                                <td colspan="5" style="text-align:right"><strong>Discount </strong>(<asp:Literal ID=ltrDiscountRate runat="server"></asp:Literal>)</td>
+                                <td colspan="5" style="text-align: right"><strong>Discount </strong>(<asp:Literal ID="ltrDiscountRate" runat="server"></asp:Literal>)</td>
                                 <td style="text-align: right">
                                     <asp:Label ID="lblDiscount" runat="server"></asp:Label></td>
                             </tr>
                             <tr>
                                 <%--<td colspan="3"></td>--%>
-                                <td colspan="5" style="text-align:right"><strong>Sub Total before GST</strong></td>
+                                <td colspan="5" style="text-align: right"><strong>Sub Total before GST</strong></td>
                                 <td style="text-align: right">
                                     <asp:Label ID="lblSubTotalBefore" runat="server"></asp:Label></td>
                             </tr>
                             <tr>
                                 <%--<td colspan="3"></td>--%>
-                                <td colspan="5" style="text-align:right"><strong>GST </strong>(<asp:Literal ID=ltrTaxRate runat="server"></asp:Literal>)</td>
+                                <td colspan="5" style="text-align: right"><strong>GST </strong>(<asp:Literal ID="ltrTaxRate" runat="server"></asp:Literal>)</td>
                                 <td style="text-align: right">
                                     <asp:Label ID="lblGST" runat="server"></asp:Label></td>
                             </tr>
                             <tr>
                                 <%--<td colspan="3"></td>--%>
-                                <td colspan="5" style="text-align:right"><strong>Total</strong></td>
+                                <td colspan="5" style="text-align: right"><strong>Total</strong></td>
                                 <td style="text-align: right">
                                     <asp:Label ID="lblTotal" runat="server"></asp:Label></td>
                             </tr>
@@ -340,8 +372,8 @@
                 <div class="row">
                     <asp:Literal runat="server" ID="ltrSignature" EnableViewState="false"></asp:Literal>
                 </div>
-                
-                <div class="row text-center" style="margin-top:30px;">
+
+                <div class="row text-center" style="margin-top: 30px;">
                     <span>This is a computer generated printout and is valid without signature</span>
                 </div>
             </div>

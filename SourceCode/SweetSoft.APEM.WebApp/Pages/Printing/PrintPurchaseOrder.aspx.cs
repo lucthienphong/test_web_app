@@ -105,8 +105,9 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     foreach (var item in cylinders)
                     {
                         TblCylinderCollectionModel c = new TblCylinderCollectionModel();
-                        c.objCylinder.Sequence = Seq;
+                        
                         c.objCylinder = item;
+                        c.objCylinder.Sequence = Seq;
 
                         if (item.POQuantity == null)
                             c.objCylinder.POQuantity = 0;
