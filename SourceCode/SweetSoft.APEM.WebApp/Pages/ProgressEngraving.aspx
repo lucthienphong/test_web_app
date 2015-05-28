@@ -427,7 +427,7 @@
         SearchText();
         function SearchText(s, a) {
             if ($("input[type='text'][id$='txtCustomerName']").length > 0) {
-                $(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
+                //$(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
                 $("input[type='text'][id$='txtCustomerName']").autocomplete({
                     source: function (request, response) {
                         $.ajax({
