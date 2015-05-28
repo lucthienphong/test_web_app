@@ -460,13 +460,33 @@
     <script type="text/javascript">
         $(document).ready(function () {
             CreateRepro();
-        });
+        });        
+
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(CreateRepro);
+        function CreateRepro(sender, args) {
+            $("#dialog-form-repro").dialog({
+                autoOpen: false,
+                height: 'auto',
+                width: '800',
+                appendTo: "form",
+                modal: true,
+                resizable: false
+            });
+        }
+
+        function OpenRepro() {
+            $("#dialog-form-repro").dialog("open");
+        }
+
+        function CloseRepro() {
+            $("#dialog-form-repro").dialog("close");
+        }
 
         addRequestHanlde(SearchText);
         SearchText();
         function SearchText(s, a) {
             if ($("input[type='text'][id$='txtCustomerName']").length > 0) {
-                $(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
+                //$(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
                 $("input[type='text'][id$='txtCustomerName']").autocomplete({
                     source: function (request, response) {
                         $.ajax({
@@ -507,24 +527,5 @@
             }
         }
 
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(CreateRepro);
-        function CreateRepro(sender, args) {
-            $("#dialog-form-repro").dialog({
-                autoOpen: false,
-                height: 'auto',
-                width: '800',
-                appendTo: "form",
-                modal: true,
-                resizable: false
-            });
-        }
-
-        function OpenRepro() {
-            $("#dialog-form-repro").dialog("open");
-        }
-
-        function CloseRepro() {
-            $("#dialog-form-repro").dialog("close");
-        }
     </script>
 </asp:Content>
