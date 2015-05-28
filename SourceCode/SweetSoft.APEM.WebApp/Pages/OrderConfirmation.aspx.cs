@@ -17,6 +17,7 @@ using System.Data;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SweetSoft.APEM.Core.LoggingManager;
+using SweetSoft.APEM.Core.Logs;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -56,6 +57,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                 if (JobID == 0)
                     btnPricesLookup.Enabled = false;
                 LoadData();
+                if (JobID > 0)
+                {
+                    base.SaveBaseDataBeforeEdit();
+                }
             }
             else
             {
@@ -590,7 +595,17 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     {
                                         isDelete = true;
                                         if (AllowSaveLogging)
+                                        {
                                             SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.DELETE_ORDER_CONFIRMATION), FUNCTION_PAGE, order.ToJSONString());
+
+                                            LoggingActions("Order Confirm",
+                                                            LogsAction.Objects.Action.DELETE,
+                                                            LogsAction.Objects.Status.SUCCESS,
+                                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                                new JsonData() { Title = "Order Number", Data = order.OCNumber } ,
+                                                                new JsonData() { Title = "Job Number", Data = order.TblJob.JobNumber + "(Rev "+ order.TblJob.RevNumber.ToString() +")" }
+                                                            }));
+                                        }
                                     }
                                 }
                                 else
@@ -973,7 +988,16 @@ namespace SweetSoft.APEM.WebApp.Pages
                         Session[ViewState["PageID"] + "SweetSoft_JobID"] = obj.JobID;
                         AllowEdit(false);
                         if (AllowSaveLogging)
+                        {
                             SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.UPDATE_ORDER_CONFIRMATION), FUNCTION_PAGE, obj.ToJSONString());
+                            LoggingActions("Order Confirm",
+                                            LogsAction.Objects.Action.UPDATE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                new JsonData() { Title = "Order Number", Data = obj.OCNumber } ,
+                                                new JsonData() { Title = "Job Number", Data = obj.TblJob.JobNumber + "(Rev "+ obj.TblJob.RevNumber.ToString() +")" }
+                                            }));
+                        }
 
                         /// Trunglc Add - 23-04-2015
                         /// Update Status Lock Of Job
@@ -1057,7 +1081,17 @@ namespace SweetSoft.APEM.WebApp.Pages
                         AllowEdit(false);
 
                         if (AllowSaveLogging)
+                        {
                             SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.INSERT_ORDER_CONFIRMATION), FUNCTION_PAGE, obj.ToJSONString());
+
+                            LoggingActions("Order Confirm",
+                                            LogsAction.Objects.Action.CREATE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                new JsonData() { Title = "Order Number", Data = obj.OCNumber } ,
+                                                new JsonData() { Title = "Job Number", Data = obj.TblJob.JobNumber + "(Rev "+ obj.TblJob.RevNumber.ToString() +")" }
+                                            }));
+                        }
 
                         /// Trunglc Add - 23-04-2015
                         /// Update Status Lock Of Job
@@ -1096,7 +1130,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             TblTax tax = new TaxManager().SelectByID(taxID);
             if (tax != null)
             {
-                txtTaxRate.Text = tax.TaxPercentage.ToString();
+                txtTaxRate.Text = tax.TaxPercentage.ToString("N2");
                 taxRate = tax.TaxPercentage;
             }
 

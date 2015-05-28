@@ -19,7 +19,7 @@
         <div class="button-control col-md-12 col-sm-12">
             <div class="form-inline">
                 <div class="form-group" style="margin-bottom: 0; width: 100%">
-                    <asp:LinkButton runat="server" ID="btnSave" OnClick="btnSave_Click" CssClass="btn btn-transparent new"><span class="flaticon-new10"></span> Save</asp:LinkButton>
+                    <asp:LinkButton runat="server" ID="btnSave" OnClientClick="SaveStateOfData('Now')" OnClick="btnSave_Click" CssClass="waitforajax btn btn-transparent new"><span class="flaticon-new10"></span> Save</asp:LinkButton>
                     <asp:LinkButton ID="btnDelete" runat="server"
                         class="btn btn-transparent new" OnClick="btnDelete_Click">
                         <span class="flaticon-delete41"></span>
@@ -67,7 +67,7 @@
                         <label class="control-label">
                             <strong><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER)%></strong>
                         </label>
-                        <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true"
+                        <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true" ToolTip="Customer Code"
                             runat="server" Repeat="5" ShowMaskOnHover="true" MaxLength="5" Enabled="false"
                             Greedy="true" RightAlign="false"></SweetSoft:ExtraInputMask>
                     </div>
@@ -77,7 +77,7 @@
                         <label class="control-label">
                             &nbsp;
                         </label>
-                        <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" Placeholder="Customer's name"
+                        <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" Placeholder="Customer's name" ToolTip="Customer Name"
                             runat="server" AutoCompleteType="Search"
                             RequiredText='<%# SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.THIS_FIELD_IS_REQUIRED)%>'></SweetSoft:CustomExtraTextbox>
 
@@ -96,7 +96,7 @@
                                                 <label class="control-label">
                                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.JOB_NR)%>
                                                 </label>
-                                                <asp:DropDownList runat="server" ID="ddlJobNumber"
+                                                <asp:DropDownList runat="server" ID="ddlJobNumber" ToolTip="Job Number"
                                                     data-style="btn btn-info"
                                                     data-width="100%" AutoPostBack="true"
                                                     data-toggle="dropdown" OnSelectedIndexChanged="ddlJobNumber_SelectedIndexChanged"
@@ -110,7 +110,7 @@
                                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.REV)%>
                                                 </label>
                                                 <asp:DropDownList ID="ddlRevNumber" runat="server"
-                                                    data-style="btn btn-info"
+                                                    data-style="btn btn-info" ToolTip="Job Rev"
                                                     data-width="100%" AutoPostBack="true"
                                                     data-toggle="dropdown" OnSelectedIndexChanged="ddlRevNumber_SelectedIndexChanged"
                                                     CssClass="form-control">
@@ -126,7 +126,7 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.JOB_NAME)%>
                                 </label>
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtJobName" ReadOnly="true" />
+                                <asp:TextBox runat="server" CssClass="form-control" ID="txtJobName" ReadOnly="true" ToolTip="Job Name"/>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3">
@@ -134,7 +134,7 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DESIGN)%>
                                 </label>
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtDesign" ReadOnly="true" />
+                                <asp:TextBox runat="server" CssClass="form-control" ID="txtDesign" ReadOnly="true" ToolTip="Design"/>
                             </div>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CONTACT_PERSON)%>
                             </label>
                             <asp:DropDownList ID="ddlContact" runat="server" AutoPostBack="false"
-                                data-style="btn btn-info"
+                                data-style="btn btn-info" ToolTip="Contact Person"
                                 data-width="100%" Required="true"
                                 data-toggle="dropdown"
                                 CssClass="form-control">
@@ -159,8 +159,6 @@
                         <div class="col-md-4 col-sm-4">
                         </div>
                     </div>
-
-
                 </div>
                 <div class="col-md-6 col-sm-6">
                     <div class="form-group">
@@ -170,12 +168,12 @@
                                     <label class="control-label">
                                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CUSTOMER_PO)%>
                                     </label>
-                                    <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtCustomerPO1" runat="server" CssClass="form-control"
+                                    <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtCustomerPO1" runat="server" CssClass="form-control" ToolTip="Customer PO1"
                                         RequiredText='<%# SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.THIS_FIELD_IS_REQUIRED)%>'></SweetSoft:CustomExtraTextbox>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <label class="control-label">&nbsp;</label>
-                                    <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtCustomerPO2" runat="server" CssClass="form-control"
+                                    <SweetSoft:CustomExtraTextbox RenderOnlyInput="true" ID="txtCustomerPO2" runat="server" CssClass="form-control" ToolTip="Customer PO2"
                                         RequiredText='<%# SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.THIS_FIELD_IS_REQUIRED)%>'></SweetSoft:CustomExtraTextbox>
                                 </div>
                             </div>
@@ -188,7 +186,7 @@
                             <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.ORDER_DATE)%>
                         </label>
                         <SweetSoft:ExtraInputMask ID="txtOrderDate" RenderOnlyInput="true"
-                            data-format="dd-mm-yyyy"
+                            data-format="dd-mm-yyyy" ToolTip="Order Date"
                             CssClass="form-control mask-date a"
                             runat="server"></SweetSoft:ExtraInputMask>
                         <span class="fa fa-calendar in-mask-date"></span>
@@ -206,7 +204,7 @@
                         <div>
                             <asp:DropDownList runat="server" ID="ddlTax"
                                 data-style="btn btn-info" AutoPostBack="true" OnSelectedIndexChanged="ddlTax_SelectedIndexChanged"
-                                data-width="100%"
+                                data-width="100%" ToolTip="Tax"
                                 data-toggle="dropdown"
                                 CssClass="form-control">
                             </asp:DropDownList>
@@ -219,7 +217,7 @@
                             <strong><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.TAX_RATE)%></strong>
                         </label>
                         <div>
-                            <SweetSoft:ExtraInputMask ID="txtTaxRate" Enabled="false" RenderOnlyInput="true" Required="false" Suffix=" %"
+                            <SweetSoft:ExtraInputMask ID="txtTaxRate" Enabled="false" RenderOnlyInput="true" Required="false" Suffix=" %" ToolTip="Tax Rate"
                                 runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="0" Digits="3" AutoGroup="true"></SweetSoft:ExtraInputMask>
                         </div>
                     </div>
@@ -235,13 +233,13 @@
                                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CURRENCY)%>
                                     </label>
                                     <div class="input-group">
-                                        <SweetSoft:ExtraInputMask ID="txtCurrencyValue" RenderOnlyInput="true" Enabled="false" Required="false"
+                                        <SweetSoft:ExtraInputMask ID="txtCurrencyValue" RenderOnlyInput="true" Enabled="false" Required="false" ToolTip="Currency"
                                             runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="1" Digits="4" AutoGroup="true"></SweetSoft:ExtraInputMask>
                                         <span class="input-group-addon">
                                             <asp:Literal ID="ltrCurrencyName" runat="server"></asp:Literal>
                                         </span>
                                         <span class="input-group-addon">=</span>
-                                        <SweetSoft:ExtraInputMask ID="txtRMValue" RenderOnlyInput="true" Enabled="false" Required="false"
+                                        <SweetSoft:ExtraInputMask ID="txtRMValue" RenderOnlyInput="true" Enabled="false" Required="false" ToolTip="RM Value"
                                             runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="0" Digits="4" AutoGroup="true"></SweetSoft:ExtraInputMask>
                                         <span class="input-group-addon">
                                             <asp:Literal ID="ltrBaseCurrency" runat="server"></asp:Literal>
@@ -275,7 +273,7 @@
                             </p>
                         </asp:Panel>
                         <asp:Panel runat="server" ID="pnListCylinder" Visible="false">
-                            <SweetSoft:GridviewExtension ID="gvClinders"
+                            <SweetSoft:GridviewExtension ID="gvClinders" ToolTip="Cylinders"
                                 runat="server" AutoGenerateColumns="false"
                                 CssClass="table table-striped table-bordered table-checkable dataTable"
                                 GridLines="None" AllowPaging="false" AllowSorting="false">
@@ -361,7 +359,7 @@
                 <asp:UpdatePanel runat="server" ID="upnlServiceJobDetail" UpdateMode="Conditional">
                     <ContentTemplate>
                         <div runat="server" id="divJobService">
-                            <asp:GridView ID="grvServiceJobDetail" runat="server"
+                            <asp:GridView ID="grvServiceJobDetail" runat="server" ToolTip="Service Job"
                                 AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-checkable dataTable"
                                 GridLines="None"
                                 AllowPaging="false"
@@ -465,7 +463,7 @@
                             </div>
                         </div>
                     </div>--%>
-                    <SweetSoft:GridviewExtension ID="grvOtherCharges"
+                    <SweetSoft:GridviewExtension ID="grvOtherCharges" ToolTip="Other Charges"
                         runat="server" AutoGenerateColumns="false"
                         CssClass="table table-striped table-bordered table-checkable dataTable"
                         OnRowEditing="grvOtherCharges_RowEditing"
@@ -546,7 +544,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2"><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.REMARK)%></label>
                     <div class="col-sm-10">
-                        <asp:TextBox TextMode="MultiLine" ID="txtRemark" runat="server" Rows="2" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox TextMode="MultiLine" ID="txtRemark" runat="server" Rows="2" CssClass="form-control" ToolTip="Remark"></asp:TextBox>
                     </div>
 
                     <%--<label class="control-label col-sm-2">
@@ -563,7 +561,7 @@
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.PAYMENT_TERMS)%>
                     </label>
                     <div class="col-sm-10">
-                        <asp:TextBox runat="server" ID="txtPaymentTerms" class="form-control"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtPaymentTerms" class="form-control" ToolTip="Payment Terms"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -573,7 +571,7 @@
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DELIVERY_TERMS)%>
                     </label>
                     <div class="col-sm-10">
-                        <asp:TextBox runat="server" ID="txtDeliveryTerms" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtDeliveryTerms" CssClass="form-control" ToolTip="Delivery Terms"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -585,7 +583,7 @@
                         Sub Total
                     </label>
                     <div class="col-sm-6">
-                        <SweetSoft:ExtraInputMask ID="txtSubTotal" RenderOnlyInput="true" Required="false" Enabled="false"
+                        <SweetSoft:ExtraInputMask ID="txtSubTotal" RenderOnlyInput="true" Required="false" Enabled="false" ToolTip="Sub Total"
                             runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="0" Digits="3" AutoGroup="true"></SweetSoft:ExtraInputMask>
                     </div>
                 </div>
@@ -594,7 +592,7 @@
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DISCOUNT)%> (%)
                     </label>
                     <div class="col-sm-6">
-                        <SweetSoft:ExtraInputMask ID="txtDiscount" RenderOnlyInput="true" Required="false" onblur="CallKeyClick();"
+                        <SweetSoft:ExtraInputMask ID="txtDiscount" RenderOnlyInput="true" Required="false" onblur="CallKeyClick();" ToolTip="Discount"
                             runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="0" Digits="3" AutoGroup="true"></SweetSoft:ExtraInputMask>
                     </div>
                     <asp:LinkButton ID="btnDiscountChanged" runat="server" OnClick="btnDiscountChanged_Click"></asp:LinkButton>
@@ -604,7 +602,7 @@
                         Sub Total before GST
                     </label>
                     <div class="col-sm-6">
-                        <SweetSoft:ExtraInputMask ID="txtNetTotal" RenderOnlyInput="true" Required="false" Enabled="false"
+                        <SweetSoft:ExtraInputMask ID="txtNetTotal" RenderOnlyInput="true" Required="false" Enabled="false" ToolTip="Not Total(Before GST)"
                             runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="0" Digits="3" AutoGroup="true"></SweetSoft:ExtraInputMask>
                     </div>
                 </div>
@@ -613,7 +611,7 @@
                         GST at
                     </label>
                     <div class="col-sm-6">
-                        <SweetSoft:ExtraInputMask ID="txtGSTAt" RenderOnlyInput="true" Required="false" Enabled="false"
+                        <SweetSoft:ExtraInputMask ID="txtGSTAt" RenderOnlyInput="true" Required="false" Enabled="false" ToolTip="GST"
                             runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="0" Digits="3" AutoGroup="true"></SweetSoft:ExtraInputMask>
                     </div>
                 </div>
@@ -622,7 +620,7 @@
                         TOTAL
                     </label>
                     <div class="col-sm-6">
-                        <SweetSoft:ExtraInputMask ID="txtTotalPrice" RenderOnlyInput="true" Required="false" Enabled="false"
+                        <SweetSoft:ExtraInputMask ID="txtTotalPrice" RenderOnlyInput="true" Required="false" Enabled="false" ToolTip="TOTAL"
                             runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="0" Digits="3" AutoGroup="true"></SweetSoft:ExtraInputMask>
                     </div>
                 </div>
@@ -767,13 +765,37 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script src="/js/plugins/printThis.js"></script>
     <script>
+        var viewstate = '<%=ViewState_PageID%>';
         $(document).ready(function () {
             $('#dialog-printing').hide();
             InitDialogPrintLink();
             DatePicker();
             SearchText();
             ShowDialogJobQuotationPricing();
-        })
+            SaveStateOfData('Before');
+        });
+
+        function SaveStateOfData(time) {
+            var obj = [
+                {
+                    key: 'grvServiceJobDetail_' + time,
+                    data: $("[id$='grvServiceJobDetail']").html() == undefined ? "<table></table>" : $("[id$='grvServiceJobDetail']").html(),
+                    PageID: viewstate
+                },
+                {
+                    key: 'grvOtherCharges_' + time,
+                    data: $("[id$='grvOtherCharges']").html() == undefined ? "<table></table>" : $("[id$='grvOtherCharges']").html(),
+                    PageID: viewstate
+                },
+                {
+                    key: 'gvClinders_' + time,
+                    data: $("[id$='gvClinders']").html() == undefined ? "<table></table>" : $("[id$='gvClinders']").html(),
+                    PageID: viewstate
+                }
+            ];
+            SaveStateOfDataForm("Job.aspx/SaveDataTable", obj, time);
+        }
+
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(ShowDialogJobQuotationPricing);
         function ShowDialogJobQuotationPricing() {
             setTimeout(function () {

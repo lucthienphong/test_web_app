@@ -14,6 +14,8 @@ using System.Web.Script.Serialization;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -44,12 +46,22 @@ namespace SweetSoft.APEM.WebApp.Pages
                         }
 
                         List<int> idList = new List<int>();
+                        List<JsonData> lstJSData = new List<JsonData>();
+
                         for (int i = 0; i < gvOrderConfiList.Rows.Count; i++)
                         {
                             CheckBox chkIsDelete = (CheckBox)gvOrderConfiList.Rows[i].FindControl("chkIsDelete");
                             if (chkIsDelete.Checked)
                             {
                                 int ID = Convert.ToInt32(gvOrderConfiList.DataKeys[i].Value);
+                                TblOrderConfirmation obj = OrderConfirmationManager.SelectByID(ID);
+                                if (JobManager.JobHasDO(ID).Length == 0)
+                                {
+                                    if (obj != null)
+                                    {
+                                        lstJSData.Add(new JsonData(){ Title = "Order Number", Data = obj.OCNumber });
+                                    }
+                                }
                                 idList.Add(ID);
                                 //OrderConfirmationManager.Delete(ID);
                             }
@@ -59,6 +71,11 @@ namespace SweetSoft.APEM.WebApp.Pages
                         BindData();
                         if (string.IsNullOrEmpty(DataCannotDelete))
                         {
+                            LoggingActions("Order Confirm",
+                                            LogsAction.Objects.Action.DELETE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(lstJSData));
+
                             MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                             OpenMessageBox(msg, null, false, false);
                         }
