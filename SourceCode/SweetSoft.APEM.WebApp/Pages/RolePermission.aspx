@@ -46,7 +46,7 @@
                             HeaderStyle-CssClass="text-center"
                             ItemStyle-CssClass="text-center">
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkCheckAll" runat="server"
+                                <asp:CheckBox ID="chkCheckAll" runat="server"  ToolTip="Check All"
                                     Checked='<%# Eval("CheckAll")%>' CssClass="uniform"
                                     onclick="CheckBoxCheck(this);"></asp:CheckBox>
                             </ItemTemplate>
@@ -55,7 +55,7 @@
                             HeaderStyle-CssClass="text-center"
                             ItemStyle-CssClass="text-center">
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkAllowAdd" runat="server"
+                                <asp:CheckBox ID="chkAllowAdd" runat="server" ToolTip="Add"
                                     Checked='<%# Eval("AllowAdd")%>'
                                     CssClass="uniform"></asp:CheckBox>
                             </ItemTemplate>
@@ -64,7 +64,7 @@
                             HeaderStyle-CssClass="text-center"
                             ItemStyle-CssClass="text-center">
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkAllowEdit" runat="server"
+                                <asp:CheckBox ID="chkAllowEdit" runat="server" ToolTip="Edit"
                                     Checked='<%# Eval("AllowEdit")%>'
                                     CssClass="uniform"></asp:CheckBox>
                             </ItemTemplate>
@@ -73,7 +73,7 @@
                             HeaderStyle-CssClass="text-center"
                             ItemStyle-CssClass="text-center">
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkAllowDelete" runat="server"
+                                <asp:CheckBox ID="chkAllowDelete" runat="server" ToolTip="Delete"
                                     Checked='<%# Eval("AllowDelete")%>'
                                     CssClass="uniform"></asp:CheckBox>
                             </ItemTemplate>
@@ -82,7 +82,7 @@
                             HeaderStyle-CssClass="text-center"
                             ItemStyle-CssClass="text-center">
                             <ItemTemplate>
-                                <asp:CheckBox ID="AllowUpdateStatus" runat="server"
+                                <asp:CheckBox ID="AllowUpdateStatus" runat="server" ToolTip="Specific"
                                     Checked='<%# Eval("AllowUpdateStatus")%>'
                                     CssClass="uniform"></asp:CheckBox>
                             </ItemTemplate>
@@ -91,7 +91,7 @@
                             HeaderStyle-CssClass="text-center"
                             ItemStyle-CssClass="text-center">
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkAllowOther" runat="server"
+                                <asp:CheckBox ID="chkAllowOther" runat="server"  ToolTip="View"
                                     Checked='<%# Eval("AllowOther")%>'
                                     CssClass="uniform"></asp:CheckBox>
                             </ItemTemplate>
@@ -100,7 +100,7 @@
                             HeaderStyle-CssClass="text-center"
                             ItemStyle-CssClass="text-center">
                             <ItemTemplate>
-                                <asp:CheckBox ID="chkAllowLockUnlock" runat="server"
+                                <asp:CheckBox ID="chkAllowLockUnlock" runat="server"  ToolTip="Lock/Unlock"
                                     Checked='<%# String.IsNullOrEmpty(Eval("AllowLockUnlock").ToString()) ? false : Eval("AllowLockUnlock")%>'
                                     CssClass="uniform"></asp:CheckBox>
                             </ItemTemplate>

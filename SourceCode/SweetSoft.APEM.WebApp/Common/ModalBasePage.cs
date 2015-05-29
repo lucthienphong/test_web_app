@@ -782,33 +782,49 @@ namespace SweetSoft.APEM.WebApp.Common
 
             foreach (var item in dicAfter)
             {
-                ValueObject voBefore = dicBefore[item.Key] as ValueObject;
-                ValueObject voAfter = item.Value as ValueObject;
-
-                if (voBefore.Value != null)
+                if (dicBefore != null)
                 {
-                    if (voAfter.Value != null)
+                    ValueObject voBefore = dicBefore[item.Key] as ValueObject;
+                    ValueObject voAfter = item.Value as ValueObject;
+
+                    if (voBefore.Value != null)
                     {
-                        if (!voBefore.Value.Equals(voAfter.Value))
+                        if (voAfter.Value != null)
                         {
-                            if (voAfter.Type == typeof(GridView).ToString() || voAfter.Type == typeof(GridviewExtension).ToString())
+                            if (!voBefore.Value.Equals(voAfter.Value))
                             {
-                                string sOldData = string.Empty;
-                                string sNewData = string.Empty;
-
-                                sOldData = Session[ViewState_PageID + "DataSource_" + item.Key + "_Before"] as string;
-                                sNewData = Session[ViewState_PageID + "DataSource_" + item.Key + "_Now"] as string;
-                                Session.Remove(ViewState_PageID + "DataSource_" + item.Key + "_Before");
-                                Session[ViewState_PageID + "DataSource_" + item.Key + "_Before"] = sNewData;
-
-                                string s_CompareOld = Regex.Replace(sOldData, @"\s+", String.Empty);
-                                string s_CompareNew = Regex.Replace(sNewData, @"\s+", String.Empty);
-
-                                if (!String.Equals(s_CompareOld, s_CompareNew, StringComparison.OrdinalIgnoreCase))
+                                if (voAfter.Type == typeof(GridView).ToString() || voAfter.Type == typeof(GridviewExtension).ToString())
                                 {
+                                    string sOldData = string.Empty;
+                                    string sNewData = string.Empty;
+
+                                    sOldData = Session[ViewState_PageID + "DataSource_" + item.Key + "_Before"] as string;
+                                    sNewData = Session[ViewState_PageID + "DataSource_" + item.Key + "_Now"] as string;
+                                    Session.Remove(ViewState_PageID + "DataSource_" + item.Key + "_Before");
+                                    Session[ViewState_PageID + "DataSource_" + item.Key + "_Before"] = sNewData;
+
+                                    string s_CompareOld = Regex.Replace(sOldData, @"\s+", String.Empty);
+                                    string s_CompareNew = Regex.Replace(sNewData, @"\s+", String.Empty);
+
+                                    if (!String.Equals(s_CompareOld, s_CompareNew, StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        Json newJ = new Json();
+                                        newJ.OldValue = sOldData;
+                                        newJ.NewValue = sNewData;
+                                        newJ.Type = voAfter.Type;
+
+                                        JsonData newJData = new JsonData();
+                                        newJData.Title = voBefore.Label;
+                                        newJData.Data = JsonConvert.SerializeObject(newJ);
+                                        retJsonData.Add(newJData);
+                                    }
+                                }
+                                else
+                                {
+
                                     Json newJ = new Json();
-                                    newJ.OldValue = sOldData;
-                                    newJ.NewValue = sNewData;
+                                    newJ.OldValue = voBefore.Value.ToString();
+                                    newJ.NewValue = voAfter.Value.ToString();
                                     newJ.Type = voAfter.Type;
 
                                     JsonData newJData = new JsonData();
@@ -817,49 +833,36 @@ namespace SweetSoft.APEM.WebApp.Common
                                     retJsonData.Add(newJData);
                                 }
                             }
-                            else
-                            {
+                        }
+                        else
+                        {
+                            Json newJ = new Json();
+                            newJ.OldValue = voBefore.Value.ToString();
+                            newJ.NewValue = null;
+                            newJ.Type = voAfter.Type;
 
-                                Json newJ = new Json();
-                                newJ.OldValue = voBefore.Value.ToString();
-                                newJ.NewValue = voAfter.Value.ToString();
-                                newJ.Type = voAfter.Type;
+                            JsonData newJData = new JsonData();
+                            newJData.Title = voBefore.Label;
+                            newJData.Data = JsonConvert.SerializeObject(newJ);
 
-                                JsonData newJData = new JsonData();
-                                newJData.Title = voBefore.Label;
-                                newJData.Data = JsonConvert.SerializeObject(newJ);
-                                retJsonData.Add(newJData);
-                            }
+                            retJsonData.Add(newJData);
                         }
                     }
                     else
                     {
-                        Json newJ = new Json();
-                        newJ.OldValue = voBefore.Value.ToString();
-                        newJ.NewValue = null;
-                        newJ.Type = voAfter.Type;
+                        if (voAfter.Value != null)
+                        {
+                            Json newJ = new Json();
+                            newJ.OldValue = null;
+                            newJ.NewValue = voAfter.Value.ToString();
+                            newJ.Type = voAfter.Type;
 
-                        JsonData newJData = new JsonData();
-                        newJData.Title = voBefore.Label;
-                        newJData.Data = JsonConvert.SerializeObject(newJ);
+                            JsonData newJData = new JsonData();
+                            newJData.Title = voBefore.Label;
+                            newJData.Data = JsonConvert.SerializeObject(newJ);
 
-                        retJsonData.Add(newJData);
-                    }
-                }
-                else
-                {
-                    if (voAfter.Value != null)
-                    {
-                        Json newJ = new Json();
-                        newJ.OldValue = null;
-                        newJ.NewValue = voAfter.Value.ToString();
-                        newJ.Type = voAfter.Type;
-
-                        JsonData newJData = new JsonData();
-                        newJData.Title = voBefore.Label;
-                        newJData.Data = JsonConvert.SerializeObject(newJ);
-
-                        retJsonData.Add(newJData);
+                            retJsonData.Add(newJData);
+                        }
                     }
                 }
             }

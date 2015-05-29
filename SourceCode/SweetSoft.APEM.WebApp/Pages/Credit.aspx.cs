@@ -410,7 +410,9 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.Quantity = Quantity;
                 obj.UnitPrice = UnitPrice;
             }
-
+            var newRow = source[0];
+            source.Add(newRow);
+            source.RemoveAt(0);
             Session[ViewState["PageID"] + "Source"] = source;
         }
 

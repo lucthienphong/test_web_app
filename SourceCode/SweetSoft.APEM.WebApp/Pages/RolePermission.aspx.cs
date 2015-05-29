@@ -10,6 +10,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -120,6 +122,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                             return;
                         }
                         //Xóa các quyền cũ
+                        List<JsonData> lstJSData = new List<JsonData>();
+
                         for (int i = 0; i < grvRolePermisstion.Rows.Count; i++)
                         {
                             string functionID = grvRolePermisstion.DataKeys[i].Values[0].ToString();
@@ -127,6 +131,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                             GridViewRow row = grvRolePermisstion.Rows[i];
                             if (!string.IsNullOrEmpty(parentID))
                             {
+                                CheckBox chkAll = (CheckBox)row.FindControl("chkCheckAll");
                                 CheckBox chkAdd = (CheckBox)row.FindControl("chkAllowAdd");
                                 CheckBox chkEdit = (CheckBox)row.FindControl("chkAllowEdit");
                                 CheckBox chkDelete = (CheckBox)row.FindControl("chkAllowDelete");
@@ -136,9 +141,18 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 CheckBox chkUnlock = (CheckBox)row.FindControl("chkAllowUnlock");
                                 CheckBox chkEditUnlock = (CheckBox)row.FindControl("chkAllowEditUnlock");
 
+                                Label lblTitle = (Label)row.FindControl("lblTitle");
+
                                 TblRolePermission frObj = RoleManager.TblRolePermissionSelectBy(RoleID, functionID);
                                 if (frObj != null)
-                                {
+                                { 
+                                    AddJsonDataLog(frObj.AllowAdd, chkAdd, lblTitle.Text, ref lstJSData);
+                                    AddJsonDataLog(frObj.AllowEdit, chkEdit, lblTitle.Text, ref lstJSData);
+                                    AddJsonDataLog(frObj.AllowDelete, chkDelete, lblTitle.Text, ref lstJSData);
+                                    AddJsonDataLog(frObj.AllowUpdateStatus, chkViewPrice, lblTitle.Text, ref lstJSData);
+                                    AddJsonDataLog(frObj.AllowOther, chkOther, lblTitle.Text, ref lstJSData);
+                                    AddJsonDataLog(frObj.AllowLockUnlock, chkLockUnlock, lblTitle.Text, ref lstJSData);
+                                    
                                     frObj.RoleID = RoleID;
                                     frObj.FunctionID = functionID;
                                     frObj.AllowAdd = chkAdd.Checked;
@@ -147,6 +161,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     frObj.AllowUpdateStatus = chkViewPrice.Checked;
                                     frObj.AllowOther = chkOther.Checked;
                                     frObj.AllowLockUnlock = chkLockUnlock.Checked;
+
                                     RoleManager.UpdateRolePermissions(frObj);
                                 }
                                 else
@@ -164,6 +179,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 }
                             }
                         }
+
+                        LoggingActions("Role Permission",
+                                        LogsAction.Objects.Action.UPDATE,
+                                        LogsAction.Objects.Status.SUCCESS,
+                                        JsonConvert.SerializeObject(lstJSData));
+
                         MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.ROLE_PERMISSIONS_SAVE_SUCCESSFULLY), MSGButton.OK, MSGIcon.Success);
                         OpenMessageBox(msg, null, false, false);
                     }
@@ -183,6 +204,28 @@ namespace SweetSoft.APEM.WebApp.Pages
         protected void btnSave_Click(object sender, EventArgs e)
         {
             SaveData();
+        }
+
+        private void AddJsonDataLog(bool oldValueObj, Control ctrlPage, string sTitle, ref List<JsonData> lstJSData)
+        {
+            bool newValue = ((CheckBox)ctrlPage).Checked;
+
+            if (oldValueObj != newValue)
+            {
+                if (!lstJSData.Exists(item => item.Data.Equals(sTitle) == true))
+                {
+                    lstJSData.Add(new JsonData() { Title = "Role Name", Data = sTitle });
+                }
+                lstJSData.Add(new JsonData()
+                {
+                    Title = ((CheckBox)ctrlPage).ToolTip,
+                    Data = JsonConvert.SerializeObject(new Json()
+                    {
+                        OldValue = oldValueObj ? "True" : "False",
+                        NewValue = newValue ? "True" : "False"
+                    })
+                });
+            }
         }
     }
 }

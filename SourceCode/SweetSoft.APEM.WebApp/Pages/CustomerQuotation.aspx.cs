@@ -445,6 +445,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.CurrencyName = CurrencyName;
                 obj.UnitOfMeasure = UnitOfMeasure;
             }
+            source.Sort((x,y) => string.Compare(x.PricingName, y.PricingName));
             Session[ViewState["PageID"] + "dtSource"] = source;
         }
 
@@ -491,9 +492,9 @@ namespace SweetSoft.APEM.WebApp.Pages
         //Thêm dòng mới vào chi tiết
         protected void btnAddDetail_Click(object sender, EventArgs e)
         {
-            RemoveInvalidRows();
-            grvPrices.EditIndex = 0;
+            RemoveInvalidRows();            
             AddNewRow();
+            grvPrices.EditIndex = 0;
             BindGrid();
         }
 
@@ -798,6 +799,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.CurrencyID = CurrencyID;
                 obj.CurrencyName = CurrencyName;
             }
+            source.Sort((x, y) => string.Compare(x.Description, y.Description));
             Session[ViewState["PageID"] + "dtSourceAdditional"] = source;
         }
 
@@ -1089,6 +1091,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.CurrencyID = CurrencyID;
                 obj.CurrencyName = CurrencyName;
             }
+            source.Sort((x, y) => string.Compare(x.Description, y.Description));
             Session[ViewState["PageID"] + "dtSourceOtherCharges"] = source;
         }
 

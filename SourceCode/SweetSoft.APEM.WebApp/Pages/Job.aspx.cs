@@ -1377,7 +1377,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             r["Dept"] = string.Empty;
             r["IsPivotCylinder"] = source.Rows.Count > 0 ? 0 : 1;
 
-            source.Rows.InsertAt(r, source.Rows.Count);
+            source.Rows.InsertAt(r, 0);
 
             //Update list
             Session[ViewState["PageID"] + "tableSource"] = source;
@@ -1433,6 +1433,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 r["Dirameter"] = Dirameter;
                 r.AcceptChanges();
             }
+            source.DefaultView.Sort = "Sequence";
             Session[ViewState["PageID"] + "tableSource"] = source;
         }
 
@@ -2185,7 +2186,8 @@ namespace SweetSoft.APEM.WebApp.Pages
 
             removeInvalidRows();
             addRow();
-            grvCylinders.EditIndex = grvCylinders.Rows.Count;
+            //grvCylinders.EditIndex = grvCylinders.Rows.Count;
+            grvCylinders.EditIndex = 0;
             //BindContractData(ID, true);
             BindGrid();
             grvCylinders.Columns[grvCylinders.Columns.Count - 1].Visible = false;
@@ -2638,6 +2640,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         #endregion
 
         #region Other charges
+
         private void BindOtherCharge()
         {
             List<OtherChargesExtension> coll = (List<OtherChargesExtension>)Session[ViewState["PageID"] + "OtherCharges"];
@@ -2737,6 +2740,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                     }
                 }
             }
+
+            var newRow = coll[0];
+            coll.Add(newRow);
+            coll.RemoveAt(0);
             Session[ViewState["PageID"] + "OtherCharges"] = coll;
         }
 
@@ -2762,6 +2769,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 BindOtherCharge();
             }
         }
+
         protected void btnAddOtherCharges_Click(object sender, EventArgs e)
         {
             ////Kiểm tra quyền
@@ -2794,10 +2802,10 @@ namespace SweetSoft.APEM.WebApp.Pages
             itemNew.Charge = 0;
             itemNew.JobID = 0;
             itemNew.Quantity = 0;
-            Coll.Add(itemNew);
+            Coll.Insert(0, itemNew);
 
             Session[ViewState["PageID"] + "OtherCharges"] = Coll;
-            grvOtherCharges.EditIndex = Coll.Count - 1;
+            grvOtherCharges.EditIndex = 0;
             BindOtherCharge();
         }
 
