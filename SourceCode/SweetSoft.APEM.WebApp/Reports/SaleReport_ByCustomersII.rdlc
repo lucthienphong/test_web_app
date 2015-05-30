@@ -1375,8 +1375,18 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Total Value </Value>
+                              <Value>Total Value</Value>
                               <Style />
+                            </TextRun>
+                            <TextRun>
+                              <Value>(MYR)</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontFamily>Times New Roman</FontFamily>
+                                <FontWeight>Normal</FontWeight>
+                                <TextDecoration>None</TextDecoration>
+                                <Color>#000000</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -2594,14 +2604,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TotalValue">
+                    <Textbox Name="TotalRM">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!TotalValue.Value</Value>
+                              <Value>=Fields!TotalRM.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -2610,7 +2620,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>TotalValue</rd:DefaultName>
+                      <rd:DefaultName>TotalRM</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -3266,7 +3276,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!TotalValue.Value)</Value>
+                              <Value>=Sum(Fields!TotalRM.Value)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -4042,10 +4052,6 @@
         </Field>
         <Field Name="PODate">
           <DataField>PODate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="TotalValue">
-          <DataField>TotalValue</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

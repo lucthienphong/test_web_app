@@ -67,13 +67,13 @@ namespace SweetSoft.APEM.WebApp.Pages {
         protected global::SweetSoftCMS.ExtraControls.Controls.ExtraInputMask txtToDate;
         
         /// <summary>
-        /// btnLoadContacts control.
+        /// btnSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLoadContacts;
+        protected global::System.Web.UI.WebControls.LinkButton btnSearch;
         
         /// <summary>
         /// Label1 control.

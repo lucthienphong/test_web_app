@@ -1477,6 +1477,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\SaleReport_ByCustomersII.rdlc" />
     <EmbeddedResource Include="Reports\SaleReport_GeneralSalesReport.rdlc" />
     <EmbeddedResource Include="Reports\SaleReport_ByBrandOwners.rdlc" />
     <EmbeddedResource Include="Reports\SaleReport_ByProductTypes.rdlc" />

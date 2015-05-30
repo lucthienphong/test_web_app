@@ -33,7 +33,6 @@
         {
             color: #478fca!important;
         }
-        
     </style>
 
 </head>
@@ -45,8 +44,9 @@
         <div class="container-fluid">
             <asp:UpdateProgress AssociatedUpdatePanelID="MainUpdatePanel" ID="UpdateProgress" runat="server" DisplayAfter="1">
                 <ProgressTemplate>
-                    <div style="position: absolute; top: 50%; left: 50%; margin-top: -110px; margin-left: -150px; width: 300px; height: 220px; z-index: 9999; background: #fcfcfc; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;">
-                        <img src="../img/loading.gif" alt="Loading" style="position: relative; top: 10px; left: 50px;" />
+                    <img src="../img/loading.gif" alt="Loading" style="position: fixed; top: 50%; left: 50%; z-index:9999;" />
+
+                    <div class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block; background-color:black; opacity:0.1">
                     </div>
                 </ProgressTemplate>
             </asp:UpdateProgress>
@@ -127,6 +127,18 @@
         <%--ModalPlaceholders--%>
         <asp:ContentPlaceHolder ID="ModalPlaceHolder" runat="server">
         </asp:ContentPlaceHolder>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(window).keydown(function (e) {
+                    if (e.keyCode == 119) //F2
+                    {
+                        if (typeof $("[id$='btnSearch']")[0] != "undefined") {
+                            eval($("[id$='btnSearch']")[0].href);
+                        }
+                    }
+                });
+            })
+        </script>
     </form>
     <asp:ContentPlaceHolder ID="ScriptPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>

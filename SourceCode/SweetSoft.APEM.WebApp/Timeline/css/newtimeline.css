@@ -349,11 +349,11 @@ tr.info
 
     .page_spinner > span
     {
-        position: absolute;
+        position: fixed;
         left: 48%;
         top: 48%;
         background: url('../../img/loading.gif') no-repeat;
-        background-size:100%;
+        /*background-size:100%;*/
         display: block;
         width: 150px;
         height: 150px;
@@ -362,6 +362,7 @@ tr.info
         /*background-color: #fff;*/
         background-position: center center;
         border-radius: 15px;
+        /*opacity: 0.5;*/
     }
 
 #trfilter .scustomer {

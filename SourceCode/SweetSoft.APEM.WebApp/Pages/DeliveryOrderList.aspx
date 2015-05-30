@@ -102,7 +102,7 @@
             </div>
             <div class="col-sm-1 col-md-1">
                 <label class="control-label">&nbsp</label>
-                <asp:LinkButton ID="btnLoadContacts" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnLoadContacts_Click">
+                <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnLoadContacts_Click">
                     <span class="glyphicon glyphicon-search"></span>
                 </asp:LinkButton>
             </div>
@@ -225,7 +225,7 @@
 
             $("input[type='text'][id$='txtName']").focus(function () { $(this).select(); });
 
-            var btn = document.getElementById('<%= btnLoadContacts.ClientID %>')
+            var btn = document.getElementById('<%= btnSearch.ClientID %>')
             if ($("input[type='text'][id$='txtName']").length > 0) {
                 $(".ui-autocomplete,.ui-dialog, .ui-helper-hidden-accessible").remove();
                 $("input[type='text'][id$='txtName']").autocomplete({
@@ -256,7 +256,7 @@
                         $("input[type='text'][id$='txtName']").val(ui.item.Name);
                         $("input[type='text'][id$='txtCode']").val(ui.item.Code);
                         $("input[type='hidden'][id$='hCustomerID']").val(ui.item.ID);
-                        //document.getElementById('<%= btnLoadContacts.ClientID %>').click();
+                        //document.getElementById('<%= btnSearch.ClientID %>').click();
                         return false;
                     }
                 }).data("ui-autocomplete")._renderItem = function (ul, item) {
