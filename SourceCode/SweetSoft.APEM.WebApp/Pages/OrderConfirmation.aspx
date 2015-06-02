@@ -97,7 +97,7 @@
                                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.JOB_NR)%>
                                                 </label>
                                                 <asp:DropDownList runat="server" ID="ddlJobNumber"
-                                                    data-style="btn btn-info"
+                                                    data-style="btn btn-info" data-size="5"  data-live-search="true"
                                                     data-width="100%" AutoPostBack="true"
                                                     data-toggle="dropdown" OnSelectedIndexChanged="ddlJobNumber_SelectedIndexChanged"
                                                     CssClass="form-control">

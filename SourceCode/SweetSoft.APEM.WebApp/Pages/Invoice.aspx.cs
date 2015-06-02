@@ -921,7 +921,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 {
                                     isDelete = true;
                                     if (AllowSaveLogging)
-                                        SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.UPDATE_INVOICE), FUNCTION_PAGE, invoice.ToJSONString());
+                                        SaveLogging(ActivityLogging.DELETE, FUNCTION_PAGE, invoice.ToJSONString());
                                 }
                                 else
                                 {

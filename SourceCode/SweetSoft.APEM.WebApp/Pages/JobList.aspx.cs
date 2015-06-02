@@ -151,7 +151,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 string StatusConditions = string.Empty;
                 if (ddlJobStatus.SelectedIndex == 0)
                 {
-                    StatusConditions = string.Join(",", Enum.GetNames(typeof(JobStatus)));
+                    StatusConditions = "0";
                 }
                 else {
                     StatusConditions = ddlJobStatus.SelectedValue;

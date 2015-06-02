@@ -51,7 +51,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     {
                                         //Lưu vào logging
                                         if (AllowSaveLogging)
-                                            SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.DELETE_SERVICE_JOB), FUNCTION_PAGE_ID, invoice.ToJSONString());
+                                            SaveLogging(ActivityLogging.DELETE, FUNCTION_PAGE_ID, invoice.ToJSONString());
                                     }
                                 }
                             }

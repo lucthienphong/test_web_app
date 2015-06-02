@@ -9,19 +9,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SweetSoft.APEM.WebApp", "Sw
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://tfs.sweetsoft.vn:8080/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = SweetSoft.APEM.DataAccess\\SweetSoft.APEM.DataAccess.csproj
-		SccProjectName1 = SweetSoft.APEM.DataAccess
-		SccLocalPath1 = SweetSoft.APEM.DataAccess
-		SccProjectUniqueName2 = SweetSoft.APEM.Core\\SweetSoft.APEM.Core.csproj
-		SccProjectName2 = SweetSoft.APEM.Core
-		SccLocalPath2 = SweetSoft.APEM.Core
-		SccProjectUniqueName3 = SweetSoft.APEM.WebApp\\SweetSoft.APEM.WebApp.csproj
-		SccProjectName3 = SweetSoft.APEM.WebApp
-		SccLocalPath3 = SweetSoft.APEM.WebApp
+		SccProjectUniqueName0 = SweetSoft.APEM.DataAccess\\SweetSoft.APEM.DataAccess.csproj
+		SccProjectName0 = SweetSoft.APEM.DataAccess
+		SccAuxPath0 = http://tfs.sweetsoft.vn:8080
+		SccLocalPath0 = SweetSoft.APEM.DataAccess
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = SweetSoft.APEM.Core\\SweetSoft.APEM.Core.csproj
+		SccProjectName1 = SweetSoft.APEM.Core
+		SccAuxPath1 = http://tfs.sweetsoft.vn:8080
+		SccLocalPath1 = SweetSoft.APEM.Core
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = SweetSoft.APEM.WebApp\\SweetSoft.APEM.WebApp.csproj
+		SccProjectName2 = SweetSoft.APEM.WebApp
+		SccAuxPath2 = http://tfs.sweetsoft.vn:8080
+		SccLocalPath2 = SweetSoft.APEM.WebApp
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
