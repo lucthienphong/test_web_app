@@ -15,6 +15,7 @@ using SweetSoft.APEM.Core.Manager;
 using Newtonsoft.Json;
 using System.Web.UI.WebControls;
 using SweetSoft.APEM.Core.UI;
+using SweetSoft.APEM.Logs.DataAccess;
 
 
 namespace SweetSoft.APEM.Core.Logs
@@ -33,19 +34,19 @@ namespace SweetSoft.APEM.Core.Logs
     }
     public class DataLogsManager
     {
-        public static TblDataLog UpdateLog(TblDataLog obj)
+        public static TblAllDataLog UpdateLog(TblAllDataLog obj)
         {
-            return new TblDataLogController().Update(obj);
+            return new TblAllDataLogController().Update(obj);
         }
 
-        public static TblDataLog InsertLog(TblDataLog obj)
+        public static TblAllDataLog InsertLog(TblAllDataLog obj)
         {
-            return new TblDataLogController().Insert(obj);
+            return new TblAllDataLogController().Insert(obj);
         }
 
         public static void LogAction(TypeActionLogs type, string jsonString, string p_UserIP)
         {
-            TblDataLog newLog = new TblDataLog();
+            TblAllDataLog newLog = new TblAllDataLog();
             newLog.ActionDate = DateTime.Now;
             newLog.UserIP = p_UserIP;
 
@@ -71,20 +72,20 @@ namespace SweetSoft.APEM.Core.Logs
         public static List<DataLogsViewObject> SelectDataLogs(int PageIndex, int PageSize, DateTime? DateFrom, DateTime? DateTo)
         {
             List<DataLogsViewObject> view = new List<DataLogsViewObject>();
-            var select = new Select().From(TblDataLog.Schema).Where(TblDataLog.IdColumn).IsNotNull();
+            var select = new Select().From(TblAllDataLog.Schema).Where(TblAllDataLog.IdColumn).IsNotNull();
             if(DateFrom != null)
             {
-                select = select.And(TblDataLog.ActionDateColumn).IsGreaterThanOrEqualTo(DateTimeHelper.AddFirstTimeOfDay(DateFrom.Value));
+                select = select.And(TblAllDataLog.ActionDateColumn).IsGreaterThanOrEqualTo(DateTimeHelper.AddFirstTimeOfDay(DateFrom.Value));
             }
             if(DateTo != null)
             {
-                select = select.And(TblDataLog.ActionDateColumn).IsLessThanOrEqualTo(DateTimeHelper.AddLastTimeOfDay(DateTo.Value));
+                select = select.And(TblAllDataLog.ActionDateColumn).IsLessThanOrEqualTo(DateTimeHelper.AddLastTimeOfDay(DateTo.Value));
             }
-            select = select.OrderDesc(TblDataLog.Columns.ActionDate);
-            List<TblDataLog> lstLogs = select.ExecuteTypedList<TblDataLog>();
+            select = select.OrderDesc(TblAllDataLog.Columns.ActionDate);
+            List<TblAllDataLog> lstLogs = select.ExecuteTypedList<TblAllDataLog>();
 
             int i_No = 1;
-            foreach (TblDataLog log in lstLogs)
+            foreach (TblAllDataLog log in lstLogs)
             {
                 DataLogsViewObject item = new DataLogsViewObject();
                 item.ID = log.Id;
@@ -153,11 +154,11 @@ namespace SweetSoft.APEM.Core.Logs
             return GetRange(view, PageIndex, PageSize);
         }
 
-        public static TblDataLog SeclectDataLogByID(int LogID)
+        public static TblAllDataLog SeclectDataLogByID(int LogID)
         {
-            return new Select().From(TblDataLog.Schema)
-                               .Where(TblDataLog.IdColumn).IsEqualTo(LogID)
-                               .ExecuteSingle<TblDataLog>();
+            return new Select().From(TblAllDataLog.Schema)
+                               .Where(TblAllDataLog.IdColumn).IsEqualTo(LogID)
+                               .ExecuteSingle<TblAllDataLog>();
         }
 
         private static List<DataLogsViewObject> GetRange(List<DataLogsViewObject> source, int Index, int Size)

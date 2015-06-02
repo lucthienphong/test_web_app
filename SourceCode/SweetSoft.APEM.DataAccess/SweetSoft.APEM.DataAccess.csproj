@@ -48,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AllStructs.cs" />
+    <Compile Include="TblAllDataLog.cs" />
+    <Compile Include="TblAllDataLogController.cs" />
     <Compile Include="TblCredit.cs" />
     <Compile Include="TblCreditController.cs" />
     <Compile Include="TblCreditDetail.cs" />
@@ -58,8 +60,6 @@
     <Compile Include="TblCustomerQuotationOtherChargeController.cs" />
     <Compile Include="TblCylinderProcessing.cs" />
     <Compile Include="TblCylinderProcessingController.cs" />
-    <Compile Include="TblDataLog.cs" />
-    <Compile Include="TblDataLogController.cs" />
     <Compile Include="TblDebit.cs" />
     <Compile Include="TblDebitController.cs" />
     <Compile Include="TblDebitDetail.cs" />

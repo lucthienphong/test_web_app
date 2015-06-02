@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using SweetSoft.APEM.Core.Helper;
 using SweetSoft.APEM.Core.Logs;
 using SweetSoft.APEM.DataAccess;
+using SweetSoft.APEM.Logs.DataAccess;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -55,7 +56,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         }
         private void BindData()
         {
-            TblDataLog dtLogs = DataLogsManager.SeclectDataLogByID(LogID);
+            TblAllDataLog dtLogs = DataLogsManager.SeclectDataLogByID(LogID);
             DataLogs contentLogs = JsonHelper.Deserialize<DataLogs>(dtLogs.ContentLogs);
             List<JsonData> lstJData = JsonConvert.DeserializeObject<List<JsonData>>(contentLogs.DataObjLogs.JsonDatas);
 

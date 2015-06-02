@@ -46,6 +46,10 @@ namespace SweetSoft.APEM.DataAccess
         
 		public static readonly string TblContact = @"tblContact";
         
+		public static readonly string TblCredit = @"tblCredit";
+        
+		public static readonly string TblCreditDetail = @"tblCreditDetail";
+        
 		public static readonly string TblCurrency = @"tblCurrency";
         
 		public static readonly string TblCurrencyChangedLog = @"TblCurrencyChangedLog";
@@ -54,15 +58,29 @@ namespace SweetSoft.APEM.DataAccess
         
 		public static readonly string TblCustomerQuotation = @"tblCustomerQuotation";
         
+		public static readonly string TblCustomerQuotationAdditionalService = @"tblCustomerQuotation_AdditionalService";
+        
+		public static readonly string TblCustomerQuotationOtherCharge = @"tblCustomerQuotation_OtherCharges";
+        
 		public static readonly string TblCustomerQuotationPricing = @"tblCustomerQuotation_Pricing";
+        
+		public static readonly string TblCustomerQuotationDetail = @"tblCustomerQuotationDetail";
         
 		public static readonly string TblCylinder = @"tblCylinder";
         
+		public static readonly string TblCylinderProcessing = @"tblCylinderProcessing";
+        
 		public static readonly string TblCylinderStatus = @"tblCylinderStatus";
+        
+		public static readonly string TblDataLog = @"tblDataLogs";
+        
+		public static readonly string TblDebit = @"tblDebit";
+        
+		public static readonly string TblDebitDetail = @"tblDebitDetail";
         
 		public static readonly string TblDeliveryOrder = @"tblDeliveryOrder";
         
-		public static readonly string TblDeliveryOrderPackingDimension = @"TblDeliveryOrder_PackingDimension";
+		public static readonly string TblDeliveryOrderPackingDimension = @"tblDeliveryOrder_PackingDimension";
         
 		public static readonly string TblDepartment = @"tblDepartment";
         
@@ -74,15 +92,21 @@ namespace SweetSoft.APEM.DataAccess
         
 		public static readonly string TblEngravingDetail = @"tblEngravingDetail";
         
+		public static readonly string TblEngravingEtching = @"tblEngravingEtching";
+        
+		public static readonly string TblEngravingTobacco = @"tblEngravingTobacco";
+        
 		public static readonly string TblFunction = @"tblFunction";
         
 		public static readonly string TblInvoice = @"tblInvoice";
         
 		public static readonly string TblInvoiceDetail = @"tblInvoiceDetail";
         
+		public static readonly string TblInvoiceLockStatus = @"tblInvoiceLockStatus";
+        
 		public static readonly string TblJob = @"tblJob";
         
-		public static readonly string TblJobProcessing = @"tblJobProcessing";
+		public static readonly string TblJobProcess = @"tblJobProcess";
         
 		public static readonly string TblJobQuotation = @"tblJobQuotation";
         
@@ -99,6 +123,8 @@ namespace SweetSoft.APEM.DataAccess
 		public static readonly string TblNotification = @"tblNotification";
         
 		public static readonly string TblNotificationSetting = @"tblNotificationSetting";
+        
+		public static readonly string TblObjectLocking = @"tblObjectLocking";
         
 		public static readonly string TblOrderConfirmation = @"tblOrderConfirmation";
         
@@ -223,6 +249,16 @@ namespace SweetSoft.APEM.DataAccess
             get { return DataService.GetSchema("tblContact", "DataAcessProvider"); }
 		}
         
+		public static TableSchema.Table TblCredit
+		{
+            get { return DataService.GetSchema("tblCredit", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblCreditDetail
+		{
+            get { return DataService.GetSchema("tblCreditDetail", "DataAcessProvider"); }
+		}
+        
 		public static TableSchema.Table TblCurrency
 		{
             get { return DataService.GetSchema("tblCurrency", "DataAcessProvider"); }
@@ -243,9 +279,24 @@ namespace SweetSoft.APEM.DataAccess
             get { return DataService.GetSchema("tblCustomerQuotation", "DataAcessProvider"); }
 		}
         
+		public static TableSchema.Table TblCustomerQuotationAdditionalService
+		{
+            get { return DataService.GetSchema("tblCustomerQuotation_AdditionalService", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblCustomerQuotationOtherCharge
+		{
+            get { return DataService.GetSchema("tblCustomerQuotation_OtherCharges", "DataAcessProvider"); }
+		}
+        
 		public static TableSchema.Table TblCustomerQuotationPricing
 		{
             get { return DataService.GetSchema("tblCustomerQuotation_Pricing", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblCustomerQuotationDetail
+		{
+            get { return DataService.GetSchema("tblCustomerQuotationDetail", "DataAcessProvider"); }
 		}
         
 		public static TableSchema.Table TblCylinder
@@ -253,9 +304,29 @@ namespace SweetSoft.APEM.DataAccess
             get { return DataService.GetSchema("tblCylinder", "DataAcessProvider"); }
 		}
         
+		public static TableSchema.Table TblCylinderProcessing
+		{
+            get { return DataService.GetSchema("tblCylinderProcessing", "DataAcessProvider"); }
+		}
+        
 		public static TableSchema.Table TblCylinderStatus
 		{
             get { return DataService.GetSchema("tblCylinderStatus", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblDataLog
+		{
+            get { return DataService.GetSchema("tblDataLogs", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblDebit
+		{
+            get { return DataService.GetSchema("tblDebit", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblDebitDetail
+		{
+            get { return DataService.GetSchema("tblDebitDetail", "DataAcessProvider"); }
 		}
         
 		public static TableSchema.Table TblDeliveryOrder
@@ -265,7 +336,7 @@ namespace SweetSoft.APEM.DataAccess
         
 		public static TableSchema.Table TblDeliveryOrderPackingDimension
 		{
-            get { return DataService.GetSchema("TblDeliveryOrder_PackingDimension", "DataAcessProvider"); }
+            get { return DataService.GetSchema("tblDeliveryOrder_PackingDimension", "DataAcessProvider"); }
 		}
         
 		public static TableSchema.Table TblDepartment
@@ -293,6 +364,16 @@ namespace SweetSoft.APEM.DataAccess
             get { return DataService.GetSchema("tblEngravingDetail", "DataAcessProvider"); }
 		}
         
+		public static TableSchema.Table TblEngravingEtching
+		{
+            get { return DataService.GetSchema("tblEngravingEtching", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblEngravingTobacco
+		{
+            get { return DataService.GetSchema("tblEngravingTobacco", "DataAcessProvider"); }
+		}
+        
 		public static TableSchema.Table TblFunction
 		{
             get { return DataService.GetSchema("tblFunction", "DataAcessProvider"); }
@@ -308,14 +389,19 @@ namespace SweetSoft.APEM.DataAccess
             get { return DataService.GetSchema("tblInvoiceDetail", "DataAcessProvider"); }
 		}
         
+		public static TableSchema.Table TblInvoiceLockStatus
+		{
+            get { return DataService.GetSchema("tblInvoiceLockStatus", "DataAcessProvider"); }
+		}
+        
 		public static TableSchema.Table TblJob
 		{
             get { return DataService.GetSchema("tblJob", "DataAcessProvider"); }
 		}
         
-		public static TableSchema.Table TblJobProcessing
+		public static TableSchema.Table TblJobProcess
 		{
-            get { return DataService.GetSchema("tblJobProcessing", "DataAcessProvider"); }
+            get { return DataService.GetSchema("tblJobProcess", "DataAcessProvider"); }
 		}
         
 		public static TableSchema.Table TblJobQuotation
@@ -356,6 +442,11 @@ namespace SweetSoft.APEM.DataAccess
 		public static TableSchema.Table TblNotificationSetting
 		{
             get { return DataService.GetSchema("tblNotificationSetting", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblObjectLocking
+		{
+            get { return DataService.GetSchema("tblObjectLocking", "DataAcessProvider"); }
 		}
         
 		public static TableSchema.Table TblOrderConfirmation
@@ -565,11 +656,101 @@ namespace SweetSoft.APEM.DataAccess
     #endregion
     
 }
+// <auto-generated />
+namespace SweetSoft.APEM.Logs.DataAccess
+{
+	#region Tables Struct
+	public partial struct Tables
+	{
+		
+		public static readonly string TblAllDataLog = @"tblAllDataLogs";
+        
+	}
+	#endregion
+    #region Schemas
+    public partial class Schemas {
+		
+		public static TableSchema.Table TblAllDataLog
+		{
+            get { return DataService.GetSchema("tblAllDataLogs", "DataAcessProviderLog"); }
+		}
+        
+	
+    }
+    #endregion
+    #region View Struct
+    public partial struct Views 
+    {
+		
+    }
+    #endregion
+    
+    #region Query Factories
+	public static partial class DB
+	{
+        public static DataProvider _provider = DataService.Providers["DataAcessProviderLog"];
+        static ISubSonicRepository _repository;
+        public static ISubSonicRepository Repository 
+        {
+            get 
+            {
+                if (_repository == null)
+                    return new SubSonicRepository(_provider);
+                return _repository; 
+            }
+            set { _repository = value; }
+        }
+        public static Select SelectAllColumnsFrom<T>() where T : RecordBase<T>, new()
+	    {
+            return Repository.SelectAllColumnsFrom<T>();
+	    }
+	    public static Select Select()
+	    {
+            return Repository.Select();
+	    }
+	    
+		public static Select Select(params string[] columns)
+		{
+            return Repository.Select(columns);
+        }
+	    
+		public static Select Select(params Aggregate[] aggregates)
+		{
+            return Repository.Select(aggregates);
+        }
+   
+	    public static Update Update<T>() where T : RecordBase<T>, new()
+	    {
+            return Repository.Update<T>();
+	    }
+	    
+	    public static Insert Insert()
+	    {
+            return Repository.Insert();
+	    }
+	    
+	    public static Delete Delete()
+	    {
+            return Repository.Delete();
+	    }
+	    
+	    public static InlineQuery Query()
+	    {
+            return Repository.Query();
+	    }
+	    	    
+	    
+	}
+    #endregion
+    
+}
 #region Databases
 public partial struct Databases 
 {
 	
 	public static readonly string DataAcessProvider = @"DataAcessProvider";
+    
+	public static readonly string DataAcessProviderLog = @"DataAcessProviderLog";
     
 }
 #endregion
