@@ -15,6 +15,7 @@ box-sizing:initial!important;}
 </head>
 <body>
     <div id='page_spinner' class='page_spinner'>
+        <div class="modal fade in" style="display:inline; background-color:black; opacity: 0.1"></div>
         <span></span>
     </div>
     <asp:Literal ID="ltrAuthorize" runat="server"></asp:Literal>

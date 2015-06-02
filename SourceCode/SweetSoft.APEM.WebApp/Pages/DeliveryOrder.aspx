@@ -84,8 +84,8 @@
                         </label>
                         <asp:DropDownList ID="ddlJob" runat="server" AutoPostBack="true"
                             data-style="btn btn-info" ToolTip="Job Number"
-                            data-width="100%" Required="true"
-                            data-toggle="dropdown"
+                            data-width="100%" Required="true" data-size="5"
+                            data-toggle="dropdown" data-live-search="true"
                             OnSelectedIndexChanged="ddlJob_SelectedIndexChanged"
                             CssClass="form-control">
                         </asp:DropDownList>

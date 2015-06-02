@@ -199,11 +199,11 @@
     .window_panel .frame_loading
     {
         background: url('../img/loading.gif') no-repeat;
-        width: 128px;
-        height: 128px;
+        width: 16px;
+        height: 16px;
         position: absolute;
-        left: 46%;
-        top: 45%;
+        left: 50%;
+        top: 50%;
         font-size: 14px;
         font-weight: bold;
         color: #777;

@@ -12,7 +12,7 @@
   <xs:element name="SaleReportDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SaleReportDS" msprop:Generator_UserDSName="SaleReportDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SalesReport" msprop:Generator_TableClassName="SalesReportDataTable" msprop:Generator_TableVarName="tableSalesReport" msprop:Generator_RowChangedName="SalesReportRowChanged" msprop:Generator_TablePropName="SalesReport" msprop:Generator_RowDeletingName="SalesReportRowDeleting" msprop:Generator_RowChangingName="SalesReportRowChanging" msprop:Generator_RowEvHandlerName="SalesReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SalesReportRowDeleted" msprop:Generator_RowClassName="SalesReportRow" msprop:Generator_UserTableName="SalesReport" msprop:Generator_RowEvArgName="SalesReportRowChangeEvent">
+        <xs:element name="SalesReport" msprop:Generator_TableClassName="SalesReportDataTable" msprop:Generator_TableVarName="tableSalesReport" msprop:Generator_TablePropName="SalesReport" msprop:Generator_RowDeletingName="SalesReportRowDeleting" msprop:Generator_RowChangingName="SalesReportRowChanging" msprop:Generator_RowEvHandlerName="SalesReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SalesReportRowDeleted" msprop:Generator_UserTableName="SalesReport" msprop:Generator_RowChangedName="SalesReportRowChanged" msprop:Generator_RowEvArgName="SalesReportRowChangeEvent" msprop:Generator_RowClassName="SalesReportRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="JobNumber" msprop:Generator_ColumnVarNameInTable="columnJobNumber" msprop:Generator_ColumnPropNameInRow="JobNumber" msprop:Generator_ColumnPropNameInTable="JobNumberColumn" msprop:Generator_UserColumnName="JobNumber" type="xs:string" minOccurs="0" />
@@ -59,7 +59,6 @@
               <xs:element name="OCValueInForeign" msprop:Generator_ColumnVarNameInTable="columnOCValueInForeign" msprop:Generator_ColumnPropNameInRow="OCValueInForeign" msprop:Generator_ColumnPropNameInTable="OCValueInForeignColumn" msprop:Generator_UserColumnName="OCValueInForeign" type="xs:string" minOccurs="0" />
               <xs:element name="OCValueInRM" msprop:Generator_ColumnVarNameInTable="columnOCValueInRM" msprop:Generator_ColumnPropNameInRow="OCValueInRM" msprop:Generator_ColumnPropNameInTable="OCValueInRMColumn" msprop:Generator_UserColumnName="OCValueInRM" type="xs:string" minOccurs="0" />
               <xs:element name="PODate" msprop:Generator_ColumnVarNameInTable="columnPODate" msprop:Generator_ColumnPropNameInRow="PODate" msprop:Generator_ColumnPropNameInTable="PODateColumn" msprop:Generator_UserColumnName="PODate" type="xs:string" minOccurs="0" />
-              <xs:element name="TotalValue" msprop:Generator_ColumnVarNameInTable="columnTotalValue" msprop:Generator_ColumnPropNameInRow="TotalValue" msprop:Generator_ColumnPropNameInTable="TotalValueColumn" msprop:Generator_UserColumnName="TotalValue" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

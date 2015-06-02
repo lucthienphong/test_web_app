@@ -64,7 +64,9 @@
     <Compile Include="TblDebitController.cs" />
     <Compile Include="TblDebitDetail.cs" />
     <Compile Include="TblDebitDetailController.cs" />
-    <Compile Include="TblEngravingEtching.cs" />
+    <Compile Include="TblEngravingEtching.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TblEngravingEtchingController.cs" />
     <Compile Include="TblEngravingTobacco.cs" />
     <Compile Include="TblEngravingTobaccoController.cs" />

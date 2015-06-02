@@ -1,6 +1,3 @@
-d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\obj\Debug\SweetSoft.APEM.WebApp.csprojResolveAssemblyReference.cache
-d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\obj\Debug\RdlCompile.cache
-d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\obj\Debug\RdlCompile.compiled
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\bin\Reports\DeliveryOrderNote.rdlc
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\bin\Reports\CustomerList_rpt.rdlc
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\bin\Reports\DeliveryOrder.rdlc
@@ -26,6 +23,9 @@ d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\bin\HtmlAgilityPack.dl
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\bin\SweetSoft.APEM.Core.pdb
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\bin\SweetSoft.APEM.DataAccess.pdb
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\bin\SweetSoftCMS.ExtraControls.pdb
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\obj\Debug\SweetSoft.APEM.WebApp.csprojResolveAssemblyReference.cache
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\obj\Debug\RdlCompile.cache
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\obj\Debug\RdlCompile.compiled
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\obj\Debug\SweetSoft.APEM.WebApp.dll
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.WebApp\obj\Debug\SweetSoft.APEM.WebApp.pdb
 D:\dev\backup_25052015\SourceCode\SweetSoft.APEM.WebApp\obj\Debug\SweetSoft.APEM.WebApp.csprojResolveAssemblyReference.cache

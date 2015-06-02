@@ -54,7 +54,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 TblOrderConfirmation od = OrderConfirmationManager.SelectByID(JobID);
                 if (od != null)
                 {
-                    ltrOCNumber.Text = od.OCNumber;
+                    ltrOCNumber.Text = j.JobNumber;//od.OCNumber;
                     ltrOCDate.Text = string.Format("{0}", od.OrderDate.ToString("dd.MM.yyyy"));
                     ltrPaymentTerm.Text = od.PaymentTerm;
                     ltrDeliveryTerm.Text = od.DeliveryTerm;
