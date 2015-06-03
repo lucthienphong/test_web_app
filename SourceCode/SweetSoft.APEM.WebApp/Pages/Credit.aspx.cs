@@ -36,7 +36,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 if (Request.QueryString["ID"] != null)
                     int.TryParse(Request.QueryString["ID"].ToString(), out ID);
                 else if(Session[ViewState["PageID"] + "ID"] != null)
-                    int.TryParse(Request.QueryString["ID"].ToString(), out ID);
+                    int.TryParse(Session[ViewState["PageID"] + "ID"].ToString(), out ID);
                 return ID;
             }
         }
@@ -386,7 +386,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.Quantity = Quantity;
                 obj.UnitPrice = UnitPrice;
             }
-
+            source.Sort((x, y) => x.Description.CompareTo(y.Description));
             Session[ViewState["PageID"] + "Source"] = source;
         }
 

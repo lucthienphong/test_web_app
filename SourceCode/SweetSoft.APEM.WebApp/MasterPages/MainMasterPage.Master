@@ -181,7 +181,7 @@
                                         <li class="divider"></li>
                                         <li><a href="javascript:;" data-title="Service job" data-show="false"
                                             class="window" data-href="/Pages/ServiceJob.aspx">Create a service job</a></li>
-                                        <li><a data-title="Service job List" data-show="false" href="javascript:;"
+                                        <li><a data-title="Service Job List" data-show="false" href="javascript:;"
                                             class="window" data-href="/Pages/ServiceJobList.aspx">Service job list</a></li>
                                         <li class="divider"></li>
                                         <li><a data-title="Job timeline" data-show="false" href="javascript:;"

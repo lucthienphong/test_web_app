@@ -193,20 +193,20 @@
                                     Text='<%#Eval("JobNumber")%>' data-id='<%#Eval("JobID")%>'></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="JobName" SortExpression="2" HeaderStyle-CssClass="sorting">
+                        <asp:TemplateField HeaderText="JobName" SortExpression="3" HeaderStyle-CssClass="sorting">
                             <ItemTemplate>
                                 <asp:Label ID="lbJobName" runat="server"
                                     Text='<%#Eval("JobName")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Design" SortExpression="3" HeaderStyle-CssClass="sorting">
+                        <asp:TemplateField HeaderText="Design" SortExpression="4" HeaderStyle-CssClass="sorting">
                             <ItemTemplate>
                                 <asp:Label ID="lbDesign" runat="server"
                                     Text='<%#Eval("Design")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField ItemStyle-CssClass="column-one" HeaderText="CreatedOn"
-                            SortExpression="4" HeaderStyle-CssClass="sorting">
+                            SortExpression="5" HeaderStyle-CssClass="sorting">
                             <ItemTemplate>
                                 <asp:Label ID="lbCreatedOn" runat="server"
                                     Text='<%#Eval("CreatedOn")%>'></asp:Label>

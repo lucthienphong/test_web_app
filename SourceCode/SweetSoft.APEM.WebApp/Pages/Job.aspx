@@ -765,8 +765,8 @@
                                                         </ItemTemplate>
                                                         <EditItemTemplate>
                                                             <div style="position: relative;">
-                                                                <SweetSoft:ExtraInputMask ID="txtDirameter" RenderOnlyInput="true" Required="false" 
-                                                                    Width="100%" runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text='<%#Eval("Dirameter")%>' 
+                                                                <SweetSoft:ExtraInputMask ID="txtDirameter" RenderOnlyInput="true" Required="false"
+                                                                    Width="100%" runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text='<%#Eval("Dirameter")%>'
                                                                     Digits="2" AutoGroup="true"></SweetSoft:ExtraInputMask>
                                                             </div>
                                                         </EditItemTemplate>
@@ -791,8 +791,8 @@
                                                         <EditItemTemplate>
                                                             <div style="position: relative;">
                                                                 <asp:DropDownList ID="ddlDept" runat="server"
-                                                                    data-style="btn btn-info" data-width="100%" 
-                                                                    data-container="body" 
+                                                                    data-style="btn btn-info" data-width="100%"
+                                                                    data-container="body"
                                                                     data-toggle="dropdown" CssClass="form-control">
                                                                 </asp:DropDownList>
                                                             </div>
@@ -805,7 +805,7 @@
                                                                 runat="server"></asp:CheckBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderStyle-CssClass="column-100" ItemStyle-CssClass="column-100 text-center">
+                                                    <asp:TemplateField HeaderStyle-CssClass="column-120" ItemStyle-CssClass="column-120 text-center">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnEdit" runat="server" CssClass="btn btn-primary"
                                                                 CommandArgument='<%# Eval("CylinderID") %>' CommandName="Edit">
