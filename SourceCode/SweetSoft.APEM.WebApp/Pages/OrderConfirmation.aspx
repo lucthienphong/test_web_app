@@ -58,7 +58,7 @@
                             <strong><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.ORDER_NUMBER)%></strong>
                         </label>
                         <p class="form-control-static">
-                            <asp:Label ID="lblOrderNumber" runat="server"></asp:Label>
+                            <asp:Label ID="lblOrderNumber" runat="server" ToolTip="Order Number"></asp:Label>
                         </p>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                                                 </label>
 
                                                 <asp:DropDownList runat="server" ID="ddlJobNumber" ToolTip="Job Number"
-                                                    data-style="btn btn-info" data-size="5"  data-live-search="true"
+                                                    data-style="btn btn-info" data-size="5" data-live-search="true"
                                                     data-width="100%" AutoPostBack="true"
                                                     data-toggle="dropdown" OnSelectedIndexChanged="ddlJobNumber_SelectedIndexChanged"
                                                     CssClass="form-control">
@@ -127,7 +127,7 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.JOB_NAME)%>
                                 </label>
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtJobName" ReadOnly="true" ToolTip="Job Name"/>
+                                <asp:TextBox runat="server" CssClass="form-control" ID="txtJobName" ReadOnly="true" ToolTip="Job Name" />
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-3">
@@ -135,7 +135,7 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DESIGN)%>
                                 </label>
-                                <asp:TextBox runat="server" CssClass="form-control" ID="txtDesign" ReadOnly="true" ToolTip="Design"/>
+                                <asp:TextBox runat="server" CssClass="form-control" ID="txtDesign" ReadOnly="true" ToolTip="Design" />
                             </div>
                         </div>
                     </div>
@@ -645,7 +645,7 @@
                                         </label>
                                         <div class="col-md-12">
                                             <div class="row">
-                                                <asp:TextBox ID="txtQuotationNo" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                                <asp:TextBox ID="txtQuotationNo" runat="server" CssClass="form-control" Enabled="false" ToolTip="Quotation No"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -654,7 +654,7 @@
                                             Quotation Date
                                         </label>
                                         <div class="wrap-datepicker">
-                                            <SweetSoft:CustomExtraTextbox ID="txtQuotationDate" runat="server"
+                                            <SweetSoft:CustomExtraTextbox ID="txtQuotationDate" runat="server" ToolTip="Quotation Date"
                                                 RenderOnlyInput="true" data-format="dd-MM-yyyy" Enabled="false"
                                                 CssClass="datepicker form-control mask-date">
                                             </SweetSoft:CustomExtraTextbox>
@@ -665,7 +665,7 @@
                                         <label class="control-label">
                                             <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.REV)%>
                                         </label>
-                                        <asp:DropDownList runat="server" ID="ddlQuotationRev"
+                                        <asp:DropDownList runat="server" ID="ddlQuotationRev" ToolTip="Quotation Rev"
                                             data-style="btn btn-info"
                                             data-width="100%" AutoPostBack="true"
                                             data-toggle="dropdown" OnSelectedIndexChanged="ddlQuotationRev_SelectedIndexChanged"
@@ -680,7 +680,7 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.QUOTED_PRICES)%>
                                 </label>
-                                <asp:GridView ID="grvPrices" runat="server" AutoGenerateColumns="false"
+                                <asp:GridView ID="grvPrices" runat="server" AutoGenerateColumns="false" ToolTip="Quotation Prices"
                                     CssClass="table table-striped table-bordered table-checkable dataTable" GridLines="None"
                                     AllowPaging="false" AllowSorting="false" DataKeyNames="QuotationID,PricingID">
                                     <Columns>
@@ -729,7 +729,7 @@
                                 <label class="control-label">
                                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.QUOTATION_TEXT)%>
                                 </label>
-                                <asp:TextBox ID="txtQuotationNote" runat="server"
+                                <asp:TextBox ID="txtQuotationNote" runat="server" ToolTip="Quotation Note"
                                     TextMode="MultiLine" Rows="4" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>

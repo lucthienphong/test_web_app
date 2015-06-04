@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-horizontal">
-                        <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="btn btn-transparent">
+                        <asp:LinkButton ID="btnSave" runat="server" OnClientClick="SaveStateOfData('Now')" OnClick="btnSave_Click" CssClass="waitforajax btn btn-transparent">
                                 <span class="flaticon-floppy1"></span>
                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.SAVE)%>
                         </asp:LinkButton>
@@ -56,12 +56,12 @@
                         <div class="form-horizontal">
                             <div class="form-group" style="margin-bottom: 0">
                                 <div class="col-sm-2 col-xs-2">
-                                    <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true"
+                                    <SweetSoft:ExtraInputMask ID="txtCode" RenderOnlyInput="true" Required="true" ToolTip="Customer Code"
                                         runat="server" Repeat="5" ShowMaskOnHover="true" MaxLength="5" Enabled="false"
                                         Greedy="true" RightAlign="false"></SweetSoft:ExtraInputMask>
                                 </div>
                                 <div class="col-sm-10 col-xs-10">
-                                    <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true"
+                                    <SweetSoft:CustomExtraTextbox ID="txtName" RenderOnlyInput="true" ToolTip="Customer Name"
                                         runat="server"></SweetSoft:CustomExtraTextbox>
                                 </div>
                                 <asp:HiddenField ID="hCustomerID" runat="server" />
@@ -79,7 +79,7 @@
                         <label class="control-label">
                             <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.JOB_NR)%>
                         </label>
-                        <SweetSoft:CustomExtraTextbox ID="txtJobNumber" RenderOnlyInput="true"
+                        <SweetSoft:CustomExtraTextbox ID="txtJobNumber" RenderOnlyInput="true" ToolTip="Job Number"
                             runat="server" Enabled="false"></SweetSoft:CustomExtraTextbox>
                         <asp:HiddenField ID="hBarcode" runat="server" />
                     </div>
@@ -100,7 +100,7 @@
                         <label class="control-label">
                             <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.JOB_NAME)%>
                         </label>
-                        <SweetSoft:CustomExtraTextbox ID="txtJobName"
+                        <SweetSoft:CustomExtraTextbox ID="txtJobName" ToolTip="Job Name"
                             RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                         <label class="control-label">
                             <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DESIGN)%>
                         </label>
-                        <SweetSoft:CustomExtraTextbox ID="txtDesign"
+                        <SweetSoft:CustomExtraTextbox ID="txtDesign" ToolTip="Design"
                             RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                     <label class="control-label">
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CONTACT_PERSON)%>
                     </label>
-                    <asp:DropDownList ID="ddlContacts" runat="server"
+                    <asp:DropDownList ID="ddlContacts" runat="server" ToolTip="Contact Person"
                         data-style="btn btn-info"
                         data-width="100%" Required="true"
                         data-toggle="dropdown"
@@ -138,7 +138,7 @@
                     <label class="control-label">
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.SALES_REP)%>
                     </label>
-                    <asp:DropDownList ID="ddlSaleRep" runat="server"
+                    <asp:DropDownList ID="ddlSaleRep" runat="server" ToolTip="Sale Rep"
                         data-style="btn btn-info"
                         data-width="100%" Required="true"
                         data-toggle="dropdown" data-live-search="true"
@@ -152,7 +152,7 @@
                 <label class="control-label">
                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.JOB_COORDINATOR)%>
                 </label>
-                <asp:DropDownList ID="ddlJobCoordinator" runat="server"
+                <asp:DropDownList ID="ddlJobCoordinator" runat="server" ToolTip="Job Coordinator"
                     data-style="btn btn-info"
                     data-width="100%" Required="true"
                     data-toggle="dropdown"
@@ -165,7 +165,7 @@
                 <label class="control-label">
                     <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CURRENCY)%>
                 </label>
-                <asp:DropDownList ID="ddlCurrency" runat="server"
+                <asp:DropDownList ID="ddlCurrency" runat="server" ToolTip="Currency"
                     data-style="btn btn-info"
                     data-width="100%" Required="true"
                     data-toggle="dropdown" data-live-search="true"
@@ -176,7 +176,7 @@
         <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label class="control-label">Product type</label>
-                <asp:DropDownList ID="ddlProductType" runat="server"
+                <asp:DropDownList ID="ddlProductType" runat="server" ToolTip="Product Type"
                     data-style="btn btn-info"
                     data-width="100%" Required="true"
                     data-toggle="dropdown"
@@ -193,7 +193,8 @@
                         <label class="control-label">
                             <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.PAYMENT_TERMS)%>
                         </label>
-                        <asp:TextBox ID="txtPaymentTerms" runat="server" class="form-control">
+                        <asp:TextBox ID="txtPaymentTerms" runat="server" ToolTip="Payment Terms"
+                            class="form-control">
                         </asp:TextBox>
                     </div>
                 </div>
@@ -202,7 +203,8 @@
                         <label class="control-label">
                             Item code
                         </label>
-                        <asp:TextBox ID="txtItemCode" runat="server" class="form-control">
+                        <asp:TextBox ID="txtItemCode" runat="server" ToolTip="Item Code"
+                            class="form-control">
                         </asp:TextBox>
                     </div>
                 </div>
@@ -218,7 +220,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group" style="margin-bottom: 0">
-                                    <asp:DropDownList ID="ddlBrandOwner" runat="server"
+                                    <asp:DropDownList ID="ddlBrandOwner" runat="server" ToolTip="Brand Owner"
                                         data-style="btn btn-info"
                                         data-width="100%" Required="true"
                                         data-toggle="dropdown" data-live-search="true"
@@ -234,7 +236,7 @@
                         <label class="control-label">
                             <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.DATE_CREATED)%>
                         </label>
-                        <SweetSoft:CustomExtraTextbox ID="txtCreatedDate" runat="server"
+                        <SweetSoft:CustomExtraTextbox ID="txtCreatedDate" runat="server" ToolTip="Date Created"
                             RenderOnlyInput="true" data-format="dd-MM-yyyy" Enabled="false"
                             CssClass="datepicker form-control mask-date">
                         </SweetSoft:CustomExtraTextbox>
@@ -245,7 +247,7 @@
                     <label class="control-label">
                         <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.CREATED_BY)%>
                     </label>
-                    <SweetSoft:CustomExtraTextbox ID="txtCreatedBy" Enabled="false"
+                    <SweetSoft:CustomExtraTextbox ID="txtCreatedBy" Enabled="false" ToolTip="Created By"
                         RenderOnlyInput="true" runat="server"></SweetSoft:CustomExtraTextbox>
                 </div>
             </div>
@@ -271,7 +273,7 @@
                             </div>
                         </div>
                     </div>
-                    <asp:GridView ID="grvServiceJobDetail" runat="server"
+                    <asp:GridView ID="grvServiceJobDetail" runat="server" ToolTip="Service Job Detail"
                         AutoGenerateColumns="false" CssClass="table table-striped table-bordered table-checkable dataTable"
                         GridLines="None"
                         AllowPaging="false"
@@ -394,7 +396,7 @@
                             </div>
                         </div>
                     </div>
-                    <SweetSoft:GridviewExtension ID="grvOtherCharges"
+                    <SweetSoft:GridviewExtension ID="grvOtherCharges" ToolTip="Other Charges"
                         runat="server" AutoGenerateColumns="false"
                         CssClass="table table-striped table-bordered table-checkable dataTable"
                         OnRowEditing="grvOtherCharges_RowEditing"
@@ -521,8 +523,25 @@
             //            break;
             //    }
             //});
+            SaveStateOfData('Before');
         });
 
+        var viewstate = '<%=ViewState_PageID%>';
+        function SaveStateOfData(time) {
+            var obj = [
+                {
+                    key: 'grvOtherCharges_' + time,
+                    data: $("[id$='grvOtherCharges']").html() == undefined ? "<table></table>" : $("[id$='grvOtherCharges']").html(),
+                    PageID: viewstate
+                },
+                {
+                    key: 'grvServiceJobDetail_' + time,
+                    data: $("[id$='grvServiceJobDetail']").parent().html() == undefined ? "<table></table>" : $("[id$='grvServiceJobDetail']").parent().html(),
+                    PageID: viewstate
+                }
+            ];
+            SaveStateOfDataForm("ServiceJob.aspx/SaveDataTable", obj, time);
+        }
 
 
         addRequestHanlde(InitCheckAll);
@@ -542,9 +561,7 @@
                     });
             });
         }
-
-
-
+        
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(SearchText);
         function SearchText(s, a) {
             if ($("input[type='text'][id$='txtName']").length > 0) {

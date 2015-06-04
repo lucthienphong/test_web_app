@@ -13,6 +13,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
 
 
 namespace SweetSoft.APEM.WebApp.Pages
@@ -238,12 +239,19 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
 
                             List<int> idList = new List<int>();
+                            List<JsonData> lstData = new List<JsonData>();
+
                             for (int i = 0; i < grvJobList.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)grvJobList.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     int ID = Convert.ToInt32(grvJobList.DataKeys[i].Value);
+                                    TblJob obj = JobManager.SelectByID(ID);
+                                    if (obj != null)
+                                    {
+                                        lstData.Add(new JsonData() { Title = "Job Number", Data = obj.JobNumber });
+                                    }
                                     idList.Add(ID);
                                 }
                             }

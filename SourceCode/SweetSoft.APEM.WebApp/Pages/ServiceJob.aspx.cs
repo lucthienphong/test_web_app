@@ -13,6 +13,8 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SweetSoftCMS.ExtraControls.Controls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -49,6 +51,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 {
                     Session[ViewState["PageID"] + "ID"] = JobID;
                     BindJobData();
+                    base.SaveBaseDataBeforeEdit();
                 }
                 else
                     ResetDataFields();
@@ -468,7 +471,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                         OrderConfirmationManager.ResetTotalPriceForOC(obj.JobID);
                         OrderConfirmationManager.ResetTotalPriceForInvoice(obj.JobID);
                         if (AllowSaveLogging)
+                        {
                             SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.UPDATE_SERVICE_JOB), FUNCTION_PAGE, obj.ToJSONString());
+                            LoggingActions("Service Job",
+                                            LogsAction.Objects.Action.UPDATE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                new JsonData() { Title = "Job Number", Data = obj.JobNumber }
+                                            }));
+                        }
                     }
 
                     ////Lưu nhật ký
@@ -532,7 +543,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                         SaveOtherCharges(obj.JobID);
 
                         if (AllowSaveLogging)
+                        {
                             SaveLogging(ResourceTextManager.GetApplicationText(ResourceText.INSERT_SERVICE_JOB), FUNCTION_PAGE, obj.ToJSONString());
+                            LoggingActions("Service Job",
+                                            LogsAction.Objects.Action.CREATE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                new JsonData() { Title = "Job Number", Data = obj.JobNumber }
+                                            }));
+                        }
                     }
 
 
@@ -591,7 +610,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                                 if (JobManager.DeleteServiceJob(JobID))
                                 {
                                     if (AllowSaveLogging)
+                                    {
                                         SaveLogging(ResourceTextManager.GetApplicationText(ActivityLogging.DELETE), FUNCTION_PAGE, obj.ToJSONString());
+                                        LoggingActions("Service Job",
+                                            LogsAction.Objects.Action.DELETE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                                new JsonData() { Title = "Job Number", Data = obj.JobNumber }
+                                            }));
+                                    }
                                     Response.Redirect("ServiceJobList.aspx", false);
                                 }
                             }
@@ -1345,6 +1372,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(KEY_MESSAGE), MSGButton.OK, MSGIcon.Success);
                 OpenMessageBox(msg, null, false, false);
 
+                LoggingActions("Service Job",
+                    IsLock ? LogsAction.Objects.Action.LOCK : LogsAction.Objects.Action.UNLOCK,
+                                LogsAction.Objects.Status.SUCCESS,
+                                JsonConvert.SerializeObject(new List<JsonData>() { 
+                                    new JsonData() { Title = "Job Number", Data = objJob.JobNumber }
+                                }));
             }
             else
             {
