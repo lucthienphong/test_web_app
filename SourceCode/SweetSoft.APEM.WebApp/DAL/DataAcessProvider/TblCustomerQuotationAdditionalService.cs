@@ -139,19 +139,6 @@ namespace SweetSoft.APEM.DataAccess
 				colvarId.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarId);
 				
-				TableSchema.TableColumn colvarCategory = new TableSchema.TableColumn(schema);
-				colvarCategory.ColumnName = "Category";
-				colvarCategory.DataType = DbType.String;
-				colvarCategory.MaxLength = 50;
-				colvarCategory.AutoIncrement = false;
-				colvarCategory.IsNullable = true;
-				colvarCategory.IsPrimaryKey = false;
-				colvarCategory.IsForeignKey = false;
-				colvarCategory.IsReadOnly = false;
-				colvarCategory.DefaultSetting = @"";
-				colvarCategory.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarCategory);
-				
 				TableSchema.TableColumn colvarGLCode = new TableSchema.TableColumn(schema);
 				colvarGLCode.ColumnName = "GLCode";
 				colvarGLCode.DataType = DbType.String;
@@ -217,6 +204,19 @@ namespace SweetSoft.APEM.DataAccess
 				colvarCustomerID.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarCustomerID);
 				
+				TableSchema.TableColumn colvarCategory = new TableSchema.TableColumn(schema);
+				colvarCategory.ColumnName = "Category";
+				colvarCategory.DataType = DbType.String;
+				colvarCategory.MaxLength = 50;
+				colvarCategory.AutoIncrement = false;
+				colvarCategory.IsNullable = true;
+				colvarCategory.IsPrimaryKey = false;
+				colvarCategory.IsForeignKey = false;
+				colvarCategory.IsReadOnly = false;
+				colvarCategory.DefaultSetting = @"";
+				colvarCategory.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarCategory);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -233,14 +233,6 @@ namespace SweetSoft.APEM.DataAccess
 		{
 			get { return GetColumnValue<int>(Columns.Id); }
 			set { SetColumnValue(Columns.Id, value); }
-		}
-		  
-		[XmlAttribute("Category")]
-		[Bindable(true)]
-		public string Category 
-		{
-			get { return GetColumnValue<string>(Columns.Category); }
-			set { SetColumnValue(Columns.Category, value); }
 		}
 		  
 		[XmlAttribute("GLCode")]
@@ -282,6 +274,14 @@ namespace SweetSoft.APEM.DataAccess
 			get { return GetColumnValue<int>(Columns.CustomerID); }
 			set { SetColumnValue(Columns.CustomerID, value); }
 		}
+		  
+		[XmlAttribute("Category")]
+		[Bindable(true)]
+		public string Category 
+		{
+			get { return GetColumnValue<string>(Columns.Category); }
+			set { SetColumnValue(Columns.Category, value); }
+		}
 		
 		#endregion
 		
@@ -302,11 +302,9 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varCategory,string varGLCode,string varDescription,decimal varPrice,short varCurrencyID,int varCustomerID)
+		public static void Insert(string varGLCode,string varDescription,decimal varPrice,short varCurrencyID,int varCustomerID,string varCategory)
 		{
 			TblCustomerQuotationAdditionalService item = new TblCustomerQuotationAdditionalService();
-			
-			item.Category = varCategory;
 			
 			item.GLCode = varGLCode;
 			
@@ -318,6 +316,8 @@ namespace SweetSoft.APEM.DataAccess
 			
 			item.CustomerID = varCustomerID;
 			
+			item.Category = varCategory;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -328,13 +328,11 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varId,string varCategory,string varGLCode,string varDescription,decimal varPrice,short varCurrencyID,int varCustomerID)
+		public static void Update(int varId,string varGLCode,string varDescription,decimal varPrice,short varCurrencyID,int varCustomerID,string varCategory)
 		{
 			TblCustomerQuotationAdditionalService item = new TblCustomerQuotationAdditionalService();
 			
 				item.Id = varId;
-			
-				item.Category = varCategory;
 			
 				item.GLCode = varGLCode;
 			
@@ -345,6 +343,8 @@ namespace SweetSoft.APEM.DataAccess
 				item.CurrencyID = varCurrencyID;
 			
 				item.CustomerID = varCustomerID;
+			
+				item.Category = varCategory;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -366,42 +366,42 @@ namespace SweetSoft.APEM.DataAccess
         
         
         
-        public static TableSchema.TableColumn CategoryColumn
+        public static TableSchema.TableColumn GLCodeColumn
         {
             get { return Schema.Columns[1]; }
         }
         
         
         
-        public static TableSchema.TableColumn GLCodeColumn
+        public static TableSchema.TableColumn DescriptionColumn
         {
             get { return Schema.Columns[2]; }
         }
         
         
         
-        public static TableSchema.TableColumn DescriptionColumn
+        public static TableSchema.TableColumn PriceColumn
         {
             get { return Schema.Columns[3]; }
         }
         
         
         
-        public static TableSchema.TableColumn PriceColumn
+        public static TableSchema.TableColumn CurrencyIDColumn
         {
             get { return Schema.Columns[4]; }
         }
         
         
         
-        public static TableSchema.TableColumn CurrencyIDColumn
+        public static TableSchema.TableColumn CustomerIDColumn
         {
             get { return Schema.Columns[5]; }
         }
         
         
         
-        public static TableSchema.TableColumn CustomerIDColumn
+        public static TableSchema.TableColumn CategoryColumn
         {
             get { return Schema.Columns[6]; }
         }
@@ -413,12 +413,12 @@ namespace SweetSoft.APEM.DataAccess
 		public struct Columns
 		{
 			 public static string Id = @"ID";
-			 public static string Category = @"Category";
 			 public static string GLCode = @"GLCode";
 			 public static string Description = @"Description";
 			 public static string Price = @"Price";
 			 public static string CurrencyID = @"CurrencyID";
 			 public static string CustomerID = @"CustomerID";
+			 public static string Category = @"Category";
 						
 		}
 		#endregion

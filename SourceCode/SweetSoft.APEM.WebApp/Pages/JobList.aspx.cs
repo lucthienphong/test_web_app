@@ -51,7 +51,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             grvJobList.Columns[2].HeaderText = "R";
             grvJobList.Columns[3].HeaderText = "Job Name";
             grvJobList.Columns[4].HeaderText = "Design";
-            grvJobList.Columns[5].HeaderText = "Created date";
+            grvJobList.Columns[5].HeaderText = "Date Created";
         }
 
         private void BindSaleRepDDL()

@@ -32,9 +32,33 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
     <div class="row">
-        <div class="col-md-9 col-md-offset-3">
+        <div class="col-md-10 col-md-offset-1">
             <div class="form-group">
                 <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">User Name:</label>
+                            <asp:TextBox ID="txtUserName" runat="server" class="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">User IP:</label>
+                            <asp:TextBox ID="txtUserIP" runat="server" class="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">Action:</label>
+                            <asp:TextBox ID="txtAction" runat="server" class="form-control"></asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="form-group">
+                            <label class="control-label">Object:</label>
+                            <asp:TextBox ID="txtObjectName" runat="server" class="form-control"></asp:TextBox>
+                        </div>
+                    </div>
                     <div class="col-md-3 col-sm-3">
                         <div class="form-group">
                             <label class="control-label text-right">From date:</label>
@@ -78,18 +102,19 @@
         <div class="col-md-12">
             <div class="dataTables_wrapper form-inline">
                 <SweetSoft:GridviewExtension ID="grvLogs" runat="server" AutoGenerateColumns="false"
-                    CssClass="grvJobList table table-striped table-bordered table-checkable dataTable" GridLines="None"
+                    CssClass="grvLogs table table-striped table-bordered table-checkable dataTable" GridLines="None"
                     OnPageIndexChanging="grvLogs_PageIndexChanging"
+                    OnSorting="grvLogs_Sorting" DataKeyNames="ID"
                     AllowPaging="true" AllowSorting="true">
                     <Columns>
-                        <asp:TemplateField HeaderText="CustomerCode" HeaderStyle-CssClass="sorting" Visible="false"
+                        <asp:TemplateField HeaderText="CustomerCode" Visible="false"
                             ItemStyle-CssClass="column-one">
                             <ItemTemplate>
                                 <asp:Label ID="lbID" runat="server"
                                     Text='<%#Eval("ID")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="No" SortExpression="0" HeaderStyle-CssClass="sorting text-center"
+                        <asp:TemplateField HeaderText="No" HeaderStyle-CssClass="text-center"
                             ItemStyle-CssClass="text-center">
                             <ItemTemplate>
                                 <asp:Label ID="lbNo" runat="server"
@@ -122,7 +147,7 @@
                                 </strong>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Object" SortExpression="4" HeaderStyle-CssClass="sorting">
+                        <asp:TemplateField HeaderText="Object" SortExpression="5" HeaderStyle-CssClass="sorting">
                             <ItemTemplate>
                                 <asp:Label ID="lbObject" runat="server"
                                     Text='<%#Eval("Object")%>'></asp:Label>
@@ -162,6 +187,205 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptPlaceHolder" runat="server">
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(window).keydown(function (e) {
+                if (e.keyCode == 13) //Enter
+                {
+                    if (typeof $("[id$='btnSearch']")[0] != "undefined") {
+                        eval($("[id$='btnSearch']")[0].href);
+                    }
+                }
+            });
+        })
+
+        addRequestHanlde(SearchUserName);
+        SearchUserName();
+        function SearchUserName(s, a) {
+            if ($("input[type='text'][id$='txtUserName']").length > 0) {
+                //$(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
+                $("input[type='text'][id$='txtUserName']").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "AllLogs.aspx/GetUserNameData",
+                            data: "{'Keyword':'" + $("input[type='text'][id$='txtUserName']").val() + "'}",
+                            dataType: "json",
+                            async: true,
+                            cache: false,
+                            success: function (result) {
+                                response($.map($.parseJSON(result.d), function (item) {
+                                    return { Name: item.UserName };
+                                }));
+                            },
+                            error: function (msg) {
+                                alert(msg);
+                            }
+                        });
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function () { }
+                    },
+                    focus: function (event, ui) {
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $("input[type='text'][id$='txtUserName']").val(ui.item.Name);
+                        return false;
+                    }
+                }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                    return $("<li>")
+                        .data("ui-autocomplete-item", item)
+                        .append("<a><span style='width:30px;'>" + item.Name + '</span>' + "</a>")
+                        .appendTo(ul);
+                };
+            }
+            else {
+            }
+        }
+
+        addRequestHanlde(SearchUserIP);
+        SearchUserIP();
+        function SearchUserIP(s, a) {
+            if ($("input[type='text'][id$='txtUserIP']").length > 0) {
+                //$(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
+                $("input[type='text'][id$='txtUserIP']").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "AllLogs.aspx/GetUserIPData",
+                            data: "{'Keyword':'" + $("input[type='text'][id$='txtUserIP']").val() + "'}",
+                            dataType: "json",
+                            async: true,
+                            cache: false,
+                            success: function (result) {
+                                response($.map($.parseJSON(result.d), function (item) {
+                                    return { Name: item.UserIP };
+                                }));
+                            },
+                            error: function (msg) {
+                                alert(msg);
+                            }
+                        });
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function () { }
+                    },
+                    focus: function (event, ui) {
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $("input[type='text'][id$='txtUserIP']").val(ui.item.Name);
+                        return false;
+                    }
+                }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                    return $("<li>")
+                        .data("ui-autocomplete-item", item)
+                        .append("<a><span style='width:30px;'>" + item.Name + '</span>' + "</a>")
+                        .appendTo(ul);
+                };
+            }
+            else {
+            }
+        }
+
+        addRequestHanlde(SearchAction);
+        SearchAction();
+        function SearchAction(s, a) {
+            if ($("input[type='text'][id$='txtAction']").length > 0) {
+                //$(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
+                $("input[type='text'][id$='txtAction']").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "AllLogs.aspx/GetActionData",
+                            data: "{'Keyword':'" + $("input[type='text'][id$='txtAction']").val() + "'}",
+                            dataType: "json",
+                            async: true,
+                            cache: false,
+                            success: function (result) {
+                                response($.map($.parseJSON(result.d), function (item) {
+                                    return { Name: item.Action };
+                                }));
+                            },
+                            error: function (msg) {
+                                alert(msg);
+                            }
+                        });
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function () { }
+                    },
+                    focus: function (event, ui) {
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $("input[type='text'][id$='txtAction']").val(ui.item.Name);
+                        return false;
+                    }
+                }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                    return $("<li>")
+                        .data("ui-autocomplete-item", item)
+                        .append("<a><span style='width:30px;'>" + item.Name + '</span>' + "</a>")
+                        .appendTo(ul);
+                };
+            }
+            else {
+            }
+        }
+
+        addRequestHanlde(SearchObject);
+        SearchObject();
+        function SearchObject(s, a) {
+            if ($("input[type='text'][id$='txtObjectName']").length > 0) {
+                //$(".ui-autocomplete, .ui-dialog, .ui-helper-hidden-accessible").remove();
+                $("input[type='text'][id$='txtObjectName']").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            url: "AllLogs.aspx/GetObjectData",
+                            data: "{'Keyword':'" + $("input[type='text'][id$='txtObjectName']").val() + "'}",
+                            dataType: "json",
+                            async: true,
+                            cache: false,
+                            success: function (result) {
+                                response($.map($.parseJSON(result.d), function (item) {
+                                    return { Name: item.ObjectX };
+                                }));
+                            },
+                            error: function (msg) {
+                                alert(msg);
+                            }
+                        });
+                    },
+                    messages: {
+                        noResults: '',
+                        results: function () { }
+                    },
+                    focus: function (event, ui) {
+                        return false;
+                    },
+                    select: function (event, ui) {
+                        $("input[type='text'][id$='txtObjectName']").val(ui.item.Name);
+                        return false;
+                    }
+                }).data("ui-autocomplete")._renderItem = function (ul, item) {
+                    return $("<li>")
+                        .data("ui-autocomplete-item", item)
+                        .append("<a><span style='width:30px;'>" + item.Name + '</span>' + "</a>")
+                        .appendTo(ul);
+                };
+            }
+            else {
+            }
+        }
 
         function Detail(obj) {
             var dataid = $(obj).attr("data-id");

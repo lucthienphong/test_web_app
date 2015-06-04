@@ -235,25 +235,6 @@ namespace SweetSoft.APEM.DataAccess
         }
         
 		
-		private SweetSoft.APEM.DataAccess.AspnetPersonalizationAllUserCollection colAspnetPersonalizationAllUsers;
-		public SweetSoft.APEM.DataAccess.AspnetPersonalizationAllUserCollection AspnetPersonalizationAllUsers()
-		{
-			if(colAspnetPersonalizationAllUsers == null)
-			{
-				colAspnetPersonalizationAllUsers = new SweetSoft.APEM.DataAccess.AspnetPersonalizationAllUserCollection().Where(AspnetPersonalizationAllUser.Columns.PathId, PathId).Load();
-				colAspnetPersonalizationAllUsers.ListChanged += new ListChangedEventHandler(colAspnetPersonalizationAllUsers_ListChanged);
-			}
-			return colAspnetPersonalizationAllUsers;
-		}
-				
-		void colAspnetPersonalizationAllUsers_ListChanged(object sender, ListChangedEventArgs e)
-		{
-            if (e.ListChangedType == ListChangedType.ItemAdded)
-            {
-		        // Set foreign key value
-		        colAspnetPersonalizationAllUsers[e.NewIndex].PathId = PathId;
-            }
-		}
 		private SweetSoft.APEM.DataAccess.AspnetPersonalizationPerUserCollection colAspnetPersonalizationPerUserRecords;
 		public SweetSoft.APEM.DataAccess.AspnetPersonalizationPerUserCollection AspnetPersonalizationPerUserRecords()
 		{
@@ -271,6 +252,25 @@ namespace SweetSoft.APEM.DataAccess
             {
 		        // Set foreign key value
 		        colAspnetPersonalizationPerUserRecords[e.NewIndex].PathId = PathId;
+            }
+		}
+		private SweetSoft.APEM.DataAccess.AspnetPersonalizationAllUserCollection colAspnetPersonalizationAllUsers;
+		public SweetSoft.APEM.DataAccess.AspnetPersonalizationAllUserCollection AspnetPersonalizationAllUsers()
+		{
+			if(colAspnetPersonalizationAllUsers == null)
+			{
+				colAspnetPersonalizationAllUsers = new SweetSoft.APEM.DataAccess.AspnetPersonalizationAllUserCollection().Where(AspnetPersonalizationAllUser.Columns.PathId, PathId).Load();
+				colAspnetPersonalizationAllUsers.ListChanged += new ListChangedEventHandler(colAspnetPersonalizationAllUsers_ListChanged);
+			}
+			return colAspnetPersonalizationAllUsers;
+		}
+				
+		void colAspnetPersonalizationAllUsers_ListChanged(object sender, ListChangedEventArgs e)
+		{
+            if (e.ListChangedType == ListChangedType.ItemAdded)
+            {
+		        // Set foreign key value
+		        colAspnetPersonalizationAllUsers[e.NewIndex].PathId = PathId;
             }
 		}
 		#endregion
@@ -395,22 +395,22 @@ namespace SweetSoft.APEM.DataAccess
 		
         public void SetPKValues()
         {
-                if (colAspnetPersonalizationAllUsers != null)
+                if (colAspnetPersonalizationPerUserRecords != null)
                 {
-                    foreach (SweetSoft.APEM.DataAccess.AspnetPersonalizationAllUser item in colAspnetPersonalizationAllUsers)
+                    foreach (SweetSoft.APEM.DataAccess.AspnetPersonalizationPerUser item in colAspnetPersonalizationPerUserRecords)
                     {
-                        if (item.PathId != PathId)
+                        if (item.PathId == null ||item.PathId != PathId)
                         {
                             item.PathId = PathId;
                         }
                     }
                }
 		
-                if (colAspnetPersonalizationPerUserRecords != null)
+                if (colAspnetPersonalizationAllUsers != null)
                 {
-                    foreach (SweetSoft.APEM.DataAccess.AspnetPersonalizationPerUser item in colAspnetPersonalizationPerUserRecords)
+                    foreach (SweetSoft.APEM.DataAccess.AspnetPersonalizationAllUser item in colAspnetPersonalizationAllUsers)
                     {
-                        if (item.PathId == null ||item.PathId != PathId)
+                        if (item.PathId != PathId)
                         {
                             item.PathId = PathId;
                         }
@@ -425,14 +425,14 @@ namespace SweetSoft.APEM.DataAccess
         {
             Save();
             
-                if (colAspnetPersonalizationAllUsers != null)
-                {
-                    colAspnetPersonalizationAllUsers.SaveAll();
-               }
-		
                 if (colAspnetPersonalizationPerUserRecords != null)
                 {
                     colAspnetPersonalizationPerUserRecords.SaveAll();
+               }
+		
+                if (colAspnetPersonalizationAllUsers != null)
+                {
+                    colAspnetPersonalizationAllUsers.SaveAll();
                }
 		}
         #endregion

@@ -445,7 +445,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.CurrencyName = CurrencyName;
                 obj.UnitOfMeasure = UnitOfMeasure;
             }
-            source.Sort((x,y) => string.Compare(x.PricingName, y.PricingName));
+
+            source.Sort((x, y) => x.PricingName.CompareTo(y.PricingName));
             Session[ViewState["PageID"] + "dtSource"] = source;
         }
 
@@ -799,11 +800,9 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.CurrencyID = CurrencyID;
                 obj.CurrencyName = CurrencyName;
             }
-            source.Sort((x, y) => string.Compare(x.Description, y.Description));
+            source = source.OrderBy(o => o.Description).ToList<CustomerQuotationAdditionalServiceExtention>();
             Session[ViewState["PageID"] + "dtSourceAdditional"] = source;
         }
-
-
 
         //Save Detail
         private bool SaveAdditional(int CustomerID)
@@ -1091,7 +1090,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.CurrencyID = CurrencyID;
                 obj.CurrencyName = CurrencyName;
             }
-            source.Sort((x, y) => string.Compare(x.Description, y.Description));
+            source = source.OrderBy(o => o.Description).ToList<CustomerQuotationOtherChargesExtention>();
             Session[ViewState["PageID"] + "dtSourceOtherCharges"] = source;
         }
 

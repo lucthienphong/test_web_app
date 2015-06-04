@@ -599,11 +599,16 @@ namespace SweetSoft.APEM.WebApp.Pages
             obj = source.Where(x => x.ContactID == contactID).FirstOrDefault();
             if (obj != null)
             {
-                obj.ContactName = contactName;
-                obj.Honorific = honorific;
-                obj.Designation = designation;
-                obj.Tel = tel;
-                obj.Email = email;
+                TblContact newObj = new TblContact();
+                newObj.ContactID = obj.ContactID;
+                newObj.ContactName = contactName;
+                newObj.Honorific = honorific;
+                newObj.Designation = designation;
+                newObj.Tel = tel;
+                newObj.Email = email;
+
+                source.Remove(obj);
+                source.Add(newObj);
             }
             else
             {

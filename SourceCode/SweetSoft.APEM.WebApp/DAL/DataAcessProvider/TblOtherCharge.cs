@@ -165,19 +165,6 @@ namespace SweetSoft.APEM.DataAccess
 				colvarDescription.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarDescription);
 				
-				TableSchema.TableColumn colvarPricingID = new TableSchema.TableColumn(schema);
-				colvarPricingID.ColumnName = "PricingID";
-				colvarPricingID.DataType = DbType.Int32;
-				colvarPricingID.MaxLength = 0;
-				colvarPricingID.AutoIncrement = false;
-				colvarPricingID.IsNullable = true;
-				colvarPricingID.IsPrimaryKey = false;
-				colvarPricingID.IsForeignKey = false;
-				colvarPricingID.IsReadOnly = false;
-				colvarPricingID.DefaultSetting = @"";
-				colvarPricingID.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarPricingID);
-				
 				TableSchema.TableColumn colvarCharge = new TableSchema.TableColumn(schema);
 				colvarCharge.ColumnName = "Charge";
 				colvarCharge.DataType = DbType.Decimal;
@@ -217,6 +204,19 @@ namespace SweetSoft.APEM.DataAccess
 				colvarJobID.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarJobID);
 				
+				TableSchema.TableColumn colvarPricingID = new TableSchema.TableColumn(schema);
+				colvarPricingID.ColumnName = "PricingID";
+				colvarPricingID.DataType = DbType.Int32;
+				colvarPricingID.MaxLength = 0;
+				colvarPricingID.AutoIncrement = false;
+				colvarPricingID.IsNullable = true;
+				colvarPricingID.IsPrimaryKey = false;
+				colvarPricingID.IsForeignKey = false;
+				colvarPricingID.IsReadOnly = false;
+				colvarPricingID.DefaultSetting = @"";
+				colvarPricingID.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarPricingID);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -251,14 +251,6 @@ namespace SweetSoft.APEM.DataAccess
 			set { SetColumnValue(Columns.Description, value); }
 		}
 		  
-		[XmlAttribute("PricingID")]
-		[Bindable(true)]
-		public int? PricingID 
-		{
-			get { return GetColumnValue<int?>(Columns.PricingID); }
-			set { SetColumnValue(Columns.PricingID, value); }
-		}
-		  
 		[XmlAttribute("Charge")]
 		[Bindable(true)]
 		public decimal? Charge 
@@ -282,6 +274,14 @@ namespace SweetSoft.APEM.DataAccess
 			get { return GetColumnValue<int?>(Columns.JobID); }
 			set { SetColumnValue(Columns.JobID, value); }
 		}
+		  
+		[XmlAttribute("PricingID")]
+		[Bindable(true)]
+		public int? PricingID 
+		{
+			get { return GetColumnValue<int?>(Columns.PricingID); }
+			set { SetColumnValue(Columns.PricingID, value); }
+		}
 		
 		#endregion
 		
@@ -302,7 +302,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varGLCode,string varDescription,int? varPricingID,decimal? varCharge,int? varQuantity,int? varJobID)
+		public static void Insert(string varGLCode,string varDescription,decimal? varCharge,int? varQuantity,int? varJobID,int? varPricingID)
 		{
 			TblOtherCharge item = new TblOtherCharge();
 			
@@ -310,13 +310,13 @@ namespace SweetSoft.APEM.DataAccess
 			
 			item.Description = varDescription;
 			
-			item.PricingID = varPricingID;
-			
 			item.Charge = varCharge;
 			
 			item.Quantity = varQuantity;
 			
 			item.JobID = varJobID;
+			
+			item.PricingID = varPricingID;
 			
 		
 			if (System.Web.HttpContext.Current != null)
@@ -328,7 +328,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varOtherChargesID,string varGLCode,string varDescription,int? varPricingID,decimal? varCharge,int? varQuantity,int? varJobID)
+		public static void Update(int varOtherChargesID,string varGLCode,string varDescription,decimal? varCharge,int? varQuantity,int? varJobID,int? varPricingID)
 		{
 			TblOtherCharge item = new TblOtherCharge();
 			
@@ -338,13 +338,13 @@ namespace SweetSoft.APEM.DataAccess
 			
 				item.Description = varDescription;
 			
-				item.PricingID = varPricingID;
-			
 				item.Charge = varCharge;
 			
 				item.Quantity = varQuantity;
 			
 				item.JobID = varJobID;
+			
+				item.PricingID = varPricingID;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -380,28 +380,28 @@ namespace SweetSoft.APEM.DataAccess
         
         
         
-        public static TableSchema.TableColumn PricingIDColumn
+        public static TableSchema.TableColumn ChargeColumn
         {
             get { return Schema.Columns[3]; }
         }
         
         
         
-        public static TableSchema.TableColumn ChargeColumn
+        public static TableSchema.TableColumn QuantityColumn
         {
             get { return Schema.Columns[4]; }
         }
         
         
         
-        public static TableSchema.TableColumn QuantityColumn
+        public static TableSchema.TableColumn JobIDColumn
         {
             get { return Schema.Columns[5]; }
         }
         
         
         
-        public static TableSchema.TableColumn JobIDColumn
+        public static TableSchema.TableColumn PricingIDColumn
         {
             get { return Schema.Columns[6]; }
         }
@@ -415,10 +415,10 @@ namespace SweetSoft.APEM.DataAccess
 			 public static string OtherChargesID = @"OtherChargesID";
 			 public static string GLCode = @"GLCode";
 			 public static string Description = @"Description";
-			 public static string PricingID = @"PricingID";
 			 public static string Charge = @"Charge";
 			 public static string Quantity = @"Quantity";
 			 public static string JobID = @"JobID";
+			 public static string PricingID = @"PricingID";
 						
 		}
 		#endregion

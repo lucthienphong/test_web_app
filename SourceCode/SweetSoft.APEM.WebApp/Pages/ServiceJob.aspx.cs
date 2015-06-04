@@ -630,10 +630,14 @@ namespace SweetSoft.APEM.WebApp.Pages
             itemNew.WorkOrderValues = 0;
             itemNew.PricingID = 0;
             itemNew.PricingName = string.Empty;
+            itemNew.No = Coll.Count + 1;
 
-            Coll.Add(itemNew);
+            //Coll.Add(itemNew);
+            //grvServiceJobDetail.EditIndex = Coll.Count - 1;
+            Coll.Insert(0, itemNew);
+            grvServiceJobDetail.EditIndex = 0;
+
             Session[ViewState["PageID"] + "ServiceJobDetail"] = Coll;
-            grvServiceJobDetail.EditIndex = Coll.Count - 1;
             BindServiceJobDetail();
         }
 
@@ -731,6 +735,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 coll[rowIndex].PricingName = PricingName;
                 coll[rowIndex].WorkOrderValues = obj != null ? obj.Price : 0;
             }
+            coll.Sort((x, y) => x.No.CompareTo(y.No));
             Session[ViewState["PageID"] + "ServiceJobDetail"] = coll;
         }
 
@@ -771,16 +776,17 @@ namespace SweetSoft.APEM.WebApp.Pages
                 short.TryParse(ddlCurrency.SelectedValue, out CurrencyID);
                 PricingID = (int?)grvServiceJobDetail.DataKeys[e.Row.RowIndex].Values[1];
 
-                TblServiceJobDetail item = e.Row.DataItem as TblServiceJobDetail;
+                ServiceJobDetailExtension item = e.Row.DataItem as ServiceJobDetailExtension;
                 if (item != null)
                 {
                     Label lblNo = e.Row.FindControl("lblNo") as Label;
                     if (lblNo != null)
                     {
-                        if (!item.WorkOrderNumber.Equals(item1) || !item.ProductID.Equals(item2))
-                        { lblNo.Text = count.ToString(); count++; }
-                        else
-                            lblNo.Text = string.Empty;
+                        //if (!item.WorkOrderNumber.Equals(item1) || !item.ProductID.Equals(item2))
+                        //{ lblNo.Text = count.ToString(); count++; }
+                        //else
+                        //    lblNo.Text = string.Empty;
+                        lblNo.Text = item.No.ToString();
                     }
                     item1 = item.WorkOrderNumber;
                     item2 = item.ProductID;
@@ -1068,6 +1074,9 @@ namespace SweetSoft.APEM.WebApp.Pages
                     }
                 }
             }
+            OtherChargesExtension newItem = coll[0];
+            coll.Add(newItem);
+            coll.RemoveAt(0);
             Session[ViewState["PageID"] + "OtherCharges"] = coll;
         }
 
@@ -1125,10 +1134,14 @@ namespace SweetSoft.APEM.WebApp.Pages
             itemNew.Charge = 0;
             itemNew.JobID = 0;
             itemNew.Quantity = 0;
-            Coll.Add(itemNew);
+
+            //Coll.Add(itemNew);
+            //grvOtherCharges.EditIndex = Coll.Count - 1;
+
+            Coll.Insert(0, itemNew);
+            grvOtherCharges.EditIndex = 0;
 
             Session[ViewState["PageID"] + "OtherCharges"] = Coll;
-            grvOtherCharges.EditIndex = Coll.Count - 1;
             BindOtherCharge();
         }
 

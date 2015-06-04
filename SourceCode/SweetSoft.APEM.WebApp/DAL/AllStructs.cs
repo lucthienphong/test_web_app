@@ -72,8 +72,6 @@ namespace SweetSoft.APEM.DataAccess
         
 		public static readonly string TblCylinderStatus = @"tblCylinderStatus";
         
-		public static readonly string TblDataLog = @"tblDataLogs";
-        
 		public static readonly string TblDebit = @"tblDebit";
         
 		public static readonly string TblDebitDetail = @"tblDebitDetail";
@@ -102,8 +100,6 @@ namespace SweetSoft.APEM.DataAccess
         
 		public static readonly string TblInvoiceDetail = @"tblInvoiceDetail";
         
-		public static readonly string TblInvoiceLockStatus = @"tblInvoiceLockStatus";
-        
 		public static readonly string TblJob = @"tblJob";
         
 		public static readonly string TblJobProcess = @"tblJobProcess";
@@ -127,6 +123,8 @@ namespace SweetSoft.APEM.DataAccess
 		public static readonly string TblObjectLocking = @"tblObjectLocking";
         
 		public static readonly string TblOrderConfirmation = @"tblOrderConfirmation";
+        
+		public static readonly string TblOrderLocking = @"tblOrderLocking";
         
 		public static readonly string TblOtherCharge = @"tblOtherCharges";
         
@@ -314,11 +312,6 @@ namespace SweetSoft.APEM.DataAccess
             get { return DataService.GetSchema("tblCylinderStatus", "DataAcessProvider"); }
 		}
         
-		public static TableSchema.Table TblDataLog
-		{
-            get { return DataService.GetSchema("tblDataLogs", "DataAcessProvider"); }
-		}
-        
 		public static TableSchema.Table TblDebit
 		{
             get { return DataService.GetSchema("tblDebit", "DataAcessProvider"); }
@@ -389,11 +382,6 @@ namespace SweetSoft.APEM.DataAccess
             get { return DataService.GetSchema("tblInvoiceDetail", "DataAcessProvider"); }
 		}
         
-		public static TableSchema.Table TblInvoiceLockStatus
-		{
-            get { return DataService.GetSchema("tblInvoiceLockStatus", "DataAcessProvider"); }
-		}
-        
 		public static TableSchema.Table TblJob
 		{
             get { return DataService.GetSchema("tblJob", "DataAcessProvider"); }
@@ -452,6 +440,11 @@ namespace SweetSoft.APEM.DataAccess
 		public static TableSchema.Table TblOrderConfirmation
 		{
             get { return DataService.GetSchema("tblOrderConfirmation", "DataAcessProvider"); }
+		}
+        
+		public static TableSchema.Table TblOrderLocking
+		{
+            get { return DataService.GetSchema("tblOrderLocking", "DataAcessProvider"); }
 		}
         
 		public static TableSchema.Table TblOtherCharge

@@ -806,7 +806,7 @@
                                                                 runat="server"></asp:CheckBox>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderStyle-CssClass="column-100" ItemStyle-CssClass="column-100 text-center">
+                                                    <asp:TemplateField HeaderStyle-CssClass="column-120" ItemStyle-CssClass="column-120 text-center">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btnEdit" runat="server" CssClass="btn btn-primary"
                                                                 CommandArgument='<%# Eval("CylinderID") %>' CommandName="Edit">

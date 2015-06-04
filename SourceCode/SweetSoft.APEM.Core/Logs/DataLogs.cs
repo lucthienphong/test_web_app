@@ -6,6 +6,17 @@ using System.Text;
 
 namespace SweetSoft.APEM.Core.Logs
 {
+    public enum NumSortType
+    {
+        ASC,
+        DESC
+    }
+    public class Sort
+    {
+        public int ColIndex = 1;
+        public NumSortType Type = NumSortType.ASC;
+    }
+
     public enum TypeActionLogs
     {
         [Description("Authentication")]
@@ -33,16 +44,16 @@ namespace SweetSoft.APEM.Core.Logs
         {
             public class Action
             {
-                public const string LOGIN = "login";
-                public const string FORGOT_PASSWORD = "forgotpassword";
-                public const string CHANGE_PASSWORD = "changepassword";
-                public const string LOGOUT = "logout";
+                public const string LOGIN = "LOGIN";
+                public const string FORGOT_PASSWORD = "FORGOT PASSWORD";
+                public const string CHANGE_PASSWORD = "CHANGE PASSWORD";
+                public const string LOGOUT = "LOGOUT";
             }
             public class Status
             {
-                public const string SUCCESS = "success";
-                public const string FAIL = "fail";
-                public const string ERROR = "error";
+                public const string SUCCESS = "SUCCESS";
+                public const string FAIL = "FAIL";
+                public const string ERROR = "ERROR";
             }
         }
 

@@ -80,7 +80,7 @@ namespace SweetSoft.APEM.Logs.DataAccess
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string ContentLogs,DateTime? ActionDate,string UserIP)
+	    public void Insert(string ContentLogs,DateTime? ActionDate,string UserIP,string UserName,string Action,string ObjectX)
 	    {
 		    TblAllDataLog item = new TblAllDataLog();
 		    
@@ -90,6 +90,12 @@ namespace SweetSoft.APEM.Logs.DataAccess
             
             item.UserIP = UserIP;
             
+            item.UserName = UserName;
+            
+            item.Action = Action;
+            
+            item.ObjectX = ObjectX;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -98,7 +104,7 @@ namespace SweetSoft.APEM.Logs.DataAccess
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int Id,string ContentLogs,DateTime? ActionDate,string UserIP)
+	    public void Update(int Id,string ContentLogs,DateTime? ActionDate,string UserIP,string UserName,string Action,string ObjectX)
 	    {
 		    TblAllDataLog item = new TblAllDataLog();
 	        item.MarkOld();
@@ -111,6 +117,12 @@ namespace SweetSoft.APEM.Logs.DataAccess
 			item.ActionDate = ActionDate;
 				
 			item.UserIP = UserIP;
+				
+			item.UserName = UserName;
+				
+			item.Action = Action;
+				
+			item.ObjectX = ObjectX;
 				
 	        item.Save(UserName);
 	    }

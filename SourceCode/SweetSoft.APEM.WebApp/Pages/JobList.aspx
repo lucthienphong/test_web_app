@@ -465,9 +465,10 @@
 
         function InitEngraving() {
             var linkColl = $('a[id$="lnkEngraving"]');
+
             if (linkColl.length > 0) {
-                linkColl.click(function () {
-                    parent.openWindow($('a[data-title]:eq(0)'), 'Job Engraving', '/Pages/' + linkColl.attr('href'));
+                linkColl.click(function (e) {
+                    parent.openWindow($('a[data-title]:eq(0)'), 'Job Engraving', e.currentTarget.href);
                     return false;
                 });
             }

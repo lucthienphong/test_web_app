@@ -64,15 +64,27 @@ namespace SweetSoft.APEM.Core.Logs
                     break;
             }
 
+            GetInforDataLogs(ref newLog, newDataLogs);
+
             newLog.ContentLogs = JsonHelper.Serialize<DataLogs>(newDataLogs);
             InsertLog(newLog);
 
         }
 
-        public static List<DataLogsViewObject> SelectDataLogs(int PageIndex, int PageSize, DateTime? DateFrom, DateTime? DateTo)
+        public static List<DataLogsViewObject> SelectDataLogs(int PageIndex, int PageSize, 
+                                                                DateTime? DateFrom, 
+                                                                DateTime? DateTo, 
+                                                                string UserName,
+                                                                string UserIP,
+                                                                string Action,
+                                                                string ObjectName,
+                                                                Sort sort)
         {
             List<DataLogsViewObject> view = new List<DataLogsViewObject>();
             var select = new Select().From(TblAllDataLog.Schema).Where(TblAllDataLog.IdColumn).IsNotNull();
+
+            #region Add Conditions
+
             if(DateFrom != null)
             {
                 select = select.And(TblAllDataLog.ActionDateColumn).IsGreaterThanOrEqualTo(DateTimeHelper.AddFirstTimeOfDay(DateFrom.Value));
@@ -81,8 +93,96 @@ namespace SweetSoft.APEM.Core.Logs
             {
                 select = select.And(TblAllDataLog.ActionDateColumn).IsLessThanOrEqualTo(DateTimeHelper.AddLastTimeOfDay(DateTo.Value));
             }
-            select = select.OrderDesc(TblAllDataLog.Columns.ActionDate);
+
+            if (!string.IsNullOrEmpty(UserName))
+            {
+                UserName = "%" + UserName + "%";
+                select = select.And(TblAllDataLog.UserNameColumn).Like(UserName);
+            }
+
+            if (!string.IsNullOrEmpty(UserIP))
+            {
+                UserIP = "%" + UserIP + "%";
+                select = select.And(TblAllDataLog.UserIPColumn).Like(UserIP);
+            }
+
+            if (!string.IsNullOrEmpty(Action))
+            {
+                Action = "%" + Action + "%";
+                select = select.And(TblAllDataLog.ActionColumn).Like(Action);
+            }
+
+            if (!string.IsNullOrEmpty(ObjectName))
+            {
+                ObjectName = "%" + ObjectName + "%";
+                select = select.And(TblAllDataLog.ObjectXColumn).Like(ObjectName);
+            }
+
+            #endregion
+
+            #region Sort
+
+            switch (sort.ColIndex)
+            {
+                case 1:
+                    if (sort.Type == NumSortType.DESC)
+                    {
+                        select = select.OrderDesc(TblAllDataLog.Columns.ActionDate);
+                    }
+                    else if (sort.Type == NumSortType.ASC)
+                    {
+                        select = select.OrderAsc(TblAllDataLog.Columns.ActionDate);
+                    }
+                    break;
+                case 2:
+                    if (sort.Type == NumSortType.DESC)
+                    {
+                        select = select.OrderDesc(TblAllDataLog.Columns.UserName);
+                    }
+                    else if (sort.Type == NumSortType.ASC)
+                    {
+                        select = select.OrderAsc(TblAllDataLog.Columns.UserName);
+                    }
+                    break;
+                case 3:
+                    if (sort.Type == NumSortType.DESC)
+                    {
+                        select = select.OrderDesc(TblAllDataLog.Columns.UserIP);
+                    }
+                    else if (sort.Type == NumSortType.ASC)
+                    {
+                        select = select.OrderAsc(TblAllDataLog.Columns.UserIP);
+                    }
+                    break;
+                case 4:
+                    if (sort.Type == NumSortType.DESC)
+                    {
+                        select = select.OrderDesc(TblAllDataLog.Columns.Action);
+                    }
+                    else if (sort.Type == NumSortType.ASC)
+                    {
+                        select = select.OrderAsc(TblAllDataLog.Columns.Action);
+                    }
+                    break;
+                case 5:
+                    if (sort.Type == NumSortType.DESC)
+                    {
+                        select = select.OrderDesc(TblAllDataLog.Columns.ObjectX);
+                    }
+                    else if (sort.Type == NumSortType.ASC)
+                    {
+                        select = select.OrderAsc(TblAllDataLog.Columns.ObjectX);
+                    }
+                    break;
+            }
+
+            #endregion
+
+            int TotalRow = select.GetRecordCount();
+            select.Paged(PageIndex + 1, PageSize);
             List<TblAllDataLog> lstLogs = select.ExecuteTypedList<TblAllDataLog>();
+
+            #region Create Data View
 
             int i_No = 1;
             foreach (TblAllDataLog log in lstLogs)
@@ -92,11 +192,10 @@ namespace SweetSoft.APEM.Core.Logs
                 item.No = i_No;
                 item.DateAction = log.ActionDate.Value.ToString("dd/MM/yyyy HH:mm:ss");
                 item.UserIP = log.UserIP;
-                item.TotalRow = lstLogs.Count;
+                item.TotalRow = TotalRow;
 
                 DataLogs contentLogs = JsonHelper.Deserialize<DataLogs>(log.ContentLogs);
-                TblUser user = UserManager.SelectUserByID(contentLogs.UserID);
-                item.UserName = user == null ? null : user.UserName;
+                item.UserName = log.UserName;
 
                 if (contentLogs.Action == Enum.GetName(typeof(TypeActionLogs), TypeActionLogs.Data))
                 {
@@ -151,7 +250,10 @@ namespace SweetSoft.APEM.Core.Logs
                 i_No++;
             }
 
-            return GetRange(view, PageIndex, PageSize);
+            #endregion
+
+            return view;
+            //return GetRange(view, PageIndex, PageSize);
         }
 
         public static TblAllDataLog SeclectDataLogByID(int LogID)
@@ -180,6 +282,74 @@ namespace SweetSoft.APEM.Core.Logs
             }
 
             return retLST;
+        }
+
+        private static void GetInforDataLogs(ref TblAllDataLog log, DataLogs contentLogs)
+        {
+            if (contentLogs.Action == Enum.GetName(typeof(TypeActionLogs), TypeActionLogs.Data))
+            {
+                TblUser user = UserManager.SelectUserByID(contentLogs.UserID);
+                log.UserName = user == null ? null : user.UserName;
+                log.Action = contentLogs.DataObjLogs.Action;
+                log.ObjectX = contentLogs.DataObjLogs.TypeObject;
+            }
+            else if (contentLogs.Action == Enum.GetName(typeof(TypeActionLogs), TypeActionLogs.Authentication))
+            {
+                log.Action = contentLogs.DataAuthLogs.Action;
+                log.ObjectX = "User";
+            }
+        }
+
+        public static List<TblAllDataLog> SelectUserNameByKeyWord(string KeyWord)
+        {
+            KeyWord = "%" + KeyWord + "%";
+
+            TblAllDataLogCollection list = new Select(TblAllDataLog.UserNameColumn).From(TblAllDataLog.Schema).Distinct()
+                    .Where(TblAllDataLog.Columns.UserName).Like(KeyWord)
+                    .And(TblAllDataLog.Columns.UserName).IsNotNull()
+                    .OrderAsc(TblAllDataLog.Columns.UserName)
+                    .ExecuteAsCollection<TblAllDataLogCollection>();
+
+            return list.ToList<TblAllDataLog>();
+        }
+
+        public static List<TblAllDataLog> SelectUserIPByKeyWord(string KeyWord)
+        {
+            KeyWord = "%" + KeyWord + "%";
+
+            TblAllDataLogCollection list = new Select(TblAllDataLog.UserIPColumn).From(TblAllDataLog.Schema).Distinct()
+                    .Where(TblAllDataLog.Columns.UserIP).Like(KeyWord)
+                    .And(TblAllDataLog.Columns.UserIP).IsNotNull()
+                    .OrderAsc(TblAllDataLog.Columns.UserIP)
+                    .ExecuteAsCollection<TblAllDataLogCollection>();
+
+            return list.ToList<TblAllDataLog>();
+        }
+
+        public static List<TblAllDataLog> SelectActionByKeyWord(string KeyWord)
+        {
+            KeyWord = "%" + KeyWord + "%";
+
+            TblAllDataLogCollection list = new Select(TblAllDataLog.ActionColumn).From(TblAllDataLog.Schema).Distinct()
+                    .Where(TblAllDataLog.Columns.Action).Like(KeyWord)
+                    .And(TblAllDataLog.Columns.Action).IsNotNull()
+                    .OrderAsc(TblAllDataLog.Columns.Action)
+                    .ExecuteAsCollection<TblAllDataLogCollection>();
+
+            return list.ToList<TblAllDataLog>();
+        }
+
+        public static List<TblAllDataLog> SelectObjectByKeyWord(string KeyWord)
+        {
+            KeyWord = "%" + KeyWord + "%";
+
+            TblAllDataLogCollection list = new Select(TblAllDataLog.ObjectXColumn).From(TblAllDataLog.Schema).Distinct()
+                    .Where(TblAllDataLog.Columns.ObjectX).Like(KeyWord)
+                    .And(TblAllDataLog.Columns.ObjectX).IsNotNull()
+                    .OrderAsc(TblAllDataLog.Columns.ObjectX)
+                    .ExecuteAsCollection<TblAllDataLogCollection>();
+
+            return list.ToList<TblAllDataLog>();
         }
     }
 }

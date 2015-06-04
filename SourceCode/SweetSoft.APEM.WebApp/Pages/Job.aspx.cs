@@ -1378,7 +1378,7 @@ namespace SweetSoft.APEM.WebApp.Pages
             r["IsPivotCylinder"] = source.Rows.Count > 0 ? 0 : 1;
 
             source.Rows.InsertAt(r, 0);
-
+            source.DefaultView.Sort = "";
             //Update list
             Session[ViewState["PageID"] + "tableSource"] = source;
         }
@@ -1433,6 +1433,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 r["Dirameter"] = Dirameter;
                 r.AcceptChanges();
             }
+
             source.DefaultView.Sort = "Sequence";
             Session[ViewState["PageID"] + "tableSource"] = source;
         }
@@ -2740,9 +2741,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                     }
                 }
             }
-
-            var newRow = coll[0];
-            coll.Add(newRow);
+            OtherChargesExtension newOC = coll[0];
+            coll.Add(newOC);
             coll.RemoveAt(0);
             Session[ViewState["PageID"] + "OtherCharges"] = coll;
         }
@@ -2806,6 +2806,7 @@ namespace SweetSoft.APEM.WebApp.Pages
 
             Session[ViewState["PageID"] + "OtherCharges"] = Coll;
             grvOtherCharges.EditIndex = 0;
+            //grvOtherCharges.EditIndex = Coll.Count - 1;
             BindOtherCharge();
         }
 

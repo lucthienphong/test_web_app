@@ -193,22 +193,13 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Literal ltrDeliveryNotes;
         
         /// <summary>
-        /// ltrEMSH control.
+        /// ltrSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrEMSH;
-        
-        /// <summary>
-        /// ltrEMSV control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrEMSV;
+        protected global::System.Web.UI.WebControls.Literal ltrSize;
         
         /// <summary>
         /// ltrEMColour control.
@@ -283,22 +274,13 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Literal ltrBW;
         
         /// <summary>
-        /// ltrUnitSizeV control.
+        /// ltrUnitSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrUnitSizeV;
-        
-        /// <summary>
-        /// ltrUnitSizeH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrUnitSizeH;
+        protected global::System.Web.UI.WebControls.Literal ltrUnitSize;
         
         /// <summary>
         /// ltrDirection control.

@@ -178,6 +178,45 @@ namespace SweetSoft.APEM.Logs.DataAccess
 				colvarUserIP.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarUserIP);
 				
+				TableSchema.TableColumn colvarUserName = new TableSchema.TableColumn(schema);
+				colvarUserName.ColumnName = "UserName";
+				colvarUserName.DataType = DbType.String;
+				colvarUserName.MaxLength = 256;
+				colvarUserName.AutoIncrement = false;
+				colvarUserName.IsNullable = true;
+				colvarUserName.IsPrimaryKey = false;
+				colvarUserName.IsForeignKey = false;
+				colvarUserName.IsReadOnly = false;
+				colvarUserName.DefaultSetting = @"";
+				colvarUserName.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarUserName);
+				
+				TableSchema.TableColumn colvarAction = new TableSchema.TableColumn(schema);
+				colvarAction.ColumnName = "Action";
+				colvarAction.DataType = DbType.String;
+				colvarAction.MaxLength = 256;
+				colvarAction.AutoIncrement = false;
+				colvarAction.IsNullable = true;
+				colvarAction.IsPrimaryKey = false;
+				colvarAction.IsForeignKey = false;
+				colvarAction.IsReadOnly = false;
+				colvarAction.DefaultSetting = @"";
+				colvarAction.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarAction);
+				
+				TableSchema.TableColumn colvarObjectX = new TableSchema.TableColumn(schema);
+				colvarObjectX.ColumnName = "Object";
+				colvarObjectX.DataType = DbType.String;
+				colvarObjectX.MaxLength = 256;
+				colvarObjectX.AutoIncrement = false;
+				colvarObjectX.IsNullable = true;
+				colvarObjectX.IsPrimaryKey = false;
+				colvarObjectX.IsForeignKey = false;
+				colvarObjectX.IsReadOnly = false;
+				colvarObjectX.DefaultSetting = @"";
+				colvarObjectX.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarObjectX);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -219,6 +258,30 @@ namespace SweetSoft.APEM.Logs.DataAccess
 			get { return GetColumnValue<string>(Columns.UserIP); }
 			set { SetColumnValue(Columns.UserIP, value); }
 		}
+		  
+		[XmlAttribute("UserName")]
+		[Bindable(true)]
+		public string UserName 
+		{
+			get { return GetColumnValue<string>(Columns.UserName); }
+			set { SetColumnValue(Columns.UserName, value); }
+		}
+		  
+		[XmlAttribute("Action")]
+		[Bindable(true)]
+		public string Action 
+		{
+			get { return GetColumnValue<string>(Columns.Action); }
+			set { SetColumnValue(Columns.Action, value); }
+		}
+		  
+		[XmlAttribute("ObjectX")]
+		[Bindable(true)]
+		public string ObjectX 
+		{
+			get { return GetColumnValue<string>(Columns.ObjectX); }
+			set { SetColumnValue(Columns.ObjectX, value); }
+		}
 		
 		#endregion
 		
@@ -239,7 +302,7 @@ namespace SweetSoft.APEM.Logs.DataAccess
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varContentLogs,DateTime? varActionDate,string varUserIP)
+		public static void Insert(string varContentLogs,DateTime? varActionDate,string varUserIP,string varUserName,string varAction,string varObjectX)
 		{
 			TblAllDataLog item = new TblAllDataLog();
 			
@@ -248,6 +311,12 @@ namespace SweetSoft.APEM.Logs.DataAccess
 			item.ActionDate = varActionDate;
 			
 			item.UserIP = varUserIP;
+			
+			item.UserName = varUserName;
+			
+			item.Action = varAction;
+			
+			item.ObjectX = varObjectX;
 			
 		
 			if (System.Web.HttpContext.Current != null)
@@ -259,7 +328,7 @@ namespace SweetSoft.APEM.Logs.DataAccess
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varId,string varContentLogs,DateTime? varActionDate,string varUserIP)
+		public static void Update(int varId,string varContentLogs,DateTime? varActionDate,string varUserIP,string varUserName,string varAction,string varObjectX)
 		{
 			TblAllDataLog item = new TblAllDataLog();
 			
@@ -270,6 +339,12 @@ namespace SweetSoft.APEM.Logs.DataAccess
 				item.ActionDate = varActionDate;
 			
 				item.UserIP = varUserIP;
+			
+				item.UserName = varUserName;
+			
+				item.Action = varAction;
+			
+				item.ObjectX = varObjectX;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -312,6 +387,27 @@ namespace SweetSoft.APEM.Logs.DataAccess
         
         
         
+        public static TableSchema.TableColumn UserNameColumn
+        {
+            get { return Schema.Columns[4]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn ActionColumn
+        {
+            get { return Schema.Columns[5]; }
+        }
+        
+        
+        
+        public static TableSchema.TableColumn ObjectXColumn
+        {
+            get { return Schema.Columns[6]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -320,6 +416,9 @@ namespace SweetSoft.APEM.Logs.DataAccess
 			 public static string ContentLogs = @"ContentLogs";
 			 public static string ActionDate = @"ActionDate";
 			 public static string UserIP = @"UserIP";
+			 public static string UserName = @"UserName";
+			 public static string Action = @"Action";
+			 public static string ObjectX = @"Object";
 						
 		}
 		#endregion

@@ -449,9 +449,11 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.UnitPrice = UnitPrice;
             }
 
-            var newRow = source[0];
-            source.Add(newRow);
+
+            TblDebitDetail newObj = source[0];
+            source.Add(obj);
             source.RemoveAt(0);
+
             Session[ViewState["PageID"] + "Source"] = source;
         }
 

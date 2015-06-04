@@ -349,9 +349,10 @@
                                                                         <h5>
                                                                             <small>Size: </small>
                                                                             <strong>
-                                                                                <asp:Literal Text="text" ID="ltrEMSH" runat="server" EnableViewState="false" />
+                                                                                <asp:Literal Text="text" ID="ltrSize" runat="server" EnableViewState="false" />
+                                                                                <%--<asp:Literal Text="text" ID="ltrEMSH" runat="server" EnableViewState="false" />
                                                                                 x
-                                                                                <asp:Literal Text="text" ID="ltrEMSV" runat="server" EnableViewState="false" />&nbsp;mm</strong>
+                                                                                <asp:Literal Text="text" ID="ltrEMSV" runat="server" EnableViewState="false" />&nbsp;mm--%></strong>
                                                                         </h5>
                                                                         <h5>
                                                                             <small>Colour: </small>
@@ -411,10 +412,12 @@
                                                                     <div style="display: table-cell; border: 1px solid #000; padding: 3px">
                                                                         <h5>
                                                                             <small>Unit size: </small>
-                                                                            <strong>V:
+                                                                            <strong><%--V:
                                                                                 <asp:Literal Text="text" ID="ltrUnitSizeV" runat="server" EnableViewState="false" />
                                                                                 x H:
-                                                                                <asp:Literal Text="text" ID="ltrUnitSizeH" runat="server" EnableViewState="false" /></strong>
+                                                                                <asp:Literal Text="text" ID="ltrUnitSizeH" runat="server" EnableViewState="false" />--%>
+                                                                                <asp:Literal Text="text" ID="ltrUnitSize" runat="server" EnableViewState="false" />
+                                                                            </strong>
                                                                         </h5>
                                                                         <h5>
                                                                             <small>Printing Direction: </small>

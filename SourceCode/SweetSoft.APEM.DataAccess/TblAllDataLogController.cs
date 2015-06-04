@@ -89,6 +89,12 @@ namespace SweetSoft.APEM.Logs.DataAccess
             item.ActionDate = obj.ActionDate;
 
             item.UserIP = obj.UserIP;
+
+            item.UserName = UserName;
+
+            item.Action = obj.Action;
+
+            item.ObjectX = obj.ObjectX;
             
 		    item.Save(UserName);
 
@@ -113,7 +119,11 @@ namespace SweetSoft.APEM.Logs.DataAccess
 
             item.UserIP = obj.UserIP;
 
-            item.Save(UserName);
+            item.UserName = UserName;
+
+            item.Action = obj.Action;
+
+            item.ObjectX = obj.ObjectX;
 				
 	        item.Save(UserName);
 
