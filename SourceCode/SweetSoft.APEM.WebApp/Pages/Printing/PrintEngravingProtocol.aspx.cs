@@ -43,13 +43,15 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             if(jObj != null)
             {
                 //Lấy thông tin RootJob
-                if (jObj.RootJobID != null)
+                if (jObj.RootJobID == null)
                 {
                     TblJob root = JobManager.SelectByID((int)jObj.RootJobID);
-                    ltrRootJob.Text = root != null ? string.Format("{0} - R{1}", root.JobNumber, root.RevNumber) : string.Empty;
+                    ltrRootJob.Text = root != null ? string.Format("{0} - R{1}", jObj.JobNumber, root.RevNumber) : string.Empty;
                 }
                 else
+                {
                     ltrRootJob.Text = string.Format("{0} - R{1}", jObj.RootJobNo, jObj.RootJobRevNumber);
+                }
                 ltrCommonJob.Text = jObj.CommonJobNumber;
 
                 //Fill thông tin Job

@@ -384,8 +384,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                         else
                         {
                             engraving.LaserStart = string.Empty;
-                            engraving.FileSizeHDLS = null;
-                            engraving.FileSizeVDLS = null;
+                            engraving.FileSizeHEtching = null;
+                            engraving.FileSizeVEtching = null;
+                            engraving.EngrStartEtching = null;
+                            engraving.EngrWidthEtching = null;
                             engraving.LaserOperator = string.Empty;
                             engraving.FinalControl = string.Empty;
                             engraving.SRRemarkEtching = string.Empty;
@@ -445,6 +447,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         else
                         {
                             engraving.EngravingStart = null;
+                            engraving.EngravingWidth = null;
                             engraving.FileSizeHEMG = null;
                             engraving.FileSizeVEMG = null;
                             engraving.SRRemarkEMG = string.Empty;
@@ -497,8 +500,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                         else
                         {
                             engraving.LaserStart = string.Empty;
-                            engraving.FileSizeHDLS = null;
-                            engraving.FileSizeVDLS = null;
+                            engraving.FileSizeHEtching = null;
+                            engraving.FileSizeVEtching = null;
+                            engraving.EngrStartEtching = null;
+                            engraving.EngrWidthEtching = null;
                             engraving.LaserOperator = string.Empty;
                             engraving.FinalControl = string.Empty;
                             engraving.SRRemarkEtching = string.Empty;

@@ -800,7 +800,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.CurrencyID = CurrencyID;
                 obj.CurrencyName = CurrencyName;
             }
-            source = source.OrderBy(o => o.Description).ToList<CustomerQuotationAdditionalServiceExtention>();
+            source.Sort((x, y) => x.Description.CompareTo(y.Description));
             Session[ViewState["PageID"] + "dtSourceAdditional"] = source;
         }
 
@@ -1090,7 +1090,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 obj.CurrencyID = CurrencyID;
                 obj.CurrencyName = CurrencyName;
             }
-            source = source.OrderBy(o => o.Description).ToList<CustomerQuotationOtherChargesExtention>();
+            source.Sort((x, y) => x.Description.CompareTo(y.Description));
             Session[ViewState["PageID"] + "dtSourceOtherCharges"] = source;
         }
 

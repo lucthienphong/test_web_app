@@ -1572,6 +1572,7 @@
     <Content Include="Reports\CustomerDS.xsc">
       <DependentUpon>CustomerDS.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Trung-Deploy-APEM.pubxml" />
     <None Include="Reports\CustomerDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

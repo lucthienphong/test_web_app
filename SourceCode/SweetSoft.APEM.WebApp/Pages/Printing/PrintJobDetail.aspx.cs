@@ -85,8 +85,8 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 ltrTrapSize.Text = dtModel.Rows[0]["Size"].ToString();
                 //ltrUnitSizeH.Text = dtModel.Rows[0]["UNSizeH"].ToString();
                 //ltrUnitSizeV.Text = dtModel.Rows[0]["UNSizeV"].ToString();
-                string sUnitSize = "V: " + dtModel.Rows[0]["UNSizeH"].ToString() + " x " +
-                                   "H: " + dtModel.Rows[0]["UNSizeV"].ToString();
+                string sUnitSize = "V: " + dtModel.Rows[0]["UNSizeV"].ToString() + " x " +
+                                   "H: " + dtModel.Rows[0]["UNSizeH"].ToString();
                 ltrUnitSize.Text = sUnitSize;
                 string eyesmark = string.Empty;
                 if (!string.IsNullOrEmpty(dtModel.Rows[0]["EMPonsition"].ToString()))

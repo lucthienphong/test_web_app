@@ -1,0 +1,27 @@
+﻿<browsers>
+  <browser id="Safari60_bugfix" parentID="Safari60">
+    <identification>
+      <capability name="appleWebTechnologyVersion" match="^\d{3,}$" />  <!-- At least 3 digits -->
+    </identification>
+
+    <capabilities>
+      <!-- Same as in "Safari1Plus" -->
+      <capability name="ecmascriptversion" value="1.4" />
+      <capability name="w3cdomversion" value="1.0" />
+      <capability name="supportsCallback" value="true" />
+     </capabilities>
+  </browser>
+
+  <browser id="Safari85_bugfix" parentID="Safari85">
+    <identification>
+      <capability name="appleWebTechnologyVersion" match="^\d{3,}$" />  <!-- At least 3 digits -->
+    </identification>
+
+    <capabilities>
+      <!-- Same as in "Safari1Plus" -->
+      <capability name="ecmascriptversion" value="1.4" />
+      <capability name="w3cdomversion" value="1.0" />
+      <capability name="supportsCallback" value="true" />
+    </capabilities>
+  </browser>
+</browsers>

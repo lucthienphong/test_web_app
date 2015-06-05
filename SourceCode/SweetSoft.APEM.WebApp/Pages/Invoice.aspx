@@ -313,7 +313,7 @@
             <div class="form-horizontal">
                 <div class="form-group">
                     <label class="control-label col-sm-6">
-                        Sub total before GTS
+                        Sub Total before GST
                     </label>
                     <div class="col-sm-6">
                         <SweetSoft:ExtraInputMask ID="txtTotalPrice" RenderOnlyInput="true" Required="false" ToolTip="Sub Total Before GTS"
