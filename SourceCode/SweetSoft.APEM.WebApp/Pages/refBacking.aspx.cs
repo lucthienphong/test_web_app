@@ -11,6 +11,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -201,11 +203,40 @@ namespace SweetSoft.APEM.WebApp.Pages
                         OpenMessageBox(msgRole, null, false, false);
                         return;
                     }
+                    List<JsonData> lstData = new List<JsonData>();
+                    if (obj.BackingName != backingName)
+                    {
+                        lstData.Add(new JsonData()
+                        {
+                            Title = "Backing Name",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = obj.BackingName,
+                                NewValue = backingName
+                            })
+                        });
+                    }
+                    if (obj.IsObsolete != isObsolete)
+                    {
+                        lstData.Add(new JsonData()
+                                {
+                                    Title = "Obsolete",
+                                    Data = JsonConvert.SerializeObject(new Json()
+                                    {
+                                        OldValue = obj.IsObsolete ? "True" : "False",
+                                        NewValue = isObsolete ? "True" : "False"
+                                    })
+                                });
+                    }
                     obj.BackingName = backingName;
                     obj.IsObsolete = isObsolete;
                     s.Update(obj);
 
                     //Lưu vào logging
+                    LoggingActions("Backing",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(lstData));
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
                 }
                 else
@@ -223,6 +254,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                     s.Insert(obj);
 
                     //Lưu vào logging
+                    LoggingActions("Backing",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Backing Name", Data = obj.BackingName} 
+                            }));
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
                 }
                 if (obj != null)
@@ -376,12 +413,19 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
 
                             List<short> idList = new List<short>();
+                            List<JsonData> lstData = new List<JsonData>();
+
                             for (int i = 0; i < gvBacking.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)gvBacking.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     short ID = Convert.ToInt16(gvBacking.DataKeys[i].Value);
+                                    TblBacking obj = new BackingManager().SelectByID(ID);
+                                    if (obj != null)
+                                    {
+                                        lstData.Add(new JsonData() { Title = "Backing Name", Data = obj.BackingName });
+                                    }
                                     idList.Add(ID);
                                 }
                             }
@@ -389,6 +433,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                             BindData();
                             if (string.IsNullOrEmpty(DataCannotDelete))
                             {
+                                LoggingActions("Backing",
+                                            LogsAction.Objects.Action.DELETE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(lstData));
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                                 OpenMessageBox(msg, null, false, false);
                             }
@@ -481,6 +529,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
 
         }
+
         #endregion
 
         protected void gvBacking_RowCreated(object sender, GridViewRowEventArgs e)

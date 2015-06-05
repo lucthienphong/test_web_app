@@ -12,6 +12,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SweetSoftCMS.ExtraControls.Controls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -136,8 +138,6 @@ namespace SweetSoft.APEM.WebApp.Pages
             BindData();
         }
 
-
-
         //ADD, EDIT, DELETE DEPARTMENT
         #region EditData
         //Thêm dòng mới vào dữ liệu
@@ -207,6 +207,46 @@ namespace SweetSoft.APEM.WebApp.Pages
                         OpenMessageBox(msgRole, null, false, false);
                         return;
                     }
+
+                    List<JsonData> lstData = new List<JsonData>();
+
+                    if (obj.Code != countryCode)
+                    {
+                        lstData.Add(new JsonData()
+                        {
+                            Title = "Code",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = obj.Code,
+                                NewValue = countryCode
+                            })
+                        });
+                    }
+                    if (obj.Name != countryName)
+                    {
+                        lstData.Add(new JsonData()
+                        {
+                            Title = "Name",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = obj.Name,
+                                NewValue = countryName
+                            })
+                        });
+                    }
+                    if (obj.IsObsolete != isObsolete)
+                    {
+                        lstData.Add(new JsonData()
+                        {
+                            Title = "Obsolete",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = ConverByteToBool(obj.IsObsolete) ? "True" : "False",
+                                NewValue = ConverByteToBool(isObsolete) ? "True" : "False"
+                            })
+                        });
+                    }
+
                     obj.Name = countryName;
                     obj.Code = countryCode;
                     obj.IsObsolete = isObsolete;
@@ -214,6 +254,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                     ReferenceTableManager.Update(obj);
 
                     //Lưu vào logging
+                    LoggingActions("Cell Shape",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(lstData));
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
                 }
                 else
@@ -233,6 +277,13 @@ namespace SweetSoft.APEM.WebApp.Pages
                     ReferenceTableManager.Insert(obj);
 
                     //Lưu vào logging
+                    LoggingActions("Cell Shape",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Code", Data = obj.Code} ,
+                                new JsonData() { Title = "Name", Data = obj.Name} 
+                            }));
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
                 }
                 if (obj != null)
@@ -395,12 +446,19 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
 
                             List<int> idList = new List<int>();
+                            List<JsonData> lstData = new List<JsonData>();
+
                             for (int i = 0; i < gvReference.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)gvReference.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     int ID = Convert.ToInt16(gvReference.DataKeys[i].Value);
+                                    TblReference obj = ReferenceTableManager.SelectByID(ID);
+                                    if (obj != null)
+                                    {
+                                        lstData.Add(new JsonData() { Title = "Cell Shape", Data = "[Code: " + obj.Code + "] ; " + "[Name: " + obj.Name + "]" });
+                                    }
                                     idList.Add(ID);
                                 }
                             }
@@ -408,6 +466,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                             BindData();
                             if (string.IsNullOrEmpty(DataCannotDelete))
                             {
+                                LoggingActions("Cell Shape",
+                                            LogsAction.Objects.Action.DELETE,
+                                            LogsAction.Objects.Status.SUCCESS,
+                                            JsonConvert.SerializeObject(lstData));
                                 MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), "Data deleted susscessfully!", MSGButton.OK, MSGIcon.Success);
                                 OpenMessageBox(msg, null, false, false);
                             }
