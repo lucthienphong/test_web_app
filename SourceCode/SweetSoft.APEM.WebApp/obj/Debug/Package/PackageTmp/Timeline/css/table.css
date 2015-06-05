@@ -1,0 +1,214 @@
+/*
+
+RESPONSTABLE 2.0 by jordyvanraaij
+  Designed mobile first!
+
+If you like this solution, you might also want to check out the 1.0 version:
+  https://gist.github.com/jordyvanraaij/9069194
+
+*/
+
+.responstable
+{
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    color: #024457;
+}
+
+table
+{
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 250px;
+}
+
+/* top-left border-radius */
+.responstable tr:first-child th:first-child
+{
+    border-top-left-radius: 10px;
+    border-right: medium none;
+}
+
+/* top-right border-radius */
+.responstable tr:first-child th:last-child
+{
+    border-top-right-radius: 10px;
+    border-left: medium none;
+}
+
+/* bottom-left border-radius */
+.responstable tfoot td:first-child
+{
+    border-bottom-left-radius: 10px;
+}
+
+/* bottom-right border-radius */
+.responstable tfoot td:last-child
+{
+    border-bottom-right-radius: 10px;
+}
+
+.responstable tr
+{
+    border: 1px solid #d9e4e6;
+    cursor: pointer;
+}
+
+    .responstable tr.border
+    {
+        border-width: 2px;
+    }
+
+    .responstable tr.even
+    {
+        background-color: #fff;
+    }
+
+    .responstable tr.odd
+    {
+        background-color: #eaf3f3;
+    }
+
+.responstable th
+{
+    display: none;
+    border: 1px solid white;
+    border-bottom: none;
+    background-color: #167f92;
+    color: white;
+    padding: 1em;
+    font-size: 13px;
+}
+
+    .responstable th:first-child
+    {
+        display: table-cell;
+        text-align: center;
+    }
+
+    .responstable th:nth-child(2)
+    {
+        display: table-cell;
+    }
+
+        .responstable th:nth-child(2) span
+        {
+            display: none;
+        }
+
+        .responstable th:nth-child(2):after
+        {
+            content: attr(data-th);
+        }
+
+@media (min-width: 480px)
+{
+    .responstable th:nth-child(2) span
+    {
+        display: block;
+    }
+
+    .responstable th:nth-child(2):after
+    {
+        display: none;
+    }
+}
+
+.responstable td
+{
+    display: block;
+    word-wrap: break-word;
+    max-width: 7em;
+}
+
+    .responstable td:first-child
+    {
+        display: table-cell;
+        position: relative;
+        text-align: center;
+        border-right: 1px solid #d9e4e6;
+    }
+
+@media (min-width: 480px)
+{
+    .responstable td
+    {
+        border: 1px solid #d9e4e6;
+    }
+}
+
+.responstable th, .responstable td
+{
+    text-align: left;
+    margin: .5em 1em;
+}
+
+@media (min-width: 480px)
+{
+    .responstable th, .responstable td
+    {
+        display: table-cell;
+        padding: 6px 6px;
+    }
+}
+
+@media (max-width: 1050px)
+{
+    body
+    {
+        font-size: 0.8em;
+    }
+
+    table.responstable
+    {
+        font-size: 11px;
+    }
+
+    .product > .responstable > thead > tr > th:first-child, #gvdonhang > tbody > tr > td:first-child
+    {
+        width: 25% !important;
+    }
+
+        .product > .responstable > thead > tr > th:first-child + th,
+        #gvdonhang > tbody > tr > td:first-child + td
+        {
+            width: 38% !important;
+        }
+
+            .product > .responstable > thead > tr > th:first-child + th + th, #gvdonhang > tbody > tr > td:first-child + td + td
+            {
+                width: 37% !important;
+            }
+
+    .maintime .responstable th:first-child + th, .maintime .responstable td:first-child + td
+    {
+        width: 37% !important;
+    }
+
+        .maintime .responstable th:first-child + th + th, .maintime .responstable td:first-child + td + td
+        {
+            width: 20% !important;
+        }
+
+    .rowtruc .responstable th
+    {
+        font-size: 10px !important;
+    }
+
+    .rowtruc > .responstable > tbody > tr > th:first-child + th + th, .rowtruc > .responstable > tbody > tr > td:first-child + td + td
+    {
+        width: 26% !important;
+    }
+
+    #gvdonhang > tbody > tr > td:first-child > a
+    {
+        margin-left: 5px !important;
+    }
+
+    .arrow
+    {
+        background-position: 2px 9px !important;
+    }
+}

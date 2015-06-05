@@ -1,0 +1,385 @@
+html, body
+{
+    height: 100%;
+    width: 100%;
+}
+
+#header
+{
+    height: 30px;
+    background: #3498db;
+    border-bottom: 2px solid #2980b9;
+}
+
+.user-loged
+{
+    background: url(../img/custom-arrow.png) no-repeat right center !important;
+    padding-left: 5px !important;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    vertical-align: -5px;
+}
+
+.logoAPE
+{
+    height: 17px;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-top: 6px;
+}
+
+.asia
+{
+    color: #fff;
+}
+
+.nav.component
+{
+    margin-top: 0;
+}
+
+    .nav.component > li
+    {
+        border: 0 !important;
+        display: inline-block;
+    }
+
+        .nav.component > li > a
+        {
+            padding: 4px 10px;
+            color: #fff;
+        }
+
+            .nav.component > li > a:hover
+            {
+                background: transparent !important;
+            }
+
+            .nav.component > li > a [class^="flaticon-"]:before, .nav.component > li > a [class*=" flaticon-"]:before, .nav.component > li > a [class^="flaticon-"]:after, .nav.component > li > a [class*=" flaticon-"]:after
+            {
+                font-size: 15px;
+            }
+
+        .nav.component > li .dropdown-menu
+        {
+            left: auto;
+            right: 8px;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border: 1px solid rgba(0,0,0,.15);
+        }
+
+    .nav.component .open > a
+    {
+        background: transparent;
+    }
+
+#footer
+{
+    background: #1670ac;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+}
+
+    #footer #dockwindowpanel
+    {
+        height: 100%;
+        background: url(../img/dockpanelWindow.png) no-repeat left center;
+        height: 30px;
+        padding-left: -10px;
+    }
+
+#main-menu
+{
+    background: #aeaeae;
+    border-bottom: 1px solid #959494;
+    height: 30px;
+    position: relative;
+    z-index: 99;
+}
+
+#relative
+{
+    background: #fff;
+    position: absolute;
+    top: 82px;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+    #relative #desktop
+    {
+        height: 100%;
+        width: 100%;
+    }
+
+.button-control
+{
+    background: #5bc0de;
+    z-index: 99;
+    position: fixed;
+    width: 100%;
+}
+
+.nav-tabs > li
+{
+    border: 0;
+}
+
+.dataTable
+{
+    margin-bottom: 0;
+}
+
+.tab-content
+{
+    border-width: 0 1px 1px 1px;
+    border-color: #ddd;
+    border-style: solid;
+    padding-top: 15px;
+    margin-bottom: 61px;
+}
+
+#prepare_window_loading
+{
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: url(../img/loading.gif) no-repeat center center,#fff;
+}
+
+.in-mask-date
+{
+    position: absolute;
+    /*right: 9px;*/
+    right: 10px;
+    bottom: 7px;
+    top: auto;
+    font-weight: 300;
+    font-size: 17px;
+    color: #A6A6A6;
+}
+
+.ui-dialog
+{
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #d3d3d3;
+    box-shadow: 2px 3px 7px rgba(0,0,0,.3);
+    z-index: 9999;
+    position: absolute;
+}
+
+.ui-dialog-titlebar
+{
+    border-bottom: 1px solid #eee;
+    background-image: -webkit-linear-gradient(top,#5bc0de 0%,#31b0d5 100%);
+    background-image: -o-linear-gradient(top,#5bc0de 0%,#31b0d5 100%);
+    background-image: linear-gradient(to bottom,#5bc0de 0%,#31b0d5 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de',endColorstr='#ff31b0d5',GradientType=0);
+    border-color: #2b669a;
+    color: #fff;
+    cursor: move;
+    padding: 5px;
+}
+
+.ui-dialog-title
+{
+    height: 30px;
+    line-height: 20px;
+}
+
+.ui-dialog-titlebar-close .ui-button-text
+{
+    display: none;
+}
+
+.ui-widget-overlay
+{
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.ui-dialog-titlebar-close
+{
+    outline: none;
+    background: none;
+    border: none;
+    color: #fff;
+    border-radius: 2px;
+    radius: 2px;
+    float: right;
+}
+
+    .ui-dialog-titlebar-close:before
+    {
+        font-family: 'Glyphicons Halflings';
+        font-size: 10px;
+        content: "";
+    }
+
+/*.ui-button
+{
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}*/
+
+    .ui-button:focus, .ui-button:active:focus, .ui-button.active:focus
+    {
+        outline: thin dotted;
+        outline: 5px auto -webkit-focus-ring-color;
+        outline-offset: -2px;
+    }
+
+    .ui-button:hover, .ui-button:focus
+    {
+        color: #333;
+        text-decoration: none;
+    }
+
+    .ui-button:active, .ui-button.active
+    {
+        outline: 0;
+        background-image: none;
+        -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+        box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    }
+
+    .ui-button.disabled, .ui-button[disabled], fieldset[disabled] .ui-button
+    {
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: .65;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .ui-button:hover, .ui-button:focus, .ui-button:active, .ui-button.active, .open > .dropdown-toggle.ui-button
+    {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+    }
+
+    .ui-button:active, .ui-button.active, .open > .dropdown-toggle.ui-button
+    {
+        background-image: none;
+    }
+
+    .ui-button.disabled, .ui-button[disabled], fieldset[disabled] .ui-button, .ui-button.disabled:hover, .ui-button[disabled]:hover, fieldset[disabled] .ui-button:hover, .ui-button.disabled:focus, .ui-button[disabled]:focus, fieldset[disabled] .ui-button:focus, .ui-button.disabled:active, .ui-button[disabled]:active, fieldset[disabled] .ui-button:active, .ui-button.disabled.active, .ui-button[disabled].active, fieldset[disabled] .ui-button.active
+    {
+        background-color: #fff;
+        border-color: #ccc;
+    }
+
+    .ui-button .badge
+    {
+        color: #fff;
+        background-color: #333;
+    }
+
+    .ui-button.ui-dialog-titlebar-close
+    {
+        background: none;
+        border: 0;
+        color: #fff;
+        padding: 0 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        border-radius: 4px;
+    }
+
+        .ui-button.ui-dialog-titlebar-close:before
+        {
+            font-size: 15px;
+        }
+
+.ui-dialog-buttonset
+{
+    padding: 0 15px 15px;
+}
+
+    .ui-dialog-buttonset button + button
+    {
+        margin-left: 15px;
+    }
+
+.sweetsoft
+{
+    color: #fff;
+    line-height: 30px;
+    float: right;
+    padding-right: 30px;
+    display: inline-block;
+    background: url(../img/sweetsoft-logo.png) no-repeat center right;
+    background-size: 21px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+    .sweetsoft:hover
+    {
+        color: #fff;
+    }
+
+.row_content
+{
+    padding-top: 65px;
+}
+
+a[disabled],a[disabled]:hover,a[disabled]:visited
+{
+    color: #aeaeae;
+    text-decoration:none;
+    cursor:not-allowed
+}
+.ui-dialog-buttonpane{
+    margin-top: 15px;
+    background: f8f8f8;
+}
+
+.wrap-datepicker{
+    position: relative;
+}
+
+@media only screen and (min-width : 768px) and (max-width : 1024px)
+{
+    .menu-text{
+        display: none;
+    }
+}

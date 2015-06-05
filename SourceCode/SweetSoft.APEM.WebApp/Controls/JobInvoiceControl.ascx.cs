@@ -56,7 +56,7 @@ namespace SweetSoft.APEM.WebApp.Controls
 
             string title = string.Format("{0}: {1} | {2}: {3} | {4}: {5}",
                 "Sub Total", total.ToString("N2"),
-                "Sub total before GTS", priceDiscount.ToString("N2"),
+                "Sub Total before GST", priceDiscount.ToString("N2"),
                 "Final amount", priceTaxed.ToString("N2"));
 
             ltrCollapTitle.Text = string.Format("<h4 style='font-size: 14px;font-weight: bold;margin-top: 0px !important;margin-bottom: 0px !important;' data-parent='#accordion' href='#job-invoice-{0}' aria-expanded='true' aria-controls='collapseOne' data-toggle='collapse'><a  style='text-decoration: none' >{1}{2}</a>&nbsp;&nbsp;<small>{3}</small> <a class='pull-right' href='javascript:;' style='color: #428bca;' onclick='DoRemoveJob({0}); return false;'><span style='font-size: 18px;' class='glyphicon glyphicon-remove'></span></a></h4>", item.JobID,

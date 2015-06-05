@@ -1,0 +1,5 @@
+﻿askZoom=Phóng lớn vào (25%)
+properties=Thuộc tính
+outline=outline
+tasks=nhiệm vụ
+help=Giúp đỡ

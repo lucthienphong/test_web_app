@@ -3,3 +3,4 @@ d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.DataAccess\bin\Debug\SweetSof
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.DataAccess\bin\Debug\SubSonic.dll
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.DataAccess\obj\Debug\SweetSoft.APEM.DataAccess.dll
 d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.DataAccess\obj\Debug\SweetSoft.APEM.DataAccess.pdb
+d:\dev\Sweet-APEM_WebApp\SourceCode\SweetSoft.APEM.DataAccess\obj\Debug\SweetSoft.APEM.DataAccess.csprojResolveAssemblyReference.cache

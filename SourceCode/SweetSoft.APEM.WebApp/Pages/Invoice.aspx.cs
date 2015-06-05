@@ -68,6 +68,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                 Session[ViewState["PageID"] + "SweetSoft_InvoiceID"] = string.Empty;
                 BindTaxForDDL();
                 LoadData();
+                ltrView.Visible = false;
                 ltrView.Text = string.Format(@"<div class='btn-group'>
                         <button type='button' class='btn btn-transparent dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
                             <span class='flaticon-eye110'></span> View <span class='caret'></span>
@@ -81,7 +82,10 @@ namespace SweetSoft.APEM.WebApp.Pages
                             </li>
                         </ul>
                         </div>", InvoiceID);
-                ltrView.Visible = true;
+                if (InvoiceID > 0)
+                {
+                    ltrView.Visible = true;
+                }
 
                 ////Kiểm tra invoice có bị khóa không?
                 ////Nếu khóa thì không cho edit hay xóa invoice
@@ -188,6 +192,21 @@ namespace SweetSoft.APEM.WebApp.Pages
                             </li>
                         </ul>
                         </div>", invoice.InvoiceID);
+
+                ltrView.Text = string.Format(@"<div class='btn-group'>
+                        <button type='button' class='btn btn-transparent dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
+                            <span class='flaticon-eye110'></span> View <span class='caret'></span>
+                        </button>
+                        <ul class='dropdown-menu openPrinting' role='menu'>
+                            <li>
+                                <a id='printing' href='javascript:;' data-href='Printing/PrintTaxInvoice.aspx?ID={0}'>Tax Invoice</a>
+                            </li>
+                            <li>
+                                <a id='printing' href='javascript:;' data-href='Printing/PrintTaxInvoiceServices.aspx?ID={0}'>Service Job Invoice</a>
+                            </li>
+                        </ul>
+                        </div>", InvoiceID);
+                ltrView.Visible = true;
 
                 /// Trunglc Add - 23-04-2015
                 /// 
@@ -770,7 +789,7 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                         MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_ADD_SUCCESSFULLY), MSGButton.OK, MSGIcon.Success);
                         OpenMessageBox(msg, null, false, false);
-                        LoadData();
+                        LoadData();                        
                     }
                 }
             }
