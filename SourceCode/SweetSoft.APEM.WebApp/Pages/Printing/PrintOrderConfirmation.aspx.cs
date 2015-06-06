@@ -74,17 +74,26 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ltrCompanyName.Text = SettingManager.GetSettingValue(SettingNames.CompanyName);
+            ltrCompanyName.Text = SettingManager.GetSettingValue(SettingNames.CompanyName) + "<br />";
             ltrCompanyPhone.Text = SettingManager.GetSettingValue(SettingNames.CompanyPhone);
             ltrCompanyFax.Text = SettingManager.GetSettingValue(SettingNames.CompanyFax);
             ltrCompanyEmail.Text = SettingManager.GetSettingValue(SettingNames.CompanyEmail);
             ltrISDN.Text = SettingManager.GetSettingValue(SettingNames.CompanyISDN);
             ltrCompanyAddress.Text = SettingManager.GetSettingValue(SettingNames.CompanyAddress);
 
+            ltrCompany.Text = SettingManager.GetSettingValue(SettingNames.CompanyName) + "<br />";
+            string sCompanyInfo = SettingManager.GetSettingValue(SettingNames.CompanyAddress) + "<br />";
+            sCompanyInfo += "Phone " + SettingManager.GetSettingValue(SettingNames.CompanyPhone) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            sCompanyInfo += "Fax " + SettingManager.GetSettingValue(SettingNames.CompanyFax) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            sCompanyInfo += SettingManager.GetSettingValue(SettingNames.CompanyWebsite) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            sCompanyInfo += "GST No.:" + SettingManager.GetSettingValue(SettingNames.CompanyGST) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />";
+            sCompanyInfo += "TIN No.:" + SettingManager.GetSettingValue(SettingNames.CompanyGST);
+
+            lblCompanyInfo.Text = sCompanyInfo;
+
             TblOrderConfirmation od = OrderConfirmationManager.SelectByID(JobID);
             if (od != null)
             {
-                ltrCompany.Text = SettingManager.GetSettingValue(SettingNames.CompanyName);
 
                 TblUser obj = UserManager.GetUserByUserName(od.ModifiedBy);
                 TblStaff sObj = StaffManager.SelectByID(obj != null ? obj.UserID : 0);

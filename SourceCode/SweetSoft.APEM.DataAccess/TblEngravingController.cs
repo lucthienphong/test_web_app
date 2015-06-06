@@ -149,6 +149,8 @@ namespace SweetSoft.APEM.DataAccess
             item.EngrStartEtching = obj.EngrStartEtching;
 
             item.EngrWidthEtching = obj.EngrWidthEtching;
+
+            item.JobTicket = obj.JobTicket;
 				
 	        item.Save(UserName);
 

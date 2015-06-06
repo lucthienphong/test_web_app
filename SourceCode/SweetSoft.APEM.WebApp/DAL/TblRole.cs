@@ -282,77 +282,6 @@ namespace SweetSoft.APEM.DataAccess
 		#region Many To Many Helpers
 		
 		 
-		public SweetSoft.APEM.DataAccess.TblUserCollection GetTblUserCollection() { return TblRole.GetTblUserCollection(this.RoleID); }
-		public static SweetSoft.APEM.DataAccess.TblUserCollection GetTblUserCollection(int varRoleID)
-		{
-		    SubSonic.QueryCommand cmd = new SubSonic.QueryCommand("SELECT * FROM [dbo].[tblUser] INNER JOIN [tblUserRole] ON [tblUser].[UserID] = [tblUserRole].[UserID] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
-			cmd.AddParameter("@RoleID", varRoleID, DbType.Int32);
-			IDataReader rdr = SubSonic.DataService.GetReader(cmd);
-			TblUserCollection coll = new TblUserCollection();
-			coll.LoadAndCloseReader(rdr);
-			return coll;
-		}
-		
-		public static void SaveTblUserMap(int varRoleID, TblUserCollection items)
-		{
-			QueryCommandCollection coll = new SubSonic.QueryCommandCollection();
-			//delete out the existing
-			QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblUserRole] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
-			cmdDel.AddParameter("@RoleID", varRoleID, DbType.Int32);
-			coll.Add(cmdDel);
-			DataService.ExecuteTransaction(coll);
-			foreach (TblUser item in items)
-			{
-				TblUserRole varTblUserRole = new TblUserRole();
-				varTblUserRole.SetColumnValue("RoleID", varRoleID);
-				varTblUserRole.SetColumnValue("UserID", item.GetPrimaryKeyValue());
-				varTblUserRole.Save();
-			}
-		}
-		public static void SaveTblUserMap(int varRoleID, System.Web.UI.WebControls.ListItemCollection itemList) 
-		{
-			QueryCommandCollection coll = new SubSonic.QueryCommandCollection();
-			//delete out the existing
-			 QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblUserRole] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
-			cmdDel.AddParameter("@RoleID", varRoleID, DbType.Int32);
-			coll.Add(cmdDel);
-			DataService.ExecuteTransaction(coll);
-			foreach (System.Web.UI.WebControls.ListItem l in itemList) 
-			{
-				if (l.Selected) 
-				{
-					TblUserRole varTblUserRole = new TblUserRole();
-					varTblUserRole.SetColumnValue("RoleID", varRoleID);
-					varTblUserRole.SetColumnValue("UserID", l.Value);
-					varTblUserRole.Save();
-				}
-			}
-		}
-		public static void SaveTblUserMap(int varRoleID , int[] itemList) 
-		{
-			QueryCommandCollection coll = new SubSonic.QueryCommandCollection();
-			//delete out the existing
-			 QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblUserRole] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
-			cmdDel.AddParameter("@RoleID", varRoleID, DbType.Int32);
-			coll.Add(cmdDel);
-			DataService.ExecuteTransaction(coll);
-			foreach (int item in itemList) 
-			{
-				TblUserRole varTblUserRole = new TblUserRole();
-				varTblUserRole.SetColumnValue("RoleID", varRoleID);
-				varTblUserRole.SetColumnValue("UserID", item);
-				varTblUserRole.Save();
-			}
-		}
-		
-		public static void DeleteTblUserMap(int varRoleID) 
-		{
-			QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblUserRole] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
-			cmdDel.AddParameter("@RoleID", varRoleID, DbType.Int32);
-			DataService.ExecuteQuery(cmdDel);
-		}
-		
-		 
 		public SweetSoft.APEM.DataAccess.TblFunctionCollection GetTblFunctionCollection() { return TblRole.GetTblFunctionCollection(this.RoleID); }
 		public static SweetSoft.APEM.DataAccess.TblFunctionCollection GetTblFunctionCollection(int varRoleID)
 		{
@@ -419,6 +348,77 @@ namespace SweetSoft.APEM.DataAccess
 		public static void DeleteTblFunctionMap(int varRoleID) 
 		{
 			QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblRolePermission] WHERE [tblRolePermission].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
+			cmdDel.AddParameter("@RoleID", varRoleID, DbType.Int32);
+			DataService.ExecuteQuery(cmdDel);
+		}
+		
+		 
+		public SweetSoft.APEM.DataAccess.TblUserCollection GetTblUserCollection() { return TblRole.GetTblUserCollection(this.RoleID); }
+		public static SweetSoft.APEM.DataAccess.TblUserCollection GetTblUserCollection(int varRoleID)
+		{
+		    SubSonic.QueryCommand cmd = new SubSonic.QueryCommand("SELECT * FROM [dbo].[tblUser] INNER JOIN [tblUserRole] ON [tblUser].[UserID] = [tblUserRole].[UserID] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
+			cmd.AddParameter("@RoleID", varRoleID, DbType.Int32);
+			IDataReader rdr = SubSonic.DataService.GetReader(cmd);
+			TblUserCollection coll = new TblUserCollection();
+			coll.LoadAndCloseReader(rdr);
+			return coll;
+		}
+		
+		public static void SaveTblUserMap(int varRoleID, TblUserCollection items)
+		{
+			QueryCommandCollection coll = new SubSonic.QueryCommandCollection();
+			//delete out the existing
+			QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblUserRole] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
+			cmdDel.AddParameter("@RoleID", varRoleID, DbType.Int32);
+			coll.Add(cmdDel);
+			DataService.ExecuteTransaction(coll);
+			foreach (TblUser item in items)
+			{
+				TblUserRole varTblUserRole = new TblUserRole();
+				varTblUserRole.SetColumnValue("RoleID", varRoleID);
+				varTblUserRole.SetColumnValue("UserID", item.GetPrimaryKeyValue());
+				varTblUserRole.Save();
+			}
+		}
+		public static void SaveTblUserMap(int varRoleID, System.Web.UI.WebControls.ListItemCollection itemList) 
+		{
+			QueryCommandCollection coll = new SubSonic.QueryCommandCollection();
+			//delete out the existing
+			 QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblUserRole] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
+			cmdDel.AddParameter("@RoleID", varRoleID, DbType.Int32);
+			coll.Add(cmdDel);
+			DataService.ExecuteTransaction(coll);
+			foreach (System.Web.UI.WebControls.ListItem l in itemList) 
+			{
+				if (l.Selected) 
+				{
+					TblUserRole varTblUserRole = new TblUserRole();
+					varTblUserRole.SetColumnValue("RoleID", varRoleID);
+					varTblUserRole.SetColumnValue("UserID", l.Value);
+					varTblUserRole.Save();
+				}
+			}
+		}
+		public static void SaveTblUserMap(int varRoleID , int[] itemList) 
+		{
+			QueryCommandCollection coll = new SubSonic.QueryCommandCollection();
+			//delete out the existing
+			 QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblUserRole] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
+			cmdDel.AddParameter("@RoleID", varRoleID, DbType.Int32);
+			coll.Add(cmdDel);
+			DataService.ExecuteTransaction(coll);
+			foreach (int item in itemList) 
+			{
+				TblUserRole varTblUserRole = new TblUserRole();
+				varTblUserRole.SetColumnValue("RoleID", varRoleID);
+				varTblUserRole.SetColumnValue("UserID", item);
+				varTblUserRole.Save();
+			}
+		}
+		
+		public static void DeleteTblUserMap(int varRoleID) 
+		{
+			QueryCommand cmdDel = new QueryCommand("DELETE FROM [tblUserRole] WHERE [tblUserRole].[RoleID] = @RoleID", TblRole.Schema.Provider.Name);
 			cmdDel.AddParameter("@RoleID", varRoleID, DbType.Int32);
 			DataService.ExecuteQuery(cmdDel);
 		}

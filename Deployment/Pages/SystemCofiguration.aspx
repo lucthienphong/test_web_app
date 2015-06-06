@@ -69,7 +69,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <%--<div class="form-group">--%>
                                         <label>
                                             <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.COMPANY_PHONE)%></label>
                                         <div>
@@ -77,7 +77,7 @@
                                                 CssClass="form-control">
                                             </asp:TextBox>
                                         </div>
-                                    </div>
+                                    <%--</div>--%>
                                 </div>
                                 <div class="col-md-6">
                                     <label>
@@ -91,12 +91,31 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>
-                                <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.COMPANY_WEBSITE)%></label>
+                            <label><%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.COMPANY_WEBSITE)%></label>
                             <div>
                                 <asp:TextBox ID="txtWebsite" runat="server"
                                     CssClass="form-control">
                                 </asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>GST No.</label>
+                                    <div>
+                                        <asp:TextBox ID="txtGSTNo" runat="server"
+                                            CssClass="form-control">
+                                        </asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>TIN No.</label>
+                                    <div>
+                                        <asp:TextBox ID="txtTINNo" runat="server"
+                                            CssClass="form-control">
+                                        </asp:TextBox>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -108,8 +127,8 @@
                                 </asp:TextBox>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-xs-6">
+                </div>
+                <div class="col-md-6 col-xs-6">
                         <div class="form-group">
                             <label>
                                 <%= SweetSoft.APEM.Core.ResourceTextManager.GetApplicationText(SweetSoft.APEM.Core.ResourceText.BANK_ACCOUNT_NUMBER)%></label>
@@ -147,8 +166,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>
-                                ISDN
+                            <label>ISDN</label>
                             <div>
                                 <asp:TextBox ID="txtISDN" runat="server"
                                     CssClass="form-control">

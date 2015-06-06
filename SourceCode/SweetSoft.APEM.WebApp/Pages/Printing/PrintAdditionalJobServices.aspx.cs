@@ -45,7 +45,15 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             TblJob j = JobManager.SelectByID(JobID);
             if (j != null)
             {
-                ltrCompany.Text = SettingManager.GetSettingValue(SettingNames.CompanyName);
+                ltrCompany.Text = SettingManager.GetSettingValue(SettingNames.CompanyName) + "<br />";
+                string sCompanyInfo = SettingManager.GetSettingValue(SettingNames.CompanyAddress) + "<br />";
+                sCompanyInfo += "Phone " + SettingManager.GetSettingValue(SettingNames.CompanyPhone) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                sCompanyInfo += "Fax " + SettingManager.GetSettingValue(SettingNames.CompanyFax) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                sCompanyInfo += SettingManager.GetSettingValue(SettingNames.CompanyWebsite) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                sCompanyInfo += "GST No.:" + SettingManager.GetSettingValue(SettingNames.CompanyGST) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />";
+                sCompanyInfo += "TIN No.:" + SettingManager.GetSettingValue(SettingNames.CompanyGST);
+
+                lblCompanyInfo.Text = sCompanyInfo;
 
                 ltrJobNumber.Text = j.JobNumber;
                 ltrJobDate.Text = j.CreatedOn.HasValue ? j.CreatedOn.Value.ToString("dd.MM.yyyy") : string.Empty;

@@ -32,6 +32,16 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
             ltrCompanyFax.Text = string.Format("{0} / {1}", SettingManager.GetSettingValue(SettingNames.CompanyPhone), SettingManager.GetSettingValue(SettingNames.CompanyFax));
             ltrCompanyAddress.Text = SettingManager.GetSettingValue(SettingNames.CompanyAddress);
 
+            ltrCompanyName.Text = SettingManager.GetSettingValue(SettingNames.CompanyName) + "<br />";
+            string sCompanyInfo = SettingManager.GetSettingValue(SettingNames.CompanyAddress) + "<br />";
+            sCompanyInfo += "Phone " + SettingManager.GetSettingValue(SettingNames.CompanyPhone) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            sCompanyInfo += "Fax " + SettingManager.GetSettingValue(SettingNames.CompanyFax) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            sCompanyInfo += SettingManager.GetSettingValue(SettingNames.CompanyWebsite) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            sCompanyInfo += "GST No.:" + SettingManager.GetSettingValue(SettingNames.CompanyGST) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />";
+            sCompanyInfo += "TIN No.:" + SettingManager.GetSettingValue(SettingNames.CompanyGST);
+
+            lblCompanyInfo.Text = sCompanyInfo;
+
             LoadInformation();
         }
 

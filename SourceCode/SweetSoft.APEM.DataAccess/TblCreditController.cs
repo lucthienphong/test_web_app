@@ -118,6 +118,8 @@ namespace SweetSoft.APEM.DataAccess
             item.ModifiedBy = obj.ModifiedBy;
 
             item.ModifiedOn = obj.ModifiedOn;
+
+            item.TaxID = obj.TaxID;
 				
 	        item.Save(UserName);
 

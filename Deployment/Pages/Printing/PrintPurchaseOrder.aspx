@@ -9,84 +9,110 @@
     <link href="/css/uniform.default.css" rel="stylesheet" />
 
     <style>
-        body {
+        body
+        {
             margin-top: 20px;
         }
 
         table,
-        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td
+        {
             border-color: #000 !important;
         }
 
-        label {
+        label
+        {
             font-weight: 300!important;
         }
 
-        small {
+        small
+        {
             color: #000!important;
         }
 
-        @media all {
-            body {
-                font-size:12px !important; 
+        @media all
+        {
+            body
+            {
+                font-size: 12px !important;
             }
-            .information-do label.control-label,.information-do p.form-control-static{
-                margin-bottom:3px!important;
+
+            .information-do label.control-label, .information-do p.form-control-static
+            {
+                margin-bottom: 3px!important;
             }
-            .form-group {
+
+            .form-group
+            {
                 margin-bottom: 0px;
             }
 
-            .control-label {
+            .control-label
+            {
                 padding-top: 0px !important;
                 margin-bottom: 0 !important;
             }
 
-            .form-control-static {
+            .form-control-static
+            {
                 padding-top: 0;
                 padding-bottom: 0;
             }
         }
 
-        @page {
+        @page
+        {
             size: auto;
             margin: 50mm 6mm 20mm 6mm;
             margin-top: 50mm;
         }
 
-        @media print {
-            body {
+        @media print
+        {
+            body
+            {
                 margin: 0;
             }
 
-            .form-group {
+            .form-group
+            {
                 margin-bottom: 0;
             }
 
-            h5 {
+            h5
+            {
                 margin-top: 1mm;
                 margin-bottom: 1mm;
                 font-size: 0.7em;
             }
 
-            [class^="col-xs-"] {
+            [class^="col-xs-"]
+            {
                 /*padding-left: 0mm;
                 padding-right: 0mm;*/
             }
 
-            .no-border-left {
+            .no-border-left
+            {
                 border-left-color: #fff !important;
                 border-left-color: transparent !important;
             }
 
-            .no-border-right {
+            .no-border-right
+            {
                 border-right-color: #fff !important;
                 border-right-color: transparent !important;
             }
 
-            div.uniform-checker.uniform-disabled span.uniform-checked {
+            div.uniform-checker.uniform-disabled span.uniform-checked
+            {
                 background-position: -114px -260px;
             }
+        }
+
+        .info-company
+        {
+            font-size: 11px;
         }
     </style>
 </head>
@@ -94,9 +120,14 @@
     <form id="form1" runat="server">
         <div class="container-fluid" id="wrapPrint">
             <div class="printContent">
-                <div class="row" style="margin-bottom:20px;">
+                <div class="row" style="margin-bottom: 20px;">
                     <div class="col-sm-2 col-xs-2">
                         <img src="/img/apem-logo-print.png" class="img-responsive" />
+                    </div>
+                    <div class="col-sm-10 col-xs-10">
+                        <strong>
+                            <asp:Literal runat="server" ID="ltrCompanyName" EnableViewState="false"></asp:Literal></strong>
+                        <asp:Label runat="server" ID="lblCompanyInfo" CssClass="info-company"></asp:Label>
                     </div>
                 </div>
 
@@ -114,7 +145,8 @@
                         <div class="form-group" style="margin-top: 15px;">
                             Please Deliver to:
                             <br />
-                            <strong><asp:Literal runat="server" ID="ltrCompany" EnableViewState="false"></asp:Literal></strong>
+                            <strong>
+                                <asp:Literal runat="server" ID="ltrCompany" EnableViewState="false"></asp:Literal></strong>
                             <br />
                             <asp:Literal ID="ltrCompanyAddress" Text="Lot121, Jalan Permata 2, Arab-Malaysian Industrial Park, 71800 Nilai, Negeri Sebilan D.K." runat="server" />
                         </div>
@@ -131,13 +163,13 @@
                             </p>
                             <label class="control-label">Contact Person/Telephone:</label>
                             <p class="form-control-static">
-                                <asp:Literal ID="ltrContact"  runat="server" EnableViewState="false" />
+                                <asp:Literal ID="ltrContact" runat="server" EnableViewState="false" />
                             </p>
                             <label class="control-label">Email address:</label>
                             <p class="form-control-static">
                                 <asp:Literal ID="ltrContactEmail" Text="Order number " runat="server" EnableViewState="false" />
                             </p>
-                              <label class="control-label">Our Tel No/ Fax No:</label>
+                            <label class="control-label">Our Tel No/ Fax No:</label>
                             <p class="form-control-static">
                                 <asp:Literal Text="" EnableViewState="false" ID="ltrCompanyFax" runat="server" />
                             </p>
@@ -221,12 +253,12 @@
                             GridLines="None" AllowPaging="false" AllowSorting="false" ShowFooter="true"
                             ItemType="CylinderOderModel.objCylinder">
                             <Columns>
-                                <asp:TemplateField  HeaderText="No">
+                                <asp:TemplateField HeaderText="No">
                                     <ItemTemplate>
                                         <%#((SweetSoft.APEM.DataAccess.TblCylinderCollectionModel)Container.DataItem).objCylinder.Sequence %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField  HeaderText="Cyl Barcode">
+                                <asp:TemplateField HeaderText="Cyl Barcode">
                                     <ItemTemplate>
                                         <%#((SweetSoft.APEM.DataAccess.TblCylinderCollectionModel)Container.DataItem).objCylinder.CylinderBarcode %>
                                     </ItemTemplate>
@@ -236,7 +268,7 @@
                                         <%#((SweetSoft.APEM.DataAccess.TblCylinderCollectionModel)Container.DataItem).objCylinder.CylinderNo %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField  HeaderText="Cus Cyl ID">
+                                <asp:TemplateField HeaderText="Cus Cyl ID">
                                     <ItemTemplate>
                                         <%#((SweetSoft.APEM.DataAccess.TblCylinderCollectionModel)Container.DataItem).objCylinder.CusCylinderID%>
                                     </ItemTemplate>
@@ -289,7 +321,7 @@
                         <strong style="vertical-align: top;">URGENT !!! </strong>
                         <asp:Literal ID="ltrUrgent" Text="" runat="server" />
                     </div>
-                    <div class="col-xs-12" style="margin-top:15px;">
+                    <div class="col-xs-12" style="margin-top: 15px;">
                         <label class="control-label">
                             Approved by:
                         </label>

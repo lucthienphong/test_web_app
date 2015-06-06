@@ -171,6 +171,11 @@
             margin-top: 5px !important;
             margin-bottom: 5px !important;
         }
+
+        .info-company
+        {
+            font-size: 11px;
+        }
     </style>
 </head>
 <body>
@@ -182,7 +187,8 @@
                         <img src="/img/apem-logo-print.png" class="img-responsive" />
                     </div>
                     <div class="col-sm-10 col-xs-10">
-                        <asp:Literal runat="server" ID="ltrCompanyName" EnableViewState="false"></asp:Literal>
+                        <strong><asp:Literal runat="server" ID="ltrCompanyName" EnableViewState="false"></asp:Literal></strong>
+                        <asp:Label runat="server" ID="lblCompanyInfo" CssClass="info-company"></asp:Label>
                     </div>
                 </div>
                 <asp:Literal runat="server" ID="ltrInvoiceAndDate" EnableViewState="false"></asp:Literal>
@@ -366,7 +372,8 @@
                                     </h5>
                                 </div>
                                 <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
-                                    <h5 style="text-align: center"><asp:Label ID="lblSubTotal" runat="server"></asp:Label>
+                                    <h5 style="text-align: center">
+                                        <asp:Label ID="lblSubTotal" runat="server"></asp:Label>
                                     </h5>
                                 </div>
                             </div>
@@ -394,7 +401,8 @@
                                     </h5>
                                 </div>
                                 <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
-                                    <h5 style="text-align: center"><asp:Label ID="lblTaxAmount" runat="server"></asp:Label>
+                                    <h5 style="text-align: center">
+                                        <asp:Label ID="lblTaxAmount" runat="server"></asp:Label>
                                     </h5>
                                 </div>
                             </div>

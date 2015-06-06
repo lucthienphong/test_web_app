@@ -85,6 +85,15 @@ namespace SweetSoft.APEM.WebApp.Pages {
         protected global::System.Web.UI.WebControls.DropDownList ddlRevNumber;
         
         /// <summary>
+        /// txtJobTicket control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::SweetSoftCMS.ExtraControls.Controls.CustomExtraTextbox txtJobTicket;
+        
+        /// <summary>
         /// txtJobCoOrd control.
         /// </summary>
         /// <remarks>

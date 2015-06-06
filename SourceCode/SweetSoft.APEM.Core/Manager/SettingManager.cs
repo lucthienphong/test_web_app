@@ -32,6 +32,8 @@ namespace SweetSoft.APEM.Core.Manager
         public static string CompanyPhone = string.Format(SettingNamePrefix, "CompanyPhone");
         public static string CompanyFax = string.Format(SettingNamePrefix,"CompanyFax");
         public static string CompanyWebsite = string.Format(SettingNamePrefix, "CompanyWebsite");
+        public static string CompanyGST = string.Format(SettingNamePrefix, "CompanyGST");
+        public static string CompanyTIN = string.Format(SettingNamePrefix, "CompanyTIN");
         public static string CompanyEmail = string.Format(SettingNamePrefix, "CompanyEmail");
         public static string CompanyISDN = string.Format(SettingNamePrefix, "CompanyISDN");
 

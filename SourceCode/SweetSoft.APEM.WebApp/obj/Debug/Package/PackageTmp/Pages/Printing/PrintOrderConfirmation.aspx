@@ -87,6 +87,10 @@
                 background-position: -114px -260px;
             }
         }
+        .info-company
+        {
+            font-size:11px;        
+        }
     </style>
 </head>
 <body style="background: #fff">
@@ -98,7 +102,8 @@
                         <img src="/img/apem-logo-print.png" class="img-responsive" />
                     </div>
                     <div class="col-sm-10 col-xs-10">
-                        <asp:Literal runat="server" ID="ltrCompany" EnableViewState="false"></asp:Literal>
+                        <strong><asp:Literal runat="server" ID="ltrCompany" EnableViewState="false"></asp:Literal></strong>
+                        <asp:Label runat="server" ID="lblCompanyInfo" CssClass="info-company"></asp:Label>
                     </div>
                 </div>
                 <div class="row" style="display: none">

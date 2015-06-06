@@ -80,7 +80,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(int JobID,string WorkOrderNumber,string ProductID,string GLCode,string Description,decimal WorkOrderValues,int? PricingID,short? TaxID,double? TaxPercentage)
+	    public void Insert(int JobID,string WorkOrderNumber,string ProductID,string GLCode,string Description,decimal WorkOrderValues,short? TaxID,double? TaxPercentage,int? PricingID)
 	    {
 		    TblServiceJobDetail item = new TblServiceJobDetail();
 		    
@@ -96,11 +96,11 @@ namespace SweetSoft.APEM.DataAccess
             
             item.WorkOrderValues = WorkOrderValues;
             
-            item.PricingID = PricingID;
-            
             item.TaxID = TaxID;
             
             item.TaxPercentage = TaxPercentage;
+            
+            item.PricingID = PricingID;
             
 	    
 		    item.Save(UserName);
@@ -110,7 +110,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int ServiceJobID,int JobID,string WorkOrderNumber,string ProductID,string GLCode,string Description,decimal WorkOrderValues,int? PricingID,short? TaxID,double? TaxPercentage)
+	    public void Update(int ServiceJobID,int JobID,string WorkOrderNumber,string ProductID,string GLCode,string Description,decimal WorkOrderValues,short? TaxID,double? TaxPercentage,int? PricingID)
 	    {
 		    TblServiceJobDetail item = new TblServiceJobDetail();
 	        item.MarkOld();
@@ -130,11 +130,11 @@ namespace SweetSoft.APEM.DataAccess
 				
 			item.WorkOrderValues = WorkOrderValues;
 				
-			item.PricingID = PricingID;
-				
 			item.TaxID = TaxID;
 				
 			item.TaxPercentage = TaxPercentage;
+				
+			item.PricingID = PricingID;
 				
 	        item.Save(UserName);
 	    }

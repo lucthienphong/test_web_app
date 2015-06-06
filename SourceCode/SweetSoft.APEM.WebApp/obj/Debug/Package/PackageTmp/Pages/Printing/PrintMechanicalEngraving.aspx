@@ -283,7 +283,7 @@
                         </div>
 
 
-                        <div style="display: table; width: 101%; left: -3px; right: -3px; border-spacing: 3px 0; position: relative; margin-bottom: 3px;margin-top: 25px;">
+                        <div style="display: table; width: 101%; left: -3px; right: -3px; border-spacing: 3px 0; position: relative; margin-bottom: 3px; margin-top: 25px;">
                             <div style="display: table-row">
                                 <div style="display: table-cell;">
                                     <table class="table table-bordered" border="1" id="Table1" style="border-collapse: collapse; margin-bottom: 0">
@@ -392,6 +392,40 @@
                                     <span style="min-height: 20mm; display: block">
                                         <asp:Literal Text="" ID="ltrRemark" EnableViewState="false" runat="server" />
                                     </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: table; width: 101%; left: -3px; right: -3px; border-spacing: 3px 0; position: relative; margin-bottom: 3px">
+                            <div style="display: table-row;">
+                                <div style="display: table-cell; border: 1px solid #000; padding: 3px">
+                                    <div style="display: table; width: 100%; border-spacing: 0;">
+                                        <div style="display: table-row">
+                                            <div style="display: table-cell; padding-left: 8px; padding-bottom: 6px; padding-top: 5px;">
+                                                <h6 style="margin-top: 0px; margin-bottom: 0px;">
+                                                    <strong>Date</strong>
+                                                    <asp:TextBox runat="server" ID="txtDateCheck" ReadOnly="true" Style="width: 100%; height: 25px; border: solid; border-width: 1px; font-weight: bold; padding-left: 5px;"></asp:TextBox>
+                                                </h6>
+                                            </div>
+                                            <div style="display: table-cell; padding-left: 8px; padding-bottom: 6px; padding-top: 5px;">
+                                                <h6 style="margin-top: 0px; margin-bottom: 0px;">
+                                                    <strong>Repro</strong>
+                                                    <asp:TextBox runat="server" ID="txtReproCheck" ReadOnly="true" Style="width: 100%; height: 25px; border: solid; border-width: 1px; font-weight: bold; padding-left: 5px;"></asp:TextBox>
+                                                </h6>
+                                            </div>
+                                            <div style="display: table-cell; padding-left: 8px; padding-bottom: 6px; padding-top: 5px;">
+                                                <h6 style="margin-top: 0px; margin-bottom: 0px;">
+                                                    <strong>Job Ticket</strong>
+                                                    <asp:TextBox runat="server" ID="txtJobTicketCheck" ReadOnly="true" Style="width: 100%; height: 25px; border: solid; border-width: 1px; font-weight: bold; padding-left: 5px;"></asp:TextBox>
+                                                </h6>
+                                            </div>
+                                            <div style="display: table-cell; padding-left: 8px; padding-bottom: 6px; padding-top: 5px;">
+                                                <h6 style="margin-top: 0px; margin-bottom: 0px;">
+                                                    <strong>Signature Check</strong>
+                                                    <asp:TextBox runat="server" ID="txtSignatureCheck" ReadOnly="true" Style="width: 100%; height: 25px; border: none; border-width: 1px; font-weight: bold; padding-left: 5px; border-bottom: solid 1px"></asp:TextBox>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

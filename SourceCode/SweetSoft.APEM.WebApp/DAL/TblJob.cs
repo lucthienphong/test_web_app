@@ -403,19 +403,6 @@ namespace SweetSoft.APEM.DataAccess
 				colvarCurrencyID.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarCurrencyID);
 				
-				TableSchema.TableColumn colvarProductTypeID = new TableSchema.TableColumn(schema);
-				colvarProductTypeID.ColumnName = "ProductTypeID";
-				colvarProductTypeID.DataType = DbType.Int32;
-				colvarProductTypeID.MaxLength = 0;
-				colvarProductTypeID.AutoIncrement = false;
-				colvarProductTypeID.IsNullable = true;
-				colvarProductTypeID.IsPrimaryKey = false;
-				colvarProductTypeID.IsForeignKey = false;
-				colvarProductTypeID.IsReadOnly = false;
-				colvarProductTypeID.DefaultSetting = @"";
-				colvarProductTypeID.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarProductTypeID);
-				
 				TableSchema.TableColumn colvarStatus = new TableSchema.TableColumn(schema);
 				colvarStatus.ColumnName = "Status";
 				colvarStatus.DataType = DbType.AnsiString;
@@ -627,6 +614,19 @@ namespace SweetSoft.APEM.DataAccess
 				colvarModifiedOn.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarModifiedOn);
 				
+				TableSchema.TableColumn colvarProductTypeID = new TableSchema.TableColumn(schema);
+				colvarProductTypeID.ColumnName = "ProductTypeID";
+				colvarProductTypeID.DataType = DbType.Int32;
+				colvarProductTypeID.MaxLength = 0;
+				colvarProductTypeID.AutoIncrement = false;
+				colvarProductTypeID.IsNullable = true;
+				colvarProductTypeID.IsPrimaryKey = false;
+				colvarProductTypeID.IsForeignKey = false;
+				colvarProductTypeID.IsReadOnly = false;
+				colvarProductTypeID.DefaultSetting = @"";
+				colvarProductTypeID.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarProductTypeID);
+				
 				TableSchema.TableColumn colvarItemCode = new TableSchema.TableColumn(schema);
 				colvarItemCode.ColumnName = "ItemCode";
 				colvarItemCode.DataType = DbType.String;
@@ -818,14 +818,6 @@ namespace SweetSoft.APEM.DataAccess
 			set { SetColumnValue(Columns.CurrencyID, value); }
 		}
 		  
-		[XmlAttribute("ProductTypeID")]
-		[Bindable(true)]
-		public int? ProductTypeID 
-		{
-			get { return GetColumnValue<int?>(Columns.ProductTypeID); }
-			set { SetColumnValue(Columns.ProductTypeID, value); }
-		}
-		  
 		[XmlAttribute("Status")]
 		[Bindable(true)]
 		public string Status 
@@ -952,6 +944,14 @@ namespace SweetSoft.APEM.DataAccess
 		{
 			get { return GetColumnValue<DateTime?>(Columns.ModifiedOn); }
 			set { SetColumnValue(Columns.ModifiedOn, value); }
+		}
+		  
+		[XmlAttribute("ProductTypeID")]
+		[Bindable(true)]
+		public int? ProductTypeID 
+		{
+			get { return GetColumnValue<int?>(Columns.ProductTypeID); }
+			set { SetColumnValue(Columns.ProductTypeID, value); }
 		}
 		  
 		[XmlAttribute("ItemCode")]
@@ -1283,7 +1283,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varJobNumber,int varRevNumber,string varJobBarcode,string varJobBarcodeImage,string varJobName,string varDesign,string varDrawingNumber,int? varRootJobID,string varRootJobNo,string varRootJobRevNumber,string varCommonJobNumber,string varCustomerPO1,string varCustomerPO2,int varCustomerID,int? varShipToParty,int? varBrandOwner,int varContactPersonID,int? varSalesRepID,int? varCoordinatorID,short? varCurrencyID,int? varProductTypeID,string varStatus,string varRemark,int? varRevisionFromJob,int? varRevisionRootNumber,string varInternalExternal,string varRevisionDetail,string varPaymentTerms,string varTypeOfOrder,byte varIsServiceJob,byte varIsOutsource,int varSupplierID,byte varIsClosed,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,string varItemCode)
+		public static void Insert(string varJobNumber,int varRevNumber,string varJobBarcode,string varJobBarcodeImage,string varJobName,string varDesign,string varDrawingNumber,int? varRootJobID,string varRootJobNo,string varRootJobRevNumber,string varCommonJobNumber,string varCustomerPO1,string varCustomerPO2,int varCustomerID,int? varShipToParty,int? varBrandOwner,int varContactPersonID,int? varSalesRepID,int? varCoordinatorID,short? varCurrencyID,string varStatus,string varRemark,int? varRevisionFromJob,int? varRevisionRootNumber,string varInternalExternal,string varRevisionDetail,string varPaymentTerms,string varTypeOfOrder,byte varIsServiceJob,byte varIsOutsource,int varSupplierID,byte varIsClosed,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,int? varProductTypeID,string varItemCode)
 		{
 			TblJob item = new TblJob();
 			
@@ -1327,8 +1327,6 @@ namespace SweetSoft.APEM.DataAccess
 			
 			item.CurrencyID = varCurrencyID;
 			
-			item.ProductTypeID = varProductTypeID;
-			
 			item.Status = varStatus;
 			
 			item.Remark = varRemark;
@@ -1361,6 +1359,8 @@ namespace SweetSoft.APEM.DataAccess
 			
 			item.ModifiedOn = varModifiedOn;
 			
+			item.ProductTypeID = varProductTypeID;
+			
 			item.ItemCode = varItemCode;
 			
 		
@@ -1373,7 +1373,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varJobID,string varJobNumber,int varRevNumber,string varJobBarcode,string varJobBarcodeImage,string varJobName,string varDesign,string varDrawingNumber,int? varRootJobID,string varRootJobNo,string varRootJobRevNumber,string varCommonJobNumber,string varCustomerPO1,string varCustomerPO2,int varCustomerID,int? varShipToParty,int? varBrandOwner,int varContactPersonID,int? varSalesRepID,int? varCoordinatorID,short? varCurrencyID,int? varProductTypeID,string varStatus,string varRemark,int? varRevisionFromJob,int? varRevisionRootNumber,string varInternalExternal,string varRevisionDetail,string varPaymentTerms,string varTypeOfOrder,byte varIsServiceJob,byte varIsOutsource,int varSupplierID,byte varIsClosed,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,string varItemCode)
+		public static void Update(int varJobID,string varJobNumber,int varRevNumber,string varJobBarcode,string varJobBarcodeImage,string varJobName,string varDesign,string varDrawingNumber,int? varRootJobID,string varRootJobNo,string varRootJobRevNumber,string varCommonJobNumber,string varCustomerPO1,string varCustomerPO2,int varCustomerID,int? varShipToParty,int? varBrandOwner,int varContactPersonID,int? varSalesRepID,int? varCoordinatorID,short? varCurrencyID,string varStatus,string varRemark,int? varRevisionFromJob,int? varRevisionRootNumber,string varInternalExternal,string varRevisionDetail,string varPaymentTerms,string varTypeOfOrder,byte varIsServiceJob,byte varIsOutsource,int varSupplierID,byte varIsClosed,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,int? varProductTypeID,string varItemCode)
 		{
 			TblJob item = new TblJob();
 			
@@ -1419,8 +1419,6 @@ namespace SweetSoft.APEM.DataAccess
 			
 				item.CurrencyID = varCurrencyID;
 			
-				item.ProductTypeID = varProductTypeID;
-			
 				item.Status = varStatus;
 			
 				item.Remark = varRemark;
@@ -1452,6 +1450,8 @@ namespace SweetSoft.APEM.DataAccess
 				item.ModifiedBy = varModifiedBy;
 			
 				item.ModifiedOn = varModifiedOn;
+			
+				item.ProductTypeID = varProductTypeID;
 			
 				item.ItemCode = varItemCode;
 			
@@ -1615,119 +1615,119 @@ namespace SweetSoft.APEM.DataAccess
         
         
         
-        public static TableSchema.TableColumn ProductTypeIDColumn
+        public static TableSchema.TableColumn StatusColumn
         {
             get { return Schema.Columns[21]; }
         }
         
         
         
-        public static TableSchema.TableColumn StatusColumn
+        public static TableSchema.TableColumn RemarkColumn
         {
             get { return Schema.Columns[22]; }
         }
         
         
         
-        public static TableSchema.TableColumn RemarkColumn
+        public static TableSchema.TableColumn RevisionFromJobColumn
         {
             get { return Schema.Columns[23]; }
         }
         
         
         
-        public static TableSchema.TableColumn RevisionFromJobColumn
+        public static TableSchema.TableColumn RevisionRootNumberColumn
         {
             get { return Schema.Columns[24]; }
         }
         
         
         
-        public static TableSchema.TableColumn RevisionRootNumberColumn
+        public static TableSchema.TableColumn InternalExternalColumn
         {
             get { return Schema.Columns[25]; }
         }
         
         
         
-        public static TableSchema.TableColumn InternalExternalColumn
+        public static TableSchema.TableColumn RevisionDetailColumn
         {
             get { return Schema.Columns[26]; }
         }
         
         
         
-        public static TableSchema.TableColumn RevisionDetailColumn
+        public static TableSchema.TableColumn PaymentTermsColumn
         {
             get { return Schema.Columns[27]; }
         }
         
         
         
-        public static TableSchema.TableColumn PaymentTermsColumn
+        public static TableSchema.TableColumn TypeOfOrderColumn
         {
             get { return Schema.Columns[28]; }
         }
         
         
         
-        public static TableSchema.TableColumn TypeOfOrderColumn
+        public static TableSchema.TableColumn IsServiceJobColumn
         {
             get { return Schema.Columns[29]; }
         }
         
         
         
-        public static TableSchema.TableColumn IsServiceJobColumn
+        public static TableSchema.TableColumn IsOutsourceColumn
         {
             get { return Schema.Columns[30]; }
         }
         
         
         
-        public static TableSchema.TableColumn IsOutsourceColumn
+        public static TableSchema.TableColumn SupplierIDColumn
         {
             get { return Schema.Columns[31]; }
         }
         
         
         
-        public static TableSchema.TableColumn SupplierIDColumn
+        public static TableSchema.TableColumn IsClosedColumn
         {
             get { return Schema.Columns[32]; }
         }
         
         
         
-        public static TableSchema.TableColumn IsClosedColumn
+        public static TableSchema.TableColumn CreatedByColumn
         {
             get { return Schema.Columns[33]; }
         }
         
         
         
-        public static TableSchema.TableColumn CreatedByColumn
+        public static TableSchema.TableColumn CreatedOnColumn
         {
             get { return Schema.Columns[34]; }
         }
         
         
         
-        public static TableSchema.TableColumn CreatedOnColumn
+        public static TableSchema.TableColumn ModifiedByColumn
         {
             get { return Schema.Columns[35]; }
         }
         
         
         
-        public static TableSchema.TableColumn ModifiedByColumn
+        public static TableSchema.TableColumn ModifiedOnColumn
         {
             get { return Schema.Columns[36]; }
         }
         
         
         
-        public static TableSchema.TableColumn ModifiedOnColumn
+        public static TableSchema.TableColumn ProductTypeIDColumn
         {
             get { return Schema.Columns[37]; }
         }
@@ -1766,7 +1766,6 @@ namespace SweetSoft.APEM.DataAccess
 			 public static string SalesRepID = @"SalesRepID";
 			 public static string CoordinatorID = @"CoordinatorID";
 			 public static string CurrencyID = @"CurrencyID";
-			 public static string ProductTypeID = @"ProductTypeID";
 			 public static string Status = @"Status";
 			 public static string Remark = @"Remark";
 			 public static string RevisionFromJob = @"RevisionFromJob";
@@ -1783,6 +1782,7 @@ namespace SweetSoft.APEM.DataAccess
 			 public static string CreatedOn = @"CreatedOn";
 			 public static string ModifiedBy = @"ModifiedBy";
 			 public static string ModifiedOn = @"ModifiedOn";
+			 public static string ProductTypeID = @"ProductTypeID";
 			 public static string ItemCode = @"ItemCode";
 						
 		}

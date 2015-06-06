@@ -218,19 +218,6 @@ namespace SweetSoft.APEM.DataAccess
 				colvarWorkOrderValues.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarWorkOrderValues);
 				
-				TableSchema.TableColumn colvarPricingID = new TableSchema.TableColumn(schema);
-				colvarPricingID.ColumnName = "PricingID";
-				colvarPricingID.DataType = DbType.Int32;
-				colvarPricingID.MaxLength = 0;
-				colvarPricingID.AutoIncrement = false;
-				colvarPricingID.IsNullable = true;
-				colvarPricingID.IsPrimaryKey = false;
-				colvarPricingID.IsForeignKey = false;
-				colvarPricingID.IsReadOnly = false;
-				colvarPricingID.DefaultSetting = @"";
-				colvarPricingID.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarPricingID);
-				
 				TableSchema.TableColumn colvarTaxID = new TableSchema.TableColumn(schema);
 				colvarTaxID.ColumnName = "TaxID";
 				colvarTaxID.DataType = DbType.Int16;
@@ -256,6 +243,19 @@ namespace SweetSoft.APEM.DataAccess
 				colvarTaxPercentage.DefaultSetting = @"";
 				colvarTaxPercentage.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarTaxPercentage);
+				
+				TableSchema.TableColumn colvarPricingID = new TableSchema.TableColumn(schema);
+				colvarPricingID.ColumnName = "PricingID";
+				colvarPricingID.DataType = DbType.Int32;
+				colvarPricingID.MaxLength = 0;
+				colvarPricingID.AutoIncrement = false;
+				colvarPricingID.IsNullable = true;
+				colvarPricingID.IsPrimaryKey = false;
+				colvarPricingID.IsForeignKey = false;
+				colvarPricingID.IsReadOnly = false;
+				colvarPricingID.DefaultSetting = @"";
+				colvarPricingID.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarPricingID);
 				
 				BaseSchema = schema;
 				//add this schema to the provider
@@ -323,14 +323,6 @@ namespace SweetSoft.APEM.DataAccess
 			set { SetColumnValue(Columns.WorkOrderValues, value); }
 		}
 		  
-		[XmlAttribute("PricingID")]
-		[Bindable(true)]
-		public int? PricingID 
-		{
-			get { return GetColumnValue<int?>(Columns.PricingID); }
-			set { SetColumnValue(Columns.PricingID, value); }
-		}
-		  
 		[XmlAttribute("TaxID")]
 		[Bindable(true)]
 		public short? TaxID 
@@ -345,6 +337,14 @@ namespace SweetSoft.APEM.DataAccess
 		{
 			get { return GetColumnValue<double?>(Columns.TaxPercentage); }
 			set { SetColumnValue(Columns.TaxPercentage, value); }
+		}
+		  
+		[XmlAttribute("PricingID")]
+		[Bindable(true)]
+		public int? PricingID 
+		{
+			get { return GetColumnValue<int?>(Columns.PricingID); }
+			set { SetColumnValue(Columns.PricingID, value); }
 		}
 		
 		#endregion
@@ -379,7 +379,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(int varJobID,string varWorkOrderNumber,string varProductID,string varGLCode,string varDescription,decimal varWorkOrderValues,int? varPricingID,short? varTaxID,double? varTaxPercentage)
+		public static void Insert(int varJobID,string varWorkOrderNumber,string varProductID,string varGLCode,string varDescription,decimal varWorkOrderValues,short? varTaxID,double? varTaxPercentage,int? varPricingID)
 		{
 			TblServiceJobDetail item = new TblServiceJobDetail();
 			
@@ -395,11 +395,11 @@ namespace SweetSoft.APEM.DataAccess
 			
 			item.WorkOrderValues = varWorkOrderValues;
 			
-			item.PricingID = varPricingID;
-			
 			item.TaxID = varTaxID;
 			
 			item.TaxPercentage = varTaxPercentage;
+			
+			item.PricingID = varPricingID;
 			
 		
 			if (System.Web.HttpContext.Current != null)
@@ -411,7 +411,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varServiceJobID,int varJobID,string varWorkOrderNumber,string varProductID,string varGLCode,string varDescription,decimal varWorkOrderValues,int? varPricingID,short? varTaxID,double? varTaxPercentage)
+		public static void Update(int varServiceJobID,int varJobID,string varWorkOrderNumber,string varProductID,string varGLCode,string varDescription,decimal varWorkOrderValues,short? varTaxID,double? varTaxPercentage,int? varPricingID)
 		{
 			TblServiceJobDetail item = new TblServiceJobDetail();
 			
@@ -429,11 +429,11 @@ namespace SweetSoft.APEM.DataAccess
 			
 				item.WorkOrderValues = varWorkOrderValues;
 			
-				item.PricingID = varPricingID;
-			
 				item.TaxID = varTaxID;
 			
 				item.TaxPercentage = varTaxPercentage;
+			
+				item.PricingID = varPricingID;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -497,21 +497,21 @@ namespace SweetSoft.APEM.DataAccess
         
         
         
-        public static TableSchema.TableColumn PricingIDColumn
+        public static TableSchema.TableColumn TaxIDColumn
         {
             get { return Schema.Columns[7]; }
         }
         
         
         
-        public static TableSchema.TableColumn TaxIDColumn
+        public static TableSchema.TableColumn TaxPercentageColumn
         {
             get { return Schema.Columns[8]; }
         }
         
         
         
-        public static TableSchema.TableColumn TaxPercentageColumn
+        public static TableSchema.TableColumn PricingIDColumn
         {
             get { return Schema.Columns[9]; }
         }
@@ -529,9 +529,9 @@ namespace SweetSoft.APEM.DataAccess
 			 public static string GLCode = @"GLCode";
 			 public static string Description = @"Description";
 			 public static string WorkOrderValues = @"WorkOrderValues";
-			 public static string PricingID = @"PricingID";
 			 public static string TaxID = @"TaxID";
 			 public static string TaxPercentage = @"TaxPercentage";
+			 public static string PricingID = @"PricingID";
 						
 		}
 		#endregion

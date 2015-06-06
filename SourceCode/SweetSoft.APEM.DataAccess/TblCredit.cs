@@ -269,6 +269,19 @@ namespace SweetSoft.APEM.DataAccess
 				colvarModifiedOn.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarModifiedOn);
 				
+				TableSchema.TableColumn colvarTaxID = new TableSchema.TableColumn(schema);
+				colvarTaxID.ColumnName = "TaxID";
+				colvarTaxID.DataType = DbType.Int32;
+				colvarTaxID.MaxLength = 0;
+				colvarTaxID.AutoIncrement = false;
+				colvarTaxID.IsNullable = true;
+				colvarTaxID.IsPrimaryKey = false;
+				colvarTaxID.IsForeignKey = false;
+				colvarTaxID.IsReadOnly = false;
+				colvarTaxID.DefaultSetting = @"";
+				colvarTaxID.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarTaxID);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -366,6 +379,14 @@ namespace SweetSoft.APEM.DataAccess
 			get { return GetColumnValue<DateTime?>(Columns.ModifiedOn); }
 			set { SetColumnValue(Columns.ModifiedOn, value); }
 		}
+		  
+		[XmlAttribute("TaxID")]
+		[Bindable(true)]
+		public int? TaxID 
+		{
+			get { return GetColumnValue<int?>(Columns.TaxID); }
+			set { SetColumnValue(Columns.TaxID, value); }
+		}
 		
 		#endregion
 		
@@ -386,7 +407,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(string varCreditNo,DateTime varCreditDate,int varCustomerID,short varCurrencyID,string varRemark,decimal varTotal,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn)
+		public static void Insert(string varCreditNo,DateTime varCreditDate,int varCustomerID,short varCurrencyID,string varRemark,decimal varTotal,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,int? varTaxID)
 		{
 			TblCredit item = new TblCredit();
 			
@@ -410,6 +431,8 @@ namespace SweetSoft.APEM.DataAccess
 			
 			item.ModifiedOn = varModifiedOn;
 			
+			item.TaxID = varTaxID;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -420,7 +443,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varCreditID,string varCreditNo,DateTime varCreditDate,int varCustomerID,short varCurrencyID,string varRemark,decimal varTotal,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn)
+		public static void Update(int varCreditID,string varCreditNo,DateTime varCreditDate,int varCustomerID,short varCurrencyID,string varRemark,decimal varTotal,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,int? varTaxID)
 		{
 			TblCredit item = new TblCredit();
 			
@@ -445,6 +468,8 @@ namespace SweetSoft.APEM.DataAccess
 				item.ModifiedBy = varModifiedBy;
 			
 				item.ModifiedOn = varModifiedOn;
+			
+				item.TaxID = varTaxID;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -536,6 +561,13 @@ namespace SweetSoft.APEM.DataAccess
         
         
         
+        public static TableSchema.TableColumn TaxIDColumn
+        {
+            get { return Schema.Columns[11]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -551,6 +583,7 @@ namespace SweetSoft.APEM.DataAccess
 			 public static string CreatedOn = @"CreatedOn";
 			 public static string ModifiedBy = @"ModifiedBy";
 			 public static string ModifiedOn = @"ModifiedOn";
+			 public static string TaxID = @"TaxID";
 						
 		}
 		#endregion

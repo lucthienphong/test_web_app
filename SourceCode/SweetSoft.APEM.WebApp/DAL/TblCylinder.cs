@@ -157,7 +157,7 @@ namespace SweetSoft.APEM.DataAccess
 				colvarCylinderNo.DataType = DbType.String;
 				colvarCylinderNo.MaxLength = 50;
 				colvarCylinderNo.AutoIncrement = false;
-				colvarCylinderNo.IsNullable = true;
+				colvarCylinderNo.IsNullable = false;
 				colvarCylinderNo.IsPrimaryKey = false;
 				colvarCylinderNo.IsForeignKey = false;
 				colvarCylinderNo.IsReadOnly = false;
@@ -177,19 +177,6 @@ namespace SweetSoft.APEM.DataAccess
 				colvarCusCylinderID.DefaultSetting = @"";
 				colvarCusCylinderID.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarCusCylinderID);
-				
-				TableSchema.TableColumn colvarCusSteelBaseID = new TableSchema.TableColumn(schema);
-				colvarCusSteelBaseID.ColumnName = "CusSteelBaseID";
-				colvarCusSteelBaseID.DataType = DbType.String;
-				colvarCusSteelBaseID.MaxLength = 50;
-				colvarCusSteelBaseID.AutoIncrement = false;
-				colvarCusSteelBaseID.IsNullable = true;
-				colvarCusSteelBaseID.IsPrimaryKey = false;
-				colvarCusSteelBaseID.IsForeignKey = false;
-				colvarCusSteelBaseID.IsReadOnly = false;
-				colvarCusSteelBaseID.DefaultSetting = @"";
-				colvarCusSteelBaseID.ForeignKeyTableName = "";
-				schema.Columns.Add(colvarCusSteelBaseID);
 				
 				TableSchema.TableColumn colvarCylinderBarcode = new TableSchema.TableColumn(schema);
 				colvarCylinderBarcode.ColumnName = "CylinderBarcode";
@@ -453,6 +440,19 @@ namespace SweetSoft.APEM.DataAccess
 					colvarJobID.ForeignKeyTableName = "tblJob";
 				schema.Columns.Add(colvarJobID);
 				
+				TableSchema.TableColumn colvarCusSteelBaseID = new TableSchema.TableColumn(schema);
+				colvarCusSteelBaseID.ColumnName = "CusSteelBaseID";
+				colvarCusSteelBaseID.DataType = DbType.String;
+				colvarCusSteelBaseID.MaxLength = 50;
+				colvarCusSteelBaseID.AutoIncrement = false;
+				colvarCusSteelBaseID.IsNullable = true;
+				colvarCusSteelBaseID.IsPrimaryKey = false;
+				colvarCusSteelBaseID.IsForeignKey = false;
+				colvarCusSteelBaseID.IsReadOnly = false;
+				colvarCusSteelBaseID.DefaultSetting = @"";
+				colvarCusSteelBaseID.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarCusSteelBaseID);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -493,14 +493,6 @@ namespace SweetSoft.APEM.DataAccess
 		{
 			get { return GetColumnValue<string>(Columns.CusCylinderID); }
 			set { SetColumnValue(Columns.CusCylinderID, value); }
-		}
-		  
-		[XmlAttribute("CusSteelBaseID")]
-		[Bindable(true)]
-		public string CusSteelBaseID 
-		{
-			get { return GetColumnValue<string>(Columns.CusSteelBaseID); }
-			set { SetColumnValue(Columns.CusSteelBaseID, value); }
 		}
 		  
 		[XmlAttribute("CylinderBarcode")]
@@ -662,6 +654,14 @@ namespace SweetSoft.APEM.DataAccess
 			get { return GetColumnValue<int>(Columns.JobID); }
 			set { SetColumnValue(Columns.JobID, value); }
 		}
+		  
+		[XmlAttribute("CusSteelBaseID")]
+		[Bindable(true)]
+		public string CusSteelBaseID 
+		{
+			get { return GetColumnValue<string>(Columns.CusSteelBaseID); }
+			set { SetColumnValue(Columns.CusSteelBaseID, value); }
+		}
 		
 		#endregion
 		
@@ -737,7 +737,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(int varSequence,string varCylinderNo,string varCusCylinderID,string varCusSteelBaseID,string varCylinderBarcode,byte varSteelBase,string varColor,string varProtocol,int? varProductTypeID,int? varProcessTypeID,short varPricingID,short? varCylinderStatusID,double varCircumference,double varFaceWidth,double varDirameter,string varDept,byte? varIsPivotCylinder,decimal? varPOUnitPrice,int? varPOQuantity,decimal? varUnitPrice,int? varQuantity,short? varTaxID,double? varTaxPercentage,int varJobID)
+		public static void Insert(int varSequence,string varCylinderNo,string varCusCylinderID,string varCylinderBarcode,byte varSteelBase,string varColor,string varProtocol,int? varProductTypeID,int? varProcessTypeID,short varPricingID,short? varCylinderStatusID,double varCircumference,double varFaceWidth,double varDirameter,string varDept,byte? varIsPivotCylinder,decimal? varPOUnitPrice,int? varPOQuantity,decimal? varUnitPrice,int? varQuantity,short? varTaxID,double? varTaxPercentage,int varJobID,string varCusSteelBaseID)
 		{
 			TblCylinder item = new TblCylinder();
 			
@@ -746,8 +746,6 @@ namespace SweetSoft.APEM.DataAccess
 			item.CylinderNo = varCylinderNo;
 			
 			item.CusCylinderID = varCusCylinderID;
-			
-			item.CusSteelBaseID = varCusSteelBaseID;
 			
 			item.CylinderBarcode = varCylinderBarcode;
 			
@@ -789,6 +787,8 @@ namespace SweetSoft.APEM.DataAccess
 			
 			item.JobID = varJobID;
 			
+			item.CusSteelBaseID = varCusSteelBaseID;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -799,7 +799,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varCylinderID,int varSequence,string varCylinderNo,string varCusCylinderID,string varCusSteelBaseID,string varCylinderBarcode,byte varSteelBase,string varColor,string varProtocol,int? varProductTypeID,int? varProcessTypeID,short varPricingID,short? varCylinderStatusID,double varCircumference,double varFaceWidth,double varDirameter,string varDept,byte? varIsPivotCylinder,decimal? varPOUnitPrice,int? varPOQuantity,decimal? varUnitPrice,int? varQuantity,short? varTaxID,double? varTaxPercentage,int varJobID)
+		public static void Update(int varCylinderID,int varSequence,string varCylinderNo,string varCusCylinderID,string varCylinderBarcode,byte varSteelBase,string varColor,string varProtocol,int? varProductTypeID,int? varProcessTypeID,short varPricingID,short? varCylinderStatusID,double varCircumference,double varFaceWidth,double varDirameter,string varDept,byte? varIsPivotCylinder,decimal? varPOUnitPrice,int? varPOQuantity,decimal? varUnitPrice,int? varQuantity,short? varTaxID,double? varTaxPercentage,int varJobID,string varCusSteelBaseID)
 		{
 			TblCylinder item = new TblCylinder();
 			
@@ -810,8 +810,6 @@ namespace SweetSoft.APEM.DataAccess
 				item.CylinderNo = varCylinderNo;
 			
 				item.CusCylinderID = varCusCylinderID;
-			
-				item.CusSteelBaseID = varCusSteelBaseID;
 			
 				item.CylinderBarcode = varCylinderBarcode;
 			
@@ -852,6 +850,8 @@ namespace SweetSoft.APEM.DataAccess
 				item.TaxPercentage = varTaxPercentage;
 			
 				item.JobID = varJobID;
+			
+				item.CusSteelBaseID = varCusSteelBaseID;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -894,147 +894,147 @@ namespace SweetSoft.APEM.DataAccess
         
         
         
-        public static TableSchema.TableColumn CusSteelBaseIDColumn
+        public static TableSchema.TableColumn CylinderBarcodeColumn
         {
             get { return Schema.Columns[4]; }
         }
         
         
         
-        public static TableSchema.TableColumn CylinderBarcodeColumn
+        public static TableSchema.TableColumn SteelBaseColumn
         {
             get { return Schema.Columns[5]; }
         }
         
         
         
-        public static TableSchema.TableColumn SteelBaseColumn
+        public static TableSchema.TableColumn ColorColumn
         {
             get { return Schema.Columns[6]; }
         }
         
         
         
-        public static TableSchema.TableColumn ColorColumn
+        public static TableSchema.TableColumn ProtocolColumn
         {
             get { return Schema.Columns[7]; }
         }
         
         
         
-        public static TableSchema.TableColumn ProtocolColumn
+        public static TableSchema.TableColumn ProductTypeIDColumn
         {
             get { return Schema.Columns[8]; }
         }
         
         
         
-        public static TableSchema.TableColumn ProductTypeIDColumn
+        public static TableSchema.TableColumn ProcessTypeIDColumn
         {
             get { return Schema.Columns[9]; }
         }
         
         
         
-        public static TableSchema.TableColumn ProcessTypeIDColumn
+        public static TableSchema.TableColumn PricingIDColumn
         {
             get { return Schema.Columns[10]; }
         }
         
         
         
-        public static TableSchema.TableColumn PricingIDColumn
+        public static TableSchema.TableColumn CylinderStatusIDColumn
         {
             get { return Schema.Columns[11]; }
         }
         
         
         
-        public static TableSchema.TableColumn CylinderStatusIDColumn
+        public static TableSchema.TableColumn CircumferenceColumn
         {
             get { return Schema.Columns[12]; }
         }
         
         
         
-        public static TableSchema.TableColumn CircumferenceColumn
+        public static TableSchema.TableColumn FaceWidthColumn
         {
             get { return Schema.Columns[13]; }
         }
         
         
         
-        public static TableSchema.TableColumn FaceWidthColumn
+        public static TableSchema.TableColumn DirameterColumn
         {
             get { return Schema.Columns[14]; }
         }
         
         
         
-        public static TableSchema.TableColumn DirameterColumn
+        public static TableSchema.TableColumn DeptColumn
         {
             get { return Schema.Columns[15]; }
         }
         
         
         
-        public static TableSchema.TableColumn DeptColumn
+        public static TableSchema.TableColumn IsPivotCylinderColumn
         {
             get { return Schema.Columns[16]; }
         }
         
         
         
-        public static TableSchema.TableColumn IsPivotCylinderColumn
+        public static TableSchema.TableColumn POUnitPriceColumn
         {
             get { return Schema.Columns[17]; }
         }
         
         
         
-        public static TableSchema.TableColumn POUnitPriceColumn
+        public static TableSchema.TableColumn POQuantityColumn
         {
             get { return Schema.Columns[18]; }
         }
         
         
         
-        public static TableSchema.TableColumn POQuantityColumn
+        public static TableSchema.TableColumn UnitPriceColumn
         {
             get { return Schema.Columns[19]; }
         }
         
         
         
-        public static TableSchema.TableColumn UnitPriceColumn
+        public static TableSchema.TableColumn QuantityColumn
         {
             get { return Schema.Columns[20]; }
         }
         
         
         
-        public static TableSchema.TableColumn QuantityColumn
+        public static TableSchema.TableColumn TaxIDColumn
         {
             get { return Schema.Columns[21]; }
         }
         
         
         
-        public static TableSchema.TableColumn TaxIDColumn
+        public static TableSchema.TableColumn TaxPercentageColumn
         {
             get { return Schema.Columns[22]; }
         }
         
         
         
-        public static TableSchema.TableColumn TaxPercentageColumn
+        public static TableSchema.TableColumn JobIDColumn
         {
             get { return Schema.Columns[23]; }
         }
         
         
         
-        public static TableSchema.TableColumn JobIDColumn
+        public static TableSchema.TableColumn CusSteelBaseIDColumn
         {
             get { return Schema.Columns[24]; }
         }
@@ -1049,7 +1049,6 @@ namespace SweetSoft.APEM.DataAccess
 			 public static string Sequence = @"Sequence";
 			 public static string CylinderNo = @"CylinderNo";
 			 public static string CusCylinderID = @"CusCylinderID";
-			 public static string CusSteelBaseID = @"CusSteelBaseID";
 			 public static string CylinderBarcode = @"CylinderBarcode";
 			 public static string SteelBase = @"SteelBase";
 			 public static string Color = @"Color";
@@ -1070,6 +1069,7 @@ namespace SweetSoft.APEM.DataAccess
 			 public static string TaxID = @"TaxID";
 			 public static string TaxPercentage = @"TaxPercentage";
 			 public static string JobID = @"JobID";
+			 public static string CusSteelBaseID = @"CusSteelBaseID";
 						
 		}
 		#endregion
