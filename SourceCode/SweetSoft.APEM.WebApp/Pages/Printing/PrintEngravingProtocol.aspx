@@ -6,70 +6,82 @@
     <title></title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <style>
-        .column-20 {
+        .column-20
+        {
             min-width: 25px;
             max-width: 25px;
             width: 25px;
             text-align: center;
         }
 
-        .column-60 {
+        .column-60
+        {
             min-width: 75px;
             max-width: 75px;
             width: 75px;
             text-align: center;
         }
 
-        .column-80 {
+        .column-80
+        {
             min-width: 80px;
             max-width: 80px;
             width: 80px;
         }
 
-        .column-100 {
+        .column-100
+        {
             min-width: 100px;
             max-width: 100px;
             width: 100px;
         }
 
-        .column-120 {
+        .column-120
+        {
             min-width: 120px;
             max-width: 120px;
             width: 120px;
         }
 
-        .column-150 {
+        .column-150
+        {
             min-width: 150px;
             max-width: 150px;
             width: 150px;
         }
 
-        .column-180 {
+        .column-180
+        {
             min-width: 180px;
             max-width: 180px;
             width: 180px;
         }
 
-        .column-250 {
+        .column-250
+        {
             min-width: 250px;
             max-width: 250px;
             width: 250px;
         }
 
-        .cell-height-115 {
+        .cell-height-115
+        {
             height: 115px;
         }
 
-        .cell-height-160 {
+        .cell-height-160
+        {
             height: 115px;
         }
 
-        .wrap-rotate {
+        .wrap-rotate
+        {
             width: 30px;
             text-align: center;
         }
 
-        .rotate90 {
+        .rotate90
+        {
             -webkit-transform: rotate(270deg);
             -moz-transform: rotate(270deg);
             -o-transform: rotate(270deg);
@@ -82,44 +94,54 @@
             white-space: nowrap;
         }
 
-        .vheader {
+        .vheader
+        {
             display: table-cell;
             vertical-align: middle;
         }
 
-        @media screen {
-            @media all {
-                body {
+        @media screen
+        {
+            @media all
+            {
+                body
+                {
                     font-size: 11px !important;
                 }
 
-                .form-control-static {
+                .form-control-static
+                {
                     padding: 0 !important;
                     font-size: 11px !important;
                 }
 
-                .control-label {
+                .control-label
+                {
                     padding-top: 0 !important;
                     padding-bottom: 0 !important;
                     font-size: 11px !important;
                 }
 
-                .form-control-static {
+                .form-control-static
+                {
                     border-bottom: 1px dashed #000 !important;
                     padding-bottom: 2px !important;
                     font-size: 11px !important;
                 }
 
-                    .form-control-static:before {
+                    .form-control-static:before
+                    {
                         content: ": ";
                     }
 
-                .form-group {
+                .form-group
+                {
                     margin-bottom: 8px !important;
                     font-size: 11px !important;
                 }
 
-                .head .control-label {
+                .head .control-label
+                {
                     text-align: left;
                     white-space: nowrap;
                     padding-right: 0;
@@ -127,30 +149,37 @@
                     font-size: 11px !important;
                 }
 
-                td, th {
+                td, th
+                {
                     vertical-align: middle !important;
                 }
             }
 
-            @media print {
-                .form-group {
+            @media print
+            {
+                .form-group
+                {
                     margin-bottom: 3px !important;
                 }
 
-                body {
+                body
+                {
                     font-size: 11px !important;
                 }
 
-                .form-control-static {
+                .form-control-static
+                {
                     font-size: 10px !important;
                 }
             }
 
-            @page {
+            @page
+            {
                 margin: 0;
                 margin-top: 5mm;
                 size: landscape;
             }
+        }
     </style>
 </head>
 <body style="background: #fff">

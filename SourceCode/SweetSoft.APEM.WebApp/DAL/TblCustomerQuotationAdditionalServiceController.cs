@@ -80,12 +80,10 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string Category,string GLCode,string Description,decimal Price,short CurrencyID,int CustomerID)
+	    public void Insert(string GLCode,string Description,decimal Price,short CurrencyID,int CustomerID,string Category)
 	    {
 		    TblCustomerQuotationAdditionalService item = new TblCustomerQuotationAdditionalService();
 		    
-            item.Category = Category;
-            
             item.GLCode = GLCode;
             
             item.Description = Description;
@@ -96,6 +94,8 @@ namespace SweetSoft.APEM.DataAccess
             
             item.CustomerID = CustomerID;
             
+            item.Category = Category;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -104,15 +104,13 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int Id,string Category,string GLCode,string Description,decimal Price,short CurrencyID,int CustomerID)
+	    public void Update(int Id,string GLCode,string Description,decimal Price,short CurrencyID,int CustomerID,string Category)
 	    {
 		    TblCustomerQuotationAdditionalService item = new TblCustomerQuotationAdditionalService();
 	        item.MarkOld();
 	        item.IsLoaded = true;
 		    
 			item.Id = Id;
-				
-			item.Category = Category;
 				
 			item.GLCode = GLCode;
 				
@@ -123,6 +121,8 @@ namespace SweetSoft.APEM.DataAccess
 			item.CurrencyID = CurrencyID;
 				
 			item.CustomerID = CustomerID;
+				
+			item.Category = Category;
 				
 	        item.Save(UserName);
 	    }

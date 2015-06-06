@@ -166,6 +166,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
 
                     cc.Add(c);
                 }
+                cc.Sort((x, y) => x.objCylinder.Sequence.CompareTo(y.objCylinder.Sequence));
                 gvCylinder.DataSource = cc;
                 gvCylinder.DataBind();
             }

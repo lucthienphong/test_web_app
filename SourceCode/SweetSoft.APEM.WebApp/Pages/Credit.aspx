@@ -90,6 +90,30 @@
                         </asp:DropDownList>
                     </div>
                 </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Tax
+                        </label>
+                        <asp:DropDownList ID="ddlTax" runat="server" AutoPostBack="true"
+                            data-style="btn btn-info"
+                            data-width="100%"
+                            data-toggle="dropdown" OnSelectedIndexChanged="ddlTax_SelectedIndexChanged"
+                            CssClass="form-control">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Tax Rate
+                        </label>
+                        <div>
+                            <SweetSoft:ExtraInputMask ID="txtTaxRate" Enabled="false" RenderOnlyInput="true" Required="false" Suffix=" %"
+                                runat="server" MaskType="Decimal" GroupSeparator="," RadixPoint="." Text="0" Digits="3" AutoGroup="true"></SweetSoft:ExtraInputMask>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-12 col-sm-12">
                     <div class="form-group">
                         <label class="control-label">

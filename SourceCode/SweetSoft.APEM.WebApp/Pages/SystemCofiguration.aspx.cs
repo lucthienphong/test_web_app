@@ -164,6 +164,14 @@ namespace SweetSoft.APEM.WebApp.Pages
             setting = SettingManager.ApplicationSettings.FindBySettingName(SettingNames.BugReportEmail);
             if (setting != null)
                 txtBugReportEmail.Text = setting.SettingValue;
+            //GST No
+            setting = SettingManager.ApplicationSettings.FindBySettingName(SettingNames.CompanyGST);
+            if (setting != null)
+                txtGSTNo.Text = setting.SettingValue;
+            //TIN No
+            setting = SettingManager.ApplicationSettings.FindBySettingName(SettingNames.CompanyTIN);
+            if (setting != null)
+                txtTINNo.Text = setting.SettingValue;
             //Email
             setting = SettingManager.ApplicationSettings.FindBySettingName(SettingNames.CompanyEmail);
             if (setting != null)
@@ -353,6 +361,18 @@ namespace SweetSoft.APEM.WebApp.Pages
                     SettingManager.UpdateSetting(setting.SettingID, setting.SettingName, setting.SettingType, txtWebsite.Text.Trim());
                 else
                     SettingManager.InsertSetting(SettingNames.CompanyWebsite, typeof(String).ToString(), txtWebsite.Text.Trim());
+                //GST No
+                setting = SettingManager.ApplicationSettings.FindBySettingName(SettingNames.CompanyGST);
+                if (setting != null)
+                    SettingManager.UpdateSetting(setting.SettingID, setting.SettingName, setting.SettingType, txtGSTNo.Text.Trim());
+                else
+                    SettingManager.InsertSetting(SettingNames.CompanyGST, typeof(String).ToString(), txtGSTNo.Text.Trim());
+                //TIN No
+                setting = SettingManager.ApplicationSettings.FindBySettingName(SettingNames.CompanyTIN);
+                if (setting != null)
+                    SettingManager.UpdateSetting(setting.SettingID, setting.SettingName, setting.SettingType, txtTINNo.Text.Trim());
+                else
+                    SettingManager.InsertSetting(SettingNames.CompanyTIN, typeof(String).ToString(), txtTINNo.Text.Trim());
                 //EMail
                 setting = SettingManager.ApplicationSettings.FindBySettingName(SettingNames.CompanyEmail);
                 if (setting != null)

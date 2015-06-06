@@ -85,6 +85,15 @@
     <div class="row">
         <div class="container-fluid" style="padding-bottom: 20px;">
             <div class="row">
+                 <div class="col-md-4">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Job Ticket:</label>
+                            <SweetSoft:CustomExtraTextbox ID="txtJobTicket" RenderOnlyInput="true"
+                                runat="server"></SweetSoft:CustomExtraTextbox>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-4">
                     <div class="row">
                         <div class="form-group col-md-12">

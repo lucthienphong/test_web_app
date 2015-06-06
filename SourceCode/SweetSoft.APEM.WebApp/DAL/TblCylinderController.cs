@@ -80,7 +80,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(int Sequence,string CylinderNo,string CusCylinderID,string CusSteelBaseID,string CylinderBarcode,byte SteelBase,string Color,string Protocol,int? ProductTypeID,int? ProcessTypeID,short PricingID,short? CylinderStatusID,double Circumference,double FaceWidth,double Dirameter,string Dept,byte? IsPivotCylinder,decimal? POUnitPrice,int? POQuantity,decimal? UnitPrice,int? Quantity,short? TaxID,double? TaxPercentage,int JobID)
+	    public void Insert(int Sequence,string CylinderNo,string CusCylinderID,string CylinderBarcode,byte SteelBase,string Color,string Protocol,int? ProductTypeID,int? ProcessTypeID,short PricingID,short? CylinderStatusID,double Circumference,double FaceWidth,double Dirameter,string Dept,byte? IsPivotCylinder,decimal? POUnitPrice,int? POQuantity,decimal? UnitPrice,int? Quantity,short? TaxID,double? TaxPercentage,int JobID,string CusSteelBaseID)
 	    {
 		    TblCylinder item = new TblCylinder();
 		    
@@ -89,8 +89,6 @@ namespace SweetSoft.APEM.DataAccess
             item.CylinderNo = CylinderNo;
             
             item.CusCylinderID = CusCylinderID;
-            
-            item.CusSteelBaseID = CusSteelBaseID;
             
             item.CylinderBarcode = CylinderBarcode;
             
@@ -132,6 +130,8 @@ namespace SweetSoft.APEM.DataAccess
             
             item.JobID = JobID;
             
+            item.CusSteelBaseID = CusSteelBaseID;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -140,7 +140,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int CylinderID,int Sequence,string CylinderNo,string CusCylinderID,string CusSteelBaseID,string CylinderBarcode,byte SteelBase,string Color,string Protocol,int? ProductTypeID,int? ProcessTypeID,short PricingID,short? CylinderStatusID,double Circumference,double FaceWidth,double Dirameter,string Dept,byte? IsPivotCylinder,decimal? POUnitPrice,int? POQuantity,decimal? UnitPrice,int? Quantity,short? TaxID,double? TaxPercentage,int JobID)
+	    public void Update(int CylinderID,int Sequence,string CylinderNo,string CusCylinderID,string CylinderBarcode,byte SteelBase,string Color,string Protocol,int? ProductTypeID,int? ProcessTypeID,short PricingID,short? CylinderStatusID,double Circumference,double FaceWidth,double Dirameter,string Dept,byte? IsPivotCylinder,decimal? POUnitPrice,int? POQuantity,decimal? UnitPrice,int? Quantity,short? TaxID,double? TaxPercentage,int JobID,string CusSteelBaseID)
 	    {
 		    TblCylinder item = new TblCylinder();
 	        item.MarkOld();
@@ -153,8 +153,6 @@ namespace SweetSoft.APEM.DataAccess
 			item.CylinderNo = CylinderNo;
 				
 			item.CusCylinderID = CusCylinderID;
-				
-			item.CusSteelBaseID = CusSteelBaseID;
 				
 			item.CylinderBarcode = CylinderBarcode;
 				
@@ -195,6 +193,8 @@ namespace SweetSoft.APEM.DataAccess
 			item.TaxPercentage = TaxPercentage;
 				
 			item.JobID = JobID;
+				
+			item.CusSteelBaseID = CusSteelBaseID;
 				
 	        item.Save(UserName);
 	    }

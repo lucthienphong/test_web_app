@@ -80,7 +80,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string GLCode,string Description,int? PricingID,decimal? Charge,int? Quantity,int? JobID)
+	    public void Insert(string GLCode,string Description,decimal? Charge,int? Quantity,int? JobID,int? PricingID)
 	    {
 		    TblOtherCharge item = new TblOtherCharge();
 		    
@@ -88,13 +88,13 @@ namespace SweetSoft.APEM.DataAccess
             
             item.Description = Description;
             
-            item.PricingID = PricingID;
-            
             item.Charge = Charge;
             
             item.Quantity = Quantity;
             
             item.JobID = JobID;
+            
+            item.PricingID = PricingID;
             
 	    
 		    item.Save(UserName);
@@ -104,7 +104,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int OtherChargesID,string GLCode,string Description,int? PricingID,decimal? Charge,int? Quantity,int? JobID)
+	    public void Update(int OtherChargesID,string GLCode,string Description,decimal? Charge,int? Quantity,int? JobID,int? PricingID)
 	    {
 		    TblOtherCharge item = new TblOtherCharge();
 	        item.MarkOld();
@@ -116,13 +116,13 @@ namespace SweetSoft.APEM.DataAccess
 				
 			item.Description = Description;
 				
-			item.PricingID = PricingID;
-				
 			item.Charge = Charge;
 				
 			item.Quantity = Quantity;
 				
 			item.JobID = JobID;
+				
+			item.PricingID = PricingID;
 				
 	        item.Save(UserName);
 	    }

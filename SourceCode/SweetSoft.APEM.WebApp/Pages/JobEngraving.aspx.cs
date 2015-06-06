@@ -180,6 +180,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                         txtName.Text = obj.CustomerName;
                         hCustomerID.Value = obj.CustomerID.ToString();
                         txtJobNumber.Text = obj.JobNumber;
+                        TblStaff se = StaffManager.SelectByID(obj.CoordinatorID.Value);
+                        txtJobCoOrd.Text = se.FirstName + " " + se.LastName;
 
                         BindRevNumberDDL(obj.JobID);
                         ddlRevNumber.SelectedValue = obj.JobID.ToString();
@@ -188,7 +190,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         if (engraving != null)
                         {
                             //General
-                            txtJobCoOrd.Text = engraving.JobCoOrd;
+                            txtJobTicket.Text = engraving.JobTicket;
                             txtChromeThickness.Text = engraving.ChromeThickness;
                             txtRoughness.Text = engraving.Roughness;
                             //EMG
@@ -308,6 +310,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     {
                         //Update
                         //General
+                        engraving.JobTicket = txtJobTicket.Text.Trim();
                         engraving.JobCoOrd = txtJobCoOrd.Text.Trim();
                         engraving.ChromeThickness = txtChromeThickness.Text.Trim();
                         engraving.Roughness = txtRoughness.Text;
@@ -426,6 +429,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                         engraving.JobCoOrd = txtJobCoOrd.Text.Trim();
                         engraving.ChromeThickness = txtChromeThickness.Text.Trim();
                         engraving.Roughness = txtRoughness.Text;
+                        engraving.JobTicket = txtJobTicket.Text;
                         //EMG
                         if (MechanicalVisible)
                         {

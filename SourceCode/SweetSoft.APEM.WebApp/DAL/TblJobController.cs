@@ -80,7 +80,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string JobNumber,int RevNumber,string JobBarcode,string JobBarcodeImage,string JobName,string Design,string DrawingNumber,int? RootJobID,string RootJobNo,string RootJobRevNumber,string CommonJobNumber,string CustomerPO1,string CustomerPO2,int CustomerID,int? ShipToParty,int? BrandOwner,int ContactPersonID,int? SalesRepID,int? CoordinatorID,short? CurrencyID,int? ProductTypeID,string Status,string Remark,int? RevisionFromJob,int? RevisionRootNumber,string InternalExternal,string RevisionDetail,string PaymentTerms,string TypeOfOrder,byte IsServiceJob,byte IsOutsource,int SupplierID,byte IsClosed,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,string ItemCode)
+	    public void Insert(string JobNumber,int RevNumber,string JobBarcode,string JobBarcodeImage,string JobName,string Design,string DrawingNumber,int? RootJobID,string RootJobNo,string RootJobRevNumber,string CommonJobNumber,string CustomerPO1,string CustomerPO2,int CustomerID,int? ShipToParty,int? BrandOwner,int ContactPersonID,int? SalesRepID,int? CoordinatorID,short? CurrencyID,string Status,string Remark,int? RevisionFromJob,int? RevisionRootNumber,string InternalExternal,string RevisionDetail,string PaymentTerms,string TypeOfOrder,byte IsServiceJob,byte IsOutsource,int SupplierID,byte IsClosed,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,int? ProductTypeID,string ItemCode)
 	    {
 		    TblJob item = new TblJob();
 		    
@@ -124,8 +124,6 @@ namespace SweetSoft.APEM.DataAccess
             
             item.CurrencyID = CurrencyID;
             
-            item.ProductTypeID = ProductTypeID;
-            
             item.Status = Status;
             
             item.Remark = Remark;
@@ -158,6 +156,8 @@ namespace SweetSoft.APEM.DataAccess
             
             item.ModifiedOn = ModifiedOn;
             
+            item.ProductTypeID = ProductTypeID;
+            
             item.ItemCode = ItemCode;
             
 	    
@@ -168,7 +168,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int JobID,string JobNumber,int RevNumber,string JobBarcode,string JobBarcodeImage,string JobName,string Design,string DrawingNumber,int? RootJobID,string RootJobNo,string RootJobRevNumber,string CommonJobNumber,string CustomerPO1,string CustomerPO2,int CustomerID,int? ShipToParty,int? BrandOwner,int ContactPersonID,int? SalesRepID,int? CoordinatorID,short? CurrencyID,int? ProductTypeID,string Status,string Remark,int? RevisionFromJob,int? RevisionRootNumber,string InternalExternal,string RevisionDetail,string PaymentTerms,string TypeOfOrder,byte IsServiceJob,byte IsOutsource,int SupplierID,byte IsClosed,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,string ItemCode)
+	    public void Update(int JobID,string JobNumber,int RevNumber,string JobBarcode,string JobBarcodeImage,string JobName,string Design,string DrawingNumber,int? RootJobID,string RootJobNo,string RootJobRevNumber,string CommonJobNumber,string CustomerPO1,string CustomerPO2,int CustomerID,int? ShipToParty,int? BrandOwner,int ContactPersonID,int? SalesRepID,int? CoordinatorID,short? CurrencyID,string Status,string Remark,int? RevisionFromJob,int? RevisionRootNumber,string InternalExternal,string RevisionDetail,string PaymentTerms,string TypeOfOrder,byte IsServiceJob,byte IsOutsource,int SupplierID,byte IsClosed,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,int? ProductTypeID,string ItemCode)
 	    {
 		    TblJob item = new TblJob();
 	        item.MarkOld();
@@ -216,8 +216,6 @@ namespace SweetSoft.APEM.DataAccess
 				
 			item.CurrencyID = CurrencyID;
 				
-			item.ProductTypeID = ProductTypeID;
-				
 			item.Status = Status;
 				
 			item.Remark = Remark;
@@ -249,6 +247,8 @@ namespace SweetSoft.APEM.DataAccess
 			item.ModifiedBy = ModifiedBy;
 				
 			item.ModifiedOn = ModifiedOn;
+				
+			item.ProductTypeID = ProductTypeID;
 				
 			item.ItemCode = ItemCode;
 				

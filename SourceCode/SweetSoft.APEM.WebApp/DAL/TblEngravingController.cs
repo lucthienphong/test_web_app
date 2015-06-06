@@ -80,7 +80,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(int JobID,double? EngravingStart,string JobCoOrd,byte? EngravingOnNut,byte? EngravingOnBoader,string ChromeThickness,string Roughness,string LaserStart,string LaserOperator,string FinalControl,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,double? FileSizeHEMG,double? FileSizeVEMG,double? FileSizeHDLS,double? FileSizeVDLS,double? FileSizeHEtching,double? FileSizeVEtching,string SRRemarkEMG,string SRRemarkDLS,string SRRemarkEtching,string TobaccoType,double? EngravingWidth,double? EngrStartEtching,double? EngrWidthEtching)
+	    public void Insert(int JobID,double? EngravingStart,string JobCoOrd,byte? EngravingOnNut,byte? EngravingOnBoader,string ChromeThickness,string Roughness,string LaserStart,string LaserOperator,string FinalControl,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,double? FileSizeHEMG,double? FileSizeVEMG,double? FileSizeHDLS,double? FileSizeVDLS,double? FileSizeHEtching,double? FileSizeVEtching,string SRRemarkEMG,string SRRemarkDLS,string SRRemarkEtching,string TobaccoType,double? EngravingWidth,double? EngrStartEtching,double? EngrWidthEtching,string JobTicket)
 	    {
 		    TblEngraving item = new TblEngraving();
 		    
@@ -138,6 +138,8 @@ namespace SweetSoft.APEM.DataAccess
             
             item.EngrWidthEtching = EngrWidthEtching;
             
+            item.JobTicket = JobTicket;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -146,7 +148,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int JobID,double? EngravingStart,string JobCoOrd,byte? EngravingOnNut,byte? EngravingOnBoader,string ChromeThickness,string Roughness,string LaserStart,string LaserOperator,string FinalControl,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,double? FileSizeHEMG,double? FileSizeVEMG,double? FileSizeHDLS,double? FileSizeVDLS,double? FileSizeHEtching,double? FileSizeVEtching,string SRRemarkEMG,string SRRemarkDLS,string SRRemarkEtching,string TobaccoType,double? EngravingWidth,double? EngrStartEtching,double? EngrWidthEtching)
+	    public void Update(int JobID,double? EngravingStart,string JobCoOrd,byte? EngravingOnNut,byte? EngravingOnBoader,string ChromeThickness,string Roughness,string LaserStart,string LaserOperator,string FinalControl,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,double? FileSizeHEMG,double? FileSizeVEMG,double? FileSizeHDLS,double? FileSizeVDLS,double? FileSizeHEtching,double? FileSizeVEtching,string SRRemarkEMG,string SRRemarkDLS,string SRRemarkEtching,string TobaccoType,double? EngravingWidth,double? EngrStartEtching,double? EngrWidthEtching,string JobTicket)
 	    {
 		    TblEngraving item = new TblEngraving();
 	        item.MarkOld();
@@ -205,6 +207,8 @@ namespace SweetSoft.APEM.DataAccess
 			item.EngrStartEtching = EngrStartEtching;
 				
 			item.EngrWidthEtching = EngrWidthEtching;
+				
+			item.JobTicket = JobTicket;
 				
 	        item.Save(UserName);
 	    }

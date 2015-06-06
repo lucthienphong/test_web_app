@@ -44,10 +44,15 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 txtNumber.Text = job.JobNumber;
                 txtR.Text = job.RevNumber.ToString();
 
+                TblStaff se = StaffManager.SelectByID(job.CoordinatorID.Value);
+                ltrJobCoop.Text = se.FirstName + " " + se.LastName;
+                txtReproCheck.Text = ltrJobCoop.Text;
+                txtDateCheck.Text = DateTime.Today.ToString("dd/MM/yyyy");
+
                 TblEngraving engraving = JobEngravingManager.SelectByID(JobID);
                 if (engraving != null)
                 {
-                    ltrJobCoop.Text = engraving.JobCoOrd; 
+                    txtJobTicketCheck.Text = engraving.JobTicket;
                 }
 
                 TblUser user = UserManager.GetUserByUserName(job.CreatedBy);

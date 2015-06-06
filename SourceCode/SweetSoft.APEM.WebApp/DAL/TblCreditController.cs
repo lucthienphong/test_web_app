@@ -80,7 +80,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Inserts a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Insert, true)]
-	    public void Insert(string CreditNo,DateTime CreditDate,int CustomerID,short CurrencyID,string Remark,decimal Total,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn)
+	    public void Insert(string CreditNo,DateTime CreditDate,int CustomerID,short CurrencyID,string Remark,decimal Total,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,int? TaxID)
 	    {
 		    TblCredit item = new TblCredit();
 		    
@@ -104,6 +104,8 @@ namespace SweetSoft.APEM.DataAccess
             
             item.ModifiedOn = ModifiedOn;
             
+            item.TaxID = TaxID;
+            
 	    
 		    item.Save(UserName);
 	    }
@@ -112,7 +114,7 @@ namespace SweetSoft.APEM.DataAccess
 	    /// Updates a record, can be used with the Object Data Source
 	    /// </summary>
         [DataObjectMethod(DataObjectMethodType.Update, true)]
-	    public void Update(int CreditID,string CreditNo,DateTime CreditDate,int CustomerID,short CurrencyID,string Remark,decimal Total,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn)
+	    public void Update(int CreditID,string CreditNo,DateTime CreditDate,int CustomerID,short CurrencyID,string Remark,decimal Total,string CreatedBy,DateTime? CreatedOn,string ModifiedBy,DateTime? ModifiedOn,int? TaxID)
 	    {
 		    TblCredit item = new TblCredit();
 	        item.MarkOld();
@@ -139,6 +141,8 @@ namespace SweetSoft.APEM.DataAccess
 			item.ModifiedBy = ModifiedBy;
 				
 			item.ModifiedOn = ModifiedOn;
+				
+			item.TaxID = TaxID;
 				
 	        item.Save(UserName);
 	    }

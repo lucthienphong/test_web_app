@@ -255,7 +255,7 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                     //Lưu vào logging
                     LoggingActions("Cell Shape",
-                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Action.UPDATE,
                             LogsAction.Objects.Status.SUCCESS,
                             JsonConvert.SerializeObject(lstData));
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());

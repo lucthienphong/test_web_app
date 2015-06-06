@@ -165,10 +165,15 @@
             position: relative;
             border-top: none;
         }
+
         h5
         {
             margin-top: 5px !important;
             margin-bottom: 5px !important;
+        }
+        .info-company
+        {
+            font-size:11px;        
         }
     </style>
 </head>
@@ -182,7 +187,8 @@
                             <img src="/img/apem-logo-print.png" class="img-responsive" />
                         </div>
                         <div class="col-sm-10 col-xs-10">
-                            <asp:Literal runat="server" ID="ltrCompanyName" EnableViewState="false"></asp:Literal>
+                            <strong><asp:Literal runat="server" ID="ltrCompanyName" EnableViewState="false"></asp:Literal></strong>
+                            <asp:Label runat="server" ID="lblCompanyInfo" CssClass="info-company"></asp:Label>
                         </div>
                     </div>
                     <asp:Literal runat="server" ID="ltrInvoiceAndDate" EnableViewState="false"></asp:Literal>
@@ -243,7 +249,9 @@
                                         </h5>
                                     </div>
                                     <div style="display: table-cell; border: 1px solid #000; border-left: none; border-right: 1px solid #000; width: 10%;">
-                                        <h5 style="text-align: center"><strong>Qty <br/>  Pcs.</strong>
+                                        <h5 style="text-align: center"><strong>Qty
+                                            <br />
+                                            Pcs.</strong>
                                         </h5>
                                     </div>
                                     <div style="display: table-cell; border: 1px solid #000; border-left: none; border-right: 1px solid #000; width: 15%;">
@@ -265,7 +273,7 @@
                                                     <asp:Label ID="lblSequence" runat="server" Text=''></asp:Label>
                                                 </h5>
                                             </div>
-                                            <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 30%; padding-left:5px;">
+                                            <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 30%; padding-left: 5px;">
                                                 <h5 style="text-align: left">
                                                     <asp:Label ID="lblDescription" runat="server" Text='<%#Eval("Description")%>'></asp:Label>
                                                 </h5>
@@ -282,12 +290,12 @@
                                             </div>
                                             <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
                                                 <h5 style="text-align: center">
-                                                    <asp:Label ID="lblUnitPrice" runat="server" Text='<%#Convert.ToDecimal(Eval("UnitPrice")).ToString("N3") %>'></asp:Label>
+                                                    <asp:Label ID="lblUnitPrice" runat="server" Text='<%#Convert.ToDecimal(Eval("UnitPrice")).ToString("N2") %>'></asp:Label>
                                                 </h5>
                                             </div>
                                             <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
                                                 <h5 style="text-align: center">
-                                                    <asp:Label ID="lblTotal" runat="server" Text='<%#(Convert.ToDecimal(Eval("Quantity")) * Convert.ToDecimal(Eval("UnitPrice"))).ToString("N3") %>'></asp:Label>
+                                                    <asp:Label ID="lblTotal" runat="server" Text='<%#(Convert.ToDecimal(Eval("Quantity")) * Convert.ToDecimal(Eval("UnitPrice"))).ToString("N2") %>'></asp:Label>
                                                 </h5>
                                             </div>
                                         </div>
@@ -345,7 +353,7 @@
                                         </h5>
                                     </div>
                                     <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
-                                        <h5 style="text-align: center"><strong></strong>
+                                        <h5 style="text-align: center"><asp:Label ID="lblSubTotal" runat="server"></asp:Label>
                                         </h5>
                                     </div>
                                 </div>
@@ -365,7 +373,7 @@
                                         </h5>
                                     </div>
                                     <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 10%;">
-                                        <h5 style="text-align: left; padding-left: 5px;">GST
+                                        <h5 style="text-align: left; padding-left: 5px;">GST(<asp:Label ID="lblTax" runat="server"></asp:Label>)
                                         </h5>
                                     </div>
                                     <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
@@ -373,7 +381,7 @@
                                         </h5>
                                     </div>
                                     <div style="display: table-cell; border: 1px solid #000; border-top: none; border-left: none; border-right: 1px solid #000; width: 15%;">
-                                        <h5 style="text-align: center"><strong></strong>
+                                        <h5 style="text-align: center">(<asp:Label ID="lblTaxAmount" runat="server"></asp:Label>)
                                         </h5>
                                     </div>
                                 </div>

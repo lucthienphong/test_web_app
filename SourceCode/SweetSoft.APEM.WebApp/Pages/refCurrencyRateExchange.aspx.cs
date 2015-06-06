@@ -13,6 +13,8 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core.Logs;
+using Newtonsoft.Json;
 
 namespace SweetSoft.APEM.WebApp.Pages
 {
@@ -211,6 +213,47 @@ namespace SweetSoft.APEM.WebApp.Pages
                         OpenMessageBox(msgRole, null, false, false);
                         return;
                     }
+                    List<JsonData> lstData = new List<JsonData>();
+
+                    if (obj.CurrencyName != currencyName)
+                    {
+                        lstData.Add(new JsonData()
+                        {
+                            Title = "Name",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = obj.CurrencyName,
+                                NewValue = currencyName
+                            })
+                        });
+                    }
+
+                    if (obj.RMValue != rmValue)
+                    {
+                        lstData.Add(new JsonData()
+                        {
+                            Title = "RMValue",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = obj.RMValue.ToString(),
+                                NewValue = rmValue.ToString()
+                            })
+                        });
+                    }
+
+                    if (obj.IsObsolete != isObsolete)
+                    {
+                        lstData.Add(new JsonData()
+                        {
+                            Title = "Obsolete",
+                            Data = JsonConvert.SerializeObject(new Json()
+                            {
+                                OldValue = Convert.ToBoolean(obj.IsObsolete) ? "True" : "False",
+                                NewValue = Convert.ToBoolean(isObsolete) ? "True" : "False"
+                            })
+                        });
+                    }
+
                     obj.CurrencyName = currencyName;
                     obj.RMValue = rmValue;
                     obj.CurrencyValue = currencyValue;
@@ -229,6 +272,10 @@ namespace SweetSoft.APEM.WebApp.Pages
 
 
                     //Lưu vào logging
+                    LoggingActions("Currency",
+                            LogsAction.Objects.Action.UPDATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(lstData));
                     LoggingManager.LogAction(ActivityLoggingHelper.UPDATE, FUNCTION_PAGE_ID, obj.ToJSONString());
                 }
                 else
@@ -258,6 +305,12 @@ namespace SweetSoft.APEM.WebApp.Pages
                     }
 
                     //Lưu vào logging
+                    LoggingActions("Currency",
+                            LogsAction.Objects.Action.CREATE,
+                            LogsAction.Objects.Status.SUCCESS,
+                            JsonConvert.SerializeObject(new List<JsonData>() { 
+                                new JsonData() { Title = "Name", Data = obj.CurrencyName} 
+                            }));
                     LoggingManager.LogAction(ActivityLoggingHelper.INSERT, FUNCTION_PAGE_ID, obj.ToJSONString());
                 }
                 if (obj != null)
@@ -411,12 +464,19 @@ namespace SweetSoft.APEM.WebApp.Pages
                             }
 
                             List<short> idList = new List<short>();
+                            List<JsonData> lstData = new List<JsonData>();
+
                             for (int i = 0; i < gvCurrency.Rows.Count; i++)
                             {
                                 CheckBox chkIsDelete = (CheckBox)gvCurrency.Rows[i].FindControl("chkIsDelete");
                                 if (chkIsDelete.Checked)
                                 {
                                     short ID = Convert.ToInt16(gvCurrency.DataKeys[i].Value);
+                                    TblCurrency obj = new CurrencyManager().SelectByID(ID);
+                                    if (obj != null)
+                                    {
+                                        lstData.Add(new JsonData() { Title = "Currency", Data = "[Name: " + obj.CurrencyName + "]" });
+                                    }
                                     idList.Add(ID);
                                 }
                             }

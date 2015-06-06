@@ -478,6 +478,19 @@ namespace SweetSoft.APEM.DataAccess
 				colvarEngrWidthEtching.ForeignKeyTableName = "";
 				schema.Columns.Add(colvarEngrWidthEtching);
 				
+				TableSchema.TableColumn colvarJobTicket = new TableSchema.TableColumn(schema);
+				colvarJobTicket.ColumnName = "JobTicket";
+				colvarJobTicket.DataType = DbType.String;
+				colvarJobTicket.MaxLength = 256;
+				colvarJobTicket.AutoIncrement = false;
+				colvarJobTicket.IsNullable = true;
+				colvarJobTicket.IsPrimaryKey = false;
+				colvarJobTicket.IsForeignKey = false;
+				colvarJobTicket.IsReadOnly = false;
+				colvarJobTicket.DefaultSetting = @"";
+				colvarJobTicket.ForeignKeyTableName = "";
+				schema.Columns.Add(colvarJobTicket);
+				
 				BaseSchema = schema;
 				//add this schema to the provider
 				//so we can query it later
@@ -703,6 +716,14 @@ namespace SweetSoft.APEM.DataAccess
 			get { return GetColumnValue<double?>(Columns.EngrWidthEtching); }
 			set { SetColumnValue(Columns.EngrWidthEtching, value); }
 		}
+		  
+		[XmlAttribute("JobTicket")]
+		[Bindable(true)]
+		public string JobTicket 
+		{
+			get { return GetColumnValue<string>(Columns.JobTicket); }
+			set { SetColumnValue(Columns.JobTicket, value); }
+		}
 		
 		#endregion
 		
@@ -767,7 +788,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Inserts a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Insert(int varJobID,double? varEngravingStart,string varJobCoOrd,byte? varEngravingOnNut,byte? varEngravingOnBoader,string varChromeThickness,string varRoughness,string varLaserStart,string varLaserOperator,string varFinalControl,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,double? varFileSizeHEMG,double? varFileSizeVEMG,double? varFileSizeHDLS,double? varFileSizeVDLS,double? varFileSizeHEtching,double? varFileSizeVEtching,string varSRRemarkEMG,string varSRRemarkDLS,string varSRRemarkEtching,string varTobaccoType,double? varEngravingWidth,double? varEngrStartEtching,double? varEngrWidthEtching)
+		public static void Insert(int varJobID,double? varEngravingStart,string varJobCoOrd,byte? varEngravingOnNut,byte? varEngravingOnBoader,string varChromeThickness,string varRoughness,string varLaserStart,string varLaserOperator,string varFinalControl,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,double? varFileSizeHEMG,double? varFileSizeVEMG,double? varFileSizeHDLS,double? varFileSizeVDLS,double? varFileSizeHEtching,double? varFileSizeVEtching,string varSRRemarkEMG,string varSRRemarkDLS,string varSRRemarkEtching,string varTobaccoType,double? varEngravingWidth,double? varEngrStartEtching,double? varEngrWidthEtching,string varJobTicket)
 		{
 			TblEngraving item = new TblEngraving();
 			
@@ -825,6 +846,8 @@ namespace SweetSoft.APEM.DataAccess
 			
 			item.EngrWidthEtching = varEngrWidthEtching;
 			
+			item.JobTicket = varJobTicket;
+			
 		
 			if (System.Web.HttpContext.Current != null)
 				item.Save(System.Web.HttpContext.Current.User.Identity.Name);
@@ -835,7 +858,7 @@ namespace SweetSoft.APEM.DataAccess
 		/// <summary>
 		/// Updates a record, can be used with the Object Data Source
 		/// </summary>
-		public static void Update(int varJobID,double? varEngravingStart,string varJobCoOrd,byte? varEngravingOnNut,byte? varEngravingOnBoader,string varChromeThickness,string varRoughness,string varLaserStart,string varLaserOperator,string varFinalControl,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,double? varFileSizeHEMG,double? varFileSizeVEMG,double? varFileSizeHDLS,double? varFileSizeVDLS,double? varFileSizeHEtching,double? varFileSizeVEtching,string varSRRemarkEMG,string varSRRemarkDLS,string varSRRemarkEtching,string varTobaccoType,double? varEngravingWidth,double? varEngrStartEtching,double? varEngrWidthEtching)
+		public static void Update(int varJobID,double? varEngravingStart,string varJobCoOrd,byte? varEngravingOnNut,byte? varEngravingOnBoader,string varChromeThickness,string varRoughness,string varLaserStart,string varLaserOperator,string varFinalControl,string varCreatedBy,DateTime? varCreatedOn,string varModifiedBy,DateTime? varModifiedOn,double? varFileSizeHEMG,double? varFileSizeVEMG,double? varFileSizeHDLS,double? varFileSizeVDLS,double? varFileSizeHEtching,double? varFileSizeVEtching,string varSRRemarkEMG,string varSRRemarkDLS,string varSRRemarkEtching,string varTobaccoType,double? varEngravingWidth,double? varEngrStartEtching,double? varEngrWidthEtching,string varJobTicket)
 		{
 			TblEngraving item = new TblEngraving();
 			
@@ -892,6 +915,8 @@ namespace SweetSoft.APEM.DataAccess
 				item.EngrStartEtching = varEngrStartEtching;
 			
 				item.EngrWidthEtching = varEngrWidthEtching;
+			
+				item.JobTicket = varJobTicket;
 			
 			item.IsNew = false;
 			if (System.Web.HttpContext.Current != null)
@@ -1095,6 +1120,13 @@ namespace SweetSoft.APEM.DataAccess
         
         
         
+        public static TableSchema.TableColumn JobTicketColumn
+        {
+            get { return Schema.Columns[27]; }
+        }
+        
+        
+        
         #endregion
 		#region Columns Struct
 		public struct Columns
@@ -1126,6 +1158,7 @@ namespace SweetSoft.APEM.DataAccess
 			 public static string EngravingWidth = @"EngravingWidth";
 			 public static string EngrStartEtching = @"EngrStartEtching";
 			 public static string EngrWidthEtching = @"EngrWidthEtching";
+			 public static string JobTicket = @"JobTicket";
 						
 		}
 		#endregion

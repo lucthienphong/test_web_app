@@ -85,6 +85,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         private void BindDDL()
         {
             BindCurrencyDDL();
+            BindGTSDDL();
         }
 
         [WebMethod]
@@ -118,6 +119,11 @@ namespace SweetSoft.APEM.WebApp.Pages
                         ddlCurrency.SelectedValue = obj.CurrencyID.ToString();
                         txtRemark.Text = obj.Remark;
 
+                        ddlTax.SelectedValue = obj.TaxID != null ? obj.TaxID.ToString() : "0";
+                        txtTaxRate.Text = obj.TaxID != null ?
+                                          new TaxManager().SelectByID((short)obj.TaxID).TaxPercentage.ToString("N2") :
+                                          "0";
+
                         BindDetailData(CreditID);
                         BindGrid();
                         Session[ViewState["PageID"] + "ID"] = obj.CreditID;
@@ -138,6 +144,15 @@ namespace SweetSoft.APEM.WebApp.Pages
             {
                 ProcessException(ex);
             }
+        }
+
+        private void BindGTSDDL()
+        {
+            List<TblTax> lst = new TaxManager().SelectAllForDDL(true);
+            ddlTax.DataSource = lst;
+            ddlTax.DataTextField = "TaxName";
+            ddlTax.DataValueField = "TaxID";
+            ddlTax.DataBind();
         }
 
         private void ResetDataFields()
@@ -221,6 +236,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.Remark = txtRemark.Text.Trim();
                     obj.Total = CalculateTotal();
 
+                    // Get tax rate
+                    short TaxSelectedID = short.Parse(ddlTax.SelectedValue);
+                    TblTax objTax = new TaxManager().SelectByID(TaxSelectedID);
+
+                    if (objTax != null)
+                    {
+                        obj.TaxID = objTax.TaxID;
+                    }
+
                     CreditManager.Update(obj);
                     SaveDetailData(obj.CreditID);
                     //Lưu vào logging
@@ -236,6 +260,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     BindDetailData(obj.CreditID);
 
                     Session[ViewState["PageID"] + "ID"] = obj.CreditID;
+                    ltrPrinting.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintCreditDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", CreditID);
                     MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_SAVED_SUCCESS), MSGButton.OK, MSGIcon.Success);
                     OpenMessageBox(msg, null, false, false);
                 }
@@ -256,6 +281,15 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.CurrencyID = CurrencyID;
                     obj.Remark = txtRemark.Text.Trim();
                     obj.Total = CalculateTotal();
+
+                    // Get tax rate
+                    short TaxSelectedID = short.Parse(ddlTax.SelectedValue);
+                    TblTax objTax = new TaxManager().SelectByID(TaxSelectedID);
+
+                    if (objTax != null)
+                    {
+                        obj.TaxID = objTax.TaxID;
+                    }
 
                     bool CreditNoChanged = false;
                     string oldNumber = lblCreditNumber.Text.Trim();
@@ -283,6 +317,8 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                     Session[ViewState["PageID"] + "ID"] = obj.CreditID;
 
+                    ltrPrinting.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintCreditDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", CreditID);
+
                     string message = ResourceTextManager.GetApplicationText(ResourceText.DATA_SAVED_SUCCESS);
                     if (CreditNoChanged)
                         message += string.Format("<br/>System has created a new No. for this credit. The No. '{0}' has been used by another credit", oldNumber);
@@ -290,9 +326,9 @@ namespace SweetSoft.APEM.WebApp.Pages
                     MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), message, MSGButton.OK, MSGIcon.Success);
                     OpenMessageBox(msg, null, false, false);
                 }
-
             }
             #endregion
+
             catch (Exception ex)
             {
                 ProcessException(ex);
@@ -352,6 +388,23 @@ namespace SweetSoft.APEM.WebApp.Pages
             catch (Exception ex)
             {
                 ProcessException(ex);
+            }
+        }
+
+        protected void ddlTax_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            short taxID = 0; short.TryParse(ddlTax.SelectedValue, out taxID);
+            double taxRate = 0;
+
+            TblTax tax = new TaxManager().SelectByID(taxID);
+            if (tax != null)
+            {
+                txtTaxRate.Text = tax.TaxPercentage.ToString("N2");
+                taxRate = tax.TaxPercentage;
+            }
+            else
+            {
+                txtTaxRate.Text = (0).ToString("N2");
             }
         }
 

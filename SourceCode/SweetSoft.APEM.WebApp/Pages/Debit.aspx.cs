@@ -264,6 +264,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                     BindDetailData(obj.DebitID);
 
                     Session[ViewState["PageID"] + "ID"] = obj.DebitID;
+                    ltrPrinting.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintDebitDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", DebitID);
+
                     MessageBox msg = new MessageBox(ResourceTextManager.GetApplicationText(ResourceText.DIALOG_MESSAGEBOX_TITLE), ResourceTextManager.GetApplicationText(ResourceText.DATA_SAVED_SUCCESS), MSGButton.OK, MSGIcon.Success);
                     OpenMessageBox(msg, null, false, false);
                 }
@@ -320,6 +322,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     BindDetailData(obj.DebitID);
 
                     Session[ViewState["PageID"] + "ID"] = obj.DebitID;
+                    ltrPrinting.Text = string.Format("<a id='printing' href='javascript:;' data-href='Printing/PrintDebitDetail.aspx?ID={0}' class='btn btn-transparent'><span class='flaticon-printer60'></span> Print</a>", DebitID);
 
                     string message = ResourceTextManager.GetApplicationText(ResourceText.DATA_SAVED_SUCCESS);
                     if (DebitNoChanged)
