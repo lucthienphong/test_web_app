@@ -100,14 +100,14 @@
                                         <div style="display: table-cell; border-right: 1px solid #000;">
                                             <h5>
                                                 <small>Job Nr : </small>
-                                                <strong>
+                                                <strong style="font-size:18px;">
                                                     <asp:Literal Text="text" ID="ltrJobNr" runat="server" EnableViewState="false" /></strong>
                                             </h5>
                                         </div>
                                         <div style="display: table-cell; width: 70px">
                                             <h5>
                                                 <small>R:</small>
-                                                <strong>
+                                                <strong style="font-size:18px;">
                                                     <asp:Literal Text="text" ID="ltrRevNumber" runat="server" EnableViewState="false" /></strong>
                                             </h5>
                                         </div>

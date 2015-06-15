@@ -3,7 +3,8 @@
 <%@ Register Src="~/Controls/GridViewPager.ascx" TagName="GridViewPager" TagPrefix="SweetSoft" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        ._minwidth {
+        ._minwidth
+        {
             width: 148px!important;
         }
 
@@ -13,7 +14,7 @@
             margin-left: 10px !important;
         }*/
 
-        .flaticon-padlock19:before, 
+        .flaticon-padlock19:before,
         .flaticon-padlock21:before
         {
             font-size: 16px !important;
@@ -117,13 +118,13 @@
                     AllowPaging="true" AllowSorting="true" DataKeyNames="JobID"
                     OnPageIndexChanging="gvDeliveryOrder_PageIndexChanging"
                     OnSorting="gvDeliveryOrder_Sorting">
-                    <Columns>                        
+                    <Columns>
                         <asp:TemplateField HeaderText="Order Number" SortExpression="0" HeaderStyle-CssClass="sorting _minwidth"
                             ItemStyle-CssClass="column-one minWidth">
                             <ItemTemplate>
-                                <a href='DeliveryOrder.aspx?ID=<%#Eval("JobID")%>'>
-                                    <%#Eval("DONumber")%>
-                                </a>
+                                <asp:LinkButton ID="btnEdit" runat="server"
+                                    CommandArgument='<%#Eval("DONumber")%>' 
+                                    Text='<%#Eval("DONumber")%>' data-id='<%#Eval("JobID")%>'></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Order Date" SortExpression="1" HeaderStyle-CssClass="sorting"
@@ -159,7 +160,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Lock" HeaderStyle-CssClass="text-center" ItemStyle-CssClass="text-center">
                             <ItemTemplate>
-                                <span data-toggle="tooltip" data-placement="right"  title='<%#Eval("Lock") == DBNull.Value ? "" : (((bool)Eval("Lock")) == false ?  "Unlock" : "Lock")%>' class='<%#Eval("Lock") == DBNull.Value ? "" : (((bool)Eval("Lock")) == false ?  "flaticon-padlock21 blue" : "flaticon-padlock19 red")%> '></span>
+                                <span data-toggle="tooltip" data-placement="right" title='<%#Eval("Lock") == DBNull.Value ? "" : (((bool)Eval("Lock")) == false ?  "Unlock" : "Lock")%>' class='<%#Eval("Lock") == DBNull.Value ? "" : (((bool)Eval("Lock")) == false ?  "flaticon-padlock21 blue" : "flaticon-padlock19 red")%> '></span>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField ItemStyle-CssClass="column-one" HeaderStyle-CssClass="checkbox-column">
@@ -345,5 +346,17 @@
         $(function () {
             $('[data-toggle="tooltip"]').bstooltip()
         })
+
+        addRequestHanlde(InitDetail);
+        InitDetail();
+        function InitDetail() {
+            var linkColl = $('div[id$="gvDeliveryOrder"] a[id$="btnEdit"]');
+            if (linkColl.length > 0) {
+                linkColl.click(function () {
+                    parent.openWindow($('a[data-title]:eq(0)'), 'Delivery Order', '/Pages/DeliveryOrder.aspx?ID=' + $(this).attr('data-id'));
+                    return false;
+                });
+            }
+        }
     </script>
 </asp:Content>

@@ -1168,6 +1168,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                                     {
                                         TblCylinder cObj = new TblCylinder();
                                         cObj.CopyFrom(c);
+                                        cObj.CylinderNo = string.Empty;
                                         cObj.CylinderID = 0;
                                         cObj.CylinderBarcode = obj.JobBarcode + (c.Sequence.ToString().Length > 1 ? "" : "0") + c.Sequence.ToString();
                                         cObj.JobID = (int)obj.JobID;
@@ -1540,7 +1541,7 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
             removeInvalidRows();
             grvCylinders.EditIndex = e.NewEditIndex;
-            
+
             //int CylinderID = 0;
             //if (int.TryParse(grvCylinders.DataKeys[grvCylinders.EditIndex].Values[0].ToString(), out CylinderID))
             //{

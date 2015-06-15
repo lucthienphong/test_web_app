@@ -1268,24 +1268,28 @@ namespace SweetSoft.APEM.WebApp.Pages
         {
 
             string InvoiceNo = string.Empty, SAPCode = string.Empty, CompanyCode = string.Empty, InvoiceDate = string.Empty, PostingDate = string.Empty, CurrencyName = string.Empty, CalcTax = string.Empty, TaxCode = string.Empty, Total = string.Empty, RMValue = string.Empty;
+            
             //EXPORT HEAD
             //Get Invocie data
             string InvoiceIDs = string.Format("-{0}-", InvoiceID);
+
+            CompanyCode = SettingManager.GetSettingValue(SettingNames.CompanyCode);
+
             DataTable dtInvoice = InvoiceManager.SelectForExport(InvoiceIDs);
             if (dtInvoice.Rows.Count > 0)
             {
                 InvoiceNo = dtInvoice.Rows[0]["InvoiceNo"].ToString();
                 SAPCode = dtInvoice.Rows[0]["SAPCode"].ToString();
-                InvoiceDate = dtInvoice.Rows[0]["InvoiceNo"].ToString();
-                PostingDate = Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
+                InvoiceDate = dtInvoice.Rows[0]["InvoiceDate"].ToString();
+                PostingDate = dtInvoice.Rows[0]["InvoiceDate"].ToString(); //Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
                 CurrencyName = dtInvoice.Rows[0]["CurrencyName"].ToString();
                 CalcTax = dtInvoice.Rows[0]["CalcTax"].ToString();
                 TaxCode = dtInvoice.Rows[0]["TaxCode"].ToString();
-                Total = string.IsNullOrEmpty(dtInvoice.Rows[0]["TotalPrice"].ToString()) ? string.Empty : ((decimal)dtInvoice.Rows[0]["TotalPrice"]).ToString("N2");
+                Total = string.IsNullOrEmpty(dtInvoice.Rows[0]["TotalPrice"].ToString()) ? string.Empty : ((decimal)dtInvoice.Rows[0]["TotalPrice"]).ToString("F");
                 RMValue = string.IsNullOrEmpty(dtInvoice.Rows[0]["RMValue"].ToString()) ? string.Empty : ((decimal)dtInvoice.Rows[0]["RMValue"]).ToString("N4");
             }
             StringWriter headWriter = new StringWriter();
-            headWriter.WriteLine("{0}    {1}    {2}    {3}    {4}    {5}    {6}    {7}    {8}", InvoiceNo, SAPCode, InvoiceDate, PostingDate, CurrencyName, CalcTax, TaxCode, Total, RMValue);
+            headWriter.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}", InvoiceNo, CompanyCode, SAPCode, InvoiceDate, PostingDate, CurrencyName, CalcTax, TaxCode, Total, RMValue);
             using (StreamWriter writer = new StreamWriter(Response.OutputStream, Encoding.UTF8))
             {
                 writer.Write(headWriter.ToString());
@@ -1315,12 +1319,12 @@ namespace SweetSoft.APEM.WebApp.Pages
             {
                 string dInvoiceNo = r.Field<string>("InvoiceNo");
                 string dGLCode = r.Field<string>("GLCode");
-                string dTotal = r.Field<double>("Total").ToString("N2");
+                string dTotal = r.Field<double>("Total").ToString("F");
                 string dTaxCode = r.Field<string>("TaxCode");
                 string dDescription = r.Field<string>("Description");
                 string dJobNumber = r.Field<string>("JobNumber");
 
-                potisionWriter.WriteLine("{0}    {1}    {2}    {3}    {4}    {5}", dInvoiceNo, dGLCode, dTotal, dTaxCode, dDescription, dJobNumber);
+                potisionWriter.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}", dInvoiceNo, dGLCode, dTotal, dTaxCode, dDescription, dJobNumber);
             }
 
             Response.ContentType = "text/plain";

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SweetSoft.APEM.Core;
 
 namespace SweetSoft.APEM.WebApp.Pages.Printing
 {
@@ -152,6 +153,10 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
 
                     #endregion bind cylinder
                 }
+                
+                // 12-06-2015
+
+                ltrInfoUser.Text = ApplicationContext.Current.User.UserName + "/" + DateTime.Now.ToString("dd.MM.yyyy") + "/" + DateTime.Now.ToString("hh:mm tt");
             }
         }
 

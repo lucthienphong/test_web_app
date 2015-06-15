@@ -123,14 +123,14 @@
     <form id="form1" runat="server">
         <div class="container-fluid" id="wrapPrint">
             <div class="printContent">
-                 <div class="row">
-                    <div class="col-xs-12 text-right" style="margin-bottom: 15px">
-                        <span class="form-control-static">
-                            <strong>
-                                <asp:Literal Text="Asia-Pacific Engravers (Malaysia) Sdn. Bhd." ID="ltrCompanyName" EnableViewState="false" runat="server" />
-                            </strong>
-                        </span>
-                        <img src="/img/logo-print1.png" class="img-responsive" style="height: 12mm; vertical-align: bottom; display: inline-block" />
+                 <div class="row" style="margin-bottom: 20px;">
+                    <div class="col-sm-2 col-xs-2">
+                        <img src="/img/apem-logo-print.png" class="img-responsive" />
+                    </div>
+                    <div class="col-sm-10 col-xs-10">
+                        <strong>
+                            <asp:Literal runat="server" ID="ltrCompany" EnableViewState="false"></asp:Literal></strong>
+                        <asp:Label runat="server" ID="lblCompanyInfo" CssClass="info-company"></asp:Label>
                     </div>
                 </div>
 
@@ -257,6 +257,12 @@
                                             Text='<%#Eval("Wall")%>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Cell Width" ItemStyle-CssClass="text-center" HeaderStyle-CssClass="text-center">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCellWidth" runat="server"
+                                            Text='<%#ShowNumberFormat(Eval("CellWidth"))%>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Cell depth" ItemStyle-CssClass="text-center" HeaderStyle-CssClass="text-center">
                                     <ItemTemplate>
                                         <asp:Label ID="lblCellDepth" runat="server"
@@ -286,7 +292,7 @@
                                 <span class="control-label text-left col-xs-9">:&nbsp;&nbsp;<asp:Literal runat="server" ID="ltrColour" EnableViewState="false"></asp:Literal></span>
 
                                 <span class="control-label col-xs-3 text-left">Readability</span>
-                                <span class="control-label text-left col-xs-9">:  </span>
+                                <span class="control-label text-left col-xs-9">:&nbsp;&nbsp;GOOD</span>
 
                                 <span class="control-label col-xs-12 text-left">Each cylinder is measured and checked to follow these standard specifications:</span>
 
@@ -296,26 +302,25 @@
                     <div class="col-xs-12">
                         <div class="form-horizontal">
                             <div class="row">
-                                <br />
 
-                                <span class="control-label col-xs-4 text-left">Surface Roughness of chrome(Rz)</span>
-                                <span class="control-label text-left col-xs-8">:&nbsp;&nbsp;0.35 - 0.45</span>
+                                <span class="control-label col-xs-5 text-left">Surface Roughness of chrome(Rz)</span>
+                                <span class="control-label text-left col-xs-7">:&nbsp;&nbsp;0.35 - 0.45</span>
 
-                                <span class="control-label col-xs-4 text-left">Copper Hardness(Hv)</span>
-                                <span class="control-label text-left col-xs-8">:&nbsp;&nbsp;19 - 230</span>
+                                <span class="control-label col-xs-5 text-left">Copper Hardness(Hv)</span>
+                                <span class="control-label text-left col-xs-7">:&nbsp;&nbsp;190 - 230</span>
 
-                                <span class="control-label col-xs-4 text-left">Chrome Hardness(Hv)</span>
-                                <span class="control-label text-left col-xs-8">:&nbsp;&nbsp;950 - 1050</span>
+                                <span class="control-label col-xs-5 text-left">Chrome Hardness(Hv)</span>
+                                <span class="control-label text-left col-xs-7">:&nbsp;&nbsp;950 - 1050</span>
 
-                                <span class="control-label col-xs-4 text-left">Chrome Thickness(&mu;v)</span>
-                                <span class="control-label text-left col-xs-8">:&nbsp;&nbsp;7 - 10</span>
+                                <span class="control-label col-xs-5 text-left">Chrome Thickness(µm)</span>
+                                <span class="control-label text-left col-xs-7">:&nbsp;&nbsp;7 - 10</span>
 
 
                             </div>
                             <div class="row">
                                 <br />
                                 <p class="control-label col-xs-12 text-left">
-                                    The measuring devices are tesed and calibrated on a regular basis to assure accurate results.<br />
+                                    The measuring devices are tested and calibrated on a regular basis to assure accurate results.<br />
                                     The above mentioned cylinders have been proofed on our proof press and the prints have been carefuly checked for errors, damages and any other discrepancies.
                                 </p>
                             </div>

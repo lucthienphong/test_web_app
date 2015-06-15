@@ -217,7 +217,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
 
                     ccolForEachPageTemp.Add(temp);
                 }
-
+                ccolForEachPageTemp.Sort((x, y) => x.objCylinder.Sequence.CompareTo(y.objCylinder.Sequence));
                 Session["Cylinders"] = ccolForEachPageTemp;
 
                 rptPrintCylinderCard.DataSource = ccolTemp;

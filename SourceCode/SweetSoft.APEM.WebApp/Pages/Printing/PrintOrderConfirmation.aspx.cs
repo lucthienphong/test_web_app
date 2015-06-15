@@ -196,14 +196,15 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 }
 
                 //Tổng chưa chiết khấu & thuế
-                decimal Total = od.TotalPrice != null ? (decimal)od.TotalPrice : 0;
-                decimal DiscountRate = od.Discount != null ? (decimal)od.Discount : 0;
+                //decimal Total = od.TotalPrice != null ? (decimal)od.TotalPrice : 0;
+                //decimal DiscountRate = od.Discount != null ? (decimal)od.Discount : 0;
                 decimal TaxRate = od.TaxPercentage != null ? (decimal)od.TaxPercentage : 0;
-                lblSubTotal.Text = Total.ToString("N2");
-                lblDiscount.Text = (Total * discount / 100).ToString("N2");
-                lblSubTotalBefore.Text = (Total * (1 - discount / 100)).ToString("N2");
-                lblGST.Text = (Total * (1 - discount / 100) * (TaxRate / 100)).ToString("N2");
-                lblTotal.Text = (Total * (1 - discount / 100) * (1 + TaxRate / 100)).ToString("N2");
+
+                lblSubTotal.Text = sumTotalPrice.ToString("N2");
+                lblDiscount.Text = (sumTotalPrice * discount / 100).ToString("N2");
+                lblSubTotalBefore.Text = (sumTotalPrice * (1 - discount / 100)).ToString("N2");
+                lblGST.Text = (sumTotalPrice * (1 - discount / 100) * (TaxRate / 100)).ToString("N2");
+                lblTotal.Text = (sumTotalPrice * (1 - discount / 100) * (1 + TaxRate / 100)).ToString("N2");
                 
 
                 TblCurrency cr = new CurrencyManager().SelectByID(od.CurrencyID);

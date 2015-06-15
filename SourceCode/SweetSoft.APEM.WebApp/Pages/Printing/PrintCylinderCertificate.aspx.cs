@@ -52,8 +52,17 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ltrCompanyName.Text = SettingManager.GetSettingValue(SettingNames.CompanyName);
             ltrAddress.Text = ResourceTextManager.GetApplicationText(ResourceText.CERTIFICATE_OF_ANALYSIS);
+
+            ltrCompany.Text = SettingManager.GetSettingValue(SettingNames.CompanyName) + "<br />";
+            string sCompanyInfo = SettingManager.GetSettingValue(SettingNames.CompanyAddress) + "<br />";
+            sCompanyInfo += "Phone " + SettingManager.GetSettingValue(SettingNames.CompanyPhone) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            sCompanyInfo += "Fax " + SettingManager.GetSettingValue(SettingNames.CompanyFax) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            sCompanyInfo += SettingManager.GetSettingValue(SettingNames.CompanyWebsite) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            sCompanyInfo += "GST No.:" + SettingManager.GetSettingValue(SettingNames.CompanyGST) + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />";
+            sCompanyInfo += "TIN No.:" + SettingManager.GetSettingValue(SettingNames.CompanyGST);
+
+            lblCompanyInfo.Text = sCompanyInfo;
 
             TblJob j = JobManager.SelectByID(JobID);
             if (j != null)
@@ -78,7 +87,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     ltrCustomer.Text = c.Name;
                 }
 
-                DataTable dt = JobManager.tblEngravingDetail_SelectAll(j.JobID);
+                DataTable dt = JobManager.SelectAllEngravingCertificate(j.JobID);
                 grvCylinder.DataSource = dt;
                 grvCylinder.DataBind();
             }

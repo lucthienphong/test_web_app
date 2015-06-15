@@ -376,10 +376,12 @@ namespace SweetSoft.APEM.WebApp.Pages
             //DataTable dt = ProgressManager.SelectProgresseEngraving(DeliveryB, DeliveryE, EngravingB, EngravingE, ReproStatusID, 0, 0, SortColumn, SortType);
             DataTable dt = ProgressManager.SelectProgresseDeReChrome(DeliveryB, DeliveryE, DeReDateB, DeReDateE);
             DataTable dtSource = dt;
+            DataTable dtRepro = ProgressManager.SelectProgresseRepro_DeReChrome();
 
             viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/ProductionShceduleDeReChrome.rdlc");
             viewer.LocalReport.DataSources.Clear();
             viewer.LocalReport.DataSources.Add(new ReportDataSource("DeReSource", dtSource));
+            viewer.LocalReport.DataSources.Add(new ReportDataSource("DataRePro_DeRe", dtRepro));
             viewer.LocalReport.SetParameters(parameters);
 
             //Chuyển sang Excel

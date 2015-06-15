@@ -206,6 +206,7 @@
                                         <li><a class="window" data-title="Debit Note" data-show="false" href="javascript:;" data-href="/Pages/DebitList.aspx">Debit Note</a></li>
                                         <li class="divider"></li>
                                         <li><a class="window" data-title="Sales Report" data-show="false" href="javascript:;" data-href="/Pages/SalesReport.aspx">Sales Report</a></li>
+                                        <li><a class="window" data-title="Purchase Order Report" data-show="false" href="javascript:;" data-href="/Pages/PurchaseOrderReport.aspx">Purchase Order Report</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">

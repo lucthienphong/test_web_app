@@ -40,11 +40,24 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 {
                     if (!ObjectLockingManager.Exists(InvoiceID, ObjectLockingType.INVOICE))
                     {
-                        InvoiceManager.LockOrUnLockInvoice(InvoiceID, true);
-                        TblInvoiceDetailCollection invoiceDetail = InvoiceManager.SelectInvoiceDetailByInvoiceId(InvoiceID);
-                        foreach (var item in invoiceDetail)
+                        InvoiceManager.LockOrUnLockInvoice(InvoiceID, true);                        
+                    }
+                    TblInvoiceDetailCollection invoiceDetail = InvoiceManager.SelectInvoiceDetailByInvoiceId(InvoiceID);
+                    foreach (var item in invoiceDetail)
+                    {
+                        InvoiceManager.LockJobAndOCAndDO(item.JobID);
+                    }
+                }
+                TblJobCollection jCol = JobManager.SelectJobByInvoiceID(InvoiceID);
+                if (jCol != null && jCol.Count > 0)
+                {
+                    foreach (TblJob objJob in jCol)
+                    {
+                        //TblJob objJob = JobManager.SelectByID(int.Parse(ddlJob.SelectedValue));
+                        if (objJob != null)
                         {
-                            InvoiceManager.LockJobAndOCAndDO(item.JobID);
+                            objJob.Status = Enum.GetName(typeof(JobStatus), JobStatus.Delivered);
+                            JobManager.Update(objJob);
                         }
                     }
                 }

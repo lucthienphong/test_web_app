@@ -1404,6 +1404,18 @@ namespace SweetSoft.APEM.DataAccess{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the tblEngravingCertificate_SelectAll Procedure
+        /// </summary>
+        public static StoredProcedure TblEngravingCertificateSelectAll(int? JobID)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblEngravingCertificate_SelectAll", DataService.GetInstance("DataAcessProvider"), "dbo");
+        	
+            sp.Command.AddParameter("@JobID", JobID, DbType.Int32, 0, 10);
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the tblEngravingDetail_SelectAll Procedure
         /// </summary>
         public static StoredProcedure TblEngravingDetailSelectAll(int? JobID)
@@ -1738,6 +1750,50 @@ namespace SweetSoft.APEM.DataAccess{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the tblJob_SelectAll_1 Procedure
+        /// </summary>
+        public static StoredProcedure TblJobSelectAll1(string Customer, string JobBarcode, string JobNumber, string JobInfo, string CusCylID, int? SaleRepID, DateTime? FromDate, DateTime? ToDate, int? HasOC, int? HasDO, int? HasInvoice, bool? IsServiceJob, int? PageIndex, int? PageSize, string SortColumn, string SortType, string Status)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblJob_SelectAll_1", DataService.GetInstance("DataAcessProvider"), "dbo");
+        	
+            sp.Command.AddParameter("@Customer", Customer, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@JobBarcode", JobBarcode, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@JobNumber", JobNumber, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@JobInfo", JobInfo, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@CusCylID", CusCylID, DbType.String, null, null);
+        	
+            sp.Command.AddParameter("@SaleRepID", SaleRepID, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@FromDate", FromDate, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@ToDate", ToDate, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@HasOC", HasOC, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@HasDO", HasDO, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@HasInvoice", HasInvoice, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@IsServiceJob", IsServiceJob, DbType.Boolean, null, null);
+        	
+            sp.Command.AddParameter("@PageIndex", PageIndex, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@PageSize", PageSize, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@SortColumn", SortColumn, DbType.AnsiString, null, null);
+        	
+            sp.Command.AddParameter("@SortType", SortType, DbType.AnsiString, null, null);
+        	
+            sp.Command.AddParameter("@Status", Status, DbType.String, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the tblJob_SelectForReport Procedure
         /// </summary>
         public static StoredProcedure TblJobSelectForReport(string Customer, string JobBarcode, string JobNumber, string JobInfo, int? SaleRepID, DateTime? FromDate, DateTime? ToDate, int? PageIndex, int? PageSize, string SortColumn, string SortType)
@@ -1862,6 +1918,36 @@ namespace SweetSoft.APEM.DataAccess{
         }
         
         /// <summary>
+        /// Creates an object wrapper for the tblProductionSchedule_Repro_DeReChrome Procedure
+        /// </summary>
+        public static StoredProcedure TblProductionScheduleReproDeReChrome()
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblProductionSchedule_Repro_DeReChrome", DataService.GetInstance("DataAcessProvider"), "");
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the tblProductionSchedule_Repro_Embossing Procedure
+        /// </summary>
+        public static StoredProcedure TblProductionScheduleReproEmbossing()
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblProductionSchedule_Repro_Embossing", DataService.GetInstance("DataAcessProvider"), "");
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the tblProductionSchedule_Repro_Engraving Procedure
+        /// </summary>
+        public static StoredProcedure TblProductionScheduleReproEngraving()
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblProductionSchedule_Repro_Engraving", DataService.GetInstance("DataAcessProvider"), "");
+        	
+            return sp;
+        }
+        
+        /// <summary>
         /// Creates an object wrapper for the tblProgressCylinderStatus_SelectAll Procedure
         /// </summary>
         public static StoredProcedure TblProgressCylinderStatusSelectAll(string KeyWord, bool? IsObsolete, int? PageIndex, int? PageSize, string SortColumn, string SortType)
@@ -1879,6 +1965,28 @@ namespace SweetSoft.APEM.DataAccess{
             sp.Command.AddParameter("@SortColumn", SortColumn, DbType.AnsiString, null, null);
         	
             sp.Command.AddParameter("@SortType", SortType, DbType.AnsiString, null, null);
+        	
+            return sp;
+        }
+        
+        /// <summary>
+        /// Creates an object wrapper for the tblPurchaseOrder_Report Procedure
+        /// </summary>
+        public static StoredProcedure TblPurchaseOrderReport(int? CustomerID, int? SupplierID, DateTime? FromDate, DateTime? ToDate, int? PageIndex, int? PageSize)
+        {
+            SubSonic.StoredProcedure sp = new SubSonic.StoredProcedure("tblPurchaseOrder_Report", DataService.GetInstance("DataAcessProvider"), "dbo");
+        	
+            sp.Command.AddParameter("@CustomerID", CustomerID, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@SupplierID", SupplierID, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@FromDate", FromDate, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@ToDate", ToDate, DbType.DateTime, null, null);
+        	
+            sp.Command.AddParameter("@PageIndex", PageIndex, DbType.Int32, 0, 10);
+        	
+            sp.Command.AddParameter("@PageSize", PageSize, DbType.Int32, 0, 10);
         	
             return sp;
         }

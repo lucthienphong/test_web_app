@@ -43,13 +43,13 @@ namespace SweetSoft.APEM.Core.Manager
         //Detail
         public static void InsertDetail(int invoiceId, int jobId)
         {
-            //Update Job status
-            TblJob obj = JobManager.SelectByID(jobId);
-            if (obj != null)
-            {
-                obj.Status = JobStatus.Delivered.ToString();
-                JobManager.Update(obj);
-            }
+            ////Update Job status
+            //TblJob obj = JobManager.SelectByID(jobId);
+            //if (obj != null)
+            //{
+            //    obj.Status = JobStatus.Delivered.ToString();
+            //    JobManager.Update(obj);
+            //}
             new TblInvoiceDetailController().Insert(invoiceId, jobId);
         }
 

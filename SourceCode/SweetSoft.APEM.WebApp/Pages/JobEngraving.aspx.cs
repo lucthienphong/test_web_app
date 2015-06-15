@@ -1518,7 +1518,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     int EtchingTime = 0; int.TryParse(row["EtchingTime"].ToString(), out EtchingTime);
                     double ChromeCellSize = 0; double.TryParse(row["ChromeCellSize"].ToString(), out ChromeCellSize);
                     double ChromeCellWall = 0; double.TryParse(row["ChromeCellWall"].ToString(), out ChromeCellWall);
-                    double ChromeCellDepth = 0; double.TryParse(row["ChromeCellDepth"].ToString(), out Angle);
+                    double ChromeCellDepth = 0; double.TryParse(row["ChromeCellDepth"].ToString(), out ChromeCellDepth);
 
                     if (!string.IsNullOrEmpty(row["Color"].ToString())) objDetail.Color = Color;
                     else objDetail.Color = string.Empty;
@@ -1581,7 +1581,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     int EtchingTime = 0; int.TryParse(row["EtchingTime"].ToString(), out EtchingTime);
                     double ChromeCellSize = 0; double.TryParse(row["ChromeCellSize"].ToString(), out ChromeCellSize);
                     double ChromeCellWall = 0; double.TryParse(row["ChromeCellWall"].ToString(), out ChromeCellWall);
-                    double ChromeCellDepth = 0; double.TryParse(row["ChromeCellDepth"].ToString(), out Angle);
+                    double ChromeCellDepth = 0; double.TryParse(row["ChromeCellDepth"].ToString(), out ChromeCellDepth);
 
                     if (!string.IsNullOrEmpty(row["Color"].ToString())) objDetail.Color = Color;
                     else objDetail.Color = string.Empty;

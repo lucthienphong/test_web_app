@@ -117,5 +117,19 @@ namespace SweetSoft.APEM.Core.Manager
             dt.Load(SPs.ReportSalesReport(ProductTypeID, SaleID, CustomerID, Type, BaseCurrencyID, FromDate, ToDate, FromDateInvoice, ToDateInvoice, PageIndex, PageSize, SortColumn, SortType).GetReader());
             return dt;
         }
+        /// <summary>
+        /// Purchase Order Report
+        /// </summary>
+        /// <param name="CustomerID">tblJob.CustomerID</param>
+        /// <param name="SupplierID">tblPurchaseOrder.SaleRepID</param>
+        /// <param name="FromDate">tblPurchaseOrder.CreatedOn</param>
+        /// <param name="ToDate">tblPurchaseOrder.CreatedOn</param>
+        /// <returns></returns>
+        public static DataTable PurchaseOrderReport(int CustomerID, int SupplierID, DateTime? FromDate, DateTime? ToDate, int? PageIndex, int? PageSize, string SortColumn, string SortType)
+        {
+            DataTable dt = new DataTable();
+            dt.Load(SPs.TblPurchaseOrderReport(CustomerID, SupplierID, FromDate, ToDate, PageIndex, PageSize).GetReader());
+            return dt;
+        }
     }
 }

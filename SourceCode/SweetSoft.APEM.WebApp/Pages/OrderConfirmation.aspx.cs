@@ -378,7 +378,8 @@ namespace SweetSoft.APEM.WebApp.Pages
                 //Bind thông tin thuế
                 if (!OrderConfirmationManager.HaveGST(orderConfim.JobID))
                 {
-                    BindDDLTax(false);
+                    //BindDDLTax(false);
+                    BindDDLTax(true);
                 }
                 ddlTax.SelectedValue = orderConfim.TaxID != null ? orderConfim.TaxID.ToString() : "0";
                 txtTaxRate.Text = orderConfim.TaxPercentage != null ? ((double)orderConfim.TaxPercentage).ToString("N2") : "0";
@@ -708,7 +709,10 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                         //Có cho phép nhập thuế hay không?
                         if (!OrderConfirmationManager.HaveGST(JobID))//Nếu không cùng quốc gia thì chỉ cho nhập thuế mặc định
-                            BindDDLTax(false);
+                        {  
+                            //BindDDLTax(false);
+                            BindDDLTax(true);
+                        }
 
                         BindCylinders(jObj.JobID);
                         BindQuotationData(jObj.JobID);
@@ -962,7 +966,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.PaymentTerm = txtPaymentTerms.Text;
 
                     decimal totalPrice = 0; decimal.TryParse(txtSubTotal.Text, out totalPrice);
-                    obj.TotalPrice = totalPrice;
+                    obj.TotalPrice = Math.Round(totalPrice,2);
                     obj = OrderConfirmationManager.Update(obj);
                     if (obj != null)
                     {
@@ -1047,7 +1051,7 @@ namespace SweetSoft.APEM.WebApp.Pages
                     obj.DeliveryTerm = txtDeliveryTerms.Text;
                     obj.PaymentTerm = txtPaymentTerms.Text;
                     decimal totalPrice = 0; decimal.TryParse(txtSubTotal.Text, out totalPrice);
-                    obj.TotalPrice = totalPrice;
+                    obj.TotalPrice = Math.Round(totalPrice, 2);
 
                     obj = OrderConfirmationManager.Insert(obj);
                     if (obj != null)

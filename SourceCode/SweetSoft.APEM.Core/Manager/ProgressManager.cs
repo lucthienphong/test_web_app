@@ -83,5 +83,29 @@ namespace SweetSoft.APEM.Core.Manager
             dt.Load(SPs.TblJobProgressForDeReChrome(DeliveryBegin, DeliveryEnd, DeReBegin, DeReEnd, CylinderDateBegin, CylinderDateEnd, PageIndex, PageSize, SortColumn, SortType, JobNumber, Customer).GetReader());
             return dt;
         }
+
+        public static DataTable SelectProgresseRepro_Engraving()
+        {
+            DataTable dt = new DataTable();
+            dt.Load(SPs.TblProductionScheduleReproEngraving().GetReader());
+
+            return dt;
+        }
+
+        public static DataTable SelectProgresseRepro_Embossing()
+        {
+            DataTable dt = new DataTable();
+            dt.Load(SPs.TblProductionScheduleReproEmbossing().GetReader());
+
+            return dt;
+        }
+
+        public static DataTable SelectProgresseRepro_DeReChrome()
+        {
+            DataTable dt = new DataTable();
+            dt.Load(SPs.TblProductionScheduleReproDeReChrome().GetReader());
+
+            return dt;
+        }
     }
 }

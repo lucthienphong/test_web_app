@@ -159,7 +159,7 @@
                                                     <div style="display: table-cell; border-right: 1px solid #000;">
                                                         <h5>
                                                             <small>Job Nr : </small>
-                                                            <strong>
+                                                            <strong style="font-size:18px;">
                                                                 <asp:Literal Text="text" ID="ltrJobNr" runat="server" EnableViewState="false" /></strong>
                                                         </h5>
                                                     </div>
@@ -213,14 +213,14 @@
                                                 <h4>
                                                     <small>Circumference:</small>
                                                     <br />
-                                                    <strong style="font-size: 15px">
+                                                    <strong style="font-size: 18px">
                                                         <asp:Literal Text="text" ID="ltrCircumference" runat="server" EnableViewState="false" />
                                                         mm</strong>
                                                 </h4>
                                                 <h4>
                                                     <small>Facewidth:</small>
                                                     <br />
-                                                    <strong style="font-size: 15px;">
+                                                    <strong style="font-size: 18px;">
                                                         <asp:Literal Text="text" ID="ltrFacewidt" runat="server" EnableViewState="false" />
                                                         mm</strong>
                                                 </h4>

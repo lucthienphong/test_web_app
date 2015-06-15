@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-<head runat="server">
+<head id="Head1" runat="server">
     <title></title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <style>
@@ -57,6 +57,13 @@
             width: 180px;
         }
 
+        .column-190
+        {
+            min-width: 192px;
+            max-width: 192px;
+            width: 192px;
+        }
+
         .column-250
         {
             min-width: 250px;
@@ -96,8 +103,10 @@
 
         .vheader
         {
-            display: table-cell;
-            vertical-align: middle;
+            /*display: table-cell;*/
+            /*vertical-align: middle;*/
+            position:absolute;
+            width:20px;
         }
 
         @media screen
@@ -180,6 +189,11 @@
                 size: landscape;
             }
         }
+
+        .col-xs-12 table
+        {
+            margin-bottom: 1px !important;
+        }
     </style>
 </head>
 <body style="background: #fff">
@@ -197,7 +211,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-2" style="text-align:right;">
+                    <div class="col-xs-2" style="text-align: right;">
                         <img src="/img/apem-logo-print.png" class="img-responsive" style="vertical-align: bottom; display: inline-block; width: 100px;" />
                     </div>
                     <div class="col-xs-12" style="margin-top: 15px;">
@@ -229,7 +243,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-4">
-                                <div class="form-horizontal head">                                    
+                                <div class="form-horizontal head">
                                     <div class="form-group">
                                         <label class="col-xs-2 control-label">Job Name</label>
                                         <div class="col-xs-10">
@@ -272,15 +286,15 @@
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-horizontal head">
-                                    <div class="form-group" style="margin-top:2px;">
+                                    <div class="form-group" style="margin-top: 2px;">
                                         <label class="col-xs-6 control-label">Engrave On Nut</label>
                                         <asp:Literal ID="ltrEngraveOnNut" EnableViewState="false" runat="server"></asp:Literal>
                                     </div>
-                                    <div class="form-group" style="margin-top:10px;">
+                                    <div class="form-group" style="margin-top: 10px;">
                                         <label class="col-xs-6 control-label">Engrave Close to Boarder</label>
                                         <asp:Literal ID="ltrEngraveCloseToBoarder" EnableViewState="false" runat="server"></asp:Literal>
                                     </div>
-                                    <div class="form-group" style="margin-top:11px;">
+                                    <div class="form-group" style="margin-top: 11px;">
                                         <label class="col-xs-5 control-label">Circumference</label>
                                         <div class="col-xs-7">
                                             <p style="border-bottom: 1px dashed #000 !important;" class="form-control-static">
@@ -318,7 +332,7 @@
                                         <label class="col-xs-4 control-label">Roughness</label>
                                         <div class="col-xs-8">
                                             <p class="form-control-static" style="border-bottom: 1px dashed #000 !important;">
-                                                <asp:Literal ID="ltrRoughness" EnableViewState="false" runat="server"></asp:Literal> 
+                                                <asp:Literal ID="ltrRoughness" EnableViewState="false" runat="server"></asp:Literal>
                                             </p>
                                         </div>
                                     </div>
@@ -349,9 +363,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-xs-12 control-label">Surface 
+                                        <label class="col-xs-12 control-label">
+                                            Surface 
                                             <asp:Literal ID="ltrSurface" EnableViewState="false" runat="server"></asp:Literal>
-                                             / Reserse 
+                                            / Reserse 
                                             <asp:Literal ID="ltrReserse" EnableViewState="false" runat="server"></asp:Literal>
                                         </label>
                                     </div>
@@ -365,9 +380,9 @@
                         <div>
                             <table class="table table-bordered">
                                 <tr>
-                                    <th rowspan="3" class="column-20">
-                                        <%--<div class="vheaders">Sep.</div>--%>
-                                        <img alt="Engraving Spec" src="/img/dls/DLS_Sep.png" />
+                                    <th rowspan="3" style="width: 20px;" class="first-row-table">
+                                        <div class="vheaders" style="color:white; font-weight:normal !important">AAA</div>
+                                        <img alt="Sep" src="/img/dls/DLS_Sep.png" />
                                     </th>
                                     <th class="column-150">Position</th>
                                     <th class="column-60">(1)</th>
@@ -462,9 +477,11 @@
                                     <td class="column-60">
                                         <asp:Literal ID="ltrCylID17" runat="server"></asp:Literal></td>
                                 </tr>
+                            </table>
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td rowspan="5" style="width:20px;">
-                                        <%--<div class="vheader">Engraving Spec</div>--%>
+                                    <td rowspan="5" style="width: 20px;">
+                                        <div class="vheaders" style="color:white">AAA</div>
                                         <img alt="Engraving Spec" src="/img/dls/DLS_EngravingSpec.png" />
                                     </td>
                                     <td class="column-150">Screen</td>
@@ -668,10 +685,12 @@
                                     <td class="column-60">
                                         <asp:Literal ID="ltrDistortion17" runat="server"></asp:Literal></td>
                                 </tr>
+                            </table>
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td rowspan="2" style="width:20px;">
-                                        <%--<div class="vheader">M.S.</div>--%>
-                                        <img alt="Engraving Spec" src="/img/dls/DLS_MS.png" 
+                                    <td rowspan="2" style="width: 20px;">
+                                        <div class="vheaders" style="color:white">AAA</div>
+                                        <img alt="MS" src="/img/dls/DLS_MS.png" />
                                     </td>
                                     <td class="column-150">Resolution (Lines)</td>
                                     <td class="column-60">
@@ -746,10 +765,12 @@
                                     <td class="column-60">
                                         <asp:Literal ID="ltrHexagotnal17" runat="server"></asp:Literal></td>
                                 </tr>
+                            </table>
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td rowspan="4" style="width:20px;">
-                                        <%--<div class="vheader">Sharpness</div>--%>
-                                        <img alt="Engraving Spec" src="/img/dls/DLS_Sharpness.png" />
+                                    <td rowspan="4" style="width: 20px;">
+                                        <div class="vheaders" style="color:white">AAA</div>
+                                        <img alt="Sharpness" src="/img/dls/DLS_Sharpness.png" />
                                     </td>
                                     <td class="column-150">Image smoothness</td>
                                     <td class="column-60">
@@ -915,10 +936,12 @@
                                     <td class="column-60">
                                         <asp:Literal ID="ltrLineWorkWidening17" runat="server"></asp:Literal></td>
                                 </tr>
+                            </table>
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td rowspan="6" style="width:20px;">
-                                        <%--<div class="vheader">Engrave</div--%>
-                                        <img alt="Engraving Spec" src="/img/dls/DLS_Engrave.png" />
+                                    <td rowspan="6" style="width: 20px;">
+                                        <div class="vheaders" style="color:white">AAA</div>
+                                        <img alt="Engrave" src="/img/dls/DLS_Engrave.png" />
                                     </td>
                                     <td class="column-150">Engraving Start (mm)</td>
                                     <td class="column-60">
@@ -1158,10 +1181,12 @@
                                         <asp:Literal ID="ltrLaser17" runat="server"
                                             Text="A&nbsp;<span style='border: solid 1px; padding: 1px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;B&nbsp;<span style='border: solid 1px; padding: 1px;'>&nbsp;&nbsp;&nbsp;&nbsp;</span>"></asp:Literal></td>
                                 </tr>
+                            </table>
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td rowspan="3" style="width:20px;">
-                                        <%--<div class="vheader">Cell size</div>--%>
-                                        <img alt="Engraving Spec" src="/img/dls/DLS_CellSize.png" />
+                                    <td rowspan="3" style="width: 20px;">
+                                        <div class="vheaders" style="color:white">AAA</div>
+                                        <img alt="Cell Size" src="/img/dls/DLS_CellSize.png" />
                                     </td>
                                     <td class="column-150">Cell Width [µ]</td>
                                     <td class="column-60">
@@ -1273,8 +1298,14 @@
                                     <td class="column-60">
                                         <asp:Literal ID="ltrCellDepth17" runat="server"></asp:Literal></td>
                                 </tr>
+                            </table>
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td colspan="2">Engraving Time</td>
+                                     <td rowspan="3" style="width: 20px;">
+                                        <div class="vheaders" style="color:white">AAA</div>
+                                        <img alt="Cell Size" src="/img/dls/DLS_CellSize.png" style="visibility:hidden;"/>
+                                    </td>
+                                    <td class="column-150">Engraving Time</td>
                                     <td class="column-60">
                                         <asp:Literal ID="ltrEngravingTime1" runat="server"></asp:Literal></td>
                                     <td class="column-60">
@@ -1311,7 +1342,7 @@
                                         <asp:Literal ID="ltrEngravingTime17" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Beam</td>
+                                    <td>Beam</td>
                                     <td class="column-60">
                                         <asp:Literal ID="ltrBeam1" runat="server"></asp:Literal></td>
                                     <td class="column-60">
@@ -1348,7 +1379,7 @@
                                         <asp:Literal ID="ltrBeam17" runat="server"></asp:Literal></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Threshold</td>
+                                    <td>Threshold</td>
                                     <td class="column-60">
                                         <asp:Literal ID="ltrThreshold1" runat="server"></asp:Literal></td>
                                     <td class="column-60">
@@ -1384,10 +1415,12 @@
                                     <td class="column-60">
                                         <asp:Literal ID="ltrThreshold17" runat="server"></asp:Literal></td>
                                 </tr>
+                            </table>
+                            <table class="table table-bordered">
                                 <tr>
-                                    <td rowspan="2" style="width:20px;">
-                                        <%--<div class="vheader">Checking</div>--%>
-                                        <img alt="Engraving Spec" src="/img/dls/DLS_Checking.png" />
+                                    <td rowspan="2" style="width: 20px;">
+                                        <div class="vheaders" style="color:white">AAA</div>
+                                        <img alt="Checking" src="/img/dls/DLS_Checking.png" />
                                     </td>
                                     <td class="column-150">Checked by</td>
                                     <td class="column-60">
@@ -1464,6 +1497,9 @@
                                 </tr>
                             </table>
                         </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <p></p>
                     </div>
                     <div class="col-xs-12">
                         <label class="control-label">Remark: </label>

@@ -263,6 +263,7 @@
     <Content Include="js\jquery.qtip.min.js" />
     <Content Include="js\plugins\printThis.js" />
     <Content Include="js\SweetsoftValidate.js" />
+    <Content Include="Pages\PurchaseOrderReport.aspx" />
     <Content Include="Pages\Printing\PrintTaxInvoiceServices.aspx" />
     <Content Include="Pages\Printing\PrintCreditDetail.aspx" />
     <Content Include="Pages\Printing\PrintDebitDetail.aspx" />
@@ -686,6 +687,13 @@
     <Compile Include="Controls\SelectReceivers.ascx.designer.cs">
       <DependentUpon>SelectReceivers.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PurchaseOrderReport.aspx.cs">
+      <DependentUpon>PurchaseOrderReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\PurchaseOrderReport.aspx.designer.cs">
+      <DependentUpon>PurchaseOrderReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Printing\PrintTaxInvoiceServices.aspx.cs">
       <DependentUpon>PrintTaxInvoiceServices.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1027,6 +1035,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductionScheduleDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PurchaseOrderReportDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseOrderReportDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reports\RemakeReportDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1477,6 +1490,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\PurchaseOrderReport_BySuppliers.rdlc" />
+    <EmbeddedResource Include="Reports\PurchaseOrderReport_ByCustomers.rdlc" />
     <EmbeddedResource Include="Reports\SaleReport_ByCustomersII.rdlc" />
     <EmbeddedResource Include="Reports\SaleReport_GeneralSalesReport.rdlc" />
     <EmbeddedResource Include="Reports\SaleReport_ByBrandOwners.rdlc" />
@@ -1624,6 +1639,17 @@
     </None>
     <Content Include="Reports\ProductionScheduleDS.xss">
       <DependentUpon>ProductionScheduleDS.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\PurchaseOrderReportDS.xsc">
+      <DependentUpon>PurchaseOrderReportDS.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\PurchaseOrderReportDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PurchaseOrderReportDS.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\PurchaseOrderReportDS.xss">
+      <DependentUpon>PurchaseOrderReportDS.xsd</DependentUpon>
     </Content>
     <None Include="Reports\RemakeReportDS.xsd">
       <SubType>Designer</SubType>

@@ -340,12 +340,12 @@ namespace SweetSoft.APEM.WebApp.Pages
 
                     // Trunglc Add - 11-05-2015
 
-                    TblJob objJob = JobManager.SelectByID(int.Parse(ddlJob.SelectedValue));
-                    if (objJob != null)
-                    {
-                        objJob.Status = Enum.GetName(typeof(JobStatus), JobStatus.Delivered);
-                        JobManager.Update(objJob);
-                    }
+                    //TblJob objJob = JobManager.SelectByID(int.Parse(ddlJob.SelectedValue));
+                    //if (objJob != null)
+                    //{
+                    //    objJob.Status = Enum.GetName(typeof(JobStatus), JobStatus.Delivered);
+                    //    JobManager.Update(objJob);
+                    //}
 
                     // End
 

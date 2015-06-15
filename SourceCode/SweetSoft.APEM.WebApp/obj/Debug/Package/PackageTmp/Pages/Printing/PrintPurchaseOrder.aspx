@@ -6,8 +6,6 @@
 <head runat="server">
     <title></title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/css/uniform.default.css" rel="stylesheet" />
-
     <style>
         body
         {
@@ -63,8 +61,8 @@
         @page
         {
             size: auto;
-            margin: 50mm 6mm 20mm 6mm;
-            margin-top: 50mm;
+            margin: 20mm 6mm 20mm 6mm;
+            margin-top: 20mm;
         }
 
         @media print
@@ -207,7 +205,7 @@
                                     </p>
                                 </div>
                                 <br />
-                                <label for="" class="col-xs-3 control-label text-left">Design name 1</label>
+                                <label for="" class="col-xs-3 control-label text-left">Design Name</label>
                                 <div class="col-xs-9">
                                     <p class="form-control-static">
                                         : 
@@ -321,11 +319,6 @@
                         <strong style="vertical-align: top;">URGENT !!! </strong>
                         <asp:Literal ID="ltrUrgent" Text="" runat="server" />
                     </div>
-                    <div class="col-xs-12" style="margin-top: 15px;">
-                        <label class="control-label">
-                            Approved by:
-                        </label>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-5 text-center">
@@ -334,8 +327,11 @@
                         <br />
                         <br />
                         <br />
-                        <hr style="border-color: #000!important; border-style: dashed; width: 80%; margin: 15px auto;" />
-                        <asp:Literal Text="Asia Pacific Engravers (Malaysia) Sdn Bhd" ID="ltr_CompanyName" EnableViewState="false" runat="server" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <asp:Literal ID="ltrInfoUser" Text="" runat="server" />
                     </div>
                 </div>
             </div>

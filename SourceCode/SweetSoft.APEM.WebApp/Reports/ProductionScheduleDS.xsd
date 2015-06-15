@@ -92,6 +92,18 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="DataRepro" msprop:Generator_TableClassName="DataReproDataTable" msprop:Generator_TableVarName="tableDataRepro" msprop:Generator_RowChangedName="DataReproRowChanged" msprop:Generator_TablePropName="DataRepro" msprop:Generator_RowDeletingName="DataReproRowDeleting" msprop:Generator_RowChangingName="DataReproRowChanging" msprop:Generator_RowEvHandlerName="DataReproRowChangeEventHandler" msprop:Generator_RowDeletedName="DataReproRowDeleted" msprop:Generator_RowClassName="DataReproRow" msprop:Generator_UserTableName="DataRepro" msprop:Generator_RowEvArgName="DataReproRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="EMGQty" msprop:Generator_ColumnVarNameInTable="columnEMGQty" msprop:Generator_ColumnPropNameInRow="EMGQty" msprop:Generator_ColumnPropNameInTable="EMGQtyColumn" msprop:Generator_UserColumnName="EMGQty" type="xs:string" minOccurs="0" />
+              <xs:element name="DLSQty" msprop:Generator_ColumnVarNameInTable="columnDLSQty" msprop:Generator_ColumnPropNameInRow="DLSQty" msprop:Generator_ColumnPropNameInTable="DLSQtyColumn" msprop:Generator_UserColumnName="DLSQty" type="xs:string" minOccurs="0" />
+              <xs:element name="EtchingQty" msprop:Generator_ColumnVarNameInTable="columnEtchingQty" msprop:Generator_ColumnPropNameInRow="EtchingQty" msprop:Generator_ColumnPropNameInTable="EtchingQtyColumn" msprop:Generator_UserColumnName="EtchingQty" type="xs:string" minOccurs="0" />
+              <xs:element name="DeReQty" msprop:Generator_ColumnVarNameInTable="columnDeReQty" msprop:Generator_ColumnPropNameInRow="DeReQty" msprop:Generator_ColumnPropNameInTable="DeReQtyColumn" msprop:Generator_UserColumnName="DeReQty" type="xs:string" minOccurs="0" />
+              <xs:element name="CNCQty" msprop:Generator_ColumnVarNameInTable="columnCNCQty" msprop:Generator_ColumnPropNameInRow="CNCQty" msprop:Generator_ColumnPropNameInTable="CNCQtyColumn" msprop:Generator_UserColumnName="CNCQty" type="xs:string" minOccurs="0" />
+              <xs:element name="DigilasQty" msprop:Generator_ColumnVarNameInTable="columnDigilasQty" msprop:Generator_ColumnPropNameInRow="DigilasQty" msprop:Generator_ColumnPropNameInTable="DigilasQtyColumn" msprop:Generator_UserColumnName="DigilasQty" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

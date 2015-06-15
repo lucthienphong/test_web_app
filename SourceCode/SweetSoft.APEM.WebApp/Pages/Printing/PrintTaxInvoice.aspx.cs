@@ -107,7 +107,7 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                         string countryName = country != null ? country.Name : string.Empty;
                         string ShipToAddress = string.Format("{0}<br/>{1}<br/>{2}, {3}<br/>{4}", cusShip.Name, cusShip.Address, cusShip.PostCode, cusShip.City, countryName);
                         ltrShipToAddress.Text = ShipToAddress;
-                    }
+                    }                    
                 }
                 #endregion
 
@@ -190,17 +190,17 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 TblOrderConfirmation _od = OrderConfirmationManager.SelectByID(job.JobID);
                 if (_od != null)
                 {
-                    TotalAmount = (_od.TotalPrice * (1 - (decimal)_od.Discount / 100) * (1 + (decimal)_od.TaxPercentage / 100));
-                    SubTotal = (_od.TotalPrice * (1 - (decimal)_od.Discount / 100));
+                    //TotalAmount = (_od.TotalPrice * (1 - (decimal)_od.Discount / 100) * (1 + (decimal)_od.TaxPercentage / 100));
+                    //SubTotal = (_od.TotalPrice * (1 - (decimal)_od.Discount / 100));
                     TotalTax = (_od.TotalPrice * (1 - ((decimal)_od.Discount / 100))) * (decimal)_od.TaxPercentage / 100;
                     TaxRate = (decimal)_od.TaxPercentage.Value;
                     Discount = (decimal)_od.Discount.Value;
                 }
 
-                TotalBeforeGST += SubTotal.Value;
+                //TotalBeforeGST += SubTotal.Value;
                 TotalTaxRate += TaxRate;
                 TotalGST += TotalTax.Value;
-                TotalInvoice += TotalAmount.Value;
+                //TotalInvoice += TotalAmount.Value;
 
                 int Seq = 1;
                 int TotalQty = 0;
@@ -227,6 +227,8 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                             CusSteelBaseID = dr["CusSteelBaseID"].ToString(),
                             SteelBase = dr["SteelBaseName"].ToString()
                         };
+
+                        SubTotal += c.TotalPrice;
 
                         Seq++;
 
@@ -263,6 +265,8 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                         CusSteelBaseID = string.Empty
                     };
 
+                    SubTotal += c.TotalPrice;
+
                     c.TaxRate = TotalTax.Value.ToString("N2");
                     listCylinder.Add(c);
                 }
@@ -274,12 +278,14 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                     rptOtherCharges.DataBind();
                 }
 
+                lblSubTotal.Text = SubTotal.Value.ToString("N2");
+                lblDiscount.Text = (SubTotal.Value * Discount / 100).ToString("N2");
+                TotalBeforeGST = SubTotal.Value * (1 - Discount / 100);
+                lblSubTotalBefore.Text = TotalBeforeGST.ToString("N2");
+
                 ltrTaxRate.Text = TaxRate.ToString("N2");
-                lblGST.Text = TotalTax.Value.ToString("N2");
-                lblSubTotal.Text = _od.TotalPrice.Value.ToString("N2");
-                lblDiscount.Text = _od.Discount.Value.ToString("N2");
-                lblSubTotalBefore.Text = SubTotal.Value.ToString("N2");
-                lblTotal.Text = TotalAmount.Value.ToString("N2");
+                lblGST.Text = (SubTotal * (1 - Discount / 100) * (TaxRate / 100)).Value.ToString("N2");
+                lblTotal.Text = (SubTotal * (1 - Discount / 100) * (1 + TaxRate / 100)).Value.ToString("N2");
 
                 lblTotalQty.Text = TotalQty.ToString();
             }

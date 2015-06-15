@@ -13,6 +13,7 @@
             <asp:ListItem Value="50" />
             <asp:ListItem Value="100" />
             <asp:ListItem Value="200" />
+            <asp:ListItem Value="500" />
         </asp:DropDownList>
         <asp:Label ID="lbTotalRow" runat="server" Text=""/>
     </span>

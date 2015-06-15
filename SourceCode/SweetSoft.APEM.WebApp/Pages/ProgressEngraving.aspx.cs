@@ -447,9 +447,12 @@ namespace SweetSoft.APEM.WebApp.Pages
             DataTable dt = ProgressManager.SelectProgresseEngraving(DeliveryB, DeliveryE, EngravingB, EngravingE, ReproStatusID);
             DataTable dtSource = dt;
 
+            DataTable dtRepro = ProgressManager.SelectProgresseRepro_Engraving();
+
             viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/ProductionScheduleEngaving.rdlc");
             viewer.LocalReport.DataSources.Clear();
             viewer.LocalReport.DataSources.Add(new ReportDataSource("EngravingSource", dtSource));
+            viewer.LocalReport.DataSources.Add(new ReportDataSource("DataRepro_Engraving", dtRepro));
             viewer.LocalReport.SetParameters(parameters);
 
             //Chuyển sang Excel
@@ -511,10 +514,13 @@ namespace SweetSoft.APEM.WebApp.Pages
             //DataTable dt = ProgressManager.SelectProgresseEngraving(DeliveryB, DeliveryE, EngravingB, EngravingE, ReproStatusID, 0, 0, SortColumn, SortType);
             DataTable dt = ProgressManager.SelectProgresseEmbossing(DeliveryB, DeliveryE, EngravingB, EngravingE, ReproStatusID);
             DataTable dtSource = dt;
+            DataTable dtRepro = ProgressManager.SelectProgresseRepro_Embossing();
+
 
             viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/ProductionScheduleEmbossing.rdlc");
             viewer.LocalReport.DataSources.Clear();
             viewer.LocalReport.DataSources.Add(new ReportDataSource("EmbossingSource", dtSource));
+            viewer.LocalReport.DataSources.Add(new ReportDataSource("DataRepro_Embossing", dtRepro));
             viewer.LocalReport.SetParameters(parameters);
 
             //Chuyển sang Excel

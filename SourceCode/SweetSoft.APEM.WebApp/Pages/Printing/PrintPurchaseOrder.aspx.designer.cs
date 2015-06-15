@@ -211,12 +211,12 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing {
         protected global::System.Web.UI.WebControls.Literal ltrUrgent;
         
         /// <summary>
-        /// ltr_CompanyName control.
+        /// ltrInfoUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltr_CompanyName;
+        protected global::System.Web.UI.WebControls.Literal ltrInfoUser;
     }
 }

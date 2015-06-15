@@ -919,6 +919,14 @@ namespace SweetSoft.APEM.Core.Manager
         }
         #endregion
 
+        #region Certificate
+        public static DataTable SelectAllEngravingCertificate(int JobID)
+        {
+            DataTable dt = new DataTable();
+            dt.Load(SPs.TblEngravingCertificateSelectAll(JobID).GetReader());
+            return dt;
+        }
+        #endregion
         public static DataTable SP_TblEtchingDetail_SelectAll(int JobID)
         {
             DataTable dt = new DataTable();

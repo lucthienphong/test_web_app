@@ -351,21 +351,22 @@ namespace SweetSoft.APEM.WebApp.Pages
             //EXPORT HEAD
             //Get Invocie data
             string InvoiceIDs = GetInvoiceIDs();
+            CompanyCode = SettingManager.GetSettingValue(SettingNames.CompanyCode);
             DataTable dtInvoice = InvoiceManager.SelectForExport(InvoiceIDs);
             StringWriter headWriter = new StringWriter();
             foreach (var r in dtInvoice.AsEnumerable().ToList())
             {
                 InvoiceNo = r.Field<string>("InvoiceNo");
                 SAPCode = r.Field<string>("SAPCode");
-                InvoiceDate = r.Field<string>("InvoiceNo");
-                PostingDate = Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
+                InvoiceDate = r.Field<string>("InvoiceDate");
+                PostingDate = r.Field<string>("InvoiceDate");//Convert.ToDateTime(dtInvoice.Rows[0]["CreatedOn"].ToString()).ToString("yyyyMMdd");
                 CurrencyName = r.Field<string>("CurrencyName");
                 CalcTax = r.Field<string>("CalcTax");
                 TaxCode = r.Field<string>("TaxCode");
-                Total = r.Field<decimal>("TotalPrice").ToString("N2");
-                RMValue = r.Field<decimal>("RMValue").ToString("N2");
+                Total = r.Field<decimal>("TotalPrice").ToString("F");
+                RMValue = r.Field<decimal>("RMValue").ToString("N4");
 
-                headWriter.WriteLine("{0}    {1}    {2}    {3}    {4}    {5}    {6}    {7}    {8}", InvoiceNo, SAPCode, InvoiceDate, PostingDate, CurrencyName, CalcTax, TaxCode, Total, RMValue);
+                headWriter.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}", InvoiceNo, CompanyCode, SAPCode, InvoiceDate, PostingDate, CurrencyName, CalcTax, TaxCode, Total, RMValue);
             }
             Response.ContentType = "text/plain";
 
@@ -392,12 +393,12 @@ namespace SweetSoft.APEM.WebApp.Pages
             {
                 string dInvoiceNo = r.Field<string>("InvoiceNo");
                 string dGLCode = r.Field<string>("GLCode");
-                string dTotal = r.Field<double>("Total").ToString("N2");
+                string dTotal = r.Field<double>("Total").ToString("F");
                 string dTaxCode = r.Field<string>("TaxCode");
                 string dDescription = r.Field<string>("Description");
                 string dJobNumber = r.Field<string>("JobNumber");
 
-                potisionWriter.WriteLine("{0}    {1}    {2}    {3}    {4}    {5}", dInvoiceNo, dGLCode, dTotal, dTaxCode, dDescription, dJobNumber);
+                potisionWriter.WriteLine("{0}\t{1}\t{2}\t{3}\t{4}\t{5}", dInvoiceNo, dGLCode, dTotal, dTaxCode, dDescription, dJobNumber);
             }
 
             Response.ContentType = "text/plain";

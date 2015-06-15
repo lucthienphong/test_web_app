@@ -5,7 +5,8 @@
 <%@ Register Src="~/Controls/GridViewPager.ascx" TagName="GridViewPager" TagPrefix="SweetSoft" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .minWidth {
+        .minWidth
+        {
             width: 419px !important;
             text-align: left !important;
         }
@@ -16,11 +17,12 @@
             margin-left: 10px !important;
         }*/
 
-        .flaticon-padlock19:before, 
+        .flaticon-padlock19:before,
         .flaticon-padlock21:before
         {
             font-size: 16px !important;
         }
+
         .btn
         {
             padding: 6px 11px !important;
@@ -156,9 +158,9 @@
                         <asp:TemplateField HeaderText="Invoice No" SortExpression="0" HeaderStyle-CssClass="sorting"
                             ItemStyle-CssClass="column-one maxWitdh">
                             <ItemTemplate>
-                                <a href='Invoice.aspx?ID=<%#Eval("InvoiceID")%>'>
-                                    <%#Eval("InvoiceNo")%>
-                                </a>
+                                 <asp:LinkButton ID="btnEdit" runat="server"
+                                    CommandArgument='<%#Eval("InvoiceID")%>' 
+                                    Text='<%#Eval("InvoiceNo")%>' data-id='<%#Eval("InvoiceID")%>'></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Invoice date" SortExpression="1" HeaderStyle-CssClass="sorting"
@@ -221,8 +223,8 @@
                                         </li>--%>
                                         <li>
                                             <a href="#" data-href='Printing/PrintTaxInvoicePDF.aspx?ID=<%#Eval("InvoiceID") %>'>Tax Invoice</a>
-                                        </li>                                        
-                                       <%-- <li>
+                                        </li>
+                                        <%-- <li>
                                             <a href="#" data-href='Printing/PrintTaxInvoiceByCustomer.aspx?ID=<%#Eval("InvoiceID") %>'>Customer Invoice</a>
                                         </li>--%>
                                         <li>
@@ -243,9 +245,9 @@
                                             <a href="#" data-href='Printing/PrintInvoice.aspx?ID=<%#Eval("InvoiceID") %>'>Combine Invoice</a>
                                         </li>--%>
                                         <li>
-                                             <a href="javascript:;" data-href='Printing/PrintTaxInvoice.aspx?ID=<%#Eval("InvoiceID") %>'>View Tax Invoice</a>
-                                        </li>                                        
-                                       <%-- <li>
+                                            <a href="javascript:;" data-href='Printing/PrintTaxInvoice.aspx?ID=<%#Eval("InvoiceID") %>'>View Tax Invoice</a>
+                                        </li>
+                                        <%-- <li>
                                             <a href="#" data-href='Printing/PrintTaxInvoiceByCustomer.aspx?ID=<%#Eval("InvoiceID") %>'>Customer Invoice</a>
                                         </li>--%>
                                         <li>
@@ -396,6 +398,16 @@
             $('[data-toggle="tooltip"]').bstooltip()
         })
 
-
+        addRequestHanlde(InitDetail);
+        InitDetail();
+        function InitDetail() {
+            var linkColl = $('div[id$="grvInvoiceList"] a[id$="btnEdit"]');
+            if (linkColl.length > 0) {
+                linkColl.click(function () {
+                    parent.openWindow($('a[data-title]:eq(0)'), 'Invoice', '/Pages/Invoice.aspx?ID=' + $(this).attr('data-id'));
+                    return false;
+                });
+            }
+        }
     </script>
 </asp:Content>

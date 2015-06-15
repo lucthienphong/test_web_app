@@ -41,12 +41,12 @@ namespace SweetSoft.APEM.WebApp.Pages.Printing
                 {
                     if (!ObjectLockingManager.Exists(InvoiceID, ObjectLockingType.INVOICE))
                     {
-                        InvoiceManager.LockOrUnLockInvoice(InvoiceID, true);
-                        TblInvoiceDetailCollection invoiceDetail = InvoiceManager.SelectInvoiceDetailByInvoiceId(InvoiceID);
-                        foreach (var item in invoiceDetail)
-                        {
-                            InvoiceManager.LockJobAndOCAndDO(item.JobID);
-                        }
+                        InvoiceManager.LockOrUnLockInvoice(InvoiceID, true);                        
+                    }
+                    TblInvoiceDetailCollection invoiceDetail = InvoiceManager.SelectInvoiceDetailByInvoiceId(InvoiceID);
+                    foreach (var item in invoiceDetail)
+                    {
+                        InvoiceManager.LockJobAndOCAndDO(item.JobID);
                     }
                 }
 

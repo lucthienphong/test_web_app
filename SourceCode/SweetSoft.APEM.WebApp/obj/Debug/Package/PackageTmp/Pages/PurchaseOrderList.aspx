@@ -60,7 +60,7 @@
                             <label class="control-label">
                                 Purchase Order Number
                             </label>
-                            <SweetSoft:CustomExtraTextbox ID="txtPurchaseOrder"  CssClass="text-search" RenderOnlyInput="true" Placeholder="APE........."
+                            <SweetSoft:CustomExtraTextbox ID="txtPurchaseOrder" CssClass="text-search" RenderOnlyInput="true" Placeholder="APE........."
                                 runat="server"></SweetSoft:CustomExtraTextbox>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                                 <asp:Label ID="lbOrderDate" Text='<%#Eval("OrderDate")%>' runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Delivery Date" SortExpression="2" HeaderStyle-CssClass="sorting" 
+                        <asp:TemplateField HeaderText="Delivery Date" SortExpression="2" HeaderStyle-CssClass="sorting"
                             ItemStyle-CssClass="column-one maxWitdh">
                             <ItemTemplate>
                                 <asp:Label ID="lbRequiredDeliveryDate" runat="server" Text='<%#Eval("RequiredDeliveryDate")%>'></asp:Label>
@@ -152,13 +152,13 @@
                                 <asp:Label ID="lblCustomerName" runat="server" Text='<%#Eval("Name")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Job No." SortExpression="5" HeaderStyle-CssClass="sorting" 
+                        <asp:TemplateField HeaderText="Job No." SortExpression="5" HeaderStyle-CssClass="sorting"
                             ItemStyle-CssClass="column-one maxWitdh">
                             <ItemTemplate>
                                 <asp:Label ID="lblJobNumber" runat="server" Text='<%# Eval("JobNumber") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="JobName" SortExpression="6" HeaderStyle-CssClass="sorting" 
+                        <asp:TemplateField HeaderText="JobName" SortExpression="6" HeaderStyle-CssClass="sorting"
                             ItemStyle-CssClass="maxWitdh">
                             <ItemTemplate>
                                 <asp:Label ID="lblJobName" runat="server" Text='<%# Eval("JobName") %>'></asp:Label>
@@ -224,7 +224,7 @@
         function SearchText(s, a) {
 
             $("input[type='text'][id$='txtName']").focus(function () { $(this).select(); });
-            
+
             if ($("input[type='text'][id$='txtName']").length > 0) {
                 $(".ui-autocomplete, .ui-helper-hidden-accessible").remove();
                 $("input[type='text'][id$='txtName']").autocomplete({
@@ -262,7 +262,7 @@
                         .append("<a><span style='width:30px;'>" + item.Code + '</span> --- ' + item.Name + "</a>")
                         .appendTo(ul);
                 };
-            }            
+            }
         }
 
         addRequestHanlde(InitCheckAll);
@@ -335,7 +335,7 @@
                     A: { pattern: /[a,A]/ },
                     P: { pattern: /[p,P]/ },
                     E: { pattern: /[e,E]/ },
-                    X: { pattern: /[0-9]/ }                  
+                    X: { pattern: /[0-9]/ }
                 }
             });
 
